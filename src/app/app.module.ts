@@ -6,7 +6,6 @@ import { AppComponent } from './app-component/app.component';
 
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider } from "angularx-social-login";
-import { SigninComponent } from './signin/signin.component';
 
 let config = new AuthServiceConfig([
   {
@@ -21,8 +20,7 @@ export function provideConfig() {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SigninComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
