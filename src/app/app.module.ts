@@ -4,13 +4,20 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { AppComponent } from './app-component/app.component';
 
-import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from "angularx-social-login";
 import { GoogleLoginProvider } from "angularx-social-login";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatRippleModule, MatButtonModule } from '@angular/material';
 
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("1080231906554-teq42cgth129b4t4f04rtcjhgaveodd0.apps.googleusercontent.com")
+    provider: new GoogleLoginProvider("")
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("")
   }
 ]);
 
@@ -24,7 +31,7 @@ export function provideConfig() {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, SocialLoginModule
+    AppRoutingModule, SocialLoginModule, BrowserAnimationsModule, MatRippleModule, MatButtonModule
   ],
   providers: [
     {

@@ -1,0 +1,70 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$facebook: (50: #7fdddd,
+    100: white,
+    200: #7f7fdd,
+    300: #7faedd,
+    400: #7faedd,
+    500: #7faedd,
+    600: #1877f2,
+    700: #1877f2,
+    800: #1877f2,
+    900: #1877f2,
+    A100: white,
+    A200: white,
+    A400: #1877f2,
+    A700: #1877f2,
+    contrast: (50: white,
+        100: black,
+        200: white,
+        300: white,
+        400: white,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: white,
+        A200: white,
+        A400: white,
+        A700: white,
+    ));
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$upc-cafe-client-primary: mat-palette($facebook, 100);
+$upc-cafe-client-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$upc-cafe-client-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$upc-cafe-client-theme: mat-light-theme($upc-cafe-client-primary, $upc-cafe-client-accent, $upc-cafe-client-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($upc-cafe-client-theme);
+
+
+// Define an alternate dark theme.
+$signin-primary: mat-palette($facebook, 900);
+$signin-accent: mat-palette($facebook, 100);
+$dark-warn: mat-palette($mat-deep-orange);
+$dark-theme: mat-dark-theme($signin-primary, $signin-accent, $dark-warn);
+
+// Include the alternative theme styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+.sign-in-theme {
+    @include angular-material-theme($dark-theme);
+}
