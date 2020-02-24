@@ -71,3 +71,22 @@
     margin-bottom: 100px;
     width: 15%;
 }
+
+.full {
+    width: 100%;
+    background-color: white;
+    height: 500px;
+}
+
+#lettuce {
+    width: 120px;
+    height: 100px;
+}
+
+.white {
+    background-color: white;
+}
+
+.topping {
+    height: 100px;
+}

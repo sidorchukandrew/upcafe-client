@@ -9,6 +9,9 @@ import { GoogleLoginProvider } from "angularx-social-login";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatRippleModule, MatButtonModule } from '@angular/material';
+import { TestComponent } from './components/test/test.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 let config = new AuthServiceConfig([
   {
@@ -17,7 +20,7 @@ let config = new AuthServiceConfig([
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider("")
+    provider: new FacebookLoginProvider(" ")
   }
 ]);
 
@@ -27,11 +30,12 @@ export function provideConfig() {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, SocialLoginModule, BrowserAnimationsModule, MatRippleModule, MatButtonModule
+    AppRoutingModule, SocialLoginModule, BrowserAnimationsModule, MatRippleModule, MatButtonModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {
