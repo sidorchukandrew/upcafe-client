@@ -10,7 +10,7 @@
 
 $facebook: (50: #7fdddd,
     100: white,
-    200: #7f7fdd,
+    200: #49c9f2,
     300: #7faedd,
     400: #7faedd,
     500: #7faedd,
@@ -41,19 +41,19 @@ $facebook: (50: #7fdddd,
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$upc-cafe-client-primary: mat-palette($facebook, 100);
-$upc-cafe-client-accent: mat-palette($mat-pink, A200, A100, A400);
+$upcafe-client-primary: mat-palette($facebook, 200);
+$upcafe-client-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$upc-cafe-client-warn: mat-palette($mat-red);
+$upcafe-client-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$upc-cafe-client-theme: mat-light-theme($upc-cafe-client-primary, $upc-cafe-client-accent, $upc-cafe-client-warn);
+$upcafe-client-theme: mat-light-theme($upcafe-client-primary, $upcafe-client-accent, $upcafe-client-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($upc-cafe-client-theme);
+@include angular-material-theme($upcafe-client-theme);
 
 
 // Define an alternate dark theme.

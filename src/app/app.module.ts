@@ -8,19 +8,20 @@ import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from "ang
 import { GoogleLoginProvider } from "angularx-social-login";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatRippleModule, MatButtonModule } from '@angular/material';
-import { TestComponent } from './components/test/test.component';
+import { MatRippleModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule } from '@angular/material';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { StaffSignInComponent } from './components/staff-sign-in/staff-sign-in.component';
 
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("")
+    provider: new GoogleLoginProvider(environment.googleAppId)
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider(" ")
+    provider: new FacebookLoginProvider(environment.facebookAppId)
   }
 ]);
 
@@ -31,11 +32,14 @@ export function provideConfig() {
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    SignInComponent,
+    StaffSignInComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, SocialLoginModule, BrowserAnimationsModule, MatRippleModule, MatButtonModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    AppRoutingModule, SocialLoginModule, BrowserAnimationsModule, MatRippleModule, MatButtonModule,
+    MatFormFieldModule, MatInputModule, MatIconModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {

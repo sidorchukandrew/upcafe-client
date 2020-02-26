@@ -1,0 +1,46 @@
+<!-- <div class="center-wrapper">
+    <mat-form-field appearance="standard" class="form-field">
+        <mat-label style="color:white">Username</mat-label>
+        <input matInput>
+    </mat-form-field>
+</div>
+
+<div class="center-wrapper">
+    <mat-form-field appearance="standard" class="form-field">
+        <mat-label style="color:white">Password</mat-label>
+        <input matInput>
+    </mat-form-field>
+</div> -->
+
+<div class="center-wrapper">
+    <div class="input-container">
+        <div class="form-icon">
+            <mat-icon color="primary">person</mat-icon>
+        </div>
+        <input class="input-field signin-staff-form-field" type="text" placeholder="Username" autocomplete="off" />
+    </div>
+</div>
+
+<div class="center-wrapper">
+    <div class="input-container">
+        <div class="form-icon">
+            <mat-icon color="primary">lock</mat-icon>
+        </div>
+        <input class="input-field signin-staff-form-field" type="password" placeholder="Password" autocomplete="off" />
+    </div>
+</div>
+
+
+<div class="center-wrapper">
+    <button mat-raised-button color="primary" class="signin-button form-field" (click)="signIn()"
+        id="signin-staff-button">
+        <div class="signin-with-text">Sign in</div>
+    </button>
+</div>
+<div class="center-wrapper">
+    <div id="signin-user-back-button">
+        <a routerLink="/">
+            <mat-icon style="margin-right:5px;">arrow_backward</mat-icon>Back
+        </a>
+    </div>
+</div>
