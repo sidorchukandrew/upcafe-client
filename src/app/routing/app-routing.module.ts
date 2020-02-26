@@ -6,7 +6,11 @@ import { StaffSignInComponent } from '../components/staff-sign-in/staff-sign-in.
 
 const routes: Routes = [
   { path: '', component: SignInComponent },
-  { path: 'staff', component: StaffSignInComponent }
+  { path: 'dashboard', loadChildren: () => import('../modules/users/users.module').then(m => m.UsersModule) },
+  { path: 'staff', component: StaffSignInComponent },
+  { path: 'staff/admin', loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule) },
+  { path: 'staff/workers', loadChildren: () => import('../workers/workers.module').then(m => m.WorkersModule) },
+  { path: '', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({
