@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { SocialUser } from "angularx-social-login";
+import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,25 +13,27 @@ export class SignInComponent implements OnInit {
   private signedIn: boolean = false;
   private user: SocialUser;
 
-  constructor(private authService: AuthService) { }
+  constructor(private thirdPartyAuthService: AuthService, private customAuthService: AuthorizationService) { }
 
   ngOnInit(): void {
-    this.authService.authState.subscribe((user) => {
+    this.thirdPartyAuthService.authState.subscribe((user) => {
       this.user = user;
-      console.log(user);
+      if (user != null) {
+        this.customAuthService.customerSignIn(this.user);
+      }
     });
   }
 
   signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.thirdPartyAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
   signInWithFacebook(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.thirdPartyAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
   signOut(): void {
-    this.authService.signOut();
+    this.thirdPartyAuthService.signOut();
     this.user = null;
     this.signedIn = false;
   }

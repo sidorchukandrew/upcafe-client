@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from 'src/app/services/authorization.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-staff-sign-in',
@@ -7,13 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StaffSignInComponent implements OnInit {
 
-  constructor() { }
+  private signInForm = this.formBuilder.group({
+    username: '',
+    password: ''
+  });
+
+  constructor(private authService: AuthorizationService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
   }
 
   signIn() {
-
+    this.authService.attemptStaffSignIn(this.signInForm.value['username'], this.signInForm.value['password']);
   }
 
 }

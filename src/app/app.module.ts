@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './routing/app-routing.module';
 import { AppComponent } from './app-component/app.component';
@@ -38,7 +40,7 @@ export function provideConfig() {
   imports: [
     BrowserModule,
     AppRoutingModule, SocialLoginModule, BrowserAnimationsModule, MatRippleModule, MatButtonModule,
-    MatFormFieldModule, MatInputModule, MatIconModule,
+    MatFormFieldModule, MatInputModule, MatIconModule, HttpClientModule, ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [

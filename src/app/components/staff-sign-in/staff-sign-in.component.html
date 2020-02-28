@@ -11,24 +11,27 @@
         <input matInput>
     </mat-form-field>
 </div> -->
-
-<div class="center-wrapper">
-    <div class="input-container">
-        <div class="form-icon">
-            <mat-icon color="primary">person</mat-icon>
+<form [formGroup]="signInForm">
+    <div class="center-wrapper">
+        <div class="input-container">
+            <div class="form-icon">
+                <mat-icon color="primary">person</mat-icon>
+            </div>
+            <input class="input-field signin-staff-form-field" type="text" placeholder="Username" autocomplete="off"
+                formControlName="username">
         </div>
-        <input class="input-field signin-staff-form-field" type="text" placeholder="Username" autocomplete="off" />
     </div>
-</div>
 
-<div class="center-wrapper">
-    <div class="input-container">
-        <div class="form-icon">
-            <mat-icon color="primary">lock</mat-icon>
+    <div class="center-wrapper">
+        <div class="input-container">
+            <div class="form-icon">
+                <mat-icon color="primary">lock</mat-icon>
+            </div>
+            <input class="input-field signin-staff-form-field" type="password" placeholder="Password" autocomplete="off"
+                formControlName="password">
         </div>
-        <input class="input-field signin-staff-form-field" type="password" placeholder="Password" autocomplete="off" />
     </div>
-</div>
+</form>
 
 
 <div class="center-wrapper">
