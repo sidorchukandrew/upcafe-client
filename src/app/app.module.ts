@@ -10,7 +10,7 @@ import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from "ang
 import { GoogleLoginProvider } from "angularx-social-login";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatRippleModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule } from '@angular/material';
+import { MatRippleModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatProgressSpinnerModule } from '@angular/material';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -39,7 +39,7 @@ export function provideConfig() {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, SocialLoginModule, BrowserAnimationsModule, MatRippleModule, MatButtonModule,
+    AppRoutingModule, SocialLoginModule, BrowserAnimationsModule, MatRippleModule, MatButtonModule, MatProgressSpinnerModule,
     MatFormFieldModule, MatInputModule, MatIconModule, HttpClientModule, ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

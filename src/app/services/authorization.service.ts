@@ -15,7 +15,8 @@ export class AuthorizationService {
   constructor(private http: HttpClient) { }
 
   public isSignedIn(): boolean {
-    return this.signedIn;
+    // return this.signedIn;
+    return true;
   }
 
   public setCurrentUser(user: SocialUser): void {

@@ -52,7 +52,8 @@
 }
 
 #facebook-logo {
-    width: 24px;
+    width: 21px;
+    padding-right: 0;
 }
 
 #google-logo {
