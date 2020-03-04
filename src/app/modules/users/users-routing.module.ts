@@ -1,10 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './user/user.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
+import { CartComponent } from './components/cart/cart.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 const routes: Routes = [
-    { path: '', component: UserComponent }
+    {
+        path: '',
+        component: UserComponent,
+        children:
+            [
+                { path: 'menu', component: MenuComponent },
+                { path: 'favorites', component: FavoritesComponent },
+                { path: 'cart', component: CartComponent },
+                { path: 'profile', component: ProfileComponent }
+            ]
+    },
+
 ];
 
 @NgModule({

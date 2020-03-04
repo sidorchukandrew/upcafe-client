@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  color = "rgb(100, 100, 100);";
   constructor() { }
 
   ngOnInit() {
