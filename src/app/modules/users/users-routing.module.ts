@@ -5,6 +5,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { EatsComponent } from './components/menu/eats/eats.component';
 
 
 const routes: Routes = [
@@ -16,10 +17,10 @@ const routes: Routes = [
                 { path: 'menu', component: MenuComponent },
                 { path: 'favorites', component: FavoritesComponent },
                 { path: 'cart', component: CartComponent },
-                { path: 'profile', component: ProfileComponent }
+                { path: 'profile', component: ProfileComponent },
+                { path: 'menu/eats', component: EatsComponent }
             ]
     },
-
 ];
 
 @NgModule({

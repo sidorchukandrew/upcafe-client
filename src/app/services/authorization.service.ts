@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/User';
-import { SocialUser } from 'angularx-social-login';
+import { SocialUser, AuthService } from 'angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -46,5 +46,9 @@ export class AuthorizationService {
     customer.photoUrl = socialUser.photoUrl;
 
     this.http.post("http://localhost:8080/signin/customer", customer).subscribe();
+  }
+
+  public signOutCustomer(): void {
+    this.http.get("http://localhost:8080/signout/customer").subscribe();
   }
 }

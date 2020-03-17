@@ -10,10 +10,11 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { EatsComponent } from './components/menu/eats/eats.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, FavoritesComponent, CartComponent, ProfileComponent],
+  declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, FavoritesComponent, CartComponent, ProfileComponent, EatsComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
