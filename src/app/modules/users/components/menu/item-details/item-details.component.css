@@ -1,0 +1,144 @@
+#full-page {
+    background-image: url("../../../../../../assets/images/croissant.jpg");
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#summary-card {
+    position: absolute;
+    width: 100%;
+}
+
+.theme-color-background {
+    background-color: #49c9f2;
+    color: white;
+}
+
+.theme-color-text {
+    /* color: #49c9f2; */
+    color: white;
+}
+
+#options-card {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    height: 70%;
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, .2);
+}
+
+#options-card-title {
+    width: 100%;
+    margin-top: 30px;
+    text-align: left;
+    margin-left: 20px;
+    font-weight: 800;
+    font-family: 'Raleway', sans-serif;
+}
+
+#add-to-order {
+    width: 94%;
+    height: 50px;
+    position: fixed;
+    bottom: 60px;
+    margin-bottom: 15px;
+    left: 50%;
+    margin-left: -47%;
+}
+
+#dollars {
+    font-size: 2.7em;
+}
+
+#cents {
+    font-size: 2.2em;
+    vertical-align: top;
+}
+
+#back-button {
+    margin-top: 20px;
+    margin-left: 20px;
+    position: absolute;
+}
+
+#price {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    margin-top: 55px;
+}
+
+#title {
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 55px;
+    color: white;
+    font-size: 2.0em;
+    width: 200px;
+    line-height: 1.4;
+}
+
+#options-card-2 {
+    width: 100%;
+    position: absolute;
+    bottom: 130px;
+}
+
+#options-card-title {
+    font-weight: 800;
+    font-family: 'Sens', sans-serif;
+    margin: 0;
+}
+
+#panel {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+#button-wrapper {
+    width: 100%;
+    background-color: white;
+    height: 80px;
+    position: absolute;
+    bottom: 63px;
+}
+
+.scrolling-wrapper {
+    margin-left: 10px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.modifier-list-image {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+    height: 90px;
+    width: 90px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 50%;
+    border-color: black;
+    color: black;
+    background-image: url('../../../../../../assets/images/tomato.png');
+    background-size: 90%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.modifier-list {
+    display: inline;
+}
+
+.modifier-list .name {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    margin-top: 100px;
+}

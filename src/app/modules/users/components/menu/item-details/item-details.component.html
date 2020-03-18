@@ -1,0 +1,47 @@
+<div id="full-page"></div>
+<div id="summary-card">
+    <a id="back-button" routerLink="../">
+        <mat-icon>arrow_back_ios</mat-icon>
+    </a>
+    <div id="title">
+        {{item.name}}
+    </div>
+    <table id="price" class="theme-color-text">
+        <tr>
+            <td id="dollars">
+                ${{priceDollars}}.
+            </td>
+            <td id="cents">
+                {{currentCents}}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- <div id="options-card">
+    <div id="options-card-title">
+        Ingredients
+    </div>
+</div> -->
+<mat-accordion id="options-card-2">
+    <mat-expansion-panel id="panel" [expanded]=true>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <div id="options-card-title">
+                    Ingredients
+                </div>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="scrolling-wrapper">
+            <div class="modifier-list" *ngFor="let modList of item.modifierListsData">
+                <a class="modifier-list-image" [routerLink]="modList.nameOfList">
+                    <div class="name">{{modList.nameOfList}}</div>
+                </a>
+            </div>
+        </div>
+        <router-outlet></router-outlet>
+    </mat-expansion-panel>
+</mat-accordion>
+<div id="button-wrapper">
+    <button mat-raised-button id="add-to-order" color="primary" (click)='counter(0, 100, 500)'>Add to Order</button>
+</div>

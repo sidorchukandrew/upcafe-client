@@ -1,22 +1,21 @@
 <div id="header">
     <img id="logo" src="../../../../../../assets/logos/UPCafé White_Blue_TEXT_ONLY.png">
 </div>
-<div class="category-title">BREAKFAST</div>
-<div class="scrolling-wrapper">
-    <div class="card">
-        <div class="price">$2.00</div>
-        <img src="../../../../../../assets/images/croissant.jpg" class="rounded card-size">
+<div class="space"></div>
+<div *ngFor="let section of catalog.catalogSections">
+    <div class="category-title">
+        {{section.category | uppercase}}
     </div>
-    <div class="card">
-        <div class="price">$1.50</div>
-        <img src="../../../../../../assets/images/english muffin.jpg" class="rounded card-size">
-    </div>
-    <div class="card">
-        <div class="price">$3.00</div>
-        <img src="../../../../../../assets/images/bacon and eggs.jfif" class="rounded card-size">
-    </div>
-    <div class="card">
-        <div class="price">$1.00</div>
-        <img src="../../../../../../assets/images/breakfast.jpg" class="rounded card-size">
+    <div class="scrolling-wrapper">
+        <div *ngFor="let item of section.items" style="display:inline;">
+            <div *ngFor="let variation of item.variationsData" style="display: inline;">
+                <a class="card" (click)="loadItem(item, variation)" [routerLink]="variation.variationId">
+                    <div class="item-name">{{variation.name}}</div>
+                    <div class="price">{{variation.variationPrice | currency}}</div>
+                </a>
+            </div>
+        </div>
+        <div class="space"></div>
     </div>
 </div>
+<div id="space-for-nav"></div>
