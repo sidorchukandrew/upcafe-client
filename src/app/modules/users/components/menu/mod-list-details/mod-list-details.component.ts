@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { ModifierData } from 'src/app/models/ModifierData';
+import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
   selector: 'app-mod-list-details',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModListDetailsComponent implements OnInit {
 
-  constructor() { }
+  modifiers: Array<ModifierData>;
+
+  constructor(private menuService: MenuService) {
+
+  }
 
   ngOnInit() {
+    this.modifiers = new Array<ModifierData>();
+    this.menuService.getCurrentModifierList().subscribe(data => {
+      this.modifiers = data;
+    });
   }
 
 }

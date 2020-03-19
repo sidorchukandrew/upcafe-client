@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CategoryItem } from 'src/app/models/CategoryItem';
 import { MenuService } from 'src/app/services/menu.service';
 import { LineItem } from 'src/app/models/LineItem';
+import { ModifierData } from 'src/app/models/ModifierData';
 
 @Component({
   selector: 'app-item-details',
@@ -57,5 +58,9 @@ export class ItemDetailsComponent implements OnInit {
 
   private delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  public loadModifierList(modifiers: Array<ModifierData>): void {
+    this.menuService.setCurrentModifierList(modifiers);
   }
 }
