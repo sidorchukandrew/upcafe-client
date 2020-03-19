@@ -118,7 +118,8 @@
 .modifier-list-image {
     position: relative;
     display: inline-block;
-    margin: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
     height: 60px;
     width: 60px;
     border-style: solid;
@@ -140,6 +141,6 @@
     display: inline-block;
     text-align: center;
     width: 100%;
-    margin-top: 75px;
+    margin-top: 70px;
     margin-right: 5px;
 }

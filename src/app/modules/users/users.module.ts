@@ -5,7 +5,10 @@ import { UsersRoutingModule } from './users-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserComponent } from './user/user.component';
 
-import { MatIconModule, MatRippleModule, MatButtonModule, MatExpansionModule } from '@angular/material';
+import {
+  MatIconModule, MatRippleModule, MatButtonModule,
+  MatExpansionModule, MatCheckboxModule, MatDividerModule
+} from '@angular/material';
 import { MenuComponent } from './components/menu/menu.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -20,7 +23,7 @@ import { ModListDetailsComponent } from './components/menu/mod-list-details/mod-
   imports: [
     CommonModule,
     UsersRoutingModule,
-    MatIconModule, MatRippleModule, MatButtonModule, MatExpansionModule
+    MatIconModule, MatRippleModule, MatButtonModule, MatExpansionModule, MatCheckboxModule, MatDividerModule
   ]
 })
 export class UsersModule { }
