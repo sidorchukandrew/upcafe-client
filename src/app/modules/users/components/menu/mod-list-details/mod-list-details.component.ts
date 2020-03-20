@@ -36,16 +36,20 @@ export class ModListDetailsComponent implements OnInit {
     this.selectedModifierIds = new Array<string>();
   }
 
-  changed(event: any) {
+  public changed(event: any): void {
     if (event.checked) {
       this.selectedModifierIds.push(event.source.name);
     }
     else {
-      const index = this.selectedModifierIds.indexOf(event.source.name);
-      if (index > -1)
-        this.selectedModifierIds.splice(index, 1);
+      this.removeId(event.source.name);
     }
 
     console.log(this.selectedModifierIds);
+  }
+
+  private removeId(id: string) {
+    const index = this.selectedModifierIds.indexOf(id);
+    if (index > -1)
+      this.selectedModifierIds.splice(index, 1);
   }
 }

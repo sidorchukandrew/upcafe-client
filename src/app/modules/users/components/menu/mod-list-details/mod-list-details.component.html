@@ -15,7 +15,8 @@
             <mat-divider></mat-divider>
         </div>
         <div *ngIf="!multipleSelectionEnabled">
-            <mat-checkbox labelPosition="before" color="primary" (change)="changed($event); selected = i;"
+            <mat-checkbox labelPosition="before" color="primary"
+                (change)="removeId(selectedId); changed($event);  selected = i; selectedId = modifier.id"
                 [name]="modifier.id" [checked]="selected === i">
                 <div class="bold small">
                     {{ modifier.name }}
