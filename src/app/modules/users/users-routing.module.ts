@@ -21,11 +21,7 @@ const routes: Routes = [
                 { path: 'cart', component: CartComponent },
                 { path: 'profile', component: ProfileComponent },
                 { path: 'menu/eats', component: EatsComponent },
-                {
-                    path: 'menu/eats/:id', component: ItemDetailsComponent, children: [
-                        { path: ':modListId', component: ModListDetailsComponent }
-                    ]
-                }
+                { path: 'menu/eats/:id', component: ItemDetailsComponent }
             ]
     },
 ];
