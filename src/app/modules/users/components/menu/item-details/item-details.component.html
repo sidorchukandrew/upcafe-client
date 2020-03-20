@@ -29,13 +29,12 @@
         </mat-expansion-panel-header>
         <div class="scrolling-wrapper">
             <div class="modifier-list" *ngFor="let modList of item.modifierListsData">
-                <a class="modifier-list-image" (click)="loadModifierList(modList)"
-                    [routerLink]="modList.nameOfList.toLowerCase()">
+                <a class="modifier-list-image" (click)="loadModifierList(modList)">
                     <div class="name">{{modList.nameOfList}}</div>
                 </a>
             </div>
         </div>
-        <router-outlet></router-outlet>
+        <app-mod-list-details></app-mod-list-details>
     </mat-expansion-panel>
 </mat-accordion>
 <div id="button-wrapper">
