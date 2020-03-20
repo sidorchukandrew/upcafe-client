@@ -5,7 +5,8 @@ import { LineItem } from 'src/app/models/LineItem';
 import { ModifierData } from 'src/app/models/ModifierData';
 import { ModifierListData } from 'src/app/models/ModifierListData';
 import { MatSnackBar } from '@angular/material';
-import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
+import { CatalogService } from 'src/app/services/catalog.service';
+import { ActivatedRoute } from "@angular/router";
 
 
 @Component({
@@ -21,11 +22,24 @@ export class ItemDetailsComponent implements OnInit {
   priceCents: number;
   currentCents: number;
 
-  constructor(private menuService: MenuService, private snackBar: MatSnackBar) {
-    this.item = menuService.getCurrentLineItem();
+  constructor(private menuService: MenuService, private snackBar: MatSnackBar, private catalogService: CatalogService, private route: ActivatedRoute) {
+
     this.menuService.menuBarHidden = true;
-    this.totalItemPrice = this.item.variationData.variationPrice;
-    this.priceCents = 99;
+    this.item = new LineItem();
+
+    if (menuService.getCurrentLineItem().itemData != null) {
+      this.item = menuService.getCurrentLineItem();
+      this.menuService.menuBarHidden = true;
+      this.totalItemPrice = this.item.variationData.variationPrice;
+      this.priceCents = 99;
+    }
+    else {
+      this.catalogService.getVariation(this.route.snapshot.paramMap.get('id')).subscribe(lineItem => {
+        this.item.itemData = lineItem['itemData'];
+        this.item.variationData = lineItem['variationData'];
+        this.item.modifierListsData = lineItem['modifierListsData'];
+      });
+    }
 
 
     //TODO: GET BY ID IF NOT LOADED IN

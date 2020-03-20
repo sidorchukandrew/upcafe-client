@@ -1,9 +1,9 @@
 import { VariationData } from './VariationData';
 import { ModifierListData } from './ModifierListData';
+import { ItemData } from './ItemData';
 
 export class LineItem {
-    name: string;
-    description: string;
+    itemData: ItemData;
     variationData: VariationData;
     modifierListsData: Array<ModifierListData>;
 }

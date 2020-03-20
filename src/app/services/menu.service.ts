@@ -28,8 +28,7 @@ export class MenuService {
   }
 
   setCurrentLineItem(item: CategoryItem, variationData: VariationData): void {
-    this.currentLineItem.name = item.itemData.name;
-    this.currentLineItem.description = item.itemData.description;
+    this.currentLineItem.itemData = item.itemData;
     this.currentLineItem.variationData = variationData;
     this.currentLineItem.modifierListsData = item.modifierListsData;
   }
