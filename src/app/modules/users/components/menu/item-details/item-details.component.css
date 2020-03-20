@@ -123,14 +123,19 @@
     height: 60px;
     width: 60px;
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
     border-radius: 50%;
-    border-color: black;
+    border-color: lightgrey;
     color: black;
     background-image: url('../../../../../../assets/images/tomato.png');
     background-size: 90%;
     background-position: 50% 50%;
     background-repeat: no-repeat;
+    margin-top: 8px;
+}
+
+.modifier-list-image:hover {
+    border-color: #34a5f2;
 }
 
 .modifier-list {

@@ -7,7 +7,7 @@ import { UserComponent } from './user/user.component';
 
 import {
   MatIconModule, MatRippleModule, MatButtonModule,
-  MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule
+  MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule, MatSnackBarModule
 } from '@angular/material';
 import { MenuComponent } from './components/menu/menu.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
@@ -23,7 +23,8 @@ import { ModListDetailsComponent } from './components/menu/mod-list-details/mod-
   imports: [
     CommonModule,
     UsersRoutingModule,
-    MatIconModule, MatRippleModule, MatButtonModule, MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule
+    MatIconModule, MatRippleModule, MatButtonModule, MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule,
+    MatSnackBarModule
   ]
 })
 export class UsersModule { }

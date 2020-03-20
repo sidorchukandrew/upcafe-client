@@ -4,6 +4,9 @@ import { MenuService } from 'src/app/services/menu.service';
 import { LineItem } from 'src/app/models/LineItem';
 import { ModifierData } from 'src/app/models/ModifierData';
 import { ModifierListData } from 'src/app/models/ModifierListData';
+import { MatSnackBar } from '@angular/material';
+import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
+
 
 @Component({
   selector: 'app-item-details',
@@ -18,7 +21,7 @@ export class ItemDetailsComponent implements OnInit {
   priceCents: number;
   currentCents: number;
 
-  constructor(private menuService: MenuService) {
+  constructor(private menuService: MenuService, private snackBar: MatSnackBar) {
     this.item = menuService.getCurrentLineItem();
     this.menuService.menuBarHidden = true;
     this.totalItemPrice = this.item.variationData.variationPrice;
