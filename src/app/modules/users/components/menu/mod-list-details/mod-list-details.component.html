@@ -1,14 +1,30 @@
 <div id="scrollable-wrapper">
-    <div class="modifier-wrapper" *ngFor="let modifier of modifiers">
-        <mat-checkbox labelPosition="before" color="primary">
-            <div class="bold small">
-                {{ modifier.name }}
-            </div>
-        </mat-checkbox>
-        <div class="small bottom-space-5">
-            {{ modifier.price | currency}}
-        </div>
+    <div class="modifier-wrapper" *ngFor="let modifier of modifiers; let i = index;">
+        <div *ngIf="multipleSelectionEnabled">
 
-        <mat-divider></mat-divider>
+            <mat-checkbox labelPosition="before" color="primary" (change)="changed($event);" [name]="modifier.id">
+                <div class="bold small">
+                    {{ modifier.name }}
+                </div>
+            </mat-checkbox>
+            <div class="small bottom-space-5">
+                {{ modifier.price | currency}}
+            </div>
+
+            <mat-divider></mat-divider>
+        </div>
+        <div *ngIf="!multipleSelectionEnabled">
+            <mat-checkbox labelPosition="before" color="primary" (change)="changed($event); selected = i;"
+                [name]="modifier.id" [checked]="selected === i">
+                <div class="bold small">
+                    {{ modifier.name }}
+                </div>
+            </mat-checkbox>
+            <div class="small bottom-space-5">
+                {{ modifier.price | currency}}
+            </div>
+
+            <mat-divider></mat-divider>
+        </div>
     </div>
 </div>

@@ -4,6 +4,7 @@ import { LineItem } from '../models/LineItem';
 import { VariationData } from '../models/VariationData';
 import { ModifierData } from '../models/ModifierData';
 import { Observable, Subject } from 'rxjs';
+import { ModifierListData } from '../models/ModifierListData';
 
 @Injectable({
   providedIn: 'root'
@@ -31,11 +32,11 @@ export class MenuService {
     this.currentLineItem.modifierListsData = item.modifierListsData;
   }
 
-  getCurrentModifierList(): any {
+  getCurrentModifierListData(): any {
     return this.observableCurrentModifiers;
   }
 
-  setCurrentModifierList(modifiers: Array<ModifierData>): void {
-    this.observableCurrentModifiers.next(modifiers);
+  setCurrentModifierList(modifierListData: ModifierListData): void {
+    this.observableCurrentModifiers.next(modifierListData);
   }
 }

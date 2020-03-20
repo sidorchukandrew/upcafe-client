@@ -3,6 +3,7 @@ import { CategoryItem } from 'src/app/models/CategoryItem';
 import { MenuService } from 'src/app/services/menu.service';
 import { LineItem } from 'src/app/models/LineItem';
 import { ModifierData } from 'src/app/models/ModifierData';
+import { ModifierListData } from 'src/app/models/ModifierListData';
 
 @Component({
   selector: 'app-item-details',
@@ -60,7 +61,7 @@ export class ItemDetailsComponent implements OnInit {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  public loadModifierList(modifiers: Array<ModifierData>): void {
-    this.menuService.setCurrentModifierList(modifiers);
+  public loadModifierList(modifierListData: ModifierListData): void {
+    this.menuService.setCurrentModifierList(modifierListData);
   }
 }
