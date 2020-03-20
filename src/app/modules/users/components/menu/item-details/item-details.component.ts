@@ -20,7 +20,7 @@ export class ItemDetailsComponent implements OnInit {
 
   constructor(private menuService: MenuService) {
     this.item = menuService.getCurrentLineItem();
-
+    this.menuService.menuBarHidden = true;
     this.totalItemPrice = this.item.variationData.variationPrice;
     this.priceCents = 99;
 

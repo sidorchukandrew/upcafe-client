@@ -25,25 +25,16 @@ export class ModListDetailsComponent implements OnInit {
       this.modifiers = data.modifiers;
       this.modifierListData = data;
 
-      if (this.modifierListData.selectionType == "MULTIPLE")
-        this.multipleSelectionEnabled = true;
-      else
-        this.multipleSelectionEnabled = false;
 
-      console.log(this.modifierListData)
+      this.multipleSelectionEnabled = (this.modifierListData.selectionType == "MULTIPLE");
     });
 
     this.selectedModifierIds = new Array<string>();
   }
 
   public changed(event: any): void {
-    if (event.checked) {
-      this.selectedModifierIds.push(event.source.name);
-    }
-    else {
-      this.removeId(event.source.name);
-    }
 
+    (event.checked) ? this.selectedModifierIds.push(event.source.name) : this.removeId(event.source.name);
     console.log(this.selectedModifierIds);
   }
 

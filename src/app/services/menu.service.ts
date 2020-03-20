@@ -14,11 +14,13 @@ export class MenuService {
   currentLineItem: LineItem;
   currentModifierList: Array<ModifierData>;
   observableCurrentModifiers;
+  menuBarHidden: boolean;
 
   constructor() {
     this.currentLineItem = new LineItem();
     this.currentModifierList = new Array<ModifierData>();
     this.observableCurrentModifiers = new Subject();
+    this.menuBarHidden = false;
   }
 
   getCurrentLineItem(): LineItem {

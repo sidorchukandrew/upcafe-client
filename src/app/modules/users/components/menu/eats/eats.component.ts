@@ -21,6 +21,8 @@ export class EatsComponent implements OnInit {
     this.catalog = {
       catalogSections: Array<CatalogByCategory>()
     };
+
+    this.menuService.menuBarHidden = false;
   }
 
   ngOnInit() {
