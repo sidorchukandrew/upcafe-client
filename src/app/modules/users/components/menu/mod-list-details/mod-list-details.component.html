@@ -2,7 +2,8 @@
     <div class="modifier-wrapper" *ngFor="let modifier of modifiers; let i = index;">
         <div *ngIf="multipleSelectionEnabled">
 
-            <mat-checkbox labelPosition="before" color="primary" (change)="changed($event);" [name]="modifier.id">
+            <mat-checkbox labelPosition="before" color="primary" (change)="changed($event);" [name]="modifier.id"
+                [checked]="this.selectedModifierIds.indexOf(modifier.id) != -1">
                 <div class="bold small">
                     {{ modifier.name }}
                 </div>
