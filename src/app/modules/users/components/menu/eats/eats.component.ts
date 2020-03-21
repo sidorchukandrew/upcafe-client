@@ -34,6 +34,7 @@ export class EatsComponent implements OnInit {
   private loadCatalogByCategory(category: string): void {
     this.catalogService.getCatalog(category).subscribe(data => {
       var catalogSection: CatalogByCategory = data;
+      console.log(catalogSection);
       this.catalog.catalogSections.push(catalogSection);
     });
   }

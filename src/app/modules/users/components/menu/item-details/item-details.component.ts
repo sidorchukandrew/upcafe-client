@@ -19,7 +19,7 @@ export class ItemDetailsComponent implements OnInit {
   item: LineItem;
   totalItemPrice: number;
   priceDollars: number;
-  priceCents: number;
+  priceCents: any;
   currentCents: number;
 
   constructor(private menuService: MenuService, private snackBar: MatSnackBar, private catalogService: CatalogService, private route: ActivatedRoute) {
@@ -31,13 +31,15 @@ export class ItemDetailsComponent implements OnInit {
       this.item = menuService.getCurrentLineItem();
       this.menuService.menuBarHidden = true;
       this.totalItemPrice = this.item.variationData.variationPrice;
-      this.priceCents = 99;
+      this.parsePrice(this.totalItemPrice);
     }
     else {
       this.catalogService.getVariation(this.route.snapshot.paramMap.get('id')).subscribe(lineItem => {
         this.item.itemData = lineItem['itemData'];
         this.item.variationData = lineItem['variationData'];
         this.item.modifierListsData = lineItem['modifierListsData'];
+        this.totalItemPrice = this.item.variationData.variationPrice;
+        this.parsePrice(this.totalItemPrice);
       });
     }
 
@@ -54,11 +56,11 @@ export class ItemDetailsComponent implements OnInit {
 
     if (index != -1) {
       this.priceDollars = parseInt(price.toString().substr(0, index));
-      // this.priceCents = parseInt(price.toString().substr(index + 1, price.toString().length));
+      this.priceCents = parseInt(price.toString().substr(index + 1, price.toString().length));
     }
     else {
       this.priceDollars = price;
-      // this.priceCents = '00';
+      this.priceCents = '00';
     }
   }
 

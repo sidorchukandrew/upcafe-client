@@ -9,8 +9,10 @@
     <div class="scrolling-wrapper">
         <div *ngFor="let item of section.items" style="display:inline;">
             <div *ngFor="let variation of item.variationsData" style="display: inline;">
-                <a class="card" (click)="loadItem(item, variation)" [routerLink]="variation.variationId">
-                    <div class="item-name">{{variation.name}}</div>
+                <a class="card full-background" (click)="loadItem(item, variation)" [routerLink]="variation.variationId"
+                    [ngStyle]="{'background-image': 'url(' + item.itemData.image.url + ')'}">
+                    <div class="item-name" *ngIf="variation.name == 'Regular'">{{item.itemData.name}}</div>
+                    <div class="item-name" *ngIf="variation.name != 'Regular'">{{variation.name}}</div>
                     <div class="price">{{variation.variationPrice | currency}}</div>
                 </a>
             </div>

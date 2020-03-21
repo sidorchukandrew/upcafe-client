@@ -1,9 +1,9 @@
-<div id="full-page"></div>
+<div id="full-page" [ngStyle]="{'background-image': 'url(' + item.itemData.image.url + ')'}"></div>
 <div id="summary-card">
     <a id="back-button" routerLink="../">
         <mat-icon>arrow_back_ios</mat-icon>
     </a>
-    <div id="title">
+    <div id="title" *ngIf="item.itemData">
         {{item.itemData.name}}
     </div>
     <table id="price" class="theme-color-text">
@@ -12,7 +12,7 @@
                 ${{priceDollars}}.
             </td>
             <td id="cents">
-                {{currentCents}}
+                {{priceCents}}
             </td>
         </tr>
     </table>
