@@ -1,5 +1,4 @@
 #full-page {
-    background-image: url("../../../../../../assets/images/croissant.jpg");
     background-size: 100%;
     position: absolute;
     width: 100%;
@@ -22,15 +21,19 @@
 }
 
 #options-card {
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
     text-align: center;
     width: 100%;
     background-color: white;
     position: absolute;
     bottom: 0;
     height: 70%;
+
+}
+
+.rounded {
     box-shadow: 0 0 5px 3px rgba(0, 0, 0, .2);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 #options-card-title {
@@ -128,7 +131,6 @@
     border-radius: 50%;
     border-color: lightgrey;
     color: black;
-    background-image: url('../../../../../../assets/images/tomato.png');
     background-size: 90%;
     background-position: 50% 50%;
     background-repeat: no-repeat;

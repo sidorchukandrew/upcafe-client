@@ -27,8 +27,6 @@ export class EatsComponent implements OnInit {
 
   ngOnInit() {
     this.loadCatalogByCategory("eats");
-    this.loadCatalogByCategory("sweets");
-    this.loadCatalogByCategory("snacks");
   }
 
   private loadCatalogByCategory(category: string): void {

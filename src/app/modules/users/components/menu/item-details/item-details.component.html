@@ -18,7 +18,7 @@
     </table>
 </div>
 
-<mat-accordion id="options-card-2">
+<mat-accordion id="options-card-2" *ngIf="item.modifierListsData.length > 0">
     <mat-expansion-panel id="panel" [expanded]=true>
         <mat-expansion-panel-header>
             <mat-panel-title>
@@ -29,7 +29,8 @@
         </mat-expansion-panel-header>
         <div class="scrolling-wrapper">
             <div class="modifier-list" *ngFor="let modList of item.modifierListsData">
-                <a class="modifier-list-image" (click)="loadModifierList(modList)">
+                <a class="modifier-list-image" (click)="loadModifierList(modList)"
+                    [ngStyle]="{'background-image': 'url(' + modList.imageUrl + ')'}">
                     <div class="name">{{modList.nameOfList}}</div>
                 </a>
             </div>
@@ -37,7 +38,11 @@
         <app-mod-list-details></app-mod-list-details>
     </mat-expansion-panel>
 </mat-accordion>
-<div id="button-wrapper">
+<div id="button-wrapper" *ngIf="item.modifierListsData.length == 0" class="rounded">
+    <button mat-raised-button id="add-to-order" color="primary" (click)='counter(0, 100, 500);'>Add to
+        Order</button>
+</div>
+<div id="button-wrapper" *ngIf="item.modifierListsData.length > 0">
     <button mat-raised-button id="add-to-order" color="primary" (click)='counter(0, 100, 500);'>Add to
         Order</button>
 </div>

@@ -43,9 +43,6 @@ export class ItemDetailsComponent implements OnInit {
       });
     }
 
-
-    //TODO: GET BY ID IF NOT LOADED IN
-    // console.log(this.priceDollars);
   }
 
   ngOnInit() {
