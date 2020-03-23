@@ -1,4 +1,5 @@
-<div id="full-page" [ngStyle]="{'background-image': 'url(' + item.itemData.image.url + ')'}"></div>
+<div id="full-page" [ngStyle]="{'background-image': 'url(' + item.itemData.image.url + ')'}" *ngIf="item.itemData">
+</div>
 <div id="summary-card">
     <a id="back-button" routerLink="../">
         <mat-icon>arrow_back_ios</mat-icon>
@@ -18,7 +19,7 @@
     </table>
 </div>
 
-<mat-accordion id="options-card-2" *ngIf="item.modifierListsData.length > 0">
+<mat-accordion id="options-card-2" *ngIf="item.modifierListsData && item.modifierListsData.length > 0">
     <mat-expansion-panel id="panel" [expanded]=true>
         <mat-expansion-panel-header>
             <mat-panel-title>
@@ -38,11 +39,11 @@
         <app-mod-list-details></app-mod-list-details>
     </mat-expansion-panel>
 </mat-accordion>
-<div id="button-wrapper" *ngIf="item.modifierListsData.length == 0" class="rounded">
+<div id="button-wrapper" *ngIf="item.modifierListsData && item.modifierListsData.length == 0" class="rounded">
     <button mat-raised-button id="add-to-order" color="primary" (click)='counter(0, 100, 500);'>Add to
         Order</button>
 </div>
-<div id="button-wrapper" *ngIf="item.modifierListsData.length > 0">
-    <button mat-raised-button id="add-to-order" color="primary" (click)='counter(0, 100, 500);'>Add to
+<div id="button-wrapper" *ngIf="item.modifierListsData && item.modifierListsData.length > 0">
+    <button mat-raised-button id="add-to-order" color="primary" (click)='addToOrder();'>Add to
         Order</button>
 </div>

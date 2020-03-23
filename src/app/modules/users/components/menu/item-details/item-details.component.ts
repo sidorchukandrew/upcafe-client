@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { CategoryItem } from 'src/app/models/CategoryItem';
 import { MenuService } from 'src/app/services/menu.service';
 import { LineItem } from 'src/app/models/LineItem';
@@ -7,6 +7,8 @@ import { ModifierListData } from 'src/app/models/ModifierListData';
 import { MatSnackBar } from '@angular/material';
 import { CatalogService } from 'src/app/services/catalog.service';
 import { ActivatedRoute } from "@angular/router";
+import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
+import { OrderService } from 'src/app/services/order.service';
 
 
 @Component({
@@ -16,13 +18,17 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ItemDetailsComponent implements OnInit {
 
+  @ViewChild(ModListDetailsComponent, { static: false })
+  private modListDetailsComponent: ModListDetailsComponent;
+
   item: LineItem;
   totalItemPrice: number;
   priceDollars: number;
   priceCents: any;
   currentCents: number;
 
-  constructor(private menuService: MenuService, private snackBar: MatSnackBar, private catalogService: CatalogService, private route: ActivatedRoute) {
+  constructor(private menuService: MenuService, private snackBar: MatSnackBar, private catalogService: CatalogService,
+    private route: ActivatedRoute, private orderService: OrderService) {
 
     this.menuService.menuBarHidden = true;
     this.item = new LineItem();
@@ -79,5 +85,10 @@ export class ItemDetailsComponent implements OnInit {
 
   public loadModifierList(modifierListData: ModifierListData): void {
     this.menuService.setCurrentModifierList(modifierListData);
+  }
+
+  public addToOrder(): void {
+    var selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
+    this.orderService.newOrderItem(this.item.variationData, selectedModifiers);
   }
 }

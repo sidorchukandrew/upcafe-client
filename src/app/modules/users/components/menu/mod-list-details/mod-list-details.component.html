@@ -1,9 +1,9 @@
 <div id="scrollable-wrapper">
     <div class="modifier-wrapper" *ngFor="let modifier of modifiers; let i = index;">
-        <div *ngIf="multipleSelectionEnabled">
 
+        <div *ngIf="multipleSelectionEnabled">
             <mat-checkbox labelPosition="before" color="primary" (change)="changed($event);" [name]="modifier.id"
-                [checked]="this.selectedModifierIds.indexOf(modifier.id) != -1">
+                [checked]="selected(modifier.id)">
                 <div class="bold small">
                     {{ modifier.name }}
                 </div>
@@ -14,10 +14,11 @@
 
             <mat-divider></mat-divider>
         </div>
+
         <div *ngIf="!multipleSelectionEnabled">
             <mat-checkbox labelPosition="before" color="primary"
-                (change)="removeId(selectedId); changed($event);  selected = i; selectedId = modifier.id"
-                [name]="modifier.id" [checked]="selected === i">
+                (change)="removeById(selectedId); changed($event);  selectedIndex = i; selectedId = modifier.id"
+                [name]="modifier.id" [checked]="selectedIndex === i">
                 <div class="bold small">
                     {{ modifier.name }}
                 </div>

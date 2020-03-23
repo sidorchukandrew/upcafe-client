@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModifierData } from 'src/app/models/ModifierData';
 import { MenuService } from 'src/app/services/menu.service';
 import { ModifierListData } from 'src/app/models/ModifierListData';
@@ -12,7 +12,7 @@ export class ModListDetailsComponent implements OnInit {
 
   modifiers: Array<ModifierData>;
   modifierListData: ModifierListData;
-  selectedModifierIds: Array<string>;
+  selectedModifiers: Array<ModifierData>;
   multipleSelectionEnabled: boolean;
 
   constructor(private menuService: MenuService) {
@@ -21,26 +21,45 @@ export class ModListDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.modifiers = new Array<ModifierData>();
+    this.selectedModifiers = new Array<ModifierData>();
+
     this.menuService.getCurrentModifierListData().subscribe(data => {
       this.modifiers = data.modifiers;
       this.modifierListData = data;
-
-
       this.multipleSelectionEnabled = (this.modifierListData.selectionType == "MULTIPLE");
     });
-
-    this.selectedModifierIds = new Array<string>();
   }
 
   public changed(event: any): void {
 
-    (event.checked) ? this.selectedModifierIds.push(event.source.name) : this.removeId(event.source.name);
-    console.log(this.selectedModifierIds);
+    var justSelected = this.modifiers.find(function (modifier) {
+      return modifier.id == event.source.name;
+    });
+
+    (event.checked) ? this.selectedModifiers.push(justSelected) : this.removeById(event.source.name);
+    console.log("SELECTED : ");
+    console.log(this.selectedModifiers);
   }
 
-  private removeId(id: string) {
-    const index = this.selectedModifierIds.indexOf(id);
+  private removeById(id: string): void {
+    const index = this.selectedModifiers.findIndex(function (m) {
+      return m.id == id;
+    });
+
     if (index > -1)
-      this.selectedModifierIds.splice(index, 1);
+      this.selectedModifiers.splice(index, 1);
+  }
+
+  public selected(id: string): boolean {
+
+    var index = this.selectedModifiers.findIndex(function (m) {
+      return (m.id == id);
+    });
+
+    return index != -1;
+  }
+
+  public getSelectedModifiers(): Array<ModifierData> {
+    return this.selectedModifiers;
   }
 }
