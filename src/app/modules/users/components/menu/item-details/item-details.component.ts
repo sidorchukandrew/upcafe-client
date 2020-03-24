@@ -9,6 +9,7 @@ import { CatalogService } from 'src/app/services/catalog.service';
 import { ActivatedRoute } from "@angular/router";
 import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
 import { OrderService } from 'src/app/services/order.service';
+import { VariationData } from 'src/app/models/VariationData';
 
 
 @Component({
@@ -88,7 +89,16 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   public addToOrder(): void {
-    var selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
-    this.orderService.newOrderItem(this.item.variationData, selectedModifiers);
+
+    var selectedModifiers;
+    if (this.modListDetailsComponent)
+      selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
+
+    var variationData: VariationData = this.item.variationData;
+    if (variationData.name == 'Regular')
+      variationData.name = this.item.itemData.name;
+
+    var orderItem = this.orderService.newOrderItem(variationData, selectedModifiers);
+    this.orderService.addToOrder(orderItem);
   }
 }

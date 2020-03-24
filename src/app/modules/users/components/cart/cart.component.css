@@ -1,0 +1,56 @@
+.center-text {
+    text-align: center;
+}
+
+.big-text {
+    font-size: 1.5em;
+}
+
+.label-font {
+    font-family: 'Sen', sans-serif;
+}
+
+.padding-10 {
+    padding: 10px;
+}
+
+#continue {
+    width: 94%;
+    height: 50px;
+    position: fixed;
+    margin-bottom: 15px;
+    left: 50%;
+    margin-left: -47%;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.quarter-width {
+    width: 25%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.right-align-text {
+    text-align: right;
+}
+
+.right-margin-20 {
+    margin-right: 20px;
+}
+
+.left-margin-20 {
+    margin-left: 20px;
+}
+
+.small-width {
+    width: 80px;
+}
+
+#tax {
+    margin-right: 20px;
+}

@@ -39,8 +39,9 @@
         <app-mod-list-details></app-mod-list-details>
     </mat-expansion-panel>
 </mat-accordion>
-<div id="button-wrapper" *ngIf="item.modifierListsData && item.modifierListsData.length == 0" class="rounded">
-    <button mat-raised-button id="add-to-order" color="primary" (click)='counter(0, 100, 500);'>Add to
+<div id="button-wrapper" *ngIf="item.modifierListsData && item.modifierListsData.length == 0"
+    style="background-color: rgba(0, 0, 0, 0);">
+    <button mat-raised-button id="add-to-order" color="primary" (click)='addToOrder();'>Add to
         Order</button>
 </div>
 <div id="button-wrapper" *ngIf="item.modifierListsData && item.modifierListsData.length > 0">

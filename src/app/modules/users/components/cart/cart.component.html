@@ -1,0 +1,32 @@
+<div id="header" class="center-text big-text label-font padding-10">
+    My Order
+</div>
+<div *ngIf="currentOrder == null">
+    You haven't started an order yet!
+</div>
+<div *ngIf="currentOrder != null">
+    <div *ngFor="let orderItem of currentOrder.selectedLineItems">
+
+    </div>
+
+    <div id="bottom-card">
+        <table class="full-width">
+            <tr class="label-font">
+                <td class="small-width right-align-text">
+                    <div id="tax" class="inline-block theme-color">Tax:</div>
+                </td>
+                <td class="">
+                    <div class="number inline-block">{{ 1.00 | currency }}</div>
+                </td>
+                <td class="right-align-text">
+                    <div id="subtotal" class="inline-block  theme-color">Subtotal:</div>
+                </td>
+                <td class="small-width right-align-text">
+                    <div class="number inline-block right-margin-20">{{ 8.08 | currency }} </div>
+                </td>
+            </tr>
+        </table>
+        <button mat-raised-button id="continue" class="navbar-space-bottom-position" color="primary">Continue to
+            Payment</button>
+    </div>
+</div>

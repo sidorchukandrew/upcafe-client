@@ -22,25 +22,4 @@ export class CatalogService {
   public getVariation(id: string) {
     return this.http.get("http://192.168.0.6:8080/catalog/variations/" + id);
   }
-
-  // public parseCatalog(response: Array<any>): CatalogByCategory {
-  //   var catalog = new CatalogByCategory(new Array<CategoryItem>(), "EATS");
-
-  //   response['items'].forEach(function (item) {
-
-  //     var itemData: ItemData = item['itemData'];
-  //     var variationsData: Array<VariationData> = item['variationsData'];
-  //     var modifierListsData: Array<ModifierListData> = item['modifierListsData'];
-
-  //     var lineItem: CategoryItem = {
-  //       itemData: itemData,
-  //       variationsData: variationsData,
-  //       modifierListsData: modifierListsData
-  //     }
-  //     catalog.categoryItems.push(lineItem);
-  //   });
-
-  //   console.log(catalog);
-  //   return catalog;
-  // }
 }

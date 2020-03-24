@@ -54,9 +54,13 @@ a {
 
 .full-white {
     height: 100%;
-    background-color: white;
+    background-color: #fafafa;
 }
 
-.active {
-    color: #49c9f2;
+.theme-color {
+    color: #34a5f2;
+}
+
+.navbar-space-bottom-position {
+    bottom: 63px;
 }
