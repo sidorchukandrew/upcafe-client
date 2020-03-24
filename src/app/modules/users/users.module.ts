@@ -7,24 +7,26 @@ import { UserComponent } from './user/user.component';
 
 import {
   MatIconModule, MatRippleModule, MatButtonModule,
-  MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule, MatSnackBarModule
+  MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule, MatSnackBarModule, MatDialogModule
 } from '@angular/material';
 import { MenuComponent } from './components/menu/menu.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EatsComponent } from './components/menu/eats/eats.component';
-import { ItemDetailsComponent } from './components/menu/item-details/item-details.component';
+import { ItemDetailsComponent, UserResponseDialog } from './components/menu/item-details/item-details.component';
 import { ModListDetailsComponent } from './components/menu/mod-list-details/mod-list-details.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, FavoritesComponent, CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent],
+  declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, FavoritesComponent,
+    CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog],
   imports: [
     CommonModule,
     UsersRoutingModule,
     MatIconModule, MatRippleModule, MatButtonModule, MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule,
-    MatSnackBarModule
-  ]
+    MatSnackBarModule, MatDialogModule
+  ],
+  entryComponents: [UserResponseDialog]
 })
 export class UsersModule { }

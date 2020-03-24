@@ -6,10 +6,11 @@ import { ModifierData } from 'src/app/models/ModifierData';
 import { ModifierListData } from 'src/app/models/ModifierListData';
 import { MatSnackBar } from '@angular/material';
 import { CatalogService } from 'src/app/services/catalog.service';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
 import { OrderService } from 'src/app/services/order.service';
 import { VariationData } from 'src/app/models/VariationData';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class ItemDetailsComponent implements OnInit {
   currentCents: number;
 
   constructor(private menuService: MenuService, private snackBar: MatSnackBar, private catalogService: CatalogService,
-    private route: ActivatedRoute, private orderService: OrderService) {
+    private route: ActivatedRoute, private orderService: OrderService, public userResponseDialog: MatDialog) {
 
     this.menuService.menuBarHidden = true;
     this.item = new LineItem();
@@ -100,5 +101,29 @@ export class ItemDetailsComponent implements OnInit {
 
     var orderItem = this.orderService.newOrderItem(variationData, selectedModifiers);
     this.orderService.addToOrder(orderItem);
+
+    this.userResponseDialog.open(UserResponseDialog, {
+      hasBackdrop: true
+    });
+  }
+}
+
+@Component({
+  selector: 'user-response-dialog',
+  templateUrl: 'user-response-dialog.html',
+  styleUrls: ['user-response-dialog.css']
+})
+export class UserResponseDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<UserResponseDialog>, private router: Router) { }
+
+  close(): void {
+    this.dialogRef.close();
+  }
+
+  viewOrder(): void {
+    this.router.navigate(['user/cart']);
+    this.close();
   }
 }

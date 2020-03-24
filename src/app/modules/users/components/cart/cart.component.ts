@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
 
   constructor(private orderService: OrderService, private menuService: MenuService) {
     this.currentOrder = orderService.getCurrentOrder();
+    this.menuService.menuBarHidden = false;
   }
 
   ngOnInit() {
