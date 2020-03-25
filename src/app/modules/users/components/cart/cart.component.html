@@ -27,7 +27,8 @@
                         <mat-icon>clear</mat-icon>
                     </button> -->
 
-                    <button mat-button (click)="decrementQuantity(orderItem);" class="quantity-button">
+                    <button mat-button (click)="decrementQuantity(orderItem);" class="quantity-button"
+                        [disabled]="orderItem.quantity == 1">
                         <mat-icon>remove</mat-icon>
                     </button>
                     {{ orderItem.quantity }}
@@ -89,7 +90,8 @@
             </td>
         </tr>
     </table>
-    <button mat-raised-button id="continue" class="top-margin-15 bottom-margin-20" color="primary">Continue
+    <button mat-raised-button id="continue" class="top-margin-15 bottom-margin-20" color="primary"
+        routerLink="payment">Continue
         {{currentOrder.totalPrice + (currentOrder.totalPrice * .08) | currency}}
     </button>
 </div>

@@ -12,6 +12,7 @@ import { DrinksComponent } from './components/menu/drinks/drinks.component';
 import { SnacksComponent } from './components/menu/snacks/snacks.component';
 import { SweetsComponent } from './components/menu/sweets/sweets.component';
 import { EditItemComponent } from './components/cart/edit-item/edit-item.component';
+import { PaymentComponent } from './components/cart/payment/payment.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,8 @@ const routes: Routes = [
                 { path: 'menu/snacks/:id', component: ItemDetailsComponent },
                 { path: 'menu/sweets', component: SweetsComponent },
                 { path: 'menu/sweets/:id', component: ItemDetailsComponent },
-                { path: 'cart/edit/:id', component: EditItemComponent }
+                { path: 'cart/edit/:id', component: EditItemComponent },
+                { path: 'cart/payment', component: PaymentComponent }
             ]
     },
 ];

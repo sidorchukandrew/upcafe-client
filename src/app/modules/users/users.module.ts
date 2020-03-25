@@ -20,11 +20,12 @@ import { DrinksComponent } from './components/menu/drinks/drinks.component';
 import { SnacksComponent } from './components/menu/snacks/snacks.component';
 import { SweetsComponent } from './components/menu/sweets/sweets.component';
 import { EditItemComponent } from './components/cart/edit-item/edit-item.component';
+import { PaymentComponent } from './components/cart/payment/payment.component';
 
 
 @NgModule({
   declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, FavoritesComponent,
-    CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog, DrinksComponent, SnacksComponent, SweetsComponent, EditItemComponent],
+    CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog, DrinksComponent, SnacksComponent, SweetsComponent, EditItemComponent, PaymentComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
