@@ -1,23 +1,19 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { CategoryItem } from 'src/app/models/CategoryItem';
-import { MenuService } from 'src/app/services/menu.service';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { ModListDetailsComponent } from '../../menu/mod-list-details/mod-list-details.component';
 import { LineItem } from 'src/app/models/LineItem';
-import { ModifierListData } from 'src/app/models/ModifierListData';
-import { MatSnackBar } from '@angular/material';
+import { MenuService } from 'src/app/services/menu.service';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { CatalogService } from 'src/app/services/catalog.service';
-import { ActivatedRoute, Router } from "@angular/router";
-import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order.service';
-import { VariationData } from 'src/app/models/VariationData';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-
+import { ModifierListData } from 'src/app/models/ModifierListData';
 
 @Component({
-  selector: 'app-item-details',
-  templateUrl: './item-details.component.html',
-  styleUrls: ['./item-details.component.css']
+  selector: 'app-edit-item',
+  templateUrl: './edit-item.component.html',
+  styleUrls: ['../../menu/item-details/item-details.component.css']
 })
-export class ItemDetailsComponent implements OnInit {
+export class EditItemComponent implements OnInit, OnDestroy {
 
   @ViewChild(ModListDetailsComponent, { static: false })
   private modListDetailsComponent: ModListDetailsComponent;
@@ -29,7 +25,7 @@ export class ItemDetailsComponent implements OnInit {
   currentCents: number;
 
   constructor(private menuService: MenuService, private snackBar: MatSnackBar, private catalogService: CatalogService,
-    private route: ActivatedRoute, private orderService: OrderService, public userResponseDialog: MatDialog) {
+    private route: ActivatedRoute, private orderService: OrderService, private router: Router) {
 
     this.menuService.menuBarHidden = true;
     this.item = new LineItem();
@@ -49,10 +45,14 @@ export class ItemDetailsComponent implements OnInit {
         this.parsePrice(this.totalItemPrice);
       });
     }
-
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy(): void {
+    console.log("destroying");
+    this.orderService.setItemBeingEdited(null);
   }
 
   parsePrice(price: number): void {
@@ -88,41 +88,14 @@ export class ItemDetailsComponent implements OnInit {
     this.menuService.setCurrentModifierList(modifierListData);
   }
 
-  public addToOrder(): void {
+  public confirmEdit(): void {
 
-    var selectedModifiers;
-    if (this.modListDetailsComponent)
-      selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
+    // var selectedModifiers;
+    // if (this.modListDetailsComponent)
+    //   selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
 
-    var variationData: VariationData = this.item.variationData;
-    if (variationData.name == 'Regular')
-      variationData.name = this.item.itemData.name;
-
-    var orderItem = this.orderService.newOrderItem(variationData, selectedModifiers);
-    this.orderService.addToOrder(orderItem);
-
-    this.userResponseDialog.open(UserResponseDialog, {
-      hasBackdrop: true
-    });
-  }
-}
-
-@Component({
-  selector: 'user-response-dialog',
-  templateUrl: 'user-response-dialog.html',
-  styleUrls: ['user-response-dialog.css']
-})
-export class UserResponseDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<UserResponseDialog>, private router: Router) { }
-
-  close(): void {
-    this.dialogRef.close();
-  }
-
-  viewOrder(): void {
+    // this.orderService.getItemBeingEdited().selectedModifiers = selectedModifiers;
     this.router.navigate(['user/cart']);
-    this.close();
   }
 }
+

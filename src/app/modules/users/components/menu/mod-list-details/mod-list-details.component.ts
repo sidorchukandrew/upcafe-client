@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModifierData } from 'src/app/models/ModifierData';
 import { MenuService } from 'src/app/services/menu.service';
 import { ModifierListData } from 'src/app/models/ModifierListData';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-mod-list-details',
@@ -15,13 +16,17 @@ export class ModListDetailsComponent implements OnInit {
   selectedModifiers: Array<ModifierData>;
   multipleSelectionEnabled: boolean;
 
-  constructor(private menuService: MenuService) {
+  constructor(private menuService: MenuService, private orderService: OrderService) {
 
   }
 
   ngOnInit() {
     this.modifiers = new Array<ModifierData>();
     this.selectedModifiers = new Array<ModifierData>();
+
+    if (this.orderService.getItemBeingEdited()) {
+      this.selectedModifiers = this.orderService.getItemBeingEdited().selectedModifiers;
+    }
 
     this.menuService.getCurrentModifierListData().subscribe(data => {
       this.modifiers = data.modifiers;
@@ -37,8 +42,7 @@ export class ModListDetailsComponent implements OnInit {
     });
 
     (event.checked) ? this.selectedModifiers.push(justSelected) : this.removeById(event.source.name);
-    console.log("SELECTED : ");
-    console.log(this.selectedModifiers);
+    console.log(this.orderService.editingItem);
   }
 
   private removeById(id: string): void {
@@ -61,5 +65,9 @@ export class ModListDetailsComponent implements OnInit {
 
   public getSelectedModifiers(): Array<ModifierData> {
     return this.selectedModifiers;
+  }
+
+  public setSelectedModifiers(modifiers: Array<ModifierData>): void {
+    this.selectedModifiers = modifiers;
   }
 }

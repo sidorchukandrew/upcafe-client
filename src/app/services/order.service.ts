@@ -10,6 +10,7 @@ import { Order } from '../models/Order';
 export class OrderService {
 
   order: Order;
+  editingItem: OrderItem;
 
   constructor() { }
 
@@ -45,5 +46,13 @@ export class OrderService {
 
   public getCurrentOrder(): Order {
     return this.order;
+  }
+
+  public setItemBeingEdited(orderItem: OrderItem) {
+    this.editingItem = orderItem;
+  }
+
+  public getItemBeingEdited(): OrderItem {
+    return this.editingItem;
   }
 }

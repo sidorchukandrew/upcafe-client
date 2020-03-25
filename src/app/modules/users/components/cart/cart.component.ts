@@ -51,4 +51,9 @@ export class CartComponent implements OnInit {
   navigateToMenu(): void {
     this.router.navigate(['user/menu']);
   }
+
+  navigateToEditItem(orderItem: OrderItem) {
+    this.orderService.setItemBeingEdited(orderItem);
+    this.router.navigate(['user/cart/edit', orderItem.variationData.variationId]);
+  }
 }

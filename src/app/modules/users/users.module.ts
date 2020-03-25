@@ -19,11 +19,12 @@ import { ModListDetailsComponent } from './components/menu/mod-list-details/mod-
 import { DrinksComponent } from './components/menu/drinks/drinks.component';
 import { SnacksComponent } from './components/menu/snacks/snacks.component';
 import { SweetsComponent } from './components/menu/sweets/sweets.component';
+import { EditItemComponent } from './components/cart/edit-item/edit-item.component';
 
 
 @NgModule({
   declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, FavoritesComponent,
-    CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog, DrinksComponent, SnacksComponent, SweetsComponent],
+    CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog, DrinksComponent, SnacksComponent, SweetsComponent, EditItemComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
