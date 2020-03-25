@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ModifierData } from 'src/app/models/ModifierData';
-import { MenuService } from 'src/app/services/menu.service';
 import { ModifierListData } from 'src/app/models/ModifierListData';
 import { OrderService } from 'src/app/services/order.service';
+import { SelectedItemService } from 'src/app/services/selected-item.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mod-list-details',
   templateUrl: './mod-list-details.component.html',
   styleUrls: ['./mod-list-details.component.css']
 })
-export class ModListDetailsComponent implements OnInit {
+export class ModListDetailsComponent implements OnInit, OnDestroy {
 
   modifiers: Array<ModifierData>;
   modifierListData: ModifierListData;
   selectedModifiers: Array<ModifierData>;
   multipleSelectionEnabled: boolean;
+  subscriptions: Subscription;
 
-  constructor(private menuService: MenuService, private orderService: OrderService) {
+  constructor(private selectedItemService: SelectedItemService, private orderService: OrderService) {
 
   }
 
@@ -28,11 +30,17 @@ export class ModListDetailsComponent implements OnInit {
       this.selectedModifiers = this.orderService.getItemBeingEdited().selectedModifiers;
     }
 
-    this.menuService.getCurrentModifierListData().subscribe(data => {
+    this.subscriptions = new Subscription();
+
+    this.subscriptions.add(this.selectedItemService.getSelectedModifierListData().subscribe(data => {
       this.modifiers = data.modifiers;
       this.modifierListData = data;
       this.multipleSelectionEnabled = (this.modifierListData.selectionType == "MULTIPLE");
-    });
+    }));
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   public changed(event: any): void {

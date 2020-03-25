@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { CategoryItem } from 'src/app/models/CategoryItem';
-import { MenuService } from 'src/app/services/menu.service';
+import { NavbarService } from 'src/app/services/navbar.service';
 import { LineItem } from 'src/app/models/LineItem';
 import { ModifierListData } from 'src/app/models/ModifierListData';
 import { MatSnackBar } from '@angular/material';
@@ -10,6 +10,8 @@ import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.co
 import { OrderService } from 'src/app/services/order.service';
 import { VariationData } from 'src/app/models/VariationData';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { SelectedItemService } from 'src/app/services/selected-item.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -17,7 +19,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.css']
 })
-export class ItemDetailsComponent implements OnInit {
+export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   @ViewChild(ModListDetailsComponent, { static: false })
   private modListDetailsComponent: ModListDetailsComponent;
@@ -27,16 +29,20 @@ export class ItemDetailsComponent implements OnInit {
   priceDollars: number;
   priceCents: any;
   currentCents: number;
+  nameOfCurrentlySelectedModifierList: string;
+  subscriptions: Subscription;
 
-  constructor(private menuService: MenuService, private snackBar: MatSnackBar, private catalogService: CatalogService,
-    private route: ActivatedRoute, private orderService: OrderService, public userResponseDialog: MatDialog) {
+  constructor(private selectedItemService: SelectedItemService, private snackBar: MatSnackBar, private catalogService: CatalogService,
+    private route: ActivatedRoute, private orderService: OrderService, public userResponseDialog: MatDialog,
+    private navbarService: NavbarService) {
+    navbarService.menuBarHidden = true;
+  }
 
-    this.menuService.menuBarHidden = true;
+  ngOnInit() {
     this.item = new LineItem();
 
-    if (menuService.getCurrentLineItem().itemData != null) {
-      this.item = menuService.getCurrentLineItem();
-      this.menuService.menuBarHidden = true;
+    if (this.selectedItemService.getSelectedItem().itemData != null) {
+      this.item = this.selectedItemService.getSelectedItem();
       this.totalItemPrice = this.item.variationData.variationPrice;
       this.parsePrice(this.totalItemPrice);
     }
@@ -50,9 +56,15 @@ export class ItemDetailsComponent implements OnInit {
       });
     }
 
+    this.subscriptions = new Subscription();
+
+    this.subscriptions.add(this.selectedItemService.getSelectedModifierListData().subscribe(data => {
+      this.nameOfCurrentlySelectedModifierList = data.nameOfList;
+    }));
   }
 
-  ngOnInit() {
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   parsePrice(price: number): void {
@@ -77,7 +89,6 @@ export class ItemDetailsComponent implements OnInit {
       this.currentCents = start;
       await this.delay(delayTime);
     }
-
   }
 
   private delay(ms: number) {
@@ -85,7 +96,7 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   public loadModifierList(modifierListData: ModifierListData): void {
-    this.menuService.setCurrentModifierList(modifierListData);
+    this.selectedItemService.setSelectedModifierList(modifierListData);
   }
 
   public addToOrder(): void {

@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ModListDetailsComponent } from '../../menu/mod-list-details/mod-list-details.component';
 import { LineItem } from 'src/app/models/LineItem';
-import { MenuService } from 'src/app/services/menu.service';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { NavbarService } from 'src/app/services/navbar.service';
 import { CatalogService } from 'src/app/services/catalog.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order.service';
 import { ModifierListData } from 'src/app/models/ModifierListData';
+import { SelectedItemService } from 'src/app/services/selected-item.service';
+import { Subscription } from 'rxjs';
+import { EditItemService } from 'src/app/services/edit-item.service';
 
 @Component({
   selector: 'app-edit-item',
@@ -23,35 +25,38 @@ export class EditItemComponent implements OnInit, OnDestroy {
   priceDollars: number;
   priceCents: any;
   currentCents: number;
+  nameOfCurrentlySelectedModifierList: string;
+  subscriptions: Subscription;
 
-  constructor(private menuService: MenuService, private snackBar: MatSnackBar, private catalogService: CatalogService,
-    private route: ActivatedRoute, private orderService: OrderService, private router: Router) {
+  constructor(private navbarService: NavbarService, private catalogService: CatalogService,
+    private route: ActivatedRoute, private orderService: OrderService, private router: Router, private selectedItemService: SelectedItemService,
+    private editService: EditItemService) {
 
-    this.menuService.menuBarHidden = true;
+    this.navbarService.menuBarHidden = true;
+    this.nameOfCurrentlySelectedModifierList = '';
     this.item = new LineItem();
 
-    if (menuService.getCurrentLineItem().itemData != null) {
-      this.item = menuService.getCurrentLineItem();
-      this.menuService.menuBarHidden = true;
-      this.totalItemPrice = this.item.variationData.variationPrice;
-      this.parsePrice(this.totalItemPrice);
-    }
-    else {
-      this.catalogService.getVariation(this.route.snapshot.paramMap.get('id')).subscribe(lineItem => {
-        this.item.itemData = lineItem['itemData'];
-        this.item.variationData = lineItem['variationData'];
-        this.item.modifierListsData = lineItem['modifierListsData'];
-        this.totalItemPrice = this.item.variationData.variationPrice;
-        this.parsePrice(this.totalItemPrice);
-      });
-    }
   }
 
   ngOnInit() {
+    this.catalogService.getVariation(this.route.snapshot.paramMap.get('id')).subscribe(lineItem => {
+      this.item.itemData = lineItem['itemData'];
+      this.item.variationData = lineItem['variationData'];
+      this.item.modifierListsData = lineItem['modifierListsData'];
+      this.totalItemPrice = this.item.variationData.variationPrice;
+      this.parsePrice(this.totalItemPrice);
+    });
+
+    this.subscriptions = new Subscription();
+
+    this.subscriptions.add(this.selectedItemService.getSelectedModifierListData().subscribe(data => {
+      this.nameOfCurrentlySelectedModifierList = data.nameOfList;
+    }));
   }
 
   ngOnDestroy(): void {
-    console.log("destroying");
+    this.subscriptions.unsubscribe();
+    this.navbarService.menuBarHidden = false;
     this.orderService.setItemBeingEdited(null);
   }
 
@@ -85,16 +90,10 @@ export class EditItemComponent implements OnInit, OnDestroy {
   }
 
   public loadModifierList(modifierListData: ModifierListData): void {
-    this.menuService.setCurrentModifierList(modifierListData);
+    this.selectedItemService.setSelectedModifierList(modifierListData);
   }
 
   public confirmEdit(): void {
-
-    // var selectedModifiers;
-    // if (this.modListDetailsComponent)
-    //   selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
-
-    // this.orderService.getItemBeingEdited().selectedModifiers = selectedModifiers;
     this.router.navigate(['user/cart']);
   }
 }

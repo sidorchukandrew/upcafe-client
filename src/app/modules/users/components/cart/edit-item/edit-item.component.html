@@ -31,7 +31,8 @@
         <div class="scrolling-wrapper">
             <div class="modifier-list" *ngFor="let modList of item.modifierListsData">
                 <a class="modifier-list-image" (click)="loadModifierList(modList)"
-                    [ngStyle]="{'background-image': 'url(' + modList.imageUrl + ')'}">
+                    [ngStyle]="{'background-image': 'url(' + modList.imageUrl + ')'}"
+                    [class.selected]="modList.nameOfList == nameOfCurrentlySelectedModifierList">
                     <div class="name">{{modList.nameOfList}}</div>
                 </a>
             </div>

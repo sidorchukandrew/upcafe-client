@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
-import { MenuService } from 'src/app/services/menu.service';
 import { Order } from 'src/app/models/Order';
 import { OrderItem } from 'src/app/models/OrderItem';
 import { Router } from '@angular/router';
+import { NavbarService } from 'src/app/services/navbar.service';
+import { EditItemService } from 'src/app/services/edit-item.service';
 
 @Component({
   selector: 'app-cart',
@@ -14,12 +15,13 @@ export class CartComponent implements OnInit {
 
   currentOrder: Order;
 
-  constructor(private orderService: OrderService, private menuService: MenuService, private router: Router) {
-    this.currentOrder = orderService.getCurrentOrder();
-    this.menuService.menuBarHidden = false;
+  constructor(private orderService: OrderService, private router: Router, private navbarService: NavbarService,
+    private editService: EditItemService) {
   }
 
   ngOnInit() {
+    this.currentOrder = this.orderService.getCurrentOrder();
+    this.navbarService.menuBarHidden = false;
   }
 
   incrementQuantity(orderItem: OrderItem): void {
@@ -53,7 +55,7 @@ export class CartComponent implements OnInit {
   }
 
   navigateToEditItem(orderItem: OrderItem) {
-    this.orderService.setItemBeingEdited(orderItem);
+    this.editService.unchangedItem = orderItem;
     this.router.navigate(['user/cart/edit', orderItem.variationData.variationId]);
   }
 }

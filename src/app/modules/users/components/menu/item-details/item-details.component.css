@@ -137,8 +137,9 @@
     margin-top: 8px;
 }
 
-.modifier-list-image:hover {
+.selected {
     border-color: #34a5f2;
+    box-shadow: 0 0 4px 4px rgba(52, 165, 242, .2);
 }
 
 .modifier-list {

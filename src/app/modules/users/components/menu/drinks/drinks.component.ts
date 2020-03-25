@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogService } from 'src/app/services/catalog.service';
-import { MenuService } from 'src/app/services/menu.service';
+import { NavbarService } from 'src/app/services/navbar.service';
 import { HttpClient } from '@angular/common/http';
 import { CatalogByCategory } from 'src/app/models/CatalogByCategory';
 import { Catalog } from 'src/app/models/Catalog';
 import { CategoryItem } from 'src/app/models/CategoryItem';
 import { VariationData } from 'src/app/models/VariationData';
+import { SelectedItemService } from 'src/app/services/selected-item.service';
 
 @Component({
   selector: 'app-drinks',
@@ -16,12 +17,13 @@ export class DrinksComponent implements OnInit {
 
   catalog: Catalog;
 
-  constructor(private http: HttpClient, private catalogService: CatalogService, private menuService: MenuService) {
+  constructor(private http: HttpClient, private catalogService: CatalogService, private navbarService: NavbarService,
+    private selectedItemService: SelectedItemService) {
     this.catalog = {
       catalogSections: Array<CatalogByCategory>()
     };
 
-    this.menuService.menuBarHidden = false;
+    this.navbarService.menuBarHidden = false;
   }
 
   ngOnInit() {
@@ -37,6 +39,6 @@ export class DrinksComponent implements OnInit {
   }
 
   loadItem(lineItem: CategoryItem, variationData: VariationData): void {
-    this.menuService.setCurrentLineItem(lineItem, variationData);
+    this.selectedItemService.setSelectedItem(lineItem, variationData);
   }
 }
