@@ -4,6 +4,7 @@ import { ModifierListData } from 'src/app/models/ModifierListData';
 import { OrderService } from 'src/app/services/order.service';
 import { SelectedItemService } from 'src/app/services/selected-item.service';
 import { Subscription } from 'rxjs';
+import { EditItemService } from 'src/app/services/edit-item.service';
 
 @Component({
   selector: 'app-mod-list-details',
@@ -18,7 +19,7 @@ export class ModListDetailsComponent implements OnInit, OnDestroy {
   multipleSelectionEnabled: boolean;
   subscriptions: Subscription;
 
-  constructor(private selectedItemService: SelectedItemService, private orderService: OrderService) {
+  constructor(private selectedItemService: SelectedItemService, private orderService: OrderService, private editService: EditItemService) {
 
   }
 
@@ -26,8 +27,8 @@ export class ModListDetailsComponent implements OnInit, OnDestroy {
     this.modifiers = new Array<ModifierData>();
     this.selectedModifiers = new Array<ModifierData>();
 
-    if (this.orderService.getItemBeingEdited()) {
-      this.selectedModifiers = this.orderService.getItemBeingEdited().selectedModifiers;
+    if (this.editService.unchangedItem) {
+      this.selectedModifiers = this.editService.unchangedItem.selectedModifiers;
     }
 
     this.subscriptions = new Subscription();
