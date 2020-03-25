@@ -1,32 +1,95 @@
-<div id="header" class="center-text big-text label-font padding-10">
-    My Order
+<div id="header" class="center-text big-text label-font padding-10 white-background">
+    Your Order
 </div>
 <div *ngIf="currentOrder == null">
     You haven't started an order yet!
+    <div id="no-order-content" class="center-text">
+        Start your order
+        <button mat-button color="accent" (click)="navigateToMenu();">HERE</button>
+    </div>
 </div>
 <div *ngIf="currentOrder != null">
-    <div *ngFor="let orderItem of currentOrder.selectedLineItems">
-
-    </div>
-
-    <div id="bottom-card">
+    <div *ngFor="let orderItem of currentOrder.selectedLineItems" class="left-margin-20 right-margin-20">
         <table class="full-width">
-            <tr class="label-font">
-                <td class="small-width right-align-text">
-                    <div id="tax" class="inline-block theme-color">Tax:</div>
+            <tr>
+                <td>
+                    <div id="item-name" class="inline-block bold" style="margin-right: 10px;">
+                        {{ orderItem.variationData.name }}
+                    </div>
+                    <div id="item-price" class="inline-block bold">
+                        ( {{ orderItem.price | currency }} )
+                    </div>
+
                 </td>
-                <td class="">
-                    <div class="number inline-block">{{ 1.00 | currency }}</div>
+                <td id="quantity-selector" class="right-align-text">
+
+                    <!-- <button mat-button (click)="removeFromOrder(orderItem);">
+                        <mat-icon>clear</mat-icon>
+                    </button> -->
+
+                    <button mat-button (click)="decrementQuantity(orderItem);" class="quantity-button">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                    {{ orderItem.quantity }}
+                    <button mat-button (click)="incrementQuantity(orderItem);" class="quantity-button">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </td>
+            </tr>
+            <tr *ngIf="orderItem.selectedModifiers">
+                <td>
+                    <div *ngFor="let modifier of orderItem.selectedModifiers" class="italic smaller-text">
+                        {{ modifier.name }}
+
+                        <span *ngIf="modifier.price != 0">
+                            ( {{ modifier.price | currency }} )
+                        </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <!-- <button mat-button (click)="decrementQuantity(orderItem);" class="quantity-button">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                    {{ orderItem.quantity }}
+                    <button mat-button (click)="incrementQuantity(orderItem);" class="quantity-button">
+                        <mat-icon>add</mat-icon>
+                    </button> -->
+
+                    <button mat-button color="primary">Edit</button>
+                    <button mat-button color="primary" (click)="removeFromOrder(orderItem);">Remove</button>
                 </td>
                 <td class="right-align-text">
-                    <div id="subtotal" class="inline-block  theme-color">Subtotal:</div>
-                </td>
-                <td class="small-width right-align-text">
-                    <div class="number inline-block right-margin-20">{{ 8.08 | currency }} </div>
+                    <div id="total-item-price">
+                        {{ orderItem.quantity * orderItem.price | currency }}
+                    </div>
                 </td>
             </tr>
         </table>
-        <button mat-raised-button id="continue" class="navbar-space-bottom-position" color="primary">Continue to
-            Payment</button>
+        <mat-divider></mat-divider>
     </div>
+
+</div>
+<div id="bottom-card" class="full-width navbar-space-bottom-position white-background shadow"
+    *ngIf="currentOrder != null">
+    <table class="full-width top-margin-15">
+        <tr class="label-font">
+            <td class="small-width right-align-text">
+                <div id="tax" class="inline-block theme-color">Tax:</div>
+            </td>
+            <td class="">
+                <div class="number inline-block">{{ tax | currency }}</div>
+            </td>
+            <td class="right-align-text">
+                <div id="subtotal" class="inline-block  theme-color">Subtotal:</div>
+            </td>
+            <td class="small-width right-align-text">
+                <div class="number inline-block right-margin-20">{{ currentOrder.totalPrice | currency }} </div>
+            </td>
+        </tr>
+    </table>
+    <button mat-raised-button id="continue" class="top-margin-15 bottom-margin-20" color="primary">Continue
+        {{currentOrder.totalPrice + tax | currency}}
+    </button>
 </div>

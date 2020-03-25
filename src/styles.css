@@ -57,10 +57,18 @@ a {
     background-color: #fafafa;
 }
 
+.white-background {
+    background-color: white;
+}
+
 .theme-color {
     color: #34a5f2;
 }
 
 .navbar-space-bottom-position {
     bottom: 63px;
+}
+
+.shadow {
+    box-shadow: 0px 2px 5px 4px rgba(0, 0, 0, .12);
 }

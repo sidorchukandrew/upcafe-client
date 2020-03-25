@@ -1,3 +1,11 @@
+#header {
+    border-bottom: solid 1px rgba(0, 0, 0, .09);
+}
+
+#no-order-content {
+    width: 100%;
+}
+
 .center-text {
     text-align: center;
 }
@@ -17,8 +25,6 @@
 #continue {
     width: 94%;
     height: 50px;
-    position: fixed;
-    margin-bottom: 15px;
     left: 50%;
     margin-left: -47%;
 }
@@ -47,10 +53,44 @@
     margin-left: 20px;
 }
 
+.top-margin-15 {
+    margin-top: 15px;
+}
+
+.bottom-margin-20 {
+    margin-bottom: 20px;
+}
+
 .small-width {
     width: 80px;
 }
 
 #tax {
     margin-right: 20px;
+}
+
+#bottom-card {
+    position: fixed;
+}
+
+#item-name {}
+
+.bold {
+    font-weight: 500;
+}
+
+.quantity-button {
+    width: 50px;
+}
+
+#quantity-selector {
+    align-content: right;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.smaller-text {
+    font-size: .9em;
 }
