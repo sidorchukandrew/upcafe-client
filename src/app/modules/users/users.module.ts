@@ -17,11 +17,13 @@ import { EatsComponent } from './components/menu/eats/eats.component';
 import { ItemDetailsComponent, UserResponseDialog } from './components/menu/item-details/item-details.component';
 import { ModListDetailsComponent } from './components/menu/mod-list-details/mod-list-details.component';
 import { DrinksComponent } from './components/menu/drinks/drinks.component';
+import { SnacksComponent } from './components/menu/snacks/snacks.component';
+import { SweetsComponent } from './components/menu/sweets/sweets.component';
 
 
 @NgModule({
   declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, FavoritesComponent,
-    CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog, DrinksComponent],
+    CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog, DrinksComponent, SnacksComponent, SweetsComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
