@@ -13,17 +13,10 @@ import { Router } from '@angular/router';
 export class CartComponent implements OnInit {
 
   currentOrder: Order;
-  subtotal: number;
-  tax: number;
 
   constructor(private orderService: OrderService, private menuService: MenuService, private router: Router) {
     this.currentOrder = orderService.getCurrentOrder();
     this.menuService.menuBarHidden = false;
-
-    if (orderService.getCurrentOrder()) {
-      this.subtotal = orderService.getCurrentOrder().totalPrice;
-      this.tax = this.subtotal * .08;
-    }
   }
 
   ngOnInit() {
@@ -50,7 +43,6 @@ export class CartComponent implements OnInit {
     });
 
     this.currentOrder.totalPrice = newPrice;
-    this.tax = this.currentOrder.totalPrice * .08;
 
     if (this.currentOrder.selectedLineItems.length == 0)
       this.currentOrder = null;

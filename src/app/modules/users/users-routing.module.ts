@@ -8,6 +8,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { EatsComponent } from './components/menu/eats/eats.component';
 import { ItemDetailsComponent } from './components/menu/item-details/item-details.component';
 import { ModListDetailsComponent } from './components/menu/mod-list-details/mod-list-details.component';
+import { DrinksComponent } from './components/menu/drinks/drinks.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,9 @@ const routes: Routes = [
                 { path: 'cart', component: CartComponent },
                 { path: 'profile', component: ProfileComponent },
                 { path: 'menu/eats', component: EatsComponent },
-                { path: 'menu/eats/:id', component: ItemDetailsComponent }
+                { path: 'menu/eats/:id', component: ItemDetailsComponent },
+                { path: 'menu/drinks', component: DrinksComponent },
+                { path: 'menu/drinks/:id', component: ItemDetailsComponent },
             ]
     },
 ];

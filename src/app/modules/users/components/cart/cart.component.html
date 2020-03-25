@@ -79,7 +79,7 @@
                 <div id="tax" class="inline-block theme-color">Tax:</div>
             </td>
             <td class="">
-                <div class="number inline-block">{{ tax | currency }}</div>
+                <div class="number inline-block">{{ (currentOrder.totalPrice * .08) | currency }}</div>
             </td>
             <td class="right-align-text">
                 <div id="subtotal" class="inline-block  theme-color">Subtotal:</div>
@@ -90,6 +90,6 @@
         </tr>
     </table>
     <button mat-raised-button id="continue" class="top-margin-15 bottom-margin-20" color="primary">Continue
-        {{currentOrder.totalPrice + tax | currency}}
+        {{currentOrder.totalPrice + (currentOrder.totalPrice * .08) | currency}}
     </button>
 </div>

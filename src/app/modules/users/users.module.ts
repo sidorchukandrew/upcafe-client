@@ -16,11 +16,12 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { EatsComponent } from './components/menu/eats/eats.component';
 import { ItemDetailsComponent, UserResponseDialog } from './components/menu/item-details/item-details.component';
 import { ModListDetailsComponent } from './components/menu/mod-list-details/mod-list-details.component';
+import { DrinksComponent } from './components/menu/drinks/drinks.component';
 
 
 @NgModule({
   declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, FavoritesComponent,
-    CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog],
+    CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog, DrinksComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
