@@ -5,7 +5,6 @@ export class OrderItem {
     variationData: VariationData;
     selectedModifiers: Array<ModifierData>;
     price: number;
-    quantityPrice: number
     quantity: number;
 
     constructor() {

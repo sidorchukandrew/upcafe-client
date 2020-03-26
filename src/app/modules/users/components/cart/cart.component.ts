@@ -58,4 +58,8 @@ export class CartComponent implements OnInit {
     this.editService.unchangedItem = orderItem;
     this.router.navigate(['user/cart/edit', orderItem.variationData.variationId]);
   }
+
+  submitOrder(): void {
+    this.orderService.postOrder().subscribe(data => console.log(data));
+  }
 }

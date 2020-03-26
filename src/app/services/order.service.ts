@@ -3,6 +3,7 @@ import { VariationData } from '../models/VariationData';
 import { ModifierData } from '../models/ModifierData';
 import { OrderItem } from '../models/OrderItem';
 import { Order } from '../models/Order';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class OrderService {
   order: Order;
   editingItem: OrderItem;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   public newOrderItem(variationData: VariationData, selectedModifiers: Array<ModifierData>): OrderItem {
 
@@ -54,5 +55,10 @@ export class OrderService {
 
   public getItemBeingEdited(): OrderItem {
     return this.editingItem;
+  }
+
+  public postOrder() {
+    console.log(this.order);
+    return this.http.post("http://192.168.0.6:8080/orders", this.order);
   }
 }
