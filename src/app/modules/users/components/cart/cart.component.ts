@@ -5,6 +5,7 @@ import { OrderItem } from 'src/app/models/OrderItem';
 import { Router } from '@angular/router';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { EditItemService } from 'src/app/services/edit-item.service';
+import { OrderConfirmation } from 'src/app/models/OrderConfirmation';
 
 @Component({
   selector: 'app-cart',
@@ -60,6 +61,9 @@ export class CartComponent implements OnInit {
   }
 
   submitOrder(): void {
-    this.orderService.postOrder().subscribe(data => console.log(data));
+    this.orderService.postOrder().subscribe(data => {
+      console.log(data);
+      this.orderService.setConfirmation(data);
+    });
   }
 }

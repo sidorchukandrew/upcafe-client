@@ -1,7 +1,26 @@
+<div id="summary" class="center-text">
+    <div id="total-label">Your total is</div>
+    <div class="theme-color" id="total" *ngIf="orderConfirmation">{{orderConfirmation.totalPrice | currency}}</div>
+</div>
+
+<div class="center-text" style="position: relative; margin-bottom: 30px;">
+    <mat-icon id="secure-logo" style="height: 40px; width: 40px; font-size:40px; color: lightgrey">https</mat-icon>
+    <mat-spinner color="primary" style="margin: auto;" strokeWidth="3">
+    </mat-spinner>
+</div>
+
 <div id="form-container">
     <div id="sq-card-number"></div>
     <div class="third" id="sq-expiration-date"></div>
     <div class="third" id="sq-cvv"></div>
     <div class="third" id="sq-postal-code"></div>
-    <button id="sq-creditcard" class="button-credit-card" (click)='requestCardNonce($event)'>Pay $1.00</button>
-</div> <!-- end #form-container -->
+    <button mat-raised-button id="sq-creditcard" class="button-credit-card theme-color"
+        (click)="requestCardNonce($event);" *ngIf="orderConfirmation != null">Pay
+        {{ orderConfirmation.totalPrice | currency}}</button>
+
+    <button mat-raised-button id="sq-creditcard" class="button-credit-card theme-color"
+        (click)="requestCardNonce($event);" *ngIf="orderConfirmation == null">Pay</button>
+
+    <input type="text" id="card-nonce" name="nonce" (select)="nonceReceived($event.srcElement.value);"
+        style="visibility: hidden;">
+</div>

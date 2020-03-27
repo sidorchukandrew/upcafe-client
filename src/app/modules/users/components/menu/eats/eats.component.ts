@@ -28,14 +28,16 @@ export class EatsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadCatalogByCategory("eats");
+    this.loadCatalogByCategory("sandwiches");
+    this.loadCatalogByCategory("soups");
+    this.loadCatalogByCategory("pizzas");
   }
 
   private loadCatalogByCategory(category: string): void {
     this.catalogService.getCatalog(category).subscribe(data => {
       var catalogSection: CatalogByCategory = data;
-      console.log(catalogSection);
       this.catalog.catalogSections.push(catalogSection);
+      console.log(this.catalog);
     });
   }
 

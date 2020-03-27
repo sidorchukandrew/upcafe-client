@@ -7,7 +7,8 @@ import { UserComponent } from './user/user.component';
 
 import {
   MatIconModule, MatRippleModule, MatButtonModule,
-  MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule, MatSnackBarModule, MatDialogModule
+  MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule, MatSnackBarModule, MatDialogModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { MenuComponent } from './components/menu/menu.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
@@ -21,16 +22,17 @@ import { SnacksComponent } from './components/menu/snacks/snacks.component';
 import { SweetsComponent } from './components/menu/sweets/sweets.component';
 import { EditItemComponent } from './components/cart/edit-item/edit-item.component';
 import { PaymentComponent } from './components/cart/payment/payment.component';
+import { PickupComponent } from './components/cart/pickup/pickup.component';
 
 
 @NgModule({
   declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, FavoritesComponent,
-    CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog, DrinksComponent, SnacksComponent, SweetsComponent, EditItemComponent, PaymentComponent],
+    CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog, DrinksComponent, SnacksComponent, SweetsComponent, EditItemComponent, PaymentComponent, PickupComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
     MatIconModule, MatRippleModule, MatButtonModule, MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule,
-    MatSnackBarModule, MatDialogModule
+    MatSnackBarModule, MatDialogModule, MatProgressSpinnerModule
   ],
   entryComponents: [UserResponseDialog]
 })

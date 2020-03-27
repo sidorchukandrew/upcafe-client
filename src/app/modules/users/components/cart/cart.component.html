@@ -83,7 +83,6 @@
         </tr>
     </table>
     <button mat-raised-button id="continue" class="top-margin-15 bottom-margin-20" color="primary"
-        (click)="submitOrder();" routerLink="payment">Continue
-        {{currentOrder.totalPrice + (currentOrder.totalPrice * .08) | currency}}
+        (click)="submitOrder();" routerLink="payment">Continue to Payment
     </button>
 </div>

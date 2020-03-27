@@ -4,6 +4,8 @@ import { ModifierData } from '../models/ModifierData';
 import { OrderItem } from '../models/OrderItem';
 import { Order } from '../models/Order';
 import { HttpClient } from '@angular/common/http';
+import { OrderConfirmation } from '../models/OrderConfirmation';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,11 @@ export class OrderService {
 
   order: Order;
   editingItem: OrderItem;
+  observableConfirmation: Subject<OrderConfirmation>;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.observableConfirmation = new Subject();
+  }
 
   public newOrderItem(variationData: VariationData, selectedModifiers: Array<ModifierData>): OrderItem {
 
@@ -57,8 +62,23 @@ export class OrderService {
     return this.editingItem;
   }
 
-  public postOrder() {
-    console.log(this.order);
+  public postOrder(): any {
     return this.http.post("http://192.168.0.6:8080/orders", this.order);
+  }
+
+  public setConfirmation(confirmation: OrderConfirmation) {
+    this.observableConfirmation.next(confirmation);
+  }
+
+  public getConfirmation(): Subject<OrderConfirmation> {
+    return this.observableConfirmation;
+  }
+
+  public postPayment(nonce: string, orderId: string, price: number): any {
+    return this.http.post("http://192.168.0.6:8080/orders/pay", {
+      "nonce": nonce,
+      "orderId": orderId,
+      "price": price
+    });
   }
 }

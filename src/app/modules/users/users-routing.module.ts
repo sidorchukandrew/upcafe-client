@@ -13,6 +13,7 @@ import { SnacksComponent } from './components/menu/snacks/snacks.component';
 import { SweetsComponent } from './components/menu/sweets/sweets.component';
 import { EditItemComponent } from './components/cart/edit-item/edit-item.component';
 import { PaymentComponent } from './components/cart/payment/payment.component';
+import { PickupComponent } from './components/cart/pickup/pickup.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,9 @@ const routes: Routes = [
                 { path: 'menu/sweets', component: SweetsComponent },
                 { path: 'menu/sweets/:id', component: ItemDetailsComponent },
                 { path: 'cart/edit/:id', component: EditItemComponent },
-                { path: 'cart/payment', component: PaymentComponent }
+                { path: 'cart/payment', component: PaymentComponent },
+                { path: 'cart/pickup', component: PickupComponent }
+
             ]
     },
 ];
