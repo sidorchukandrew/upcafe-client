@@ -4,7 +4,7 @@
     </a>
     <div id="summary" class="center-text">
         <div id="total-label">Your total is</div>
-        <div class="theme-color" id="total" *ngIf="orderConfirmation">{{orderConfirmation.totalPrice | currency}}</div>
+        <div class="theme-color" id="total" *ngIf="order">{{order.totalPrice| currency}}</div>
     </div>
 
     <div class="center-text" style="position: relative; margin-bottom: 30px;">
@@ -20,11 +20,8 @@
         <div class="third" id="sq-cvv"></div>
         <div class="third" id="sq-postal-code"></div>
         <button mat-raised-button id="sq-creditcard" class="button-credit-card theme-color"
-            (click)="requestCardNonce($event);" *ngIf="orderConfirmation != null">Pay
-            {{ orderConfirmation.totalPrice | currency}}</button>
-
-        <button mat-raised-button id="sq-creditcard" class="button-credit-card theme-color"
-            (click)="requestCardNonce($event);" *ngIf="orderConfirmation == null">Pay</button>
+            (click)="requestCardNonce($event);" *ngIf="order != null">Pay
+            {{ order.totalPrice | currency}}</button>
 
         <input type="text" id="card-nonce" name="nonce" (select)="nonceReceived($event.srcElement.value);"
             style="visibility: hidden;">
@@ -44,7 +41,7 @@
             </div>
         </button>
 
-        <button mat-stroked-button style="padding-top:40px; padding-bottom:40px; margin: 10px;" routerLink="..\..">
+        <button mat-stroked-button style="padding-top:40px; padding-bottom:40px; margin: 10px;" routerLink="../..">
             <div class="menu-content">
                 <div class="menu-button-title label-font">I don't need a receipt</div>
             </div>

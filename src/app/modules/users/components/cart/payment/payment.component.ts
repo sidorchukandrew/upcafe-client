@@ -3,6 +3,7 @@ import { NavbarService } from 'src/app/services/navbar.service';
 import { OrderService } from 'src/app/services/order.service';
 import { OrderConfirmation } from 'src/app/models/OrderConfirmation';
 import { Subscription } from 'rxjs';
+import { Order } from 'src/app/models/Order';
 
 declare var SqPaymentForm: any; //magic to allow us to access the SquarePaymentForm lib
 
@@ -16,6 +17,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   paymentForm; //this is our payment form object
   totalPrice: number;
   orderConfirmation: OrderConfirmation;
+  order: Order;
   subscriptions: Subscription;
   processingPayment: boolean;
   success: boolean;
@@ -27,9 +29,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.menuBarHidden = true;
-    this.orderService.getConfirmation().subscribe(confirmation => {
-      this.orderConfirmation = confirmation;
-    });
+    this.order = this.orderService.getCurrentOrder();
+    this.subscriptions = new Subscription();
 
     var applicationId = "sandbox-sq0idb-S7VRotepCHWB8XgYxKZIsQ";
     var locationId = "P80ND85DPV3BR";
@@ -74,6 +75,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
         * Triggered when: SqPaymentForm completes a card nonce request
         */
         cardNonceResponseReceived: function (errors, nonce, cardData) {
+          console.log(cardData);
           if (errors) {
             // Log errors from nonce generation to the browser developer console.
             console.error('Encountered errors:');
@@ -104,15 +106,28 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   nonceReceived(nonce): void {
     this.processingPayment = true;
-    this.orderService.postPayment(nonce, this.orderConfirmation.id, this.orderConfirmation.totalPrice).subscribe(data => {
-      console.log(data)
-      this.processingPayment = !data;
-      this.success = data;
-    });
+
+    this.subscriptions.add(this.orderService.postOrder().subscribe(data => {
+      console.log("ORDER CONFIRMATION : ");
+      console.log(data);
+
+      this.subscriptions.add(this.orderService.postPayment(nonce, data.id, data.totalPrice).subscribe(data => {
+        this.processingPayment = !data;
+        this.success = data;
+
+        if (this.success) {
+          this.orderService.clearOrders();
+        }
+      }));
+    }));
+
   }
 
   ngOnDestroy() {
-    // this.subscriptions.unsubscribe();
+    if (this.subscriptions)
+      this.subscriptions.unsubscribe();
+
+    this.navbarService.menuBarHidden = false;
   }
 }
 

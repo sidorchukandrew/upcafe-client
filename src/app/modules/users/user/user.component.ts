@@ -11,6 +11,7 @@ export class UserComponent implements OnInit {
   constructor(public navbarService: NavbarService) { }
 
   ngOnInit() {
+    this.navbarService.menuBarHidden = false;
   }
 
 }

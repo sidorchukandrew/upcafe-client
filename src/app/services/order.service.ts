@@ -74,6 +74,12 @@ export class OrderService {
     return this.observableConfirmation;
   }
 
+  public clearOrders(): void {
+    console.log("Clearing order.");
+    this.observableConfirmation.next(null);
+    this.order = null;
+  }
+
   public postPayment(nonce: string, orderId: string, price: number): any {
     return this.http.post("http://192.168.0.6:8080/orders/pay", {
       "nonce": nonce,

@@ -60,10 +60,4 @@ export class CartComponent implements OnInit {
     this.router.navigate(['user/cart/edit', orderItem.variationData.variationId]);
   }
 
-  submitOrder(): void {
-    this.orderService.postOrder().subscribe(data => {
-      console.log(data);
-      this.orderService.setConfirmation(data);
-    });
-  }
 }
