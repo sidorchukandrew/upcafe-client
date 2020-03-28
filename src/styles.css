@@ -52,6 +52,11 @@ a {
     outline-style: none;
 }
 
+
+.full-width {
+    width: 100%;
+}
+
 .full-white {
     height: 100%;
     background-color: #fafafa;

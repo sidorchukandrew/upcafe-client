@@ -17,8 +17,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
   totalPrice: number;
   orderConfirmation: OrderConfirmation;
   subscriptions: Subscription;
+  processingPayment: boolean;
+  success: boolean;
 
-  constructor(private navbarService: NavbarService, private orderService: OrderService) { }
+  constructor(private navbarService: NavbarService, private orderService: OrderService) {
+    this.processingPayment = false;
+    this.success = false;
+  }
 
   ngOnInit() {
     this.navbarService.menuBarHidden = true;
@@ -97,12 +102,17 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.paymentForm.requestCardNonce();
   }
 
-  nonceReceived(value) {
-    this.orderService.postPayment(value, this.orderConfirmation.id, this.orderConfirmation.totalPrice).subscribe(data => console.log(data));
+  nonceReceived(nonce): void {
+    this.processingPayment = true;
+    this.orderService.postPayment(nonce, this.orderConfirmation.id, this.orderConfirmation.totalPrice).subscribe(data => {
+      console.log(data)
+      this.processingPayment = !data;
+      this.success = data;
+    });
   }
 
   ngOnDestroy() {
-    this.subscriptions.unsubscribe();
+    // this.subscriptions.unsubscribe();
   }
 }
 
