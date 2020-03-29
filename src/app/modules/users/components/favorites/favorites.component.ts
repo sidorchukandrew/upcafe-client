@@ -9,11 +9,15 @@ export class FavoritesComponent implements OnInit {
 
   verse: string;
   imgUrl: string;
+  passage: string;
+  todayNumber: number;
 
   constructor() { }
 
   ngOnInit() {
-    fetch('https://developers.youversionapi.com/1.0/verse_of_the_day/12?version_id=206', {
+
+    this.todayNumber = this.daysIntoYear(new Date());
+    fetch('https://developers.youversionapi.com/1.0/verse_of_the_day/' + this.todayNumber + '?version_id=206', {
       headers: {
         'X-YouVersion-Developer-Token': 'lhGSP91Ig3J_1kLTC6FEm5I6HtE',
         'Accept-Language': 'en',
@@ -26,6 +30,7 @@ export class FavoritesComponent implements OnInit {
         console.log(json);
         this.verse = json.verse.text;
         this.imgUrl = json.image.url;
+        this.passage = json.verse.human_reference;
       });
 
 
@@ -49,5 +54,10 @@ export class FavoritesComponent implements OnInit {
   clicked() {
     console.log("CLICKED!");
   }
+
+  daysIntoYear(date) {
+    return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
+  }
+
 
 }
