@@ -1,0 +1,67 @@
+.dark-blue {
+    background-color: #383d57;
+}
+
+.being-made {
+    color: #7883d7;
+    background-color: #7883d712;
+}
+
+.ready-for-pickup {
+    color: #3db7b7;
+    background-color: #3db7b70f;
+}
+
+.order {
+    height: 60px;
+    text-align: right;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: white;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .1);
+    position: relative;
+}
+
+.status {
+    margin-right: 10px;
+    font-weight: 500;
+    font-size: .9em;
+    height: 100%;
+    text-align: left;
+    width: 20%;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.scheduled-time {
+    width: 16%;
+    color: #34a5f2;
+    text-align: center;
+    margin: 5px;
+    font-weight: 500;
+}
+
+.order-content {
+    font-size: .9em;
+    font-weight: 500;
+    text-align: center;
+}
+
+.order-placed {
+    color: #34a5f2;
+    background-color: #34a5f217;
+}
+
+.verse {
+    margin: 10px;
+}
+
+.votd {
+    background-color: rgb(6, 6, 66);
+    color: white;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .1);
+    font-size: .9em;
+}
