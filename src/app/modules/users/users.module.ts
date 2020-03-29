@@ -8,7 +8,7 @@ import { UserComponent } from './user/user.component';
 import {
   MatIconModule, MatRippleModule, MatButtonModule,
   MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule, MatSnackBarModule, MatDialogModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule, MatChipsModule
 } from '@angular/material';
 import { MenuComponent } from './components/menu/menu.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
@@ -32,7 +32,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CommonModule,
     UsersRoutingModule,
     MatIconModule, MatRippleModule, MatButtonModule, MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule,
-    MatSnackBarModule, MatDialogModule, MatProgressSpinnerModule, DragDropModule
+    MatSnackBarModule, MatDialogModule, MatProgressSpinnerModule, DragDropModule, MatChipsModule
   ],
   entryComponents: [UserResponseDialog]
 })

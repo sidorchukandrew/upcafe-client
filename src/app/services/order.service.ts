@@ -63,6 +63,8 @@ export class OrderService {
   }
 
   public postOrder(): any {
+    if (this.order.pickupTime == null)
+      this.order.pickupTime = 'ASAP';
     return this.http.post("http://192.168.0.6:8080/orders", this.order);
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { Order } from 'src/app/models/Order';
 import { OrderItem } from 'src/app/models/OrderItem';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { EditItemService } from 'src/app/services/edit-item.service';
 import { OrderConfirmation } from 'src/app/models/OrderConfirmation';
+import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
@@ -15,13 +16,19 @@ import { OrderConfirmation } from 'src/app/models/OrderConfirmation';
 export class CartComponent implements OnInit {
 
   currentOrder: Order;
+  availableTimes: Array<string>;
+  selectedTime: string;
 
   constructor(private orderService: OrderService, private router: Router, private navbarService: NavbarService,
     private editService: EditItemService) {
+    this.availableTimes = ['7:00', '7:10', '7:20', '7:30', '7:40', '7:50', '8:00'];
   }
 
   ngOnInit() {
+
     this.currentOrder = this.orderService.getCurrentOrder();
+    if (this.currentOrder)
+      this.selectedTime = this.currentOrder.pickupTime;
     this.navbarService.menuBarHidden = false;
   }
 
@@ -60,4 +67,8 @@ export class CartComponent implements OnInit {
     this.router.navigate(['user/cart/edit', orderItem.variationData.variationId]);
   }
 
+  timeSelected(time: string) {
+    this.selectedTime = time;
+    this.currentOrder.pickupTime = time;
+  }
 }

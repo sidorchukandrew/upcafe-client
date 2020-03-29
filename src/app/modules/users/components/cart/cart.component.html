@@ -9,6 +9,17 @@
     </div>
 </div>
 <div *ngIf="currentOrder != null">
+    <div class="pickup-time">
+        <div class="title">
+            Pickup Time
+        </div>
+        <div class="available-times">
+            <div class="time" [class.selected]="selectedTime == time" *ngFor="let time of availableTimes"
+                (click)="timeSelected(time);" matRipple matRippleColor="rgba(100, 100, 100, .1)">
+                {{time}}
+            </div>
+        </div>
+    </div>
     <div *ngFor="let orderItem of currentOrder.selectedLineItems"
         class="left-margin-20 right-margin-20 order-item-panel">
         <table class="full-width">
@@ -17,21 +28,8 @@
                     <div id="item-name" class="item-name" style="margin-right: 10px;">
                         {{ orderItem.variationData.name }}
                     </div>
-                    <!-- <div id="item-price" class="inline-block bold">
-                        ( {{ orderItem.price | currency }} )
-                    </div> -->
-
                 </td>
                 <td id="quantity-selector" class="right-align-text">
-
-                    <!-- <button mat-button (click)="decrementQuantity(orderItem);" class="quantity-button"
-                        [disabled]="orderItem.quantity == 1">
-                        <mat-icon>remove</mat-icon>
-                    </button>
-                    {{ orderItem.quantity }}
-                    <button mat-button (click)="incrementQuantity(orderItem);" class="quantity-button">
-                        <mat-icon>add</mat-icon>
-                    </button> -->
                     <div id="total-item-price">
                         {{ orderItem.quantity * orderItem.price | currency }}
                     </div>
@@ -41,13 +39,12 @@
         <table class="full-width">
             <tr *ngIf="orderItem.selectedModifiers" style="color: grey;">
                 <td>
-                    <div *ngFor="let modifier of orderItem.selectedModifiers" class="smaller-text inline-block">
+                    <div *ngFor="let modifier of orderItem.selectedModifiers" class="smaller-text">
                         {{modifier.name}}
 
                         <span *ngIf="modifier.price != 0">
                             ({{ modifier.price | currency }})
                         </span>
-                        , &nbsp;
                     </div>
                 </td>
             </tr>
@@ -60,14 +57,8 @@
                     <button mat-button class="item-action" color="primary"
                         (click)="removeFromOrder(orderItem);">REMOVE</button>
                 </td>
-                <!-- <td class="right-align-text">
-                    <div id="total-item-price">
-                        {{ orderItem.quantity * orderItem.price | currency }}
-                    </div>
-                </td> -->
             </tr>
         </table>
-        <!-- <mat-divider></mat-divider> -->
     </div>
 
 </div>
