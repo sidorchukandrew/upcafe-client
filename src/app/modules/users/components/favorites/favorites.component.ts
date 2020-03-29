@@ -13,10 +13,19 @@ export class FavoritesComponent implements OnInit {
   passage: string;
   todayNumber: number;
   userSelectedDate: number;
+  color: string;
+  colors: Array<string>;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+
+    this.colors = new Array<string>();
+    this.colors.push('red-gradient', 'blue-gradient', 'orange-gradient');
+
+    this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
+
     this.todayNumber = this.daysIntoYear(new Date());
     this.userSelectedDate = this.todayNumber;
     this.fetchVerseByDate(this.todayNumber);
@@ -54,6 +63,11 @@ export class FavoritesComponent implements OnInit {
         this.imgUrl = json.image.url;
         this.passage = json.verse.human_reference;
       });
+  }
+
+  resetDay() {
+    this.userSelectedDate = this.todayNumber;
+    this.fetchVerseByDate(this.userSelectedDate);
   }
 
 }

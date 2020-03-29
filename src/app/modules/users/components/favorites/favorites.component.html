@@ -1,7 +1,51 @@
 <div class="title">
+    CAFE HOURS
+</div>
+
+<div class="panel hours">
+    <table class="full-width" style="padding: 20px;">
+        <tr>
+            <td class="day">
+                FRIDAY
+            </td>
+            <td>
+                :
+            </td>
+            <td class="hours">
+                7:00 - 10:00
+            </td>
+        </tr>
+
+        <tr>
+            <td class="day">
+                SATURDAY
+            </td>
+            <td>
+                :
+            </td>
+            <td class="hours">
+                7:00 - 10:00
+            </td>
+        </tr>
+
+        <tr>
+            <td class="day">
+                SUNDAY
+            </td>
+            <td>
+                :
+            </td>
+            <td class="hours">
+                7:00 - 10:00
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="title">
     VERSE OF THE DAY
 </div>
-<table class="votd panel">
+<table class="votd panel" [ngClass]="color">
     <tr>
         <td matRipple matRippleColor="rgba(100, 100, 100, .1)"
             (click)="decrementDay(); fetchVerseByDate(userSelectedDate);">
@@ -11,8 +55,16 @@
             <div class="verse">
                 {{verse}}
             </div>
-            <div class="passage">
-                {{passage}}
+            <div class="bottom">
+
+                <div class="actions">
+                    <mat-icon style=" font-size: 20px;" matRipple matRippleColor="rgba(100, 100, 100, .1)"
+                        (click)="resetDay();">refresh
+                    </mat-icon>
+                </div>
+                <div class="passage">
+                    {{passage}}
+                </div>
             </div>
         </td>
         <td matRipple matRippleColor="rgba(100, 100, 100, .1)"
