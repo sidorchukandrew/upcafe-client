@@ -23,7 +23,7 @@ import { SweetsComponent } from './components/menu/sweets/sweets.component';
 import { EditItemComponent } from './components/cart/edit-item/edit-item.component';
 import { PaymentComponent } from './components/cart/payment/payment.component';
 import { PickupComponent } from './components/cart/pickup/pickup.component';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, FavoritesComponent,
@@ -32,7 +32,7 @@ import { PickupComponent } from './components/cart/pickup/pickup.component';
     CommonModule,
     UsersRoutingModule,
     MatIconModule, MatRippleModule, MatButtonModule, MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule,
-    MatSnackBarModule, MatDialogModule, MatProgressSpinnerModule
+    MatSnackBarModule, MatDialogModule, MatProgressSpinnerModule, DragDropModule
   ],
   entryComponents: [UserResponseDialog]
 })

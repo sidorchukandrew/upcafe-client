@@ -1,14 +1,26 @@
 <div class="title">
     VERSE OF THE DAY
 </div>
-<div class="votd panel">
-    <div class="verse">
-        {{verse}}
-    </div>
-    <div class="passage">
-        {{passage}}
-    </div>
-</div>
+<table class="votd panel">
+    <tr>
+        <td matRipple matRippleColor="rgba(100, 100, 100, .1)"
+            (click)="decrementDay(); fetchVerseByDate(userSelectedDate);">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </td>
+        <td>
+            <div class="verse">
+                {{verse}}
+            </div>
+            <div class="passage">
+                {{passage}}
+            </div>
+        </td>
+        <td matRipple matRippleColor="rgba(100, 100, 100, .1)"
+            (click)="incrementDay(); fetchVerseByDate(userSelectedDate);">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </td>
+    </tr>
+</table>
 
 <div class="your-orders">
     <div class="title">
@@ -25,38 +37,6 @@
                 </td>
                 <td class="status ready-for-pickup">
                     Ready For Pickup
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="order panel">
-        <table style="width: 100%; height: 100%;">
-            <tr>
-                <td class="scheduled-time" (click)="clicked();" matRipple matRippleColor="rgba(100, 100, 100, .1)">
-                    8:00 PM
-                </td>
-                <td class="order-content">
-                    Some order information in here
-                </td>
-                <td class="status being-made">
-                    Working On It
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="order panel">
-        <table style="width: 100%; height: 100%;">
-            <tr>
-                <td class="scheduled-time" (click)="clicked();" matRipple matRippleColor="rgba(100, 100, 100, .1)">
-                    7:15 PM
-                </td>
-                <td class="order-content">
-                    Some order information in here
-                </td>
-                <td class="status order-placed">
-                    Order Placed
                 </td>
             </tr>
         </table>
