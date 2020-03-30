@@ -27,7 +27,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, FavoritesComponent,
-    CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog, DrinksComponent, SnacksComponent, SweetsComponent, EditItemComponent, PaymentComponent, PickupComponent],
+    CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog, DrinksComponent, SnacksComponent,
+    SweetsComponent, EditItemComponent, PaymentComponent, PickupComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

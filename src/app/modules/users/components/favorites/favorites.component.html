@@ -3,7 +3,7 @@
 </div>
 
 <div class="panel hours">
-    <table class="full-width" style="padding: 20px;">
+    <table class="full-width">
         <tr>
             <td class="day">
                 FRIDAY
@@ -78,17 +78,19 @@
     <div class="title">
         YOUR ORDERS
     </div>
-    <div class="order panel">
+    <div class="order panel" *ngFor="let order of incompleteOrders">
         <table style="width: 100%; height: 100%;">
             <tr>
                 <td class="scheduled-time" (click)="clicked();" matRipple matRippleColor="rgba(100, 100, 100, .1)">
-                    {{ 7 | date:'shortTime'}}
+                    {{ order.pickupTime }} PM
                 </td>
                 <td class="order-content">
                     Some order information in here
                 </td>
-                <td class="status ready-for-pickup">
-                    Ready For Pickup
+                <td class="status" [class.order-placed]="order.state == 'ORDER PLACED'"
+                    [class.being-made]="order.state == 'WORKING ON IT'"
+                    [class.ready-for-pickup]="order.state == 'READY FOR PICKUP'">
+                    {{order.state | titlecase}}
                 </td>
             </tr>
         </table>

@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Order } from 'src/app/models/Order';
+import { OrderService } from 'src/app/services/order.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-favorites',
@@ -16,7 +19,9 @@ export class FavoritesComponent implements OnInit {
   color: string;
   colors: Array<string>;
 
-  constructor() {
+  incompleteOrders: Array<Order>;
+
+  constructor(private orderService: OrderService) {
   }
 
   ngOnInit() {
@@ -29,6 +34,13 @@ export class FavoritesComponent implements OnInit {
     this.todayNumber = this.daysIntoYear(new Date());
     this.userSelectedDate = this.todayNumber;
     this.fetchVerseByDate(this.todayNumber);
+    this.incompleteOrders = new Array<Order>();
+
+    this.orderService.getIncompleteCustomersOrders().subscribe(orders => {
+      this.incompleteOrders = orders;
+      console.log(this.incompleteOrders);
+    })
+
   }
 
   clicked() {

@@ -89,4 +89,8 @@ export class OrderService {
       "price": price
     });
   }
+
+  public getIncompleteCustomersOrders(): any {
+    return this.http.get("http://192.168.0.6:8080/orders/customer/5");
+  }
 }

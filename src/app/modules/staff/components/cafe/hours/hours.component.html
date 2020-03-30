@@ -1,0 +1,46 @@
+<div class="panel">
+    <table>
+        <tr>
+            <td class="days">
+
+                <div class="inline-block">
+                    <div class="day" *ngFor="let day of days" (click)="selectDay(day);"
+                        [class.selected-day]="day == selected.day">{{day}}</div>
+                </div>
+            </td>
+            <td class="hours">
+                <div class="inline-block">
+                    <mat-divider class="divider"></mat-divider>
+                    <div class="title theme-color">
+                        Common Hours
+                    </div>
+                    <div class="common">
+
+                    </div>
+                    <mat-divider class="divider"></mat-divider>
+                    <div class="title theme-color">
+                        AM
+                    </div>
+                    <div class="inline-block">
+                        <div class="hour" *ngFor="let hour of amHours"
+                            [class.selected]="selected.open == hour  || timeWithinOpenAndClose(hour)"
+                            (click)="timeSelected(hour);" matRipple matRippleColor="rgba(52, 165, 242, .5)">
+                            {{hour}}
+                        </div>
+                    </div>
+                    <mat-divider class="divider"></mat-divider>
+                    <div class="title theme-color">
+                        PM
+                    </div>
+                    <div class="inline-block">
+                        <div class="hour" *ngFor="let hour of pmHours"
+                            [class.selected]="selected.open == hour || timeWithinOpenAndClose(hour)"
+                            (click)="timeSelected(hour);" matRipple matRippleColor="rgba(100, 100, 100, .1)">
+                            {{convertTime(hour)}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
