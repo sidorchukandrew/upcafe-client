@@ -16,6 +16,7 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #fafafa;
 }
 
 .center-wrapper {
@@ -59,8 +60,8 @@ a {
 
 .full-white {
     height: 100%;
+    width: 100%;
     background-color: #fafafa;
-    background-image: url('https://res.cloudinary.com/spothopper/image/fetch/f_auto,q_70,c_fit,h_864/f_auto,c_fill,g_center,h_864,w_500/http://static.spotapps.co/spots/2f/6eeda17348472ea0c8c53700e79902/:original');
 }
 
 .white-background {

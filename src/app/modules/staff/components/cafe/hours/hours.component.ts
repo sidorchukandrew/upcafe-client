@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hours } from 'src/app/models/Hours';
+import { CafeHours } from 'src/app/models/CafeHours';
+import { Block } from 'src/app/models/Block';
 
 @Component({
   selector: 'app-hours',
@@ -12,12 +14,14 @@ export class HoursComponent implements OnInit {
   pmHours: Array<string>;
   amHours: Array<string>;
   days: Array<string>;
-  selected: Hours;
+  selected: Block;
   openSelected: boolean;
   closeSelected: boolean;
-  selectedHours: Array<Hours>;
   transferringToPm: boolean
   transferOccured: boolean;
+
+  cafeHours: CafeHours;
+  cols: number;
 
   constructor() {
 
@@ -25,10 +29,26 @@ export class HoursComponent implements OnInit {
     this.closeSelected = false;
     this.transferringToPm = false;
     this.transferOccured = false;
+    this.cols = 1;
+  }
+
+  ngOnInit() {
+
+    this.cafeHours = {
+      mondayBlocks: new Array<Block>(),
+      tuesdayBlocks: new Array<Block>(),
+      wednesdayBlocks: new Array<Block>(),
+      thursdayBlocks: new Array<Block>(),
+      fridayBlocks: new Array<Block>(),
+      saturdayBlocks: new Array<Block>(),
+      sundayBlocks: new Array<Block>(),
+    }
+
     this.selected = {
       open: '0:00',
       close: '0:00',
-      day: ''
+      day: '',
+      id: Date.now()
     }
     this.hours = ['8:00', '8:30',
       '9:00', '9:30',
@@ -72,15 +92,13 @@ export class HoursComponent implements OnInit {
     this.days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   }
 
-  ngOnInit() {
-  }
-
   timeSelected(hour: string, section: string) {
     if (!this.openSelected) {
       this.openSelected = true;
       this.selected.open = hour;
     }
     else {
+
       this.closeSelected = true;
       this.selected.close = hour;
     }
@@ -97,10 +115,6 @@ export class HoursComponent implements OnInit {
       hour -= 12;
 
     return (hour + ":" + time.slice(indexOfColon + 1, time.length));
-  }
-
-  isInBetween(openTime: string, closeTime: string) {
-
   }
 
   selectDay(day: string) {
@@ -145,5 +159,49 @@ export class HoursComponent implements OnInit {
   parseMinutes(time: string): number {
     var indexOfColon = time.indexOf(":");
     return parseInt(time.slice(indexOfColon + 1, time.length));
+  }
+
+  stageHours(): void {
+
+    if (this.selected.day == 'Monday')
+      this.cafeHours.mondayBlocks.push(this.selected);
+
+    else if (this.selected.day == 'Tuesday')
+      this.cafeHours.tuesdayBlocks.push(this.selected);
+
+    else if (this.selected.day == 'Wednesday')
+      this.cafeHours.wednesdayBlocks.push(this.selected);
+
+    else if (this.selected.day == 'Thursday')
+      this.cafeHours.thursdayBlocks.push(this.selected);
+
+    else if (this.selected.day == 'Friday')
+      this.cafeHours.fridayBlocks.push(this.selected);
+
+    else if (this.selected.day == 'Saturday')
+      this.cafeHours.saturdayBlocks.push(this.selected);
+
+    else
+      this.cafeHours.sundayBlocks.push(this.selected);
+
+    console.log(this.cafeHours);
+
+    this.selected = {
+      open: '0:00',
+      close: '0:00',
+      day: '',
+      id: Date.now()
+    }
+
+    this.openSelected = false;
+  }
+
+  removeBlock(block: Block, dayBlocks: Array<Block>): void {
+    var index = dayBlocks.indexOf(block);
+
+    if (index != -1)
+      dayBlocks.splice(index, 1);
+
+    console.log(dayBlocks);
   }
 }

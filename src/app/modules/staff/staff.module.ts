@@ -6,14 +6,14 @@ import { StaffComponent } from './staff/staff.component';
 import { CafeComponent } from './components/cafe/cafe.component';
 import { HoursComponent } from './components/cafe/hours/hours.component';
 import { MatDividerModule } from '@angular/material/divider'
-import { MatRippleModule } from '@angular/material';
+import { MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule } from '@angular/material';
 import { SettingsComponent } from './components/settings/settings.component'
 @NgModule({
   declarations: [IncomingOrdersComponent, StaffComponent, CafeComponent, HoursComponent, SettingsComponent],
   imports: [
     CommonModule,
     StaffRoutingModule,
-    MatDividerModule, MatRippleModule
+    MatDividerModule, MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule
   ]
 })
 export class StaffModule { }
