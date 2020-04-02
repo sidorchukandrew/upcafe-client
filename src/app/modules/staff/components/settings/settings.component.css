@@ -1,0 +1,16 @@
+.buttons-wrapper {
+    margin: 10px;
+}
+
+.settings-button {
+    background-color: white;
+    border: solid 1px #e6e8ee;
+    border-radius: 5px;
+    color: black;
+    text-align: center;
+}
+
+.settings-button .icon {
+    display: block;
+    margin: auto;
+}

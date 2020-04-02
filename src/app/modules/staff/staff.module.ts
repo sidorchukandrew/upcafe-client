@@ -8,8 +8,10 @@ import { HoursComponent } from './components/cafe/hours/hours.component';
 import { MatDividerModule } from '@angular/material/divider'
 import { MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule } from '@angular/material';
 import { SettingsComponent } from './components/settings/settings.component'
+import { StaffNavbarComponent } from './components/staff-navbar/staff-navbar.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 @NgModule({
-  declarations: [IncomingOrdersComponent, StaffComponent, CafeComponent, HoursComponent, SettingsComponent],
+  declarations: [IncomingOrdersComponent, StaffComponent, CafeComponent, HoursComponent, SettingsComponent, StaffNavbarComponent, OrderDetailsComponent],
   imports: [
     CommonModule,
     StaffRoutingModule,
