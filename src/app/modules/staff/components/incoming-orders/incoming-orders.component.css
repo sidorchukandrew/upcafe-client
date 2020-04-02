@@ -82,15 +82,11 @@
     display: inline-block;
 }
 
-.state {
-    border-radius: 5px;
-    text-align: center;
+.start-order {
     margin-top: 10px;
-    width: 150px;
-    max-width: 150px;
-    padding: 10px;
-    font-weight: 700;
-    display: inline-block;
+    width: 80%;
+    max-width: 350px;
+    background-color: white;
 }
 
 .working {
@@ -103,15 +99,6 @@
     background-color: #e0ecfa;
 }
 
-.more-details {
-    background-color: white;
-    border: none;
-    border-radius: 6px;
-    box-shadow: 0px 0px 12px 8px #d3d3d354;
-    color: rgb(156, 156, 156);
-    margin-top: 10px;
-    padding: 5px 9px;
-    max-width: 40px;
+.button-wrapper {
+    text-align: center;
 }
-
-/* .price {} */

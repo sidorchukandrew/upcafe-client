@@ -85,7 +85,8 @@ a {
 }
 
 .navbar-space-bottom-position {
-    bottom: 63px;
+    height: 63px;
+    width: 100%;
 }
 
 .bottom {
