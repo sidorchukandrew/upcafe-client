@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
-import { CategoryItem } from 'src/app/models/CategoryItem';
-import { NavbarService } from 'src/app/services/navbar.service';
 import { LineItem } from 'src/app/models/LineItem';
 import { ModifierListData } from 'src/app/models/ModifierListData';
 import { MatSnackBar } from '@angular/material';
@@ -33,9 +31,8 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   subscriptions: Subscription;
 
   constructor(private selectedItemService: SelectedItemService, private snackBar: MatSnackBar, private catalogService: CatalogService,
-    private route: ActivatedRoute, private orderService: OrderService, public userResponseDialog: MatDialog,
-    private navbarService: NavbarService) {
-    navbarService.menuBarHidden = true;
+    private route: ActivatedRoute, private orderService: OrderService, public userResponseDialog: MatDialog) {
+
   }
 
   ngOnInit() {

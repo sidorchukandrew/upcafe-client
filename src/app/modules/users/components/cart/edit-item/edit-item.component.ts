@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ModListDetailsComponent } from '../../menu/mod-list-details/mod-list-details.component';
 import { LineItem } from 'src/app/models/LineItem';
-import { NavbarService } from 'src/app/services/navbar.service';
 import { CatalogService } from 'src/app/services/catalog.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order.service';
@@ -28,11 +27,9 @@ export class EditItemComponent implements OnInit, OnDestroy {
   nameOfCurrentlySelectedModifierList: string;
   subscriptions: Subscription;
 
-  constructor(private navbarService: NavbarService, private catalogService: CatalogService,
+  constructor(private catalogService: CatalogService,
     private route: ActivatedRoute, private orderService: OrderService, private router: Router, private selectedItemService: SelectedItemService,
     private editService: EditItemService) {
-
-    this.navbarService.menuBarHidden = true;
     this.nameOfCurrentlySelectedModifierList = '';
     this.item = new LineItem();
 
@@ -56,7 +53,6 @@ export class EditItemComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
-    this.navbarService.menuBarHidden = false;
     this.orderService.setItemBeingEdited(null);
   }
 

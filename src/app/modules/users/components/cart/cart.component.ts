@@ -3,7 +3,6 @@ import { OrderService } from 'src/app/services/order.service';
 import { Order } from 'src/app/models/Order';
 import { OrderItem } from 'src/app/models/OrderItem';
 import { Router } from '@angular/router';
-import { NavbarService } from 'src/app/services/navbar.service';
 import { EditItemService } from 'src/app/services/edit-item.service';
 import { Time } from '@angular/common';
 
@@ -18,7 +17,7 @@ export class CartComponent implements OnInit {
   availableTimes: Array<string>;
   selectedTime: string;
 
-  constructor(private orderService: OrderService, private router: Router, private navbarService: NavbarService,
+  constructor(private orderService: OrderService, private router: Router,
     private editService: EditItemService) {
     this.availableTimes = ['7:00', '7:10', '7:20', '7:30', '7:40', '7:50', '8:00'];
   }
@@ -28,7 +27,6 @@ export class CartComponent implements OnInit {
     this.currentOrder = this.orderService.getCurrentOrder();
     if (this.currentOrder)
       this.selectedTime = this.currentOrder.pickupTime;
-    this.navbarService.menuBarHidden = false;
   }
 
   incrementQuantity(orderItem: OrderItem): void {

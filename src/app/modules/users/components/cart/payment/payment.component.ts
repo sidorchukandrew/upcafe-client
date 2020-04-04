@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NavbarService } from 'src/app/services/navbar.service';
 import { OrderService } from 'src/app/services/order.service';
-// import { OrderConfirmation } from 'src/app/models/OrderConfirmation';
 import { Subscription } from 'rxjs';
 import { Order } from 'src/app/models/Order';
 
@@ -22,13 +20,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
   processingPayment: boolean;
   success: boolean;
 
-  constructor(private navbarService: NavbarService, private orderService: OrderService) {
+  constructor(private orderService: OrderService) {
     this.processingPayment = false;
     this.success = false;
   }
 
   ngOnInit() {
-    this.navbarService.menuBarHidden = true;
     this.order = this.orderService.getCurrentOrder();
     this.subscriptions = new Subscription();
 
@@ -126,8 +123,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.subscriptions)
       this.subscriptions.unsubscribe();
-
-    this.navbarService.menuBarHidden = false;
   }
 }
 

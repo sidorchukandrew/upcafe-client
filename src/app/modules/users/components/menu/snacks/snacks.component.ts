@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogService } from 'src/app/services/catalog.service';
-import { NavbarService } from 'src/app/services/navbar.service';
 import { HttpClient } from '@angular/common/http';
-import { Category } from 'src/app/models/Category';
 import { CatalogByCategory } from 'src/app/models/CatalogByCategory';
 import { Catalog } from 'src/app/models/Catalog';
 import { CategoryItem } from 'src/app/models/CategoryItem';
@@ -18,13 +16,11 @@ export class SnacksComponent implements OnInit {
 
   catalog: Catalog;
 
-  constructor(private http: HttpClient, private catalogService: CatalogService, private navbarService: NavbarService,
+  constructor(private http: HttpClient, private catalogService: CatalogService,
     private selectedItemService: SelectedItemService) {
     this.catalog = {
       catalogSections: Array<CatalogByCategory>()
     };
-
-    this.navbarService.menuBarHidden = false;
   }
 
   ngOnInit() {

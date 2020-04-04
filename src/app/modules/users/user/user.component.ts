@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-user',
@@ -8,10 +7,10 @@ import { NavbarService } from 'src/app/services/navbar.service';
 })
 export class UserComponent implements OnInit {
 
-  constructor(public navbarService: NavbarService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.navbarService.menuBarHidden = false;
+
   }
 
 }
