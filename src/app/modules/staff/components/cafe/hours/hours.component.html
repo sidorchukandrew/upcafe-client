@@ -1,4 +1,4 @@
-<mat-grid-list [cols]="cols" rowHeight="120px">
+<!-- <mat-grid-list [cols]="cols" rowHeight="120px">
     <mat-grid-tile>
         <div class="scroll-wrapper">
             <div *ngFor="let day of days" class="inline-block">
@@ -182,4 +182,14 @@
         <mat-icon class="theme-color icon">save</mat-icon>
         <span class="action-name">Submit</span>
     </a>
+</div> -->
+
+<!-- <input class="form-control" type="text" placeHolder="Message Here" [(ngModel)]="input"> -->
+<button class="btn btn-success" (click)="sendMessage()">Send</button>
+
+<div class="content">
+
+    <div *ngFor="let msg of messageService.msg">
+        {{msg}}
+    </div>
 </div>

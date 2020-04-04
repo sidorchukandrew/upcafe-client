@@ -10,8 +10,12 @@ import { MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule } fr
 import { SettingsComponent } from './components/settings/settings.component'
 import { StaffNavbarComponent } from './components/staff-navbar/staff-navbar.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import { ActiveOrdersComponent } from './components/active-orders/active-orders.component';
+import { LateOrdersComponent } from './components/late-orders/late-orders.component';
+import { CompletedOrdersComponent } from './components/completed-orders/completed-orders.component';
+import { OrdersComponent } from './components/orders/orders.component';
 @NgModule({
-  declarations: [IncomingOrdersComponent, StaffComponent, CafeComponent, HoursComponent, SettingsComponent, StaffNavbarComponent, OrderDetailsComponent],
+  declarations: [IncomingOrdersComponent, StaffComponent, CafeComponent, HoursComponent, SettingsComponent, StaffNavbarComponent, OrderDetailsComponent, ActiveOrdersComponent, LateOrdersComponent, CompletedOrdersComponent, OrdersComponent],
   imports: [
     CommonModule,
     StaffRoutingModule,

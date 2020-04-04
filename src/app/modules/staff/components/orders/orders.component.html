@@ -1,0 +1,18 @@
+<h2 style="margin-left:10px;">Today's Orders
+    <button mat-icon-button (click)="showOptions = !showOptions">
+        <mat-icon>more_horiz</mat-icon>
+    </button>
+</h2>
+<div class="order-views">
+    <button [class.selected]="selectedOrdersView == 'Up Next'" matRipple (click)="selectOrderView('Up Next');"
+        routerLink="/staff/orders/new">Up
+        Next</button>
+    <button [class.selected]="selectedOrdersView == 'In Process'" matRipple (click)="selectOrderView('In Process');"
+        routerLink="/staff/orders/active">In
+        Process</button>
+    <button [class.selected]="selectedOrdersView == 'Over Due'" matRipple (click)="selectOrderView('Over Due');"
+        routerLink="/staff/orders/late">Over
+        Due</button>
+</div>
+
+<router-outlet></router-outlet>
