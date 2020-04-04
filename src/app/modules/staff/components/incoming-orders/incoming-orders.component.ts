@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Order } from 'src/app/models/Order';
 import { OrderItem } from 'src/app/models/OrderItem';
 import { VariationData } from 'src/app/models/VariationData';
@@ -30,11 +30,29 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
       this.subscriptions.add(this.ordersFeed.getNewOrdersObservable().subscribe(newOrdersList => {
         this.orders = newOrdersList;
         this.orders.sort((a, b) => {
-          var hourA: number = this.ordersFeed.parseHour(a.pickupTime);
-          var hourB: number = this.ordersFeed.parseHour(b.pickupTime);
+          var hourA: number;
+          var hourB: number;
+          var minutesA: number;
+          var minutesB: number
 
-          var minutesA: number = this.ordersFeed.parseMinutes(a.pickupTime);
-          var minutesB: number = this.ordersFeed.parseMinutes(b.pickupTime);
+          if (a.pickupTime == 'ASAP') {
+            hourA = 0;
+          }
+          else {
+            hourA = this.ordersFeed.parseHour(a.pickupTime);
+            minutesA = this.ordersFeed.parseMinutes(a.pickupTime);
+          }
+
+          if (b.pickupTime == 'ASAP') {
+            hourB = 0;
+          }
+          else {
+            hourB = this.ordersFeed.parseHour(b.pickupTime);
+            minutesB = this.ordersFeed.parseMinutes(b.pickupTime);
+          }
+
+          if (hourA == 0 || hourB == 0)
+            return hourA - hourB;
 
           if (hourA != hourB)
             return hourA - hourB;
@@ -66,11 +84,30 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.ordersFeed.getNewIncomingOrder().subscribe(newOrder => {
       this.orders.sort((a, b) => {
-        var hourA: number = this.ordersFeed.parseHour(a.pickupTime);
-        var hourB: number = this.ordersFeed.parseHour(b.pickupTime);
 
-        var minutesA: number = this.ordersFeed.parseMinutes(a.pickupTime);
-        var minutesB: number = this.ordersFeed.parseMinutes(b.pickupTime);
+        var hourA: number;
+        var hourB: number;
+        var minutesA: number;
+        var minutesB: number
+
+        if (a.pickupTime == 'ASAP') {
+          hourA = 0;
+        }
+        else {
+          hourA = this.ordersFeed.parseHour(a.pickupTime);
+          minutesA = this.ordersFeed.parseMinutes(a.pickupTime);
+        }
+
+        if (b.pickupTime == 'ASAP') {
+          hourB = 0;
+        }
+        else {
+          hourB = this.ordersFeed.parseHour(b.pickupTime);
+          minutesB = this.ordersFeed.parseMinutes(b.pickupTime);
+        }
+
+        if (hourA == 0 || hourB == 0)
+          return hourA - hourB;
 
         if (hourA != hourB)
           return hourA - hourB;
@@ -98,6 +135,9 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
 
   convertTime(time: string): string {
 
+    if (time == 'ASAP')
+      return time;
+
     var indexOfColon = time.indexOf(":");
     var hour = parseInt(time.slice(0, indexOfColon));
 
@@ -122,10 +162,12 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
   styleUrls: ['undo-action.component.css']
 })
 export class UndoActionComponent {
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any, private ordersFeed: OrderFeedService) { }
+
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any, private ordersFeed: OrderFeedService, private snackbarRef: MatSnackBarRef<UndoActionComponent>) { }
 
   undo(order: Order) {
     this.ordersFeed.setNewIncomingOrder(order);
     this.ordersFeed.removeFromOrders(this.ordersFeed.getActiveOrders(), order);
+    this.snackbarRef.dismiss();
   }
 }
