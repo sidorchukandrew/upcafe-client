@@ -19,7 +19,7 @@
                 {{convertTime(order.pickupTime)}}
             </div>
             <div class="customer-name">
-                Tayeesa Sidorchuk
+                {{order.customer.firstName}} {{order.customer.lastName}}
             </div>
             <table class="order-data">
                 <tr>
@@ -35,7 +35,7 @@
                         Ordered At
                     </td>
                     <td class="value">
-                        8:00 AM
+                        {{convertTime(order.createdAt)}}
                     </td>
                 </tr>
                 <tr>

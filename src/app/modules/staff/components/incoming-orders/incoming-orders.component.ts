@@ -95,6 +95,7 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
 @Component({
   selector: 'undo-action-component',
   templateUrl: 'undo-action.component.html',
+  styleUrls: ['undo-action.component.css']
 })
 export class UndoActionComponent {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any, private ordersFeed: OrderFeedService) { }

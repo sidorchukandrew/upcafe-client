@@ -16,10 +16,10 @@ export class CatalogService {
   constructor(private http: HttpClient) { }
 
   public getCatalog(category: string): any {
-    return this.http.get("http://192.168.0.6:8080/catalog/" + category);
+    return this.http.get("http://192.168.0.7:8080/catalog/" + category);
   }
 
   public getVariation(id: string) {
-    return this.http.get("http://192.168.0.6:8080/catalog/variations/" + id);
+    return this.http.get("http://192.168.0.7:8080/catalog/variations/" + id);
   }
 }

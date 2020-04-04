@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { OrderService } from 'src/app/services/order.service';
-import { OrderConfirmation } from 'src/app/models/OrderConfirmation';
+// import { OrderConfirmation } from 'src/app/models/OrderConfirmation';
 import { Subscription } from 'rxjs';
 import { Order } from 'src/app/models/Order';
 
@@ -16,7 +16,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   paymentForm; //this is our payment form object
   totalPrice: number;
-  orderConfirmation: OrderConfirmation;
+  // orderConfirmation: OrderConfirmation;
   order: Order;
   subscriptions: Subscription;
   processingPayment: boolean;

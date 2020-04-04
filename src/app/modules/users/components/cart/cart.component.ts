@@ -5,7 +5,6 @@ import { OrderItem } from 'src/app/models/OrderItem';
 import { Router } from '@angular/router';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { EditItemService } from 'src/app/services/edit-item.service';
-import { OrderConfirmation } from 'src/app/models/OrderConfirmation';
 import { Time } from '@angular/common';
 
 @Component({

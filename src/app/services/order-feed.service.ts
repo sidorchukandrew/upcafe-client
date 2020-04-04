@@ -3,6 +3,7 @@ import { Order } from '../models/Order';
 import { OrderItem } from '../models/OrderItem';
 import { VariationData } from '../models/VariationData';
 import { Subject } from 'rxjs';
+import { Customer } from '../models/Customer';
 
 @Injectable({
   providedIn: 'root'
@@ -68,30 +69,58 @@ export class OrderFeedService {
     lineItems2.push(item2);
     lineItems2.push(item);
 
+    var customer: Customer = {
+      email: '',
+      firstName: 'Tayeesa',
+      lastName: 'Sidorchuk',
+      id: 6,
+      photoUrl: 'https://lh3.googleusercontent.com/a-/AOh14GhXHisd9ryNKAbdmxuRKrpR_csAkk9aZa9uYavs=s96-c'
+    }
+
     var order: Order = {
       id: 'AmoOAOZ201KDLQ',
       pickupTime: '11:00',
       totalPrice: 5,
-      selectedLineItems: lineItems
+      selectedLineItems: lineItems,
+      customer: customer,
+      closedAt: null,
+      createdAt: '10:45',
+      pickupDate: Date(),
+      state: ''
     }
 
     var order2: Order = {
       id: 'PLaqn819Nak1o',
       pickupTime: '10:10',
       totalPrice: 1.5,
-      selectedLineItems: lineItems2
+      selectedLineItems: lineItems2,
+      customer: customer,
+      closedAt: null,
+      createdAt: '10:00',
+      pickupDate: Date(),
+      state: ''
     }
     var order3: Order = {
       id: 'PLaqn819Nak1o',
       pickupTime: '13:10',
       totalPrice: 1.5,
-      selectedLineItems: lineItems2
+      selectedLineItems: lineItems2,
+      customer: customer,
+      closedAt: null,
+      createdAt: '13:00',
+      pickupDate: Date(),
+      state: ''
     }
     var order4: Order = {
       id: 'PLaqn819Nak1o',
       pickupTime: '9:10',
       totalPrice: 1.5,
-      selectedLineItems: lineItems2
+      selectedLineItems: lineItems2,
+      customer: customer,
+      closedAt: null,
+      createdAt: '9:00',
+      pickupDate: Date(),
+      state: ''
     }
 
     this.newOrders.push(order4);
