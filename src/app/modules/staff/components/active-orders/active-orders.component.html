@@ -1,1 +1,47 @@
-<p>active-orders works!</p>
+<mat-grid-list cols="1" gutterSize="15px" rowHeight="170px" class="wrapper">
+    <mat-grid-tile colspan="1" class="card" *ngFor="let order of orders">
+        <div class="content">
+            <div class="pickup-time">
+                {{convertTime(order.pickupTime)}}
+            </div>
+            <div class="customer-name">
+                Tayeesa Sidorchuk
+            </div>
+            <table class="order-data">
+                <tr>
+                    <td class="label">
+                        Price
+                    </td>
+                    <td class="value">
+                        {{order.totalPrice | currency}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        Ordered At
+                    </td>
+                    <td class="value">
+                        8:00 AM
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        Items
+                    </td>
+                    <td class="value">
+                        <div class="items" *ngFor="let item of order.selectedLineItems">{{item.variationData.name}},
+                            &nbsp;
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="button-wrapper">
+                <button mat-stroked-button color="primary">
+                    Complete
+                </button>
+            </div>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<div class="navbar-space-bottom-position"></div>

@@ -1,125 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Order } from 'src/app/models/Order';
 import { OrderItem } from 'src/app/models/OrderItem';
 import { VariationData } from 'src/app/models/VariationData';
+import { OrderFeedService } from 'src/app/services/order-feed.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-incoming-orders',
   templateUrl: './incoming-orders.component.html',
   styleUrls: ['./incoming-orders.component.css']
 })
-export class IncomingOrdersComponent implements OnInit {
+export class IncomingOrdersComponent implements OnInit, OnDestroy {
 
-  selectedOrdersView: string;
+  subscriptions: Subscription;
   showOptions: boolean;
   orders: Array<Order>;
 
-  constructor() {
+  constructor(private ordersFeed: OrderFeedService) {
     this.showOptions = false;
   }
 
   ngOnInit() {
-    this.selectedOrdersView = "Up Next";
 
-    var lineItems = new Array<OrderItem>();
-    var lineItems2 = new Array<OrderItem>();
-    var varData: VariationData = {
-      name: 'Panini',
-      variationPrice: 2,
-      stocked: true,
-      variationId: '102ne93h28',
-      variationImageUrl: null
-    }
+    this.subscriptions = new Subscription();
 
-    var varData2: VariationData = {
-      name: 'Lemonade',
-      variationPrice: 1.5,
-      stocked: true,
-      variationId: 'so100213',
-      variationImageUrl: null
-    }
-
-    var item: OrderItem = {
-      price: 2,
-      quantity: 1,
-      variationData: varData,
-      selectedModifiers: null,
-      incrementQuantity: null,
-      decrementQuantity: null
-    };
-
-
-    var item2: OrderItem = {
-      price: 1.5,
-      quantity: 1,
-      variationData: varData2,
-      selectedModifiers: null,
-      incrementQuantity: null,
-      decrementQuantity: null
-    };
-
-    lineItems.push(item);
-    lineItems2.push(item2);
-    lineItems2.push(item);
-
-    var order: Order = {
-      id: 'AmoOAOZ201KDLQ',
-      pickupTime: '11:00',
-      totalPrice: 5,
-      selectedLineItems: lineItems
-    }
-
-    var order2: Order = {
-      id: 'PLaqn819Nak1o',
-      pickupTime: '10:10',
-      totalPrice: 1.5,
-      selectedLineItems: lineItems2
-    }
-    var order3: Order = {
-      id: 'PLaqn819Nak1o',
-      pickupTime: '13:10',
-      totalPrice: 1.5,
-      selectedLineItems: lineItems2
-    }
-    var order4: Order = {
-      id: 'PLaqn819Nak1o',
-      pickupTime: '9:10',
-      totalPrice: 1.5,
-      selectedLineItems: lineItems2
-    }
-
-    this.orders = new Array<Order>();
-
-    this.orders.push(order2);
-    this.orders.push(order);
-    this.orders.push(order3);
-    this.orders.push(order4);
-
+    this.orders = this.ordersFeed.getNewOrders();
     this.orders.sort((a, b) => {
+      var hourA: number = this.ordersFeed.parseHour(a.pickupTime);
+      var hourB: number = this.ordersFeed.parseHour(b.pickupTime);
 
-      var hourA: number = this.parseHour(a.pickupTime);
-      var hourB: number = this.parseHour(b.pickupTime);
-
-      var minutesA: number = this.parseMinutes(a.pickupTime);
-      var minutesB: number = this.parseMinutes(b.pickupTime);
+      var minutesA: number = this.ordersFeed.parseMinutes(a.pickupTime);
+      var minutesB: number = this.ordersFeed.parseMinutes(b.pickupTime);
 
       if (hourA != hourB)
         return hourA - hourB;
 
       else
         return minutesA - minutesB;
-
     });
+
+    this.subscriptions.add(this.ordersFeed.getNewIncomingOrder().subscribe(newOrder => {
+      this.orders.push(newOrder);
+      this.orders.sort((a, b) => {
+        var hourA: number = this.ordersFeed.parseHour(a.pickupTime);
+        var hourB: number = this.ordersFeed.parseHour(b.pickupTime);
+
+        var minutesA: number = this.ordersFeed.parseMinutes(a.pickupTime);
+        var minutesB: number = this.ordersFeed.parseMinutes(b.pickupTime);
+
+        if (hourA != hourB)
+          return hourA - hourB;
+
+        else
+          return minutesA - minutesB;
+      });
+
+    }));
+
   }
 
-  parseHour(time: string): number {
-    var indexOfColon = time.indexOf(":");
-    return parseInt(time.slice(0, indexOfColon));
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
-  parseMinutes(time: string): number {
-    var indexOfColon = time.indexOf(":");
-    return parseInt(time.slice(indexOfColon + 1, time.length));
+  startOrder(order: Order) {
+    this.ordersFeed.setNewActiveOrder(order);
+    this.ordersFeed.setNewOrdersList(this.ordersFeed.removeFromOrders(this.ordersFeed.getNewOrders(), order));
+    console.log(this.ordersFeed.getNewOrders());
+
+    this.orders = this.ordersFeed.removeFromOrders(this.orders, order);
   }
 
   convertTime(time: string): string {
@@ -132,10 +81,5 @@ export class IncomingOrdersComponent implements OnInit {
 
     return (hour + ":" + time.slice(indexOfColon + 1, time.length));
   }
-
-  selectOrderView(view: string): void {
-    this.selectedOrdersView = view;
-  }
-
 
 }
