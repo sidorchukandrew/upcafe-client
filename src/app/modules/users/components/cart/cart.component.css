@@ -71,6 +71,8 @@
 
 #bottom-card {
     position: fixed;
+    bottom: 0px;
+    margin-bottom: 53px;
 }
 
 .bold {

@@ -27,19 +27,19 @@ const routes: Routes = [
                 { path: 'cart', component: CartComponent },
                 { path: 'profile', component: ProfileComponent },
                 { path: 'menu/eats', component: EatsComponent },
-                { path: 'menu/eats/:id', component: ItemDetailsComponent },
                 { path: 'menu/drinks', component: DrinksComponent },
-                { path: 'menu/drinks/:id', component: ItemDetailsComponent },
                 { path: 'menu/snacks', component: SnacksComponent },
-                { path: 'menu/snacks/:id', component: ItemDetailsComponent },
                 { path: 'menu/sweets', component: SweetsComponent },
-                { path: 'menu/sweets/:id', component: ItemDetailsComponent },
-                { path: 'cart/edit/:id', component: EditItemComponent },
-                { path: 'cart/payment', component: PaymentComponent },
                 { path: 'cart/pickup', component: PickupComponent }
 
             ]
     },
+    { path: 'menu/eats/:id', component: ItemDetailsComponent },
+    { path: 'menu/snacks/:id', component: ItemDetailsComponent },
+    { path: 'menu/drinks/:id', component: ItemDetailsComponent },
+    { path: 'cart/edit/:id', component: EditItemComponent },
+    { path: 'menu/sweets/:id', component: ItemDetailsComponent },
+    { path: 'cart/payment', component: PaymentComponent },
 ];
 
 @NgModule({
