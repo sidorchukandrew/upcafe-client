@@ -125,6 +125,7 @@ export class OrderFeedService {
   }
 
   public setNewIncomingOrder(newOrder: Order) {
+    this.newOrders.push(newOrder);
     this.newIncomingOrder.next(newOrder);
   }
 

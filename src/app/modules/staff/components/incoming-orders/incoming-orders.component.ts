@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Order } from 'src/app/models/Order';
 import { OrderItem } from 'src/app/models/OrderItem';
 import { VariationData } from 'src/app/models/VariationData';
 import { OrderFeedService } from 'src/app/services/order-feed.service';
 import { Subscription } from 'rxjs';
+import { MatSnackBarRef, MatSnackBar, MAT_SNACK_BAR_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-incoming-orders',
@@ -16,7 +17,7 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
   showOptions: boolean;
   orders: Array<Order>;
 
-  constructor(private ordersFeed: OrderFeedService) {
+  constructor(private ordersFeed: OrderFeedService, private snackBar: MatSnackBar) {
     this.showOptions = false;
   }
 
@@ -40,7 +41,6 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
     });
 
     this.subscriptions.add(this.ordersFeed.getNewIncomingOrder().subscribe(newOrder => {
-      this.orders.push(newOrder);
       this.orders.sort((a, b) => {
         var hourA: number = this.ordersFeed.parseHour(a.pickupTime);
         var hourB: number = this.ordersFeed.parseHour(b.pickupTime);
@@ -64,6 +64,7 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
   }
 
   startOrder(order: Order) {
+    this.openSnackBar(order);
     this.ordersFeed.setNewActiveOrder(order);
     this.ordersFeed.setNewOrdersList(this.ordersFeed.removeFromOrders(this.ordersFeed.getNewOrders(), order));
     console.log(this.ordersFeed.getNewOrders());
@@ -82,4 +83,24 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
     return (hour + ":" + time.slice(indexOfColon + 1, time.length));
   }
 
+  openSnackBar(order: Order) {
+    this.snackBar.openFromComponent(UndoActionComponent, {
+      duration: 3000,
+      data: order
+    });
+  }
+
+}
+
+@Component({
+  selector: 'undo-action-component',
+  templateUrl: 'undo-action.component.html',
+})
+export class UndoActionComponent {
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any, private ordersFeed: OrderFeedService) { }
+
+  undo(order: Order) {
+    this.ordersFeed.setNewIncomingOrder(order);
+    this.ordersFeed.removeFromOrders(this.ordersFeed.getActiveOrders(), order);
+  }
 }
