@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderFeedService } from 'src/app/services/order-feed.service';
 
 @Component({
   selector: 'app-staff',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StaffComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ordersFeed: OrderFeedService) { }
 
   ngOnInit() {
+    this.ordersFeed.getOrdersByState('ORDER PLACED').subscribe(newIncomingOrdersList => {
+      this.ordersFeed.setNewOrdersObservableList(newIncomingOrdersList);
+    });
+
   }
 
 }

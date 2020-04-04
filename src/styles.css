@@ -84,6 +84,9 @@ a {
     color: #34a5f2;
 }
 
+.navbar-space-bottom-position {
+    height: 60px;
+}
 
 .bottom {
     position: fixed;

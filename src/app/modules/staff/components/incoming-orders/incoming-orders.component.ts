@@ -25,20 +25,44 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
 
     this.subscriptions = new Subscription();
 
-    this.orders = this.ordersFeed.getNewOrders();
-    this.orders.sort((a, b) => {
-      var hourA: number = this.ordersFeed.parseHour(a.pickupTime);
-      var hourB: number = this.ordersFeed.parseHour(b.pickupTime);
+    if (this.ordersFeed.getNewOrders().length == 0) {
 
-      var minutesA: number = this.ordersFeed.parseMinutes(a.pickupTime);
-      var minutesB: number = this.ordersFeed.parseMinutes(b.pickupTime);
+      this.subscriptions.add(this.ordersFeed.getNewOrdersObservable().subscribe(newOrdersList => {
+        this.orders = newOrdersList;
+        this.orders.sort((a, b) => {
+          var hourA: number = this.ordersFeed.parseHour(a.pickupTime);
+          var hourB: number = this.ordersFeed.parseHour(b.pickupTime);
 
-      if (hourA != hourB)
-        return hourA - hourB;
+          var minutesA: number = this.ordersFeed.parseMinutes(a.pickupTime);
+          var minutesB: number = this.ordersFeed.parseMinutes(b.pickupTime);
 
-      else
-        return minutesA - minutesB;
-    });
+          if (hourA != hourB)
+            return hourA - hourB;
+
+          else
+            return minutesA - minutesB;
+        });
+
+      }));
+    }
+    else {
+      this.orders = this.ordersFeed.getNewOrders();
+      this.orders.sort((a, b) => {
+        var hourA: number = this.ordersFeed.parseHour(a.pickupTime);
+        var hourB: number = this.ordersFeed.parseHour(b.pickupTime);
+
+        var minutesA: number = this.ordersFeed.parseMinutes(a.pickupTime);
+        var minutesB: number = this.ordersFeed.parseMinutes(b.pickupTime);
+
+        if (hourA != hourB)
+          return hourA - hourB;
+
+        else
+          return minutesA - minutesB;
+      });
+
+    }
+
 
     this.subscriptions.add(this.ordersFeed.getNewIncomingOrder().subscribe(newOrder => {
       this.orders.sort((a, b) => {
