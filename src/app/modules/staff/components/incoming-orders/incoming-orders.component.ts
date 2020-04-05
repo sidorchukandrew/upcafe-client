@@ -17,12 +17,16 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
   subscriptions: Subscription;
   showOptions: boolean;
   orders: Array<Order>;
+  audio: Audio;
 
   constructor(private ordersFeed: OrderFeedService, private snackBar: MatSnackBar) {
     this.showOptions = false;
   }
 
   ngOnInit() {
+
+    this.audio = new Audio();
+    this.audio.src = "../../../../../assets/sounds/259702__kwahmah-02__beepping1.flac";
 
     this.subscriptions = new Subscription();
 
@@ -86,6 +90,9 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.ordersFeed.getNewIncomingOrder().subscribe(newOrder => {
 
       this.orders.push(newOrder);
+
+      this.audio.load();
+      this.audio.play();
 
       this.orders.sort((a, b) => {
 
