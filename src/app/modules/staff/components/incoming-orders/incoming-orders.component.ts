@@ -5,6 +5,7 @@ import { VariationData } from 'src/app/models/VariationData';
 import { OrderFeedService } from 'src/app/services/order-feed.service';
 import { Subscription } from 'rxjs';
 import { MatSnackBarRef, MatSnackBar, MAT_SNACK_BAR_DATA } from '@angular/material';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-incoming-orders',
@@ -133,6 +134,16 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
     this.orders = this.ordersFeed.removeFromOrders(this.orders, order);
   }
 
+  extractTime(dateUTC: string): string {
+
+    var date = new Date(dateUTC);
+
+    if (date.getMinutes() < 10)
+      return date.getHours() + ":0" + date.getMinutes();
+
+    return date.getHours() + ":" + date.getMinutes();
+  }
+
   convertTime(time: string): string {
 
     if (time == 'ASAP')
@@ -145,6 +156,14 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
       hour -= 12;
 
     return (hour + ":" + time.slice(indexOfColon + 1, time.length));
+  }
+
+  appendComma(name: string, index: number, length: number): string {
+
+    if (index < length - 1)
+      return name + ", ";
+
+    return name;
   }
 
   openSnackBar(order: Order) {

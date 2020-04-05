@@ -35,7 +35,7 @@
                         Ordered At
                     </td>
                     <td class="value">
-                        {{convertTime(order.createdAt)}}
+                        {{ convertTime(extractTime(order.createdAt)) }}
                     </td>
                 </tr>
                 <tr>
@@ -43,8 +43,8 @@
                         Items
                     </td>
                     <td class="value">
-                        <div class="items" *ngFor="let item of order.selectedLineItems">{{item.variationData.name}},
-                            &nbsp;
+                        <div class="items" *ngFor="let item of order.selectedLineItems; let i = index;">
+                            {{appendComma(item.variationData.name, i, order.selectedLineItems.length)}}
                         </div>
                     </td>
                 </tr>

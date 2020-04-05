@@ -19,6 +19,9 @@ export class ActiveOrdersComponent implements OnInit {
 
   convertTime(time: string): string {
 
+    if (time == 'ASAP')
+      return time;
+
     var indexOfColon = time.indexOf(":");
     var hour = parseInt(time.slice(0, indexOfColon));
 
@@ -26,6 +29,24 @@ export class ActiveOrdersComponent implements OnInit {
       hour -= 12;
 
     return (hour + ":" + time.slice(indexOfColon + 1, time.length));
+  }
+
+  extractTime(dateUTC: string): string {
+
+    var date = new Date(dateUTC);
+
+    if (date.getMinutes() < 10)
+      return date.getHours() + ":0" + date.getMinutes();
+
+    return date.getHours() + ":" + date.getMinutes();
+  }
+
+  appendComma(name: string, index: number, length: number): string {
+
+    if (index < length - 1)
+      return name + ", ";
+
+    return name;
   }
 
 }

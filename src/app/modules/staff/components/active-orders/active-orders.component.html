@@ -5,7 +5,7 @@
                 {{convertTime(order.pickupTime)}}
             </div>
             <div class="customer-name">
-                Tayeesa Sidorchuk
+                {{order.customer.firstName}} {{order.customer.lastName}}
             </div>
             <table class="order-data">
                 <tr>
@@ -21,7 +21,7 @@
                         Ordered At
                     </td>
                     <td class="value">
-                        8:00 AM
+                        {{convertTime(extractTime(order.createdAt))}}
                     </td>
                 </tr>
                 <tr>
@@ -29,14 +29,14 @@
                         Items
                     </td>
                     <td class="value">
-                        <div class="items" *ngFor="let item of order.selectedLineItems">{{item.variationData.name}},
-                            &nbsp;
+                        <div class="items" *ngFor="let item of order.selectedLineItems; let i = index;">
+                            {{appendComma(item.variationData.name, i, order.selectedLineItems.length)}}
                         </div>
                     </td>
                 </tr>
             </table>
             <div class="button-wrapper">
-                <button mat-stroked-button color="primary">
+                <button mat-stroked-button color="primary" class="complete-order">
                     Complete
                 </button>
             </div>

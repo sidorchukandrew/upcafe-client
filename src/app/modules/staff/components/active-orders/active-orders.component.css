@@ -74,3 +74,10 @@
 .button-wrapper {
     text-align: center;
 }
+
+.complete-order {
+    margin-top: 10px;
+    width: 80%;
+    max-width: 350px;
+    background-color: white;
+}
