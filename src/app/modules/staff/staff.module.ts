@@ -6,7 +6,7 @@ import { StaffComponent } from './staff/staff.component';
 import { CafeComponent } from './components/cafe/cafe.component';
 import { HoursComponent } from './components/cafe/hours/hours.component';
 import { MatDividerModule } from '@angular/material/divider'
-import { MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule, MatSnackBarModule } from '@angular/material';
+import { MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule, MatSnackBarModule, MatMenuModule } from '@angular/material';
 import { SettingsComponent } from './components/settings/settings.component'
 import { StaffNavbarComponent } from './components/staff-navbar/staff-navbar.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
@@ -21,7 +21,7 @@ import { OrdersComponent } from './components/orders/orders.component';
   imports: [
     CommonModule,
     StaffRoutingModule,
-    MatDividerModule, MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule, MatSnackBarModule
+    MatDividerModule, MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule, MatSnackBarModule, MatMenuModule
   ],
   entryComponents: [UndoActionComponent]
 })
