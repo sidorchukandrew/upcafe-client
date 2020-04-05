@@ -84,6 +84,9 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
 
 
     this.subscriptions.add(this.ordersFeed.getNewIncomingOrder().subscribe(newOrder => {
+
+      this.orders.push(newOrder);
+
       this.orders.sort((a, b) => {
 
         var hourA: number;

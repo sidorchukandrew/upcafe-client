@@ -43,9 +43,9 @@
                         Items
                     </td>
                     <td class="value">
-                        <div class="items" *ngFor="let item of order.selectedLineItems; let i = index;">
+                        <span class="items" *ngFor="let item of order.selectedLineItems; let i = index;">
                             {{appendComma(item.variationData.name, i, order.selectedLineItems.length)}}
-                        </div>
+                        </span>
                     </td>
                 </tr>
             </table>

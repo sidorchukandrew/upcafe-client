@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Order } from '../models/Order';
-import { OrderItem } from '../models/OrderItem';
-import { VariationData } from '../models/VariationData';
 import { Subject } from 'rxjs';
-import { Customer } from '../models/Customer';
 import { HttpClient } from '@angular/common/http';
+
+
+
+declare var SockJS;
+declare var Stomp;
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,8 @@ export class OrderFeedService {
   private newIncomingOrder: Subject<Order>;
   private newActiveOrder: Subject<Order>;
 
+  private stompClient;
+
   constructor(private http: HttpClient) {
     this.newOrders = [];
     this.activeOrders = [];
@@ -32,6 +36,25 @@ export class OrderFeedService {
     this.newActiveOrder = new Subject();
 
     this.newOrdersObservable = new Subject();
+
+    this.initializeWebSocketConnection();
+  }
+
+  private initializeWebSocketConnection(): void {
+    const serverUrl = 'http://localhost:8080/gs-guide-websocket';
+    const ws = new SockJS(serverUrl);
+
+    this.stompClient = Stomp.over(ws);
+
+    const that = this;
+
+    this.stompClient.connect({}, function (frame) {
+      that.stompClient.subscribe('/topic', (message) => {
+        console.log("\n\n\n\n NEW ORDER CAME IN \n\n\n\n");
+        var order: Order = JSON.parse(message.body);
+        that.newIncomingOrder.next(order);
+      });
+    });
   }
 
   public getNewOrders(): Array<Order> {
