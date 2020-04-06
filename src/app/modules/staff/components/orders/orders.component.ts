@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 export class OrdersComponent implements OnInit {
 
   selectedOrdersView: string;
-  showOptions: boolean;
 
 
   constructor(private router: Router) { }

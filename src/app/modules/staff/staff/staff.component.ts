@@ -11,8 +11,13 @@ export class StaffComponent implements OnInit {
   constructor(private ordersFeed: OrderFeedService) { }
 
   ngOnInit() {
+    console.log("list came in");
     this.ordersFeed.getOrdersByState('ORDER PLACED').subscribe(newIncomingOrdersList => {
       this.ordersFeed.setNewOrdersObservableList(newIncomingOrdersList);
+    });
+
+    this.ordersFeed.getOrdersByState('ACTIVE').subscribe(newIncomingOrdersList => {
+      this.ordersFeed.setActiveOrdersObservable(newIncomingOrdersList);
     });
 
   }

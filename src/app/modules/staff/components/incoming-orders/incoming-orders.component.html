@@ -1,25 +1,23 @@
-<!-- <h2 style="margin-left:10px;">Today's Orders
-    <button mat-icon-button (click)="showOptions = !showOptions">
-        <mat-icon>more_horiz</mat-icon>
-    </button>
-</h2>
-<div class="order-views">
-    <button [class.selected]="selectedOrdersView == 'Up Next'" matRipple (click)="selectOrderView('Up Next');">Up
-        Next</button>
-    <button [class.selected]="selectedOrdersView == 'In Process'" matRipple (click)="selectOrderView('In Process');">In
-        Process</button>
-    <button [class.selected]="selectedOrdersView == 'Over Due'" matRipple (click)="selectOrderView('Over Due');">Over
-        Due</button>
-</div> -->
-
 <mat-grid-list cols="1" gutterSize="15px" rowHeight="170px" class="wrapper">
     <mat-grid-tile colspan="1" class="card" *ngFor="let order of orders">
         <div class="content">
-            <div class="pickup-time">
-                {{convertTime(order.pickupTime)}}
-            </div>
-            <div class="customer-name">
-                {{order.customer.firstName}} {{order.customer.lastName}}
+            <div class="top-line">
+                <span class="pickup-time">
+                    {{convertTime(order.pickupTime)}}
+                </span>
+                <span class="customer-name">
+                    {{order.customer.firstName}} {{order.customer.lastName}}
+                </span>
+                <span class="more-actions">
+                    <button mat-icon-button [matMenuTriggerFor]="moreActions">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #moreActions="matMenu">
+                        <button mat-menu-item>
+                            Details
+                        </button>
+                    </mat-menu>
+                </span>
             </div>
             <table class="order-data">
                 <tr>

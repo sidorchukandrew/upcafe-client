@@ -13,9 +13,9 @@
     <button [class.selected]="selectedOrdersView == 'Up Next'" matRipple (click)="selectOrderView('Up Next');"
         routerLink="/staff/orders/new">Up
         Next</button>
-    <button [class.selected]="selectedOrdersView == 'In Process'" matRipple (click)="selectOrderView('In Process');"
+    <button [class.selected]="selectedOrdersView == 'In Progress'" matRipple (click)="selectOrderView('In Progress');"
         routerLink="/staff/orders/active">In
-        Process</button>
+        Progress</button>
     <button [class.selected]="selectedOrdersView == 'Over Due'" matRipple (click)="selectOrderView('Over Due');"
         routerLink="/staff/orders/late">Over
         Due</button>

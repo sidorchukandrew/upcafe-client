@@ -15,120 +15,30 @@ import { DatePipe } from '@angular/common';
 export class IncomingOrdersComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription;
-  showOptions: boolean;
   orders: Array<Order>;
-  audio: Audio;
+  // audio;
 
   constructor(private ordersFeed: OrderFeedService, private snackBar: MatSnackBar) {
-    this.showOptions = false;
+
   }
 
   ngOnInit() {
 
-    this.audio = new Audio();
-    this.audio.src = "../../../../../assets/sounds/259702__kwahmah-02__beepping1.flac";
-
     this.subscriptions = new Subscription();
 
+    // If the orders haven't been loaded in yet, subscribe so when they are loaded in from 
+    //     the API, the view will update.
     if (this.ordersFeed.getNewOrders().length == 0) {
 
       this.subscriptions.add(this.ordersFeed.getNewOrdersObservable().subscribe(newOrdersList => {
-        this.orders = newOrdersList;
-        this.orders.sort((a, b) => {
-          var hourA: number;
-          var hourB: number;
-          var minutesA: number;
-          var minutesB: number
-
-          if (a.pickupTime == 'ASAP') {
-            hourA = 0;
-          }
-          else {
-            hourA = this.ordersFeed.parseHour(a.pickupTime);
-            minutesA = this.ordersFeed.parseMinutes(a.pickupTime);
-          }
-
-          if (b.pickupTime == 'ASAP') {
-            hourB = 0;
-          }
-          else {
-            hourB = this.ordersFeed.parseHour(b.pickupTime);
-            minutesB = this.ordersFeed.parseMinutes(b.pickupTime);
-          }
-
-          if (hourA == 0 || hourB == 0)
-            return hourA - hourB;
-
-          if (hourA != hourB)
-            return hourA - hourB;
-
-          else
-            return minutesA - minutesB;
-        });
-
+        this.orders = this.ordersFeed.getNewOrders();
       }));
     }
+
+    // Otherwise, this component is getting loaded after the staff component already retrieved the orders from the API
     else {
       this.orders = this.ordersFeed.getNewOrders();
-      this.orders.sort((a, b) => {
-        var hourA: number = this.ordersFeed.parseHour(a.pickupTime);
-        var hourB: number = this.ordersFeed.parseHour(b.pickupTime);
-
-        var minutesA: number = this.ordersFeed.parseMinutes(a.pickupTime);
-        var minutesB: number = this.ordersFeed.parseMinutes(b.pickupTime);
-
-        if (hourA != hourB)
-          return hourA - hourB;
-
-        else
-          return minutesA - minutesB;
-      });
-
     }
-
-
-    this.subscriptions.add(this.ordersFeed.getNewIncomingOrder().subscribe(newOrder => {
-
-      this.orders.push(newOrder);
-
-      this.audio.load();
-      this.audio.play();
-
-      this.orders.sort((a, b) => {
-
-        var hourA: number;
-        var hourB: number;
-        var minutesA: number;
-        var minutesB: number
-
-        if (a.pickupTime == 'ASAP') {
-          hourA = 0;
-        }
-        else {
-          hourA = this.ordersFeed.parseHour(a.pickupTime);
-          minutesA = this.ordersFeed.parseMinutes(a.pickupTime);
-        }
-
-        if (b.pickupTime == 'ASAP') {
-          hourB = 0;
-        }
-        else {
-          hourB = this.ordersFeed.parseHour(b.pickupTime);
-          minutesB = this.ordersFeed.parseMinutes(b.pickupTime);
-        }
-
-        if (hourA == 0 || hourB == 0)
-          return hourA - hourB;
-
-        if (hourA != hourB)
-          return hourA - hourB;
-
-        else
-          return minutesA - minutesB;
-      });
-
-    }));
-
   }
 
   ngOnDestroy() {
@@ -136,12 +46,12 @@ export class IncomingOrdersComponent implements OnInit, OnDestroy {
   }
 
   startOrder(order: Order) {
-    this.openSnackBar(order);
-    this.ordersFeed.setNewActiveOrder(order);
-    this.ordersFeed.setNewOrdersList(this.ordersFeed.removeFromOrders(this.ordersFeed.getNewOrders(), order));
-    console.log(this.ordersFeed.getNewOrders());
+    this.ordersFeed.sendUpdate(order).subscribe();
+    // this.openSnackBar(order);
 
-    this.orders = this.ordersFeed.removeFromOrders(this.orders, order);
+    console.log(this.orders);
+    console.log("vs");
+    console.log(this.ordersFeed.getNewOrders());
   }
 
   extractTime(dateUTC: string): string {
