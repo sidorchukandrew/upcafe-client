@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderFeedService } from 'src/app/services/order-feed.service';
+import { Order } from 'src/app/models/Order';
 
 @Component({
   selector: 'app-completed-orders',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompletedOrdersComponent implements OnInit {
 
-  constructor() { }
+  orders: Array<Order>;
+
+  constructor(private ordersFeed: OrderFeedService) { }
 
   ngOnInit() {
+    this.ordersFeed.getOrdersByState("completed").subscribe(ordersList => {
+      this.orders = ordersList;
+    });
   }
 
 }

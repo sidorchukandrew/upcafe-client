@@ -103,10 +103,6 @@ export class OrderFeedService {
     return this.lateOrders;
   }
 
-  public getCompletedOrders(): Array<Order> {
-    return this.completedOrders;
-  }
-
   // These may be useful later
 
   // public setNewOrdersList(orders: Array<Order>) {
