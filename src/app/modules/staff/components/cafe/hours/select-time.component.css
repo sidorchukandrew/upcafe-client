@@ -1,0 +1,15 @@
+.time {
+    border: none;
+    outline: none;
+    max-width: 45%;
+    height: 40px;
+    font-size: 2em;
+}
+
+.hour {
+    padding-right: 5px;
+}
+
+.minutes {
+    padding-left: 5px;
+}

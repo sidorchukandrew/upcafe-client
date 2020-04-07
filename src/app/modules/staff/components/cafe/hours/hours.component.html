@@ -1,195 +1,94 @@
-<!-- <mat-grid-list [cols]="cols" rowHeight="120px">
-    <mat-grid-tile>
-        <div class="scroll-wrapper">
-            <div *ngFor="let day of days" class="inline-block">
-                <div class="day">
-                    <div class="name" [class.selected-day]="day == selected.day" (click)="selectDay(day);">
-                        {{day}}
-                    </div>
-
-                    <div *ngIf="day == 'Monday'" class="selected-hours-wrapper">
-                        <div class="selected-hours" *ngFor="let block of cafeHours.mondayBlocks">
-                            <table>
-                                <tr>
-                                    <td>
-                                        {{convertTime(block.open)}} - {{convertTime(block.close)}}
-                                    </td>
-                                    <td>
-                                        <mat-icon class="remove-hours"
-                                            style="padding-top: 1px; width: 21px; height: 21px; font-size: 21px;"
-                                            (click)="removeBlock(block, cafeHours.mondayBlocks);">
-                                            highlight_off
-                                        </mat-icon>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div *ngIf=" day=='Tuesday'">
-                        <div class=" selected-hours" *ngFor="let block of cafeHours.tuesdayBlocks">
-                            <table>
-                                <tr>
-                                    <td>
-                                        {{convertTime(block.open)}} - {{convertTime(block.close)}}
-                                    </td>
-                                    <td>
-                                        <mat-icon class="remove-hours"
-                                            style="padding-top: 1px; width: 21px; height: 21px; font-size: 21px;"
-                                            (click)="removeBlock(block, cafeHours.tuesdayBlocks);">
-                                            highlight_off
-                                        </mat-icon>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div *ngIf="day == 'Wednesday'">
-                        <div class="selected-hours" *ngFor="let block of cafeHours.wednesdayBlocks">
-                            <table>
-                                <tr>
-                                    <td>
-                                        {{convertTime(block.open)}} - {{convertTime(block.close)}}
-                                    </td>
-                                    <td>
-                                        <mat-icon class="remove-hours"
-                                            style="padding-top: 1px; width: 21px; height: 21px; font-size: 21px;"
-                                            (click)="removeBlock(block, cafeHours.wednesdayBlocks);">
-                                            highlight_off
-                                        </mat-icon>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div *ngIf="day == 'Thursday'">
-                        <div class="selected-hours" *ngFor="let block of cafeHours.thursdayBlocks">
-                            <table>
-                                <tr>
-                                    <td>
-                                        {{convertTime(block.open)}} - {{convertTime(block.close)}}
-                                    </td>
-                                    <td>
-                                        <mat-icon class="remove-hours"
-                                            style="padding-top: 1px; width: 21px; height: 21px; font-size: 21px;"
-                                            (click)="removeBlock(block, cafeHours.thursdayBlocks);">
-                                            highlight_off
-                                        </mat-icon>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div *ngIf="day == 'Friday'">
-                        <div class="selected-hours" *ngFor="let block of cafeHours.fridayBlocks">
-                            <table>
-                                <tr>
-                                    <td>
-                                        {{convertTime(block.open)}} - {{convertTime(block.close)}}
-                                    </td>
-                                    <td>
-                                        <mat-icon class="remove-hours"
-                                            style="padding-top: 1px; width: 21px; height: 21px; font-size: 21px;"
-                                            (click)="removeBlock(block, cafeHours.fridayBlocks);">
-                                            highlight_off
-                                        </mat-icon>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div *ngIf="day == 'Saturday'">
-                        <div class="selected-hours" *ngFor="let block of cafeHours.saturdayBlocks">
-                            <table>
-                                <tr>
-                                    <td>
-                                        {{convertTime(block.open)}} - {{convertTime(block.close)}}
-                                    </td>
-                                    <td>
-                                        <mat-icon class="remove-hours"
-                                            style="padding-top: 1px; width: 21px; height: 21px; font-size: 21px;"
-                                            (click)="removeBlock(block, cafeHours.saturdayBlocks);">
-                                            highlight_off
-                                        </mat-icon>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div *ngIf="day == 'Sunday'">
-                        <div class="selected-hours" *ngFor="let block of cafeHours.sundayBlocks">
-                            <table>
-                                <tr>
-                                    <td>
-                                        {{convertTime(block.open)}} - {{convertTime(block.close)}}
-                                    </td>
-                                    <td>
-                                        <mat-icon class="remove-hours"
-                                            style="padding-top: 1px; width: 21px; height: 21px; font-size: 21px;"
-                                            (click)="removeBlock(block, cafeHours.sundayBlocks);">
-                                            highlight_off
-                                        </mat-icon>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </mat-grid-tile>
-</mat-grid-list>
-<div class="inline-block" style="height: 90vh;
-    overflow: scroll;">
-
-    <mat-divider class="divider"></mat-divider>
-    <div class="title theme-color">
-        Common Hours
-    </div>
-    <div class="common">
-
-    </div>
-    <mat-divider class="divider"></mat-divider>
-    <div class="title theme-color">
-        AM
-    </div>
-    <div class="inline-block">
-        <div class="hour" *ngFor="let hour of amHours"
-            [class.selected]="selected.open == hour  || timeWithinOpenAndClose(hour)" (click)="timeSelected(hour);"
-            matRipple matRippleColor="rgba(52, 165, 242, .5)">
-            {{hour}}
-        </div>
-    </div>
-    <mat-divider class="divider"></mat-divider>
-    <div class="title theme-color">
-        PM
-    </div>
-    <div class="inline-block">
-        <div class="hour" *ngFor="let hour of pmHours"
-            [class.selected]="selected.open == hour || timeWithinOpenAndClose(hour)" (click)="timeSelected(hour);"
-            matRipple matRippleColor="rgba(100, 100, 100, .1)">
-            {{convertTime(hour)}}
-        </div>
-    </div>
-</div>
-
-<div class="actions inline-block full-width ">
-    <a (click)="stageHours();" class="action">
-        <mat-icon class="theme-color icon">add</mat-icon>
-        <span class="action-name">Add</span>
-    </a>
-    <a (click)="stageHours();" class="action">
-        <mat-icon class="theme-color icon">save</mat-icon>
-        <span class="action-name">Submit</span>
-    </a>
-</div> -->
-
-<!-- <input class="form-control" type="text" placeHolder="Message Here" [(ngModel)]="input"> -->
-<button class="btn btn-success" (click)="sendMessage()">Send</button>
-
 <div class="content">
-
-    <div *ngFor="let msg of messageService.msg">
-        {{msg}}
+    <div class="header">
+        <button mat-icon-button id="back-to-menu" routerLink="..">
+            <mat-icon>arrow_back_ios</mat-icon>
+        </button>
+        <span class="title">Hours of Operation</span>
     </div>
 </div>
+
+<div class="day-card">
+    <div class="topline">
+        <span class="name">Monday</span>
+        <button mat-icon-button color="primary" class="add" (click)="selectHours('Monday');">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div class="block" *ngFor="let block of cafeHours.mondayBlocks">
+        {{block.open}}
+    </div>
+</div>
+
+<div class="day-card">
+    <div class="topline">
+        <span class="name">Tuesday</span>
+        <button mat-icon-button color="primary" class="add" (click)="selectHours('Tuesday');">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div class="block" *ngFor="let block of cafeHours.tuesdayBlocks">
+
+    </div>
+</div>
+
+<div class="day-card">
+    <div class="topline">
+        <span class="name">Wednesday</span>
+        <button mat-icon-button color="primary" class="add" (click)="selectHours('Wednesday');">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div class="block" *ngFor="let block of cafeHours.wednesdayBlocks">
+
+    </div>
+</div>
+
+<div class="day-card">
+    <div class="topline">
+        <span class="name">Thursday</span>
+        <button mat-icon-button color="primary" class="add" (click)="selectHours('Thursday');">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div class="block" *ngFor="let block of cafeHours.thursdayBlocks">
+
+    </div>
+</div>
+
+<div class="day-card">
+    <div class="topline">
+        <span class="name">Friday</span>
+        <button mat-icon-button color="primary" class="add" (click)="selectHours('Friday');">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div class="block" *ngFor="let block of cafeHours.fridayBlocks">
+
+    </div>
+</div>
+
+<div class="day-card">
+    <div class="topline">
+        <span class="name">Saturday</span>
+        <button mat-icon-button color="primary" class="add" (click)="selectHours('Saturday');">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div class="block" *ngFor="let block of cafeHours.saturdayBlocks">
+
+    </div>
+</div>
+
+<div class="day-card">
+    <div class="topline">
+        <span class="name">Sunday</span>
+        <button mat-icon-button color="primary" class="add" (click)="selectHours('Sunday');">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div class="block" *ngFor="let block of cafeHours.sundayBlocks">
+
+    </div>
+</div>
+
+<button mat-raised-button color="primary" id="apply-standard-hours">Standard</button>

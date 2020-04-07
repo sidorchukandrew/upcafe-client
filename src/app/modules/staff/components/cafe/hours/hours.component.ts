@@ -1,8 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Hours } from 'src/app/models/Hours';
+import { Component, OnInit, Inject } from '@angular/core';
 import { CafeHours } from 'src/app/models/CafeHours';
 import { Block } from 'src/app/models/Block';
-import { MessageService } from 'src/app/message.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormControl } from '@angular/forms';
+import { OrderFeedService } from 'src/app/services/order-feed.service';
+
+export class HoursGroup {
+  section: string;
+  hours: Array<string>;
+}
 
 @Component({
   selector: 'app-hours',
@@ -11,206 +17,121 @@ import { MessageService } from 'src/app/message.service';
 })
 export class HoursComponent implements OnInit {
 
-  // hours: Array<string>;
-  // pmHours: Array<string>;
-  // amHours: Array<string>;
-  // days: Array<string>;
-  // selected: Block;
-  // openSelected: boolean;
-  // closeSelected: boolean;
-  // transferringToPm: boolean
-  // transferOccured: boolean;
+  cafeHours: CafeHours;
+  standardHours: CafeHours;
 
-  // cafeHours: CafeHours;
-  // cols: number;
+  constructor(public dialog: MatDialog) {
 
-  input;
-  constructor(private messageService: MessageService) {
-
-    // this.openSelected = false;
-    // this.closeSelected = false;
-    // this.transferringToPm = false;
-    // this.transferOccured = false;
-    // this.cols = 1;
-  }
-
-  sendMessage() {
-    // if (this.input) {
-    this.messageService.sendMessage("Andrew");
-    // this.input = '';
-    // }
   }
 
   ngOnInit() {
 
-    // this.cafeHours = {
-    //   mondayBlocks: new Array<Block>(),
-    //   tuesdayBlocks: new Array<Block>(),
-    //   wednesdayBlocks: new Array<Block>(),
-    //   thursdayBlocks: new Array<Block>(),
-    //   fridayBlocks: new Array<Block>(),
-    //   saturdayBlocks: new Array<Block>(),
-    //   sundayBlocks: new Array<Block>(),
-    // }
 
-    // this.selected = {
-    //   open: '0:00',
-    //   close: '0:00',
-    //   day: '',
-    //   id: Date.now()
-    // }
-    // this.hours = ['8:00', '8:30',
-    //   '9:00', '9:30',
-    //   '10:00', '10:30',
-    //   '11:00', '11:30',
-    //   '12:00', '12:30',
-    //   '13:00', '13:30',
-    //   '14:00', '14:30',
-    //   '15:00', '15:30',
-    //   '16:00', '16:30',
-    //   '17:00', '17:30',
-    //   '18:00', '18:30',
-    //   '19:00', '19:30',
-    //   '20:00', '20:30',
-    //   '21:00', '21:30',
-    //   '22:00', '22:30',
-    //   '23:00', '23:30',];
+    this.cafeHours = {
+      mondayBlocks: [],
+      tuesdayBlocks: [],
+      wednesdayBlocks: [],
+      thursdayBlocks: [],
+      fridayBlocks: [],
+      saturdayBlocks: [],
+      sundayBlocks: []
+    };
 
-    // this.amHours = [
-    //   '8:00', '8:30',
-    //   '9:00', '9:30',
-    //   '10:00', '10:30',
-    //   '11:00', '11:30',
-    // ]
-
-    // this.pmHours = [
-    //   '12:00', '12:30',
-    //   '13:00', '13:30',
-    //   '14:00', '14:30',
-    //   '15:00', '15:30',
-    //   '16:00', '16:30',
-    //   '17:00', '17:30',
-    //   '18:00', '18:30',
-    //   '19:00', '19:30',
-    //   '20:00', '20:30',
-    //   '21:00', '21:30',
-    //   '22:00', '22:30',
-    //   '23:00', '23:30',
-    // ];
-
-    // this.days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    this.standardHours = {
+      mondayBlocks: [],
+      tuesdayBlocks: [],
+      wednesdayBlocks: [],
+      thursdayBlocks: [],
+      fridayBlocks: [],
+      saturdayBlocks: [],
+      sundayBlocks: []
+    };
   }
 
-  // timeSelected(hour: string, section: string) {
-  //   if (!this.openSelected) {
-  //     this.openSelected = true;
-  //     this.selected.open = hour;
-  //   }
-  //   else {
 
-  //     this.closeSelected = true;
-  //     this.selected.close = hour;
-  //   }
+  selectHours(day: string, blocks: Array<Block>): void {
+    const dialogRef = this.dialog.open(SelectTimeComponent, {
+      data: { day: day, open: '', close: '' }
+    });
 
-  //   console.log(this.selected);
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("After close");
+      console.log(result);
 
-  // convertTime(time: string): string {
+      if (result.day == 'Monday') {
+        var block: Block = {
+          open: result.open,
+          close: result.close,
+          day: result.day,
+          id: 0
+        }
 
-  //   var indexOfColon = time.indexOf(":");
-  //   var hour = parseInt(time.slice(0, indexOfColon));
+        this.cafeHours.mondayBlocks.push(block);
+      }
 
-  //   if (hour > 12)
-  //     hour -= 12;
+    });
 
-  //   return (hour + ":" + time.slice(indexOfColon + 1, time.length));
-  // }
+  }
+}
 
-  // selectDay(day: string) {
-  //   this.selected.day = day;
-  // }
 
-  // timeWithinOpenAndClose(time: string): boolean {
+@Component({
+  selector: 'select-time',
+  templateUrl: 'select-time.component.html',
+  styleUrls: ['select-time.component.css']
+})
+export class SelectTimeComponent implements OnInit {
 
-  //   // If a close time has been selected
-  //   if (this.selected.close != '0:00') {
-  //     var indexOfColon = time.indexOf(":");
+  pmHours: HoursGroup;
+  amHours: HoursGroup;
 
-  //     var hourInQuestion = this.parseHour(time);
-  //     var minutesInQuestion = this.parseMinutes(time);
+  openControl: FormControl;
 
-  //     var hourOpen = this.parseHour(this.selected.open);
-  //     var minutesOpen = this.parseMinutes(this.selected.open);
+  constructor(
+    public dialogRef: MatDialogRef<SelectTimeComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, private ordersFeed: OrderFeedService) {
 
-  //     var hourClose = this.parseHour(this.selected.close);
-  //     var minutesClose = this.parseMinutes(this.selected.close);
+  }
 
-  //     if (hourOpen < hourInQuestion && hourInQuestion < hourClose)
-  //       return true;
-  //     else if (hourOpen == hourInQuestion) {
-  //       return (minutesOpen < minutesInQuestion);
-  //     }
-  //     else if (hourClose == hourInQuestion) {
-  //       if (time == this.selected.close)
-  //         return true;
-  //       return (minutesInQuestion < minutesClose);
-  //     }
-  //   }
+  ngOnInit() {
 
-  //   return false;
-  // }
+    this.openControl = new FormControl();
+    this.amHours = {
+      section: 'AM',
+      hours: ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30']
+    };
 
-  // parseHour(time: string): number {
-  //   var indexOfColon = time.indexOf(":");
-  //   return parseInt(time.slice(0, indexOfColon));
-  // }
+    this.pmHours = {
+      section: 'PM',
+      hours: ['12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00',
+        '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00', '22:30',
+        '23:00', '23:30', '24:00']
+    };
+  }
 
-  // parseMinutes(time: string): number {
-  //   var indexOfColon = time.indexOf(":");
-  //   return parseInt(time.slice(indexOfColon + 1, time.length));
-  // }
+  cancel(): void {
+    this.dialogRef.close();
+  }
 
-  // stageHours(): void {
 
-  //   if (this.selected.day == 'Monday')
-  //     this.cafeHours.mondayBlocks.push(this.selected);
+  add(open: string, close: string): void {
+    this.data.open = open;
+    this.data.close = close;
+    this.dialogRef.close({
+      day: this.data.day,
+      open: open,
+      close: close
+    });
+  }
 
-  //   else if (this.selected.day == 'Tuesday')
-  //     this.cafeHours.tuesdayBlocks.push(this.selected);
+  convertTime(time: string): string {
 
-  //   else if (this.selected.day == 'Wednesday')
-  //     this.cafeHours.wednesdayBlocks.push(this.selected);
+    var indexOfColon = time.indexOf(":");
+    var hour = parseInt(time.slice(0, indexOfColon));
 
-  //   else if (this.selected.day == 'Thursday')
-  //     this.cafeHours.thursdayBlocks.push(this.selected);
+    if (hour > 12)
+      hour -= 12;
 
-  //   else if (this.selected.day == 'Friday')
-  //     this.cafeHours.fridayBlocks.push(this.selected);
-
-  //   else if (this.selected.day == 'Saturday')
-  //     this.cafeHours.saturdayBlocks.push(this.selected);
-
-  //   else
-  //     this.cafeHours.sundayBlocks.push(this.selected);
-
-  //   console.log(this.cafeHours);
-
-  //   this.selected = {
-  //     open: '0:00',
-  //     close: '0:00',
-  //     day: '',
-  //     id: Date.now()
-  //   }
-
-  //   this.openSelected = false;
-  // }
-
-  // removeBlock(block: Block, dayBlocks: Array<Block>): void {
-  //   var index = dayBlocks.indexOf(block);
-
-  //   if (index != -1)
-  //     dayBlocks.splice(index, 1);
-
-  //   console.log(dayBlocks);
-  // }
+    return (hour + ":" + time.slice(indexOfColon + 1, time.length));
+  }
 }

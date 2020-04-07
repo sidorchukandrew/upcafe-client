@@ -26,11 +26,12 @@ const routes = [
                 ]
             },
             { path: 'cafe', component: SettingsComponent },
-            { path: 'cafe/hours', component: HoursComponent },
+
 
         ]
     },
-    { path: 'orders/:id', component: OrderDetailsComponent }
+    { path: 'orders/:id', component: OrderDetailsComponent },
+    { path: 'cafe/hours', component: HoursComponent },
 ];
 
 @NgModule({

@@ -1,0 +1,34 @@
+{{data.day}}
+
+<div class="open">
+    <mat-form-field>
+        <mat-label>Open</mat-label>
+        <mat-select #open>
+            <mat-optgroup [label]="amHours.section">
+                <mat-option [value]="time" *ngFor="let time of amHours.hours">{{time}}</mat-option>
+            </mat-optgroup>
+            <mat-optgroup [label]="pmHours.section">
+                <mat-option [value]="time" *ngFor="let time of pmHours.hours">{{convertTime(time)}}</mat-option>
+            </mat-optgroup>
+        </mat-select>
+
+    </mat-form-field>
+
+</div>
+
+<div class="close">
+    <mat-form-field>
+        <mat-label>Close</mat-label>
+        <mat-select #close>
+            <mat-optgroup [label]="amHours.section">
+                <mat-option [value]="time" *ngFor="let time of amHours.hours">{{time}}</mat-option>
+            </mat-optgroup>
+            <mat-optgroup [label]="pmHours.section">
+                <mat-option [value]="time" *ngFor="let time of pmHours.hours">{{convertTime(time)}}</mat-option>
+            </mat-optgroup>
+        </mat-select>
+
+    </mat-form-field>
+</div>
+<button mat-button color="primary" (click)="cancel();">Cancel</button>
+<button mat-raised-button color="primary" (click)="add(open.value, close.value);">Add</button>

@@ -4,9 +4,12 @@ import { StaffRoutingModule } from './staff-routing.module';
 import { IncomingOrdersComponent, UndoActionComponent } from './components/incoming-orders/incoming-orders.component';
 import { StaffComponent } from './staff/staff.component';
 import { CafeComponent } from './components/cafe/cafe.component';
-import { HoursComponent } from './components/cafe/hours/hours.component';
+import { HoursComponent, SelectTimeComponent } from './components/cafe/hours/hours.component';
 import { MatDividerModule } from '@angular/material/divider'
-import { MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule, MatSnackBarModule, MatMenuModule } from '@angular/material';
+import {
+  MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule, MatSnackBarModule, MatMenuModule,
+  MatDialogModule, MatSelectModule
+} from '@angular/material';
 import { SettingsComponent } from './components/settings/settings.component'
 import { StaffNavbarComponent } from './components/staff-navbar/staff-navbar.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
@@ -17,12 +20,13 @@ import { OrdersComponent } from './components/orders/orders.component';
 @NgModule({
   declarations: [IncomingOrdersComponent, StaffComponent, CafeComponent, HoursComponent, SettingsComponent,
     StaffNavbarComponent, OrderDetailsComponent, ActiveOrdersComponent, LateOrdersComponent, CompletedOrdersComponent,
-    OrdersComponent, UndoActionComponent],
+    OrdersComponent, UndoActionComponent, SelectTimeComponent],
   imports: [
     CommonModule,
     StaffRoutingModule,
-    MatDividerModule, MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule, MatSnackBarModule, MatMenuModule
+    MatDividerModule, MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule, MatSnackBarModule,
+    MatMenuModule, MatDialogModule, MatSelectModule
   ],
-  entryComponents: [UndoActionComponent]
+  entryComponents: [UndoActionComponent, SelectTimeComponent]
 })
 export class StaffModule { }
