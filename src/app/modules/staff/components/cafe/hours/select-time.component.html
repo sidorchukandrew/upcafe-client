@@ -3,7 +3,7 @@
 <div class="open">
     <mat-form-field>
         <mat-label>Open</mat-label>
-        <mat-select #open>
+        <mat-select #open [value]="data.open">
             <mat-optgroup [label]="amHours.section">
                 <mat-option [value]="time" *ngFor="let time of amHours.hours">{{time}}</mat-option>
             </mat-optgroup>
@@ -19,7 +19,7 @@
 <div class="close">
     <mat-form-field>
         <mat-label>Close</mat-label>
-        <mat-select #close>
+        <mat-select #close [value]="data.close">
             <mat-optgroup [label]="amHours.section">
                 <mat-option [value]="time" *ngFor="let time of amHours.hours">{{time}}</mat-option>
             </mat-optgroup>
@@ -31,4 +31,5 @@
     </mat-form-field>
 </div>
 <button mat-button color="primary" (click)="cancel();">Cancel</button>
-<button mat-raised-button color="primary" (click)="add(open.value, close.value);">Add</button>
+<button mat-raised-button color="primary" (click)="add(open.value, close.value);"
+    [disabled]="open.value == null || close.value == null">Add</button>

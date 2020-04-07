@@ -14,8 +14,8 @@
             <mat-icon>add</mat-icon>
         </button>
     </div>
-    <div class="block" *ngFor="let block of cafeHours.mondayBlocks">
-        {{block.open}}
+    <div class="block" *ngFor="let block of cafeHours.mondayBlocks" matRipple (click)="editBlock(block);">
+        {{block.open}} - {{block.close}}
     </div>
 </div>
 
@@ -27,7 +27,7 @@
         </button>
     </div>
     <div class="block" *ngFor="let block of cafeHours.tuesdayBlocks">
-
+        {{block.open}}
     </div>
 </div>
 
@@ -39,7 +39,7 @@
         </button>
     </div>
     <div class="block" *ngFor="let block of cafeHours.wednesdayBlocks">
-
+        {{block.open}}
     </div>
 </div>
 
@@ -51,7 +51,7 @@
         </button>
     </div>
     <div class="block" *ngFor="let block of cafeHours.thursdayBlocks">
-
+        {{block.open}}
     </div>
 </div>
 
@@ -63,7 +63,7 @@
         </button>
     </div>
     <div class="block" *ngFor="let block of cafeHours.fridayBlocks">
-
+        {{block.open}}
     </div>
 </div>
 
@@ -75,7 +75,7 @@
         </button>
     </div>
     <div class="block" *ngFor="let block of cafeHours.saturdayBlocks">
-
+        {{block.open}}
     </div>
 </div>
 
@@ -87,8 +87,8 @@
         </button>
     </div>
     <div class="block" *ngFor="let block of cafeHours.sundayBlocks">
-
+        {{block.open}}
     </div>
 </div>
 
-<button mat-raised-button color="primary" id="apply-standard-hours">Standard</button>
+<button mat-raised-button color="primary" id="apply-standard-hours" (click)="setStandardTimes();">Standard</button>

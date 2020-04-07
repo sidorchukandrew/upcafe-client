@@ -32,10 +32,13 @@
     border: solid 1px #eaeaea;
     border-radius: 5px;
     margin: 5px;
+
 }
 
 .day-card .topline {
     position: relative;
+    width: 100%;
+    height: 20px;
 }
 
 .day-card .topline .name {
@@ -46,4 +49,13 @@
 .day-card .topline .add {
     position: absolute;
     right: 15px;
+}
+
+.day-card .block {
+    color: navy;
+    display: inline-block;
+    padding: 10px;
+    border: solid 1px #0083ff;
+    border-radius: 5px;
+    background-color: #d8f5ff;
 }

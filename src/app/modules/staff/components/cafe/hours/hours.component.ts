@@ -42,8 +42,18 @@ export class HoursComponent implements OnInit {
       tuesdayBlocks: [],
       wednesdayBlocks: [],
       thursdayBlocks: [],
-      fridayBlocks: [],
-      saturdayBlocks: [],
+      fridayBlocks: [{
+        close: '20:00',
+        open: '22:00',
+        id: 1,
+        day: 'Friday'
+      }],
+      saturdayBlocks: [{
+        close: '9:00',
+        open: '8:00',
+        id: 0,
+        day: 'Saturday'
+      }],
       sundayBlocks: []
     };
   }
@@ -55,8 +65,6 @@ export class HoursComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log("After close");
-      console.log(result);
 
       if (result.day == 'Monday') {
         var block: Block = {
@@ -69,8 +77,101 @@ export class HoursComponent implements OnInit {
         this.cafeHours.mondayBlocks.push(block);
       }
 
+      else if (result.day == 'Tuesday') {
+        var block: Block = {
+          open: result.open,
+          close: result.close,
+          day: result.day,
+          id: 0
+        }
+
+        this.cafeHours.tuesdayBlocks.push(block);
+      }
+
+      else if (result.day == 'Wednesday') {
+        var block: Block = {
+          open: result.open,
+          close: result.close,
+          day: result.day,
+          id: 0
+        }
+
+        this.cafeHours.wednesdayBlocks.push(block);
+      }
+
+      else if (result.day == 'Thursday') {
+        var block: Block = {
+          open: result.open,
+          close: result.close,
+          day: result.day,
+          id: 0
+        }
+
+        this.cafeHours.thursdayBlocks.push(block);
+      }
+
+
+      else if (result.day == 'Friday') {
+        var block: Block = {
+          open: result.open,
+          close: result.close,
+          day: result.day,
+          id: 0
+        }
+
+        this.cafeHours.fridayBlocks.push(block);
+      }
+
+
+      else if (result.day == 'Saturday') {
+        var block: Block = {
+          open: result.open,
+          close: result.close,
+          day: result.day,
+          id: 0
+        }
+
+        this.cafeHours.saturdayBlocks.push(block);
+      }
+
+      else if (result.day == 'Sunday') {
+        var block: Block = {
+          open: result.open,
+          close: result.close,
+          day: result.day,
+          id: 0
+        }
+
+        this.cafeHours.sundayBlocks.push(block);
+      }
     });
 
+  }
+
+  setStandardTimes(): void {
+    this.clearTimes();
+    this.cafeHours = this.standardHours;
+  }
+
+  editBlock(block: Block): void {
+    this.dialog.open(SelectTimeComponent, {
+      data: {
+        day: block.day, close: block.close, open: block.open
+      }
+    });
+  }
+
+
+  clearTimes(): void {
+    this.cafeHours = {
+      mondayBlocks: [],
+      tuesdayBlocks: [],
+      wednesdayBlocks: [],
+      thursdayBlocks: [],
+      fridayBlocks: [],
+      saturdayBlocks: [],
+      sundayBlocks: []
+    }
   }
 }
 
