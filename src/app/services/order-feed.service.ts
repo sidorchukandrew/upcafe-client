@@ -35,7 +35,7 @@ export class OrderFeedService {
   }
 
   private initializeWebSocketConnection(): void {
-    const serverUrl = 'http://localhost:8080/gs-guide-websocket';
+    const serverUrl = 'http://192.168.0.7:8080/gs-guide-websocket';
     const ws = new SockJS(serverUrl);
 
     this.stompClient = Stomp.over(ws);
@@ -57,7 +57,7 @@ export class OrderFeedService {
   }
 
   public sendUpdate(order: Order): any {
-    return this.http.post("http://localhost:8080/orders", order, {
+    return this.http.post("http://192.168.0.7:8080/orders", order, {
       params: {
         state: 'active'
       }

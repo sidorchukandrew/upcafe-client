@@ -19,6 +19,11 @@ export class HoursComponent implements OnInit {
 
   cafeHours: CafeHours;
   standardHours: CafeHours;
+  startDate: Date;
+  endDate: Date;
+  today: Date;
+  dayNames: Array<string>;
+  monthNames: Array<string>;
 
   constructor(public dialog: MatDialog) {
 
@@ -26,7 +31,12 @@ export class HoursComponent implements OnInit {
 
   ngOnInit() {
 
-
+    this.dayNames = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
+    this.monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug',
+      'Sep', 'Oct', 'Nov', 'Dec'];
+    this.today = new Date();
+    this.startDate = this.getMonday(this.today);
+    this.endDate = this.getSunday(this.today);
     this.cafeHours = {
       mondayBlocks: [],
       tuesdayBlocks: [],
@@ -43,7 +53,7 @@ export class HoursComponent implements OnInit {
       wednesdayBlocks: [],
       thursdayBlocks: [],
       fridayBlocks: [{
-        close: '20:00',
+        close: '23:00',
         open: '22:00',
         id: 1,
         day: 'Friday'
@@ -58,6 +68,120 @@ export class HoursComponent implements OnInit {
     };
   }
 
+  getMonday(d): Date {
+    var day = d.getDay();
+    var diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+    return new Date(d.setDate(diff));
+  }
+
+  getSunday(d): Date {
+    var dayOfTheWeek = d.getDay();
+    var diff = 7 - dayOfTheWeek;
+    var date = d.getDate();
+    var sundaysDate = date + diff;
+    return new Date(d.setDate(sundaysDate));
+  }
+
+  nextWeek() {
+    this.today.setDate(this.today.getDate() + 7);
+    this.startDate = this.getMonday(this.today);
+    this.endDate = this.getSunday(this.today);
+  }
+
+  previousWeek() {
+    this.today.setDate(this.today.getDate() - 7);
+    this.startDate = this.getMonday(this.today);
+    this.endDate = this.getSunday(this.today);
+  }
+
+  resetDate() {
+    this.today = new Date();
+    this.startDate = this.getMonday(this.today);
+    this.endDate = this.getSunday(this.today);
+  }
+
+
+  pushBlock(result: Block): void {
+
+    if (result.day == 'Monday') {
+      var block: Block = {
+        open: result.open,
+        close: result.close,
+        day: result.day,
+        id: 0
+      }
+
+      this.cafeHours.mondayBlocks.push(block);
+    }
+
+    else if (result.day == 'Tuesday') {
+      var block: Block = {
+        open: result.open,
+        close: result.close,
+        day: result.day,
+        id: 0
+      }
+
+      this.cafeHours.tuesdayBlocks.push(block);
+    }
+
+    else if (result.day == 'Wednesday') {
+      var block: Block = {
+        open: result.open,
+        close: result.close,
+        day: result.day,
+        id: 0
+      }
+
+      this.cafeHours.wednesdayBlocks.push(block);
+    }
+
+    else if (result.day == 'Thursday') {
+      var block: Block = {
+        open: result.open,
+        close: result.close,
+        day: result.day,
+        id: 0
+      }
+
+      this.cafeHours.thursdayBlocks.push(block);
+    }
+
+
+    else if (result.day == 'Friday') {
+      var block: Block = {
+        open: result.open,
+        close: result.close,
+        day: result.day,
+        id: 0
+      }
+
+      this.cafeHours.fridayBlocks.push(block);
+    }
+
+
+    else if (result.day == 'Saturday') {
+      var block: Block = {
+        open: result.open,
+        close: result.close,
+        day: result.day,
+        id: 0
+      }
+
+      this.cafeHours.saturdayBlocks.push(block);
+    }
+
+    else if (result.day == 'Sunday') {
+      var block: Block = {
+        open: result.open,
+        close: result.close,
+        day: result.day,
+        id: 0
+      }
+
+      this.cafeHours.sundayBlocks.push(block);
+    }
+  }
 
   selectHours(day: string, blocks: Array<Block>): void {
     const dialogRef = this.dialog.open(SelectTimeComponent, {
@@ -66,99 +190,96 @@ export class HoursComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
-      if (result.day == 'Monday') {
-        var block: Block = {
-          open: result.open,
-          close: result.close,
-          day: result.day,
-          id: 0
-        }
+      if (result == null)
+        return;
 
-        this.cafeHours.mondayBlocks.push(block);
-      }
-
-      else if (result.day == 'Tuesday') {
-        var block: Block = {
-          open: result.open,
-          close: result.close,
-          day: result.day,
-          id: 0
-        }
-
-        this.cafeHours.tuesdayBlocks.push(block);
-      }
-
-      else if (result.day == 'Wednesday') {
-        var block: Block = {
-          open: result.open,
-          close: result.close,
-          day: result.day,
-          id: 0
-        }
-
-        this.cafeHours.wednesdayBlocks.push(block);
-      }
-
-      else if (result.day == 'Thursday') {
-        var block: Block = {
-          open: result.open,
-          close: result.close,
-          day: result.day,
-          id: 0
-        }
-
-        this.cafeHours.thursdayBlocks.push(block);
-      }
-
-
-      else if (result.day == 'Friday') {
-        var block: Block = {
-          open: result.open,
-          close: result.close,
-          day: result.day,
-          id: 0
-        }
-
-        this.cafeHours.fridayBlocks.push(block);
-      }
-
-
-      else if (result.day == 'Saturday') {
-        var block: Block = {
-          open: result.open,
-          close: result.close,
-          day: result.day,
-          id: 0
-        }
-
-        this.cafeHours.saturdayBlocks.push(block);
-      }
-
-      else if (result.day == 'Sunday') {
-        var block: Block = {
-          open: result.open,
-          close: result.close,
-          day: result.day,
-          id: 0
-        }
-
-        this.cafeHours.sundayBlocks.push(block);
-      }
+      this.pushBlock(result);
     });
 
   }
 
   setStandardTimes(): void {
+
     this.clearTimes();
-    this.cafeHours = this.standardHours;
+
+    this.standardHours.mondayBlocks.forEach(block => {
+      this.cafeHours.mondayBlocks.push({
+        close: block.close,
+        open: block.open,
+        id: block.id,
+        day: block.day
+      });
+    });
+    this.standardHours.tuesdayBlocks.forEach(block => {
+      this.cafeHours.tuesdayBlocks.push({
+        close: block.close,
+        open: block.open,
+        id: block.id,
+        day: block.day
+      });
+    });
+    this.standardHours.wednesdayBlocks.forEach(block => {
+      this.cafeHours.wednesdayBlocks.push({
+        close: block.close,
+        open: block.open,
+        id: block.id,
+        day: block.day
+      });
+    });
+
+    this.standardHours.thursdayBlocks.forEach(block => {
+      this.cafeHours.thursdayBlocks.push({
+        close: block.close,
+        open: block.open,
+        id: block.id,
+        day: block.day
+      });
+    });
+
+    this.standardHours.fridayBlocks.forEach(block => {
+      this.cafeHours.fridayBlocks.push({
+        close: block.close,
+        open: block.open,
+        id: block.id,
+        day: block.day
+      });
+    });
+
+    this.standardHours.saturdayBlocks.forEach(block => {
+      this.cafeHours.saturdayBlocks.push({
+        close: block.close,
+        open: block.open,
+        id: block.id,
+        day: block.day
+      });
+    });
+
+    this.standardHours.sundayBlocks.forEach(block => {
+      this.cafeHours.sundayBlocks.push({
+        close: block.close,
+        open: block.open,
+        id: block.id,
+        day: block.day
+      });
+    });
   }
 
   editBlock(block: Block): void {
-    this.dialog.open(SelectTimeComponent, {
+    const dialogRef = this.dialog.open(SelectTimeComponent, {
       data: {
         day: block.day, close: block.close, open: block.open
       }
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == null)
+        return;
+
+      block.id = result.id;
+      block.open = result.open;
+      block.close = result.close;
+      block.day = result.day;
+    })
   }
 
 
@@ -172,6 +293,15 @@ export class HoursComponent implements OnInit {
       saturdayBlocks: [],
       sundayBlocks: []
     }
+  }
+
+  deleteBlock(block: Block, dayBlocks: Array<Block>): void {
+    var index: number = dayBlocks.indexOf(block);
+
+    if (index != -1)
+      dayBlocks.splice(index, 1);
+
+    console.log(this.standardHours);
   }
 }
 
@@ -234,5 +364,28 @@ export class SelectTimeComponent implements OnInit {
       hour -= 12;
 
     return (hour + ":" + time.slice(indexOfColon + 1, time.length));
+  }
+
+  isAfter(startTime: string, timeOption: string): boolean {
+    var startHour: number = this.ordersFeed.parseHour(startTime);
+    var optionHour: number = this.ordersFeed.parseHour(timeOption);
+
+    // The close time in question is before the open time
+    if (startHour > optionHour)
+      return false;
+
+    // The close time option and the open time have the same hour, so compare minutes
+    if (startHour == optionHour) {
+
+      var startMinutes: number = this.ordersFeed.parseMinutes(startTime);
+      var optionMinutes: number = this.ordersFeed.parseMinutes(timeOption);
+
+      if (startMinutes >= optionMinutes)
+        return false;
+
+      return true;
+    }
+
+    return true;
   }
 }
