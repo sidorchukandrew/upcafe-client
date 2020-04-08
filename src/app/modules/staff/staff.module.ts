@@ -17,6 +17,7 @@ import { ActiveOrdersComponent } from './components/active-orders/active-orders.
 import { LateOrdersComponent } from './components/late-orders/late-orders.component';
 import { CompletedOrdersComponent } from './components/completed-orders/completed-orders.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [IncomingOrdersComponent, StaffComponent, CafeComponent, HoursComponent, SettingsComponent,
@@ -26,7 +27,7 @@ import { OrdersComponent } from './components/orders/orders.component';
     CommonModule,
     StaffRoutingModule,
     MatDividerModule, MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule, MatSnackBarModule,
-    MatMenuModule, MatDialogModule, MatSelectModule, MatProgressBarModule
+    MatMenuModule, MatDialogModule, MatSelectModule, MatProgressBarModule, FormsModule
   ],
   entryComponents: [UndoActionComponent, SelectTimeComponent]
 })

@@ -4,6 +4,7 @@ import { Block } from 'src/app/models/Block';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { OrderFeedService } from 'src/app/services/order-feed.service';
+import { parse } from 'querystring';
 
 export class HoursGroup {
   section: string;
@@ -280,7 +281,9 @@ export class HoursComponent implements OnInit {
       block.open = result.open;
       block.close = result.close;
       block.day = result.day;
-    })
+      console.log(result);
+    });
+
   }
 
 
@@ -306,6 +309,11 @@ export class HoursComponent implements OnInit {
   }
 }
 
+export class Time {
+  hour: string;
+  minutes: string;
+  period: string = 'PM';
+}
 
 @Component({
   selector: 'select-time',
@@ -314,10 +322,10 @@ export class HoursComponent implements OnInit {
 })
 export class SelectTimeComponent implements OnInit {
 
-  pmHours: HoursGroup;
-  amHours: HoursGroup;
-
-  openControl: FormControl;
+  openTime: Time;
+  closeTime: Time;
+  openHourValid: boolean;
+  closeHourValid: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<SelectTimeComponent>,
@@ -326,67 +334,152 @@ export class SelectTimeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.openTime = new Time();
+    this.closeTime = new Time();
 
-    this.openControl = new FormControl();
-    this.amHours = {
-      section: 'AM',
-      hours: ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30']
-    };
+    if (this.data.open) {
+      this.openTime.hour = this.ordersFeed.parseHour(this.data.open) + '';
+      this.openTime.minutes = this.ordersFeed.parseMinutes(this.data.open) + '';
 
-    this.pmHours = {
-      section: 'PM',
-      hours: ['12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00',
-        '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00', '22:30',
-        '23:00', '23:30', '24:00']
-    };
+      this.formatHour(this.openTime, this.openTime.hour);
+      this.formatMinutes(this.openTime, this.openTime.minutes);
+    }
+
+    if (this.data.close) {
+      this.closeTime.hour = this.ordersFeed.parseHour(this.data.close) + '';
+      this.closeTime.minutes = this.ordersFeed.parseMinutes(this.data.close) + '';
+
+      this.formatHour(this.closeTime, this.closeTime.hour);
+      this.formatMinutes(this.closeTime, this.closeTime.minutes);
+    }
+
+
+    this.openHourValid = true;
+    this.closeHourValid = true;
   }
 
   cancel(): void {
     this.dialogRef.close();
   }
 
-
-  add(open: string, close: string): void {
-    this.data.open = open;
-    this.data.close = close;
-    this.dialogRef.close({
-      day: this.data.day,
-      open: open,
-      close: close
-    });
+  public togglePeriod(time: Time): void {
+    (time.period == 'PM') ? time.period = 'AM' : time.period = 'PM';
   }
 
-  convertTime(time: string): string {
+  public validateHour(time: Time, newHour: string): void {
 
-    var indexOfColon = time.indexOf(":");
-    var hour = parseInt(time.slice(0, indexOfColon));
+    console.log(newHour);
 
-    if (hour > 12)
-      hour -= 12;
-
-    return (hour + ":" + time.slice(indexOfColon + 1, time.length));
-  }
-
-  isAfter(startTime: string, timeOption: string): boolean {
-    var startHour: number = this.ordersFeed.parseHour(startTime);
-    var optionHour: number = this.ordersFeed.parseHour(timeOption);
-
-    // The close time in question is before the open time
-    if (startHour > optionHour)
-      return false;
-
-    // The close time option and the open time have the same hour, so compare minutes
-    if (startHour == optionHour) {
-
-      var startMinutes: number = this.ordersFeed.parseMinutes(startTime);
-      var optionMinutes: number = this.ordersFeed.parseMinutes(timeOption);
-
-      if (startMinutes >= optionMinutes)
-        return false;
-
-      return true;
+    if (newHour) {
+      if (time == this.openTime)
+        this.openHourValid = true;
+      else
+        this.closeHourValid = true;
     }
 
-    return true;
+    else {
+      if (time == this.openTime)
+        this.openHourValid = false;
+      else
+        this.closeHourValid = false;
+    }
+  }
+
+  public formatHour(time: Time, hour: string): void {
+
+    this.validateHour(time, hour);
+
+    if (hour) {
+
+      var hourNumber = parseInt(hour);
+
+      if (hourNumber > 12)
+        hourNumber = hourNumber % 12;
+
+      time.hour = (hourNumber + "").padStart(2, '0');
+    }
+
+  }
+
+  public formatMinutes(time: Time, minutes: string): void {
+
+    if (minutes) {
+
+      var minutesNumber = parseInt(minutes);
+
+      if (minutesNumber >= 60)
+        minutesNumber = minutesNumber - 60;
+
+      time.minutes = (minutesNumber + "").padStart(2, '0');
+    }
+
+    else {
+      time.minutes = "00";
+    }
+  }
+
+  public addBlock(): void {
+    this.formatMinutes(this.openTime, this.openTime.minutes);
+    this.formatMinutes(this.closeTime, this.closeTime.minutes);
+
+    console.log(this.openTime);
+    console.log(this.closeTime);
+
+    if (this.openTime.period == 'PM') {
+      var hourNumber = parseInt(this.openTime.hour);
+      if (hourNumber != 12)
+        this.openTime.hour = hourNumber + 12 + '';
+    }
+
+    if (this.closeTime.period == 'PM') {
+      var hourNumber = parseInt(this.closeTime.hour);
+      if (hourNumber != 12)
+        this.closeTime.hour = hourNumber + 12 + '';
+    }
+
+    if (this.openTime.period == 'AM') {
+      var hourNumber = parseInt(this.openTime.hour);
+      if (hourNumber == 12)
+        this.openTime.hour = '00';
+    }
+
+    if (this.closeTime.period == 'AM') {
+      var hourNumber = parseInt(this.closeTime.hour);
+      if (hourNumber == 12) {
+        this.closeTime.hour = '00';
+      }
+    }
+
+    var block: Block = {
+      open: this.openTime.hour + ":" + this.openTime.minutes,
+      close: this.closeTime.hour + ":" + this.closeTime.minutes,
+      day: this.data.day,
+      id: 0
+    }
+
+    this.dialogRef.close(block);
   }
 }
+
+  // isAfter(startTime: string, timeOption: string): boolean {
+  //   var startHour: number = this.ordersFeed.parseHour(startTime);
+  //   var optionHour: number = this.ordersFeed.parseHour(timeOption);
+
+  //   // The close time in question is before the open time
+  //   if (startHour > optionHour)
+  //     return false;
+
+  //   // The close time option and the open time have the same hour, so compare minutes
+  //   if (startHour == optionHour) {
+
+  //     var startMinutes: number = this.ordersFeed.parseMinutes(startTime);
+  //     var optionMinutes: number = this.ordersFeed.parseMinutes(timeOption);
+
+  //     if (startMinutes >= optionMinutes)
+  //       return false;
+
+  //     return true;
+  //   }
+
+  //   return true;
+  // }

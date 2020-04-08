@@ -1,61 +1,70 @@
 <div mat-dialog-title>{{data.day}}</div>
+<div class="time-wrapper">
+    <div class="control-container">
+        <!-- <button mat-icon-button class="btn-outline" matRipple>
+            <mat-icon>keyboard_arrow_up</mat-icon>
+        </button> -->
 
-<!-- <div class="open">
-    <mat-form-field>
-        <mat-label>Open</mat-label>
-        <mat-select #open [value]="data.open">
-            <mat-optgroup [label]="amHours.section">
-                <mat-option [value]="time" *ngFor="let time of amHours.hours">{{time}}</mat-option>
-            </mat-optgroup>
-            <mat-optgroup [label]="pmHours.section">
-                <mat-option [value]="time" *ngFor="let time of pmHours.hours">{{convertTime(time)}}</mat-option>
-            </mat-optgroup>
-        </mat-select>
+        <input inputmode="numeric" class="form-control" maxlength="2" placeholder="HH" #openHour
+            (keyup)="validateHour(openTime, openHour.value);" (blur)="formatHour(openTime, openHour.value);"
+            [(ngModel)]="openTime.hour" [class.invalid]="!openHourValid">
 
-    </mat-form-field>
+        <!-- <button mat-icon-button class="btn-outline" matRipple>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </button> -->
+    </div>
+    <div class="spacer">:</div>
+    <div class="control-container">
+        <!-- <button mat-icon-button class="btn-outline" matRipple>
+            <mat-icon>keyboard_arrow_up</mat-icon>
+        </button> -->
 
+        <input inputmode="numeric" class="form-control" maxlength="2" placeholder="MM" #openMinutes
+            (blur)="formatMinutes(openTime, openMinutes.value);" [(ngModel)]="openTime.minutes">
+
+        <!-- <button mat-icon-button class="btn-outline" matRipple>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </button> -->
+    </div>
+    <div class="control-container">
+        <button class="btn btn-outline" (click)="togglePeriod(openTime);">{{openTime.period}}</button>
+    </div>
 </div>
 
-<div class="close">
-    <mat-form-field>
-        <mat-label>Close</mat-label>
-        <mat-select #close [value]="data.close">
-            <mat-optgroup [label]="amHours.section">
-                <mat-option [value]="time" *ngFor="let time of amHours.hours" [disabled]="!isAfter(open.value, time)">
-                    {{time}}</mat-option>
-            </mat-optgroup>
-            <mat-optgroup [label]="pmHours.section">
-                <mat-option [value]="time" *ngFor="let time of pmHours.hours">{{convertTime(time)}}</mat-option>
-            </mat-optgroup>
-        </mat-select>
-
-    </mat-form-field>
-</div> -->
-<div class="open">
-
+<div class="time-wrapper">
     <div class="control-container">
-        <button mat-icon-button color="primary">
+
+        <!-- <button mat-icon-button class="btn-outline" matRipple>
             <mat-icon>keyboard_arrow_up</mat-icon>
-        </button>
-        <input inputmode="numeric" class="form-control" maxlength="2" placeholder="HH">
-        <button mat-icon-button color="primary">
+        </button> -->
+
+        <input inputmode="numeric" class="form-control" maxlength="2" placeholder="HH" #closeHour
+            (blur)="formatHour(closeTime, closeHour.value);" [(ngModel)]="closeTime.hour"
+            [class.invalid]="!closeHourValid">
+
+        <!-- <button mat-icon-button class="btn-outline" matRipple>
             <mat-icon>keyboard_arrow_down</mat-icon>
-        </button>
+        </button> -->
     </div>
-    <div>:</div>
+    <div class="spacer">:</div>
     <div class="control-container">
-        <button mat-icon-button color="primary">
+        <!-- <button mat-icon-button class="btn-outline" matRipple>
             <mat-icon>keyboard_arrow_up</mat-icon>
-        </button>
-        <input inputmode="numeric" class="form-control" maxlength="2" placeholder="MM">
-        <button mat-icon-button color="primary">
+        </button> -->
+
+        <input inputmode="numeric" class="form-control" maxlength="2" placeholder="MM" #closeMinutes
+            (blur)="formatMinutes(closeTime, closeMinutes.value);" [(ngModel)]="closeTime.minutes">
+        <!-- 
+        <button mat-icon-button class="btn-outline" matRipple>
             <mat-icon>keyboard_arrow_down</mat-icon>
-        </button>
+        </button> -->
     </div>
-    <button class="btn">AM</button>
+    <div class="control-container">
+        <button class="btn btn-outline" (click)="togglePeriod(closeTime);">{{closeTime.period}}</button>
+    </div>
 </div>
 <div mat-dialog-actions>
     <button mat-button color="primary" (click)="cancel();">Cancel</button>
-    <button mat-raised-button color="primary" (click)="add(open.value, close.value);"
-        [disabled]="open.value == '' || close.value == ''">Add</button>
+    <button mat-raised-button color="primary" [disabled]="(!(openHourValid && closeHourValid)) ||
+        (!closeTime.hour)  || (!openTime.hour)" (click)="addBlock();">Add</button>
 </div>
