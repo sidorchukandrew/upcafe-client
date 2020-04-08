@@ -1,6 +1,6 @@
-{{data.day}}
+<div mat-dialog-title>{{data.day}}</div>
 
-<div class="open">
+<!-- <div class="open">
     <mat-form-field>
         <mat-label>Open</mat-label>
         <mat-select #open [value]="data.open">
@@ -30,7 +30,32 @@
         </mat-select>
 
     </mat-form-field>
+</div> -->
+<div class="open">
+
+    <div class="control-container">
+        <button mat-icon-button color="primary">
+            <mat-icon>keyboard_arrow_up</mat-icon>
+        </button>
+        <input inputmode="numeric" class="form-control" maxlength="2" placeholder="HH">
+        <button mat-icon-button color="primary">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+    </div>
+    <div>:</div>
+    <div class="control-container">
+        <button mat-icon-button color="primary">
+            <mat-icon>keyboard_arrow_up</mat-icon>
+        </button>
+        <input inputmode="numeric" class="form-control" maxlength="2" placeholder="MM">
+        <button mat-icon-button color="primary">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+    </div>
+    <button class="btn">AM</button>
 </div>
-<button mat-button color="primary" (click)="cancel();">Cancel</button>
-<button mat-raised-button color="primary" (click)="add(open.value, close.value);"
-    [disabled]="open.value == '' || close.value == ''">Add</button>
+<div mat-dialog-actions>
+    <button mat-button color="primary" (click)="cancel();">Cancel</button>
+    <button mat-raised-button color="primary" (click)="add(open.value, close.value);"
+        [disabled]="open.value == '' || close.value == ''">Add</button>
+</div>

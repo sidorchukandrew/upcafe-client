@@ -18,6 +18,8 @@ export class ModListDetailsComponent implements OnInit, OnDestroy {
   selectedModifiers: Array<ModifierData>;
   multipleSelectionEnabled: boolean;
   subscriptions: Subscription;
+  selectedIndex;
+  selectedId;
 
   constructor(private selectedItemService: SelectedItemService, private orderService: OrderService, private editService: EditItemService) {
 
@@ -54,7 +56,7 @@ export class ModListDetailsComponent implements OnInit, OnDestroy {
     console.log(this.orderService.editingItem);
   }
 
-  private removeById(id: string): void {
+  public removeById(id: string): void {
     const index = this.selectedModifiers.findIndex(function (m) {
       return m.id == id;
     });

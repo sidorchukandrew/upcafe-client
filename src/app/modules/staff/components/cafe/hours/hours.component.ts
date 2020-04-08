@@ -185,7 +185,8 @@ export class HoursComponent implements OnInit {
 
   selectHours(day: string, blocks: Array<Block>): void {
     const dialogRef = this.dialog.open(SelectTimeComponent, {
-      data: { day: day, open: '', close: '' }
+      data: { day: day, open: '', close: '' },
+      minWidth: '80vw'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -193,7 +194,7 @@ export class HoursComponent implements OnInit {
       if (result == null)
         return;
 
-      this.pushBlock(result);
+      blocks.push(result);
     });
 
   }

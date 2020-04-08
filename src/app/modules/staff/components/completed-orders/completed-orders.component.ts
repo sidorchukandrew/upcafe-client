@@ -19,4 +19,16 @@ export class CompletedOrdersComponent implements OnInit {
     });
   }
 
+  appendComma(item: string, index: number, length: number): string {
+    return '';
+  }
+
+  convertTime(time: string): string {
+    return '';
+  }
+
+  extractTime(time: string): string {
+    return '';
+  }
+
 }

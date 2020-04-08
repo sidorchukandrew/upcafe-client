@@ -53,16 +53,19 @@
 }
 
 .day-card .block {
-    color: navy;
+    color: white;
+    background-color: #34a5f2;
+
+    position: relative;
+
     display: inline-block;
     padding: 10px;
+    margin: 5px;
     border-radius: 5px;
-    background-color: #d8f5ff;
-    position: relative;
+
     max-width: 150px;
     min-width: 150px;
-    min-height: 30px;
-    margin: 5px;
+    min-height: 45px;
 }
 
 .day-card .block .time {
@@ -102,4 +105,16 @@
 .names {
     display: inline-block;
     max-width: 50px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#apply-standard-hours {
+    bottom: 20px;
+    right: calc(50% + -31px);
+
 }

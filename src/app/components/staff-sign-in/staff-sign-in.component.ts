@@ -9,12 +9,12 @@ import { FormBuilder } from '@angular/forms';
 })
 export class StaffSignInComponent implements OnInit {
 
-  private signInForm = this.formBuilder.group({
+  public signInForm = this.formBuilder.group({
     username: '',
     password: ''
   });
 
-  constructor(private authService: AuthorizationService, private formBuilder: FormBuilder) { }
+  constructor(public authService: AuthorizationService, public formBuilder: FormBuilder) { }
 
   ngOnInit() {
   }

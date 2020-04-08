@@ -15,10 +15,10 @@
             <div class="names">
                 {{monthNames[startDate.getMonth()]}}
 
-                {{dayNames[startDate.getDay()] | uppercase}}
+                {{dayNames[startDate.getDay()]}}
             </div>
         </div>
-        <span>through</span>
+        <span>-</span>
         <div class="section">
             <span class="date">
                 {{endDate.getDate()}}
@@ -26,7 +26,7 @@
             <div class="names">
                 {{monthNames[endDate.getMonth()]}}
 
-                {{dayNames[endDate.getDay()] | uppercase}}
+                {{dayNames[endDate.getDay()]}}
             </div>
         </div>
         <div class="arrow" matRipple (click)="nextWeek();">
@@ -38,7 +38,7 @@
 <div class="day-card">
     <div class="topline">
         <span class="name">Monday</span>
-        <button mat-icon-button color="primary" class="add" (click)="selectHours('Monday');">
+        <button mat-icon-button color="primary" class="add" (click)="selectHours('Monday', cafeHours.mondayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
@@ -55,7 +55,7 @@
 <div class="day-card">
     <div class="topline">
         <span class="name">Tuesday</span>
-        <button mat-icon-button color="primary" class="add" (click)="selectHours('Tuesday');">
+        <button mat-icon-button color="primary" class="add" (click)="selectHours('Tuesday', cafeHours.tuesdayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
@@ -72,7 +72,8 @@
 <div class="day-card">
     <div class="topline">
         <span class="name">Wednesday</span>
-        <button mat-icon-button color="primary" class="add" (click)="selectHours('Wednesday');">
+        <button mat-icon-button color="primary" class="add"
+            (click)="selectHours('Wednesday', cafeHours.wednesdayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
@@ -89,7 +90,8 @@
 <div class="day-card">
     <div class="topline">
         <span class="name">Thursday</span>
-        <button mat-icon-button color="primary" class="add" (click)="selectHours('Thursday');">
+        <button mat-icon-button color="primary" class="add"
+            (click)="selectHours('Thursday', cafeHours.thursdayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
@@ -106,7 +108,7 @@
 <div class="day-card">
     <div class="topline">
         <span class="name">Friday</span>
-        <button mat-icon-button color="primary" class="add" (click)="selectHours('Friday');">
+        <button mat-icon-button color="primary" class="add" (click)="selectHours('Friday', cafeHours.fridayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
@@ -123,7 +125,8 @@
 <div class="day-card">
     <div class="topline">
         <span class="name">Saturday</span>
-        <button mat-icon-button color="primary" class="add" (click)="selectHours('Saturday');">
+        <button mat-icon-button color="primary" class="add"
+            (click)="selectHours('Saturday', cafeHours.saturdayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
@@ -140,7 +143,7 @@
 <div class="day-card">
     <div class="topline">
         <span class="name">Sunday</span>
-        <button mat-icon-button color="primary" class="add" (click)="selectHours('Sunday');">
+        <button mat-icon-button color="primary" class="add" (click)="selectHours('Sunday', cafeHours.sundayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
@@ -154,4 +157,16 @@
     </div>
 </div>
 
-<button mat-raised-button color="primary" id="apply-standard-hours" (click)="setStandardTimes();">Standard</button>
+<div class="footer">
+
+    <button mat-fab color="primary" id="apply-standard-hours" (click)="setStandardTimes();">
+        <mat-icon style="height: 36px;
+    width: 36px;
+    font-size: 36px;
+    top: 50%;
+    transform: translate(0px,-6px);">
+            alarm_add
+        </mat-icon>
+    </button>
+    <mat-progress-bar mode="query" class="saving-indicator"></mat-progress-bar>
+</div>

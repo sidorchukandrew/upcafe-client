@@ -8,7 +8,7 @@ import { HoursComponent, SelectTimeComponent } from './components/cafe/hours/hou
 import { MatDividerModule } from '@angular/material/divider'
 import {
   MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule, MatSnackBarModule, MatMenuModule,
-  MatDialogModule, MatSelectModule
+  MatDialogModule, MatSelectModule, MatProgressBarModule
 } from '@angular/material';
 import { SettingsComponent } from './components/settings/settings.component'
 import { StaffNavbarComponent } from './components/staff-navbar/staff-navbar.component';
@@ -17,6 +17,7 @@ import { ActiveOrdersComponent } from './components/active-orders/active-orders.
 import { LateOrdersComponent } from './components/late-orders/late-orders.component';
 import { CompletedOrdersComponent } from './components/completed-orders/completed-orders.component';
 import { OrdersComponent } from './components/orders/orders.component';
+
 @NgModule({
   declarations: [IncomingOrdersComponent, StaffComponent, CafeComponent, HoursComponent, SettingsComponent,
     StaffNavbarComponent, OrderDetailsComponent, ActiveOrdersComponent, LateOrdersComponent, CompletedOrdersComponent,
@@ -25,7 +26,7 @@ import { OrdersComponent } from './components/orders/orders.component';
     CommonModule,
     StaffRoutingModule,
     MatDividerModule, MatRippleModule, MatButtonModule, MatIconModule, MatGridListModule, MatSnackBarModule,
-    MatMenuModule, MatDialogModule, MatSelectModule
+    MatMenuModule, MatDialogModule, MatSelectModule, MatProgressBarModule
   ],
   entryComponents: [UndoActionComponent, SelectTimeComponent]
 })

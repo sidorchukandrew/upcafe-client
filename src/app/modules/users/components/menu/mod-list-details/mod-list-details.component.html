@@ -17,7 +17,7 @@
 
         <div *ngIf="!multipleSelectionEnabled">
             <mat-checkbox labelPosition="before" color="primary"
-                (change)="removeById(selectedId); changed($event);  selectedIndex = i; selectedId = modifier.id"
+                (change)="removeById(selectedId); changed($event); selectedIndex = i; selectedId = modifier.id"
                 [name]="modifier.id" [checked]="selectedIndex === i">
                 <div class="bold small">
                     {{ modifier.name }}
