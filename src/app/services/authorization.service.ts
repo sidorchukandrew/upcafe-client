@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/User';
 import { SocialUser, AuthService } from 'angularx-social-login';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class AuthorizationService {
       "password": password
     };
 
-    this.http.post("http://localhost:8080/signin/staff", formData).subscribe();
+    this.http.post(environment.backendUrl + "/signin/staff", formData).subscribe();
   }
 
   public customerSignIn(socialUser: SocialUser): void {
@@ -45,10 +46,10 @@ export class AuthorizationService {
     customer.email = socialUser.email;
     customer.photoUrl = socialUser.photoUrl;
 
-    this.http.post("http://localhost:8080/signin/customer", customer).subscribe();
+    this.http.post(environment.backendUrl + "/signin/customer", customer).subscribe();
   }
 
   public signOutCustomer(): void {
-    this.http.get("http://localhost:8080/signout/customer").subscribe();
+    this.http.get(environment.backendUrl + "/signout/customer").subscribe();
   }
 }

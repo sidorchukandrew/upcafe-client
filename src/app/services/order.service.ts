@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 // import { OrderConfirmation } from '../models/OrderConfirmation';
 import { Subject } from 'rxjs';
 import { Customer } from '../models/Customer';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -85,7 +86,7 @@ export class OrderService {
   public postOrder(): any {
     if (this.order.pickupTime == null)
       this.order.pickupTime = 'ASAP';
-    return this.http.post("http://192.168.0.7:8080/orders", this.order);
+    return this.http.post(environment.backendUrl + "/orders", this.order);
   }
 
   public setConfirmation(confirmation: Order) {
@@ -103,7 +104,7 @@ export class OrderService {
   }
 
   public postPayment(nonce: string, orderId: string, price: number): any {
-    return this.http.post("http://192.168.0.7:8080/orders/pay", {
+    return this.http.post(environment.backendUrl + "/orders/pay", {
       "nonce": nonce,
       "orderId": orderId,
       "price": price
@@ -111,6 +112,6 @@ export class OrderService {
   }
 
   public getIncompleteCustomersOrders(): any {
-    return this.http.get("http://192.168.0.7:8080/orders/customer/5");
+    return this.http.get(environment.backendUrl + "/orders/customer/5");
   }
 }

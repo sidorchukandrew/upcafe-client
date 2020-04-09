@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 
 declare var SockJS;
@@ -17,7 +18,7 @@ export class MessageService {
   public msg = [];
 
   private initializeWebSocketConnection(): void {
-    const serverUrl = 'http://localhost:8080/gs-guide-websocket';
+    const serverUrl = environment.backendUrl + '/gs-guide-websocket';
     const ws = new SockJS(serverUrl);
 
     this.stompClient = Stomp.over(ws);

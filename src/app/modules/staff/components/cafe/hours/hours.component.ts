@@ -56,13 +56,13 @@ export class HoursComponent implements OnInit {
       fridayBlocks: [{
         close: '23:00',
         open: '22:00',
-        id: 1,
+        id: '',
         day: 'Friday'
       }],
       saturdayBlocks: [{
         close: '9:00',
         open: '8:00',
-        id: 0,
+        id: '',
         day: 'Saturday'
       }],
       sundayBlocks: []
@@ -102,6 +102,8 @@ export class HoursComponent implements OnInit {
   }
 
   updateView(blocks: Block[]): void {
+
+    console.log(blocks);
 
     this.clearTimes();
 
@@ -216,7 +218,7 @@ export class HoursComponent implements OnInit {
   editBlock(block: Block): void {
     const dialogRef = this.dialog.open(SelectTimeComponent, {
       data: {
-        day: block.day, close: block.close, open: block.open
+        day: block.day, close: block.close, open: block.open, id: block.id
       }
     });
 
@@ -224,10 +226,17 @@ export class HoursComponent implements OnInit {
       if (result == null)
         return;
 
+      if (block.open == result.open && block.close == result.close)
+        return;
+
       block.day = result.day;
       block.id = result.id;
       block.open = result.open;
       block.close = result.close;
+
+      this.timeService.updateBlock(result, this.startDate.toDateString()).subscribe(data => {
+
+      });
     });
 
   }
@@ -425,7 +434,7 @@ export class SelectTimeComponent implements OnInit {
       open: this.openTime.hour + ":" + this.openTime.minutes,
       close: this.closeTime.hour + ":" + this.closeTime.minutes,
       day: this.data.day,
-      id: 0
+      id: this.data.id
     }
 
     this.dialogRef.close(block);

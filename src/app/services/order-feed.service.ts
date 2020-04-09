@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Order } from '../models/Order';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 declare var SockJS;
 declare var Stomp;
@@ -35,7 +36,7 @@ export class OrderFeedService {
   }
 
   private initializeWebSocketConnection(): void {
-    const serverUrl = 'http://192.168.0.7:8080/gs-guide-websocket';
+    const serverUrl = environment.backendUrl + '/gs-guide-websocket';
     const ws = new SockJS(serverUrl);
 
     this.stompClient = Stomp.over(ws);
@@ -57,7 +58,7 @@ export class OrderFeedService {
   }
 
   public sendUpdate(order: Order): any {
-    return this.http.post("http://192.168.0.7:8080/orders", order, {
+    return this.http.post(environment.backendUrl + "/orders", order, {
       params: {
         state: 'active'
       }
@@ -140,7 +141,7 @@ export class OrderFeedService {
   }
 
   public getOrdersByState(state: string): any {
-    return this.http.get("http://192.168.0.7:8080/orders", {
+    return this.http.get(environment.backendUrl + "/orders", {
       params: {
         state: state
       }
