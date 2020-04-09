@@ -50,6 +50,7 @@
 .day-card .topline .add {
     position: absolute;
     right: 15px;
+    transform: translateY(-16px);
 }
 
 .day-card .block {
@@ -60,11 +61,11 @@
 
     display: inline-block;
     padding: 10px;
-    margin: 5px;
+    margin: 2px;
     border-radius: 5px;
 
-    max-width: 150px;
-    min-width: 150px;
+    max-width: 200px;
+    min-width: 180px;
     min-height: 45px;
 }
 
@@ -78,7 +79,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 0;
+    right: 10px;
 }
 
 
@@ -117,4 +118,12 @@
     bottom: 20px;
     right: calc(50% + -31px);
 
+}
+
+.period {
+    font-size: .6em;
+}
+
+mat-divider {
+    margin-bottom: 5px;
 }

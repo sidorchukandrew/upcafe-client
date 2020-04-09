@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { OrderFeedService } from 'src/app/services/order-feed.service';
 import { parse } from 'querystring';
+import { TimeService } from 'src/app/services/time.service';
 
 export class HoursGroup {
   section: string;
@@ -26,8 +27,7 @@ export class HoursComponent implements OnInit {
   dayNames: Array<string>;
   monthNames: Array<string>;
 
-  constructor(public dialog: MatDialog) {
-
+  constructor(public dialog: MatDialog, private timeService: TimeService) {
   }
 
   ngOnInit() {
@@ -67,6 +67,8 @@ export class HoursComponent implements OnInit {
       }],
       sundayBlocks: []
     };
+
+    this.timeService.getBlocks(this.startDate.toDateString()).subscribe(result => this.updateView(result));
   }
 
   getMonday(d): Date {
@@ -87,12 +89,38 @@ export class HoursComponent implements OnInit {
     this.today.setDate(this.today.getDate() + 7);
     this.startDate = this.getMonday(this.today);
     this.endDate = this.getSunday(this.today);
+
+    this.timeService.getBlocks(this.startDate.toDateString()).subscribe(result => this.updateView(result));
   }
 
   previousWeek() {
     this.today.setDate(this.today.getDate() - 7);
     this.startDate = this.getMonday(this.today);
     this.endDate = this.getSunday(this.today);
+
+    this.timeService.getBlocks(this.startDate.toDateString()).subscribe(result => this.updateView(result));
+  }
+
+  updateView(blocks: Block[]): void {
+
+    this.clearTimes();
+
+    blocks.forEach(block => {
+      if (block.day == 'Monday')
+        this.cafeHours.mondayBlocks.push(block);
+      else if (block.day == 'Tuesday')
+        this.cafeHours.tuesdayBlocks.push(block);
+      else if (block.day == 'Wednesday')
+        this.cafeHours.wednesdayBlocks.push(block);
+      else if (block.day == 'Thursday')
+        this.cafeHours.thursdayBlocks.push(block);
+      else if (block.day == 'Friday')
+        this.cafeHours.fridayBlocks.push(block);
+      else if (block.day == 'Saturday')
+        this.cafeHours.saturdayBlocks.push(block);
+      else if (block.day == 'Sunday')
+        this.cafeHours.sundayBlocks.push(block);
+    });
   }
 
   resetDate() {
@@ -101,99 +129,18 @@ export class HoursComponent implements OnInit {
     this.endDate = this.getSunday(this.today);
   }
 
-
-  pushBlock(result: Block): void {
-
-    if (result.day == 'Monday') {
-      var block: Block = {
-        open: result.open,
-        close: result.close,
-        day: result.day,
-        id: 0
-      }
-
-      this.cafeHours.mondayBlocks.push(block);
-    }
-
-    else if (result.day == 'Tuesday') {
-      var block: Block = {
-        open: result.open,
-        close: result.close,
-        day: result.day,
-        id: 0
-      }
-
-      this.cafeHours.tuesdayBlocks.push(block);
-    }
-
-    else if (result.day == 'Wednesday') {
-      var block: Block = {
-        open: result.open,
-        close: result.close,
-        day: result.day,
-        id: 0
-      }
-
-      this.cafeHours.wednesdayBlocks.push(block);
-    }
-
-    else if (result.day == 'Thursday') {
-      var block: Block = {
-        open: result.open,
-        close: result.close,
-        day: result.day,
-        id: 0
-      }
-
-      this.cafeHours.thursdayBlocks.push(block);
-    }
-
-
-    else if (result.day == 'Friday') {
-      var block: Block = {
-        open: result.open,
-        close: result.close,
-        day: result.day,
-        id: 0
-      }
-
-      this.cafeHours.fridayBlocks.push(block);
-    }
-
-
-    else if (result.day == 'Saturday') {
-      var block: Block = {
-        open: result.open,
-        close: result.close,
-        day: result.day,
-        id: 0
-      }
-
-      this.cafeHours.saturdayBlocks.push(block);
-    }
-
-    else if (result.day == 'Sunday') {
-      var block: Block = {
-        open: result.open,
-        close: result.close,
-        day: result.day,
-        id: 0
-      }
-
-      this.cafeHours.sundayBlocks.push(block);
-    }
-  }
-
   selectHours(day: string, blocks: Array<Block>): void {
+
     const dialogRef = this.dialog.open(SelectTimeComponent, {
-      data: { day: day, open: '', close: '' },
-      minWidth: '80vw'
+      data: { day: day, open: '', close: '' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
 
       if (result == null)
         return;
+
+      this.timeService.postBlock(result, this.startDate.toDateString()).subscribe(result => console.log(result));
 
       blocks.push(result);
     });
@@ -277,15 +224,13 @@ export class HoursComponent implements OnInit {
       if (result == null)
         return;
 
+      block.day = result.day;
       block.id = result.id;
       block.open = result.open;
       block.close = result.close;
-      block.day = result.day;
-      console.log(result);
     });
 
   }
-
 
   clearTimes(): void {
     this.cafeHours = {
@@ -305,7 +250,32 @@ export class HoursComponent implements OnInit {
     if (index != -1)
       dayBlocks.splice(index, 1);
 
-    console.log(this.standardHours);
+  }
+
+  convertTime(time: string): string {
+
+    var indexOfColon = time.indexOf(":");
+    var hour = parseInt(time.slice(0, indexOfColon));
+
+    if (hour > 12) {
+      hour -= 12;
+    }
+
+    if (hour == 0)
+      hour = 12;
+
+    return (hour + ":" + time.slice(indexOfColon + 1, time.length));
+  }
+
+  appendPeriod(time: string): string {
+
+    var indexOfColon = time.indexOf(":");
+    var hour = parseInt(time.slice(0, indexOfColon));
+
+    if (hour >= 12)
+      return 'PM';
+
+    return 'AM';
   }
 }
 
@@ -341,6 +311,9 @@ export class SelectTimeComponent implements OnInit {
       this.openTime.hour = this.ordersFeed.parseHour(this.data.open) + '';
       this.openTime.minutes = this.ordersFeed.parseMinutes(this.data.open) + '';
 
+      if (parseInt(this.openTime.hour) < 12)
+        this.openTime.period = 'AM';
+
       this.formatHour(this.openTime, this.openTime.hour);
       this.formatMinutes(this.openTime, this.openTime.minutes);
     }
@@ -348,6 +321,9 @@ export class SelectTimeComponent implements OnInit {
     if (this.data.close) {
       this.closeTime.hour = this.ordersFeed.parseHour(this.data.close) + '';
       this.closeTime.minutes = this.ordersFeed.parseMinutes(this.data.close) + '';
+
+      if (parseInt(this.closeTime.hour) < 12)
+        this.closeTime.period = 'AM';
 
       this.formatHour(this.closeTime, this.closeTime.hour);
       this.formatMinutes(this.closeTime, this.closeTime.minutes);
@@ -367,8 +343,6 @@ export class SelectTimeComponent implements OnInit {
   }
 
   public validateHour(time: Time, newHour: string): void {
-
-    console.log(newHour);
 
     if (newHour) {
       if (time == this.openTime)
@@ -421,9 +395,6 @@ export class SelectTimeComponent implements OnInit {
   public addBlock(): void {
     this.formatMinutes(this.openTime, this.openTime.minutes);
     this.formatMinutes(this.closeTime, this.closeTime.minutes);
-
-    console.log(this.openTime);
-    console.log(this.closeTime);
 
     if (this.openTime.period == 'PM') {
       var hourNumber = parseInt(this.openTime.hour);

@@ -42,9 +42,13 @@
             <mat-icon>add</mat-icon>
         </button>
     </div>
+
+    <mat-divider></mat-divider>
+
     <div class="block" *ngFor="let block of cafeHours.mondayBlocks" matRipple>
         <span class="time" (click)="editBlock(block);">
-            {{block.open}} - {{block.close}}
+            {{convertTime(block.open)}} <span class="period">{{appendPeriod(block.open)}}</span> -
+            {{convertTime(block.close)}} <span class="period">{{appendPeriod(block.close)}}</span>
         </span>
         <span class="delete-block" (click)="deleteBlock(block, cafeHours.mondayBlocks)">
             <mat-icon>close</mat-icon>
@@ -59,9 +63,13 @@
             <mat-icon>add</mat-icon>
         </button>
     </div>
+
+    <mat-divider></mat-divider>
+
     <div class="block" *ngFor="let block of cafeHours.tuesdayBlocks" matRipple>
         <span class="time" (click)="editBlock(block);">
-            {{block.open}} - {{block.close}}
+            {{convertTime(block.open)}} <span class="period">{{appendPeriod(block.open)}}</span> -
+            {{convertTime(block.close)}} <span class="period">{{appendPeriod(block.close)}}</span>
         </span>
         <span class="delete-block" (click)="deleteBlock(block, cafeHours.tuesdayBlocks)">
             <mat-icon>close</mat-icon>
@@ -77,9 +85,13 @@
             <mat-icon>add</mat-icon>
         </button>
     </div>
+
+    <mat-divider></mat-divider>
+
     <div class="block" *ngFor="let block of cafeHours.wednesdayBlocks" matRipple>
         <span class="time" (click)="editBlock(block);">
-            {{block.open}} - {{block.close}}
+            {{convertTime(block.open)}} <span class="period">{{appendPeriod(block.open)}}</span> -
+            {{convertTime(block.close)}} <span class="period">{{appendPeriod(block.close)}}</span>
         </span>
         <span class="delete-block" (click)="deleteBlock(block, cafeHours.wednesdayBlocks)">
             <mat-icon>close</mat-icon>
@@ -95,15 +107,20 @@
             <mat-icon>add</mat-icon>
         </button>
     </div>
+
+    <mat-divider></mat-divider>
+
     <div class="block" *ngFor="let block of cafeHours.thursdayBlocks" matRipple>
         <span class="time" (click)="editBlock(block);">
-            {{block.open}} - {{block.close}}
+            {{convertTime(block.open)}} <span class="period">{{appendPeriod(block.open)}}</span> -
+            {{convertTime(block.close)}} <span class="period">{{appendPeriod(block.close)}}</span>
         </span>
         <span class="delete-block" (click)="deleteBlock(block, cafeHours.thursdayBlocks)">
             <mat-icon>close</mat-icon>
         </span>
     </div>
 </div>
+
 
 <div class="day-card">
     <div class="topline">
@@ -112,15 +129,20 @@
             <mat-icon>add</mat-icon>
         </button>
     </div>
+
+    <mat-divider></mat-divider>
+
     <div class="block" *ngFor="let block of cafeHours.fridayBlocks" matRipple>
         <span class="time" (click)="editBlock(block);">
-            {{block.open}} - {{block.close}}
+            {{convertTime(block.open)}} <span class="period">{{appendPeriod(block.open)}}</span> -
+            {{convertTime(block.close)}} <span class="period">{{appendPeriod(block.close)}}</span>
         </span>
         <span class="delete-block" (click)="deleteBlock(block, cafeHours.fridayBlocks)">
             <mat-icon>close</mat-icon>
         </span>
     </div>
 </div>
+
 
 <div class="day-card">
     <div class="topline">
@@ -130,9 +152,13 @@
             <mat-icon>add</mat-icon>
         </button>
     </div>
+
+    <mat-divider></mat-divider>
+
     <div class="block" *ngFor="let block of cafeHours.saturdayBlocks" matRipple>
         <span class="time" (click)="editBlock(block);">
-            {{block.open}} - {{block.close}}
+            {{convertTime(block.open)}} <span class="period">{{appendPeriod(block.open)}}</span> -
+            {{convertTime(block.close)}} <span class="period">{{appendPeriod(block.close)}}</span>
         </span>
         <span class="delete-block" (click)="deleteBlock(block, cafeHours.saturdayBlocks)">
             <mat-icon>close</mat-icon>
@@ -147,9 +173,13 @@
             <mat-icon>add</mat-icon>
         </button>
     </div>
+
+    <mat-divider></mat-divider>
+
     <div class="block" *ngFor="let block of cafeHours.sundayBlocks" matRipple>
         <span class="time" (click)="editBlock(block);">
-            {{block.open}} - {{block.close}}
+            {{convertTime(block.open)}} <span class="period">{{appendPeriod(block.open)}}</span> -
+            {{convertTime(block.close)}} <span class="period">{{appendPeriod(block.close)}}</span>
         </span>
         <span class="delete-block" (click)="deleteBlock(block, cafeHours.sundayBlocks)">
             <mat-icon>close</mat-icon>
