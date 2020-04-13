@@ -35,4 +35,13 @@ export class TimeService {
       weekOf: weekOf
     });
   }
+
+  public deleteBlock(blockId: string, weekOf: string): any {
+    return this.http.delete(environment.backendUrl + "/cafe/hours", {
+      params: {
+        weekOf: weekOf,
+        blockId: blockId
+      }
+    });
+  }
 }

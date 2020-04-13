@@ -6,6 +6,8 @@ import { FormControl } from '@angular/forms';
 import { OrderFeedService } from 'src/app/services/order-feed.service';
 import { parse } from 'querystring';
 import { TimeService } from 'src/app/services/time.service';
+import { LoadingService } from 'src/app/services/loading.service';
+import { TimeUtilitiesService } from 'src/app/services/time-utilities.service';
 
 export class HoursGroup {
   section: string;
@@ -27,25 +29,22 @@ export class HoursComponent implements OnInit {
   dayNames: Array<string>;
   monthNames: Array<string>;
 
-  constructor(public dialog: MatDialog, private timeService: TimeService) {
+  loading: boolean = false;
+
+  constructor(public dialog: MatDialog, private timeService: TimeService, private loadingService: LoadingService,
+    public utils: TimeUtilitiesService) {
   }
 
   ngOnInit() {
 
     this.dayNames = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
-    this.monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug',
-      'Sep', 'Oct', 'Nov', 'Dec'];
+    this.monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     this.today = new Date();
     this.startDate = this.getMonday(this.today);
     this.endDate = this.getSunday(this.today);
     this.cafeHours = {
-      mondayBlocks: [],
-      tuesdayBlocks: [],
-      wednesdayBlocks: [],
-      thursdayBlocks: [],
-      fridayBlocks: [],
-      saturdayBlocks: [],
-      sundayBlocks: []
+      mondayBlocks: [], tuesdayBlocks: [], wednesdayBlocks: [], thursdayBlocks: [],
+      fridayBlocks: [], saturdayBlocks: [], sundayBlocks: []
     };
 
     this.standardHours = {
@@ -254,38 +253,20 @@ export class HoursComponent implements OnInit {
   }
 
   deleteBlock(block: Block, dayBlocks: Array<Block>): void {
-    var index: number = dayBlocks.indexOf(block);
 
-    if (index != -1)
-      dayBlocks.splice(index, 1);
+    this.loading = true;
 
+    this.timeService.deleteBlock(block.id, this.startDate.toDateString()).subscribe(result => {
+      var index: number = dayBlocks.indexOf(block);
+
+      if (index != -1)
+        dayBlocks.splice(index, 1);
+
+      this.loading = false;
+    });
   }
 
-  convertTime(time: string): string {
 
-    var indexOfColon = time.indexOf(":");
-    var hour = parseInt(time.slice(0, indexOfColon));
-
-    if (hour > 12) {
-      hour -= 12;
-    }
-
-    if (hour == 0)
-      hour = 12;
-
-    return (hour + ":" + time.slice(indexOfColon + 1, time.length));
-  }
-
-  appendPeriod(time: string): string {
-
-    var indexOfColon = time.indexOf(":");
-    var hour = parseInt(time.slice(0, indexOfColon));
-
-    if (hour >= 12)
-      return 'PM';
-
-    return 'AM';
-  }
 }
 
 export class Time {
@@ -308,7 +289,7 @@ export class SelectTimeComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<SelectTimeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private ordersFeed: OrderFeedService) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private utils: TimeUtilitiesService) {
 
   }
 
@@ -317,8 +298,8 @@ export class SelectTimeComponent implements OnInit {
     this.closeTime = new Time();
 
     if (this.data.open) {
-      this.openTime.hour = this.ordersFeed.parseHour(this.data.open) + '';
-      this.openTime.minutes = this.ordersFeed.parseMinutes(this.data.open) + '';
+      this.openTime.hour = this.utils.parseHour(this.data.open) + '';
+      this.openTime.minutes = this.utils.parseMinutes(this.data.open) + '';
 
       if (parseInt(this.openTime.hour) < 12)
         this.openTime.period = 'AM';
@@ -328,8 +309,8 @@ export class SelectTimeComponent implements OnInit {
     }
 
     if (this.data.close) {
-      this.closeTime.hour = this.ordersFeed.parseHour(this.data.close) + '';
-      this.closeTime.minutes = this.ordersFeed.parseMinutes(this.data.close) + '';
+      this.closeTime.hour = this.utils.parseHour(this.data.close) + '';
+      this.closeTime.minutes = this.utils.parseMinutes(this.data.close) + '';
 
       if (parseInt(this.closeTime.hour) < 12)
         this.closeTime.period = 'AM';

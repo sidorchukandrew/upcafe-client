@@ -89,4 +89,15 @@ export class TimeUtilitiesService {
 
     return date.getHours() + ":" + date.getMinutes();
   }
+
+  public appendPeriod(time: string): string {
+
+    var indexOfColon = time.indexOf(":");
+    var hour = parseInt(time.slice(0, indexOfColon));
+
+    if (hour >= 12)
+      return 'PM';
+
+    return 'AM';
+  }
 }
