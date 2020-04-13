@@ -1,9 +1,9 @@
 <mat-grid-list cols="1" gutterSize="15px" rowHeight="170px" class="wrapper">
-    <mat-grid-tile colspan="1" class="card" *ngFor="let order of orders">
+    <mat-grid-tile colspan="1" class="card" *ngFor="let order of orders$ | async">
         <div class="content">
             <div class="top-line">
                 <span class="pickup-time">
-                    {{convertTime(order.pickupTime)}}
+                    {{order.pickupTime}}
                 </span>
                 <span class="customer-name">
                     {{order.customer.firstName}} {{order.customer.lastName}}
@@ -33,7 +33,7 @@
                         Ordered At
                     </td>
                     <td class="value">
-                        {{ convertTime(extractTime(order.createdAt)) }}
+                        {{ order.createdAt }}
                     </td>
                 </tr>
                 <tr>
@@ -42,7 +42,7 @@
                     </td>
                     <td class="value">
                         <span class="items" *ngFor="let item of order.selectedLineItems; let i = index;">
-                            {{appendComma(item.variationData.name, i, order.selectedLineItems.length)}}
+                            {{item.variationData.name}}
                         </span>
                     </td>
                 </tr>
