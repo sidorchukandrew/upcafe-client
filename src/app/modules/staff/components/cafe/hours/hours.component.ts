@@ -233,9 +233,12 @@ export class HoursComponent implements OnInit {
       block.open = result.open;
       block.close = result.close;
 
-      this.timeService.updateBlock(result, this.startDate.toDateString()).subscribe(data => {
-
-      });
+      this.loading = true;
+      this.timeService.updateBlock(result, this.startDate.toDateString()).subscribe(
+        data => {
+          this.loading = false;
+        },
+        error => console.log(error));
     });
 
   }

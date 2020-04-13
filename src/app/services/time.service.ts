@@ -17,10 +17,6 @@ export class TimeService {
     });
   }
 
-  public getBlock(): any {
-    return this.http.get(environment.backendUrl + "/cafe");
-  }
-
   public getBlocks(week: string): any {
     return this.http.get(environment.backendUrl + "/cafe/hours", {
       params: {
