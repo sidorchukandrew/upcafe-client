@@ -1,14 +1,11 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { LineItem } from 'src/app/models/LineItem';
 import { ModifierListData } from 'src/app/models/ModifierListData';
-import { CatalogService } from 'src/app/services/catalog.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
 import { OrderService } from 'src/app/services/order.service';
-import { VariationData } from 'src/app/models/VariationData';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { SelectedItemService } from 'src/app/services/selected-item.service';
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { SelectedItemStore } from 'src/app/services/stores/selected-item.store';
 
 

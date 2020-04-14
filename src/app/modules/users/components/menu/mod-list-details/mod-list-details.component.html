@@ -1,4 +1,4 @@
-<div id="scrollable-wrapper" *ngIf="modListData$ | async as modListData">
+<div id="scrollable-wrapper" *ngIf="modListData">
     <div class="modifier-wrapper" *ngFor="let modifier of modListData.modifiers; let i = index;">
 
         <div *ngIf="multipleSelectionEnabled">

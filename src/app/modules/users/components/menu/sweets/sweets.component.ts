@@ -5,7 +5,7 @@ import { CatalogByCategory } from 'src/app/models/CatalogByCategory';
 import { Catalog } from 'src/app/models/Catalog';
 import { CategoryItem } from 'src/app/models/CategoryItem';
 import { VariationData } from 'src/app/models/VariationData';
-import { SelectedItemService } from 'src/app/services/selected-item.service';
+import { SelectedItemStore } from 'src/app/services/stores/selected-item.store';
 
 @Component({
   selector: 'app-sweets',
@@ -16,8 +16,8 @@ export class SweetsComponent implements OnInit {
 
   catalog: Catalog;
 
-  constructor(private http: HttpClient, private catalogService: CatalogService,
-    private selectedItemService: SelectedItemService) {
+  constructor(private catalogService: CatalogService,
+    private itemStore: SelectedItemStore) {
     this.catalog = {
       catalogSections: Array<CatalogByCategory>()
     };
@@ -25,18 +25,18 @@ export class SweetsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadCatalogByCategory("sweets");
+
   }
 
   private loadCatalogByCategory(category: string): void {
     this.catalogService.getCatalog(category).subscribe(data => {
       var catalogSection: CatalogByCategory = data;
-      console.log(catalogSection);
       this.catalog.catalogSections.push(catalogSection);
+      console.log(this.catalog);
     });
   }
 
   loadItem(lineItem: CategoryItem, variationData: VariationData): void {
-    this.selectedItemService.setSelectedItem(lineItem, variationData);
+    this.itemStore.setSelectedItem(lineItem, variationData);
   }
 }
