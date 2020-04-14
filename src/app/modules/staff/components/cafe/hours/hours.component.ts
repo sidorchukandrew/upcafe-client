@@ -40,62 +40,35 @@ export class HoursComponent implements OnInit {
     this.dayNames = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
     this.monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     this.today = new Date();
-    this.startDate = this.getMonday(this.today);
-    this.endDate = this.getSunday(this.today);
+    this.startDate = this.utils.getMonday(this.today);
+    this.endDate = this.utils.getSunday(this.today);
     this.cafeHours = {
       mondayBlocks: [], tuesdayBlocks: [], wednesdayBlocks: [], thursdayBlocks: [],
       fridayBlocks: [], saturdayBlocks: [], sundayBlocks: []
     };
 
     this.standardHours = {
-      mondayBlocks: [],
-      tuesdayBlocks: [],
-      wednesdayBlocks: [],
-      thursdayBlocks: [],
-      fridayBlocks: [{
-        close: '23:00',
-        open: '22:00',
-        id: '',
-        day: 'Friday'
-      }],
-      saturdayBlocks: [{
-        close: '9:00',
-        open: '8:00',
-        id: '',
-        day: 'Saturday'
-      }],
+      mondayBlocks: [], tuesdayBlocks: [], wednesdayBlocks: [], thursdayBlocks: [],
+      fridayBlocks: [new Block('9:00', '10:00', 'Friday', '0')],
+      saturdayBlocks: [new Block('9:00', '10:00', 'Saturday', '0')],
       sundayBlocks: []
     };
 
     this.timeService.getBlocks(this.startDate.toDateString()).subscribe(result => this.updateView(result));
   }
 
-  getMonday(d): Date {
-    var day = d.getDay();
-    var diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
-    return new Date(d.setDate(diff));
-  }
-
-  getSunday(d): Date {
-    var dayOfTheWeek = d.getDay();
-    var diff = 7 - dayOfTheWeek;
-    var date = d.getDate();
-    var sundaysDate = date + diff;
-    return new Date(d.setDate(sundaysDate));
-  }
-
   nextWeek() {
     this.today.setDate(this.today.getDate() + 7);
-    this.startDate = this.getMonday(this.today);
-    this.endDate = this.getSunday(this.today);
+    this.startDate = this.utils.getMonday(this.today);
+    this.endDate = this.utils.getSunday(this.today);
 
     this.timeService.getBlocks(this.startDate.toDateString()).subscribe(result => this.updateView(result));
   }
 
   previousWeek() {
     this.today.setDate(this.today.getDate() - 7);
-    this.startDate = this.getMonday(this.today);
-    this.endDate = this.getSunday(this.today);
+    this.startDate = this.utils.getMonday(this.today);
+    this.endDate = this.utils.getSunday(this.today);
 
     this.timeService.getBlocks(this.startDate.toDateString()).subscribe(result => this.updateView(result));
   }
@@ -126,8 +99,8 @@ export class HoursComponent implements OnInit {
 
   resetDate() {
     this.today = new Date();
-    this.startDate = this.getMonday(this.today);
-    this.endDate = this.getSunday(this.today);
+    this.startDate = this.utils.getMonday(this.today);
+    this.endDate = this.utils.getSunday(this.today);
   }
 
   selectHours(day: string, blocks: Array<Block>): void {
@@ -153,64 +126,31 @@ export class HoursComponent implements OnInit {
     this.clearTimes();
 
     this.standardHours.mondayBlocks.forEach(block => {
-      this.cafeHours.mondayBlocks.push({
-        close: block.close,
-        open: block.open,
-        id: block.id,
-        day: block.day
-      });
+      this.cafeHours.mondayBlocks.push(new Block(block.open, block.close, block.day, block.id));
     });
+
     this.standardHours.tuesdayBlocks.forEach(block => {
-      this.cafeHours.tuesdayBlocks.push({
-        close: block.close,
-        open: block.open,
-        id: block.id,
-        day: block.day
-      });
+      this.cafeHours.tuesdayBlocks.push(new Block(block.open, block.close, block.day, block.id));
     });
+
     this.standardHours.wednesdayBlocks.forEach(block => {
-      this.cafeHours.wednesdayBlocks.push({
-        close: block.close,
-        open: block.open,
-        id: block.id,
-        day: block.day
-      });
+      this.cafeHours.wednesdayBlocks.push(new Block(block.open, block.close, block.day, block.id));
     });
 
     this.standardHours.thursdayBlocks.forEach(block => {
-      this.cafeHours.thursdayBlocks.push({
-        close: block.close,
-        open: block.open,
-        id: block.id,
-        day: block.day
-      });
+      this.cafeHours.thursdayBlocks.push(new Block(block.open, block.close, block.day, block.id));
     });
 
     this.standardHours.fridayBlocks.forEach(block => {
-      this.cafeHours.fridayBlocks.push({
-        close: block.close,
-        open: block.open,
-        id: block.id,
-        day: block.day
-      });
+      this.cafeHours.fridayBlocks.push(new Block(block.open, block.close, block.day, block.id));
     });
 
     this.standardHours.saturdayBlocks.forEach(block => {
-      this.cafeHours.saturdayBlocks.push({
-        close: block.close,
-        open: block.open,
-        id: block.id,
-        day: block.day
-      });
+      this.cafeHours.saturdayBlocks.push(new Block(block.open, block.close, block.day, block.id));
     });
 
     this.standardHours.sundayBlocks.forEach(block => {
-      this.cafeHours.sundayBlocks.push({
-        close: block.close,
-        open: block.open,
-        id: block.id,
-        day: block.day
-      });
+      this.cafeHours.sundayBlocks.push(new Block(block.open, block.close, block.day, block.id));
     });
   }
 
@@ -238,7 +178,10 @@ export class HoursComponent implements OnInit {
         data => {
           this.loading = false;
         },
-        error => console.log(error));
+        error => {
+          console.log(error);
+          this.loading = false;
+        });
     });
 
   }

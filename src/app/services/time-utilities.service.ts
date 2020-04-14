@@ -100,4 +100,18 @@ export class TimeUtilitiesService {
 
     return 'AM';
   }
+
+  public getMonday(d): Date {
+    var day = d.getDay();
+    var diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+    return new Date(d.setDate(diff));
+  }
+
+  public getSunday(d): Date {
+    var dayOfTheWeek = d.getDay();
+    var diff = 7 - dayOfTheWeek;
+    var date = d.getDate();
+    var sundaysDate = date + diff;
+    return new Date(d.setDate(sundaysDate));
+  }
 }
