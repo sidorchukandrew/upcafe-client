@@ -11,7 +11,7 @@ import {
   MatProgressSpinnerModule, MatChipsModule
 } from '@angular/material';
 import { MenuComponent } from './components/menu/menu.component';
-import { FavoritesComponent } from './components/favorites/favorites.component';
+import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EatsComponent } from './components/menu/eats/eats.component';
@@ -26,7 +26,7 @@ import { PickupComponent } from './components/cart/pickup/pickup.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
-  declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, FavoritesComponent,
+  declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, HomeComponent,
     CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog, DrinksComponent, SnacksComponent,
     SweetsComponent, EditItemComponent, PaymentComponent, PickupComponent],
   imports: [

@@ -1,15 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Order } from 'src/app/models/Order';
 import { OrderService } from 'src/app/services/order.service';
-import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-favorites',
-  templateUrl: './favorites.component.html',
-  styleUrls: ['./favorites.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class FavoritesComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   verse: string;
   imgUrl: string;

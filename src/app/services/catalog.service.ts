@@ -20,6 +20,10 @@ export class CatalogService {
     return this.http.get(environment.backendUrl + "/catalog/" + category);
   }
 
+  public getEats(): any {
+    return this.http.get(environment.backendUrl + "/catalog/eats");
+  }
+
   public getVariation(id: string) {
     return this.http.get(environment.backendUrl + "/catalog/variations/" + id);
   }

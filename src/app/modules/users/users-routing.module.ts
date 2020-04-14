@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './user/user.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { FavoritesComponent } from './components/favorites/favorites.component';
+import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EatsComponent } from './components/menu/eats/eats.component';
@@ -23,7 +23,7 @@ const routes: Routes = [
         children:
             [
                 { path: 'menu', component: MenuComponent },
-                { path: 'favorites', component: FavoritesComponent },
+                { path: 'home', component: HomeComponent },
                 { path: 'cart', component: CartComponent },
                 { path: 'profile', component: ProfileComponent },
                 { path: 'menu/eats', component: EatsComponent },
