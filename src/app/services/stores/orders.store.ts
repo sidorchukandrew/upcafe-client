@@ -76,6 +76,10 @@ export class OrdersStore {
       that.stompClient.subscribe('/active', (message) => {
         that.loadOrdersFromAPI(new Date().toDateString());
       });
+
+      that.stompClient.subscribe('/complete', (message) => {
+        that.loadOrdersFromAPI(new Date().toDateString());
+      });
     });
   }
 

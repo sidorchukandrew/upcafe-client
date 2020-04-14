@@ -14,36 +14,14 @@ export class HomeComponent implements OnInit {
   passage: string;
   todayNumber: number;
   userSelectedDate: number;
-  color: string;
-  colors: Array<string>;
-
-  incompleteOrders: Array<Order>;
 
   constructor(private orderService: OrderService) {
   }
 
   ngOnInit() {
 
-    this.colors = new Array<string>();
-    this.colors.push('red-gradient', 'blue-gradient', 'orange-gradient');
-
-    this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
-
-    this.todayNumber = this.daysIntoYear(new Date());
-    this.userSelectedDate = this.todayNumber;
-    this.fetchVerseByDate(this.todayNumber);
-    this.incompleteOrders = new Array<Order>();
-
-    this.orderService.getIncompleteCustomersOrders().subscribe(orders => {
-      this.incompleteOrders = orders;
-      console.log(this.incompleteOrders);
-    })
-
   }
 
-  clicked() {
-    console.log("CLICKED!");
-  }
 
   daysIntoYear(date): number {
     return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
@@ -68,7 +46,6 @@ export class HomeComponent implements OnInit {
     })
       .then((result) => result.json())
       .then((json) => {
-        var verseObject = json['verse'];
         this.verse = json.verse.text;
         this.imgUrl = json.image.url;
         this.passage = json.verse.human_reference;

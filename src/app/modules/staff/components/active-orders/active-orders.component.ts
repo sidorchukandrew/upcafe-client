@@ -19,4 +19,11 @@ export class ActiveOrdersComponent implements OnInit {
   ngOnInit() {
     this.orders$ = this.ordersStore.selectActiveOrders();
   }
+
+  completeOrder(order: Order) {
+    console.log("clicked!");
+    this.ordersStore.sendUpdate(order, 'COMPLETE').subscribe(data => {
+
+    });
+  }
 }
