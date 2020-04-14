@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { LineItem } from 'src/app/models/LineItem';
 import { ModifierListData } from 'src/app/models/ModifierListData';
-import { MatSnackBar } from '@angular/material';
 import { CatalogService } from 'src/app/services/catalog.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
@@ -9,7 +8,8 @@ import { OrderService } from 'src/app/services/order.service';
 import { VariationData } from 'src/app/models/VariationData';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SelectedItemService } from 'src/app/services/selected-item.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { SelectedItemStore } from 'src/app/services/stores/selected-item.store';
 
 
 @Component({
@@ -17,51 +17,25 @@ import { Subscription } from 'rxjs';
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.css']
 })
-export class ItemDetailsComponent implements OnInit, OnDestroy {
+export class ItemDetailsComponent implements OnInit {
 
   @ViewChild(ModListDetailsComponent, { static: false })
   private modListDetailsComponent: ModListDetailsComponent;
 
-  item: LineItem;
+  item$: Observable<LineItem>;
   totalItemPrice: number;
   priceDollars: number;
   priceCents: any;
   currentCents: number;
   nameOfCurrentlySelectedModifierList: string;
-  subscriptions: Subscription;
 
-  constructor(private selectedItemService: SelectedItemService, private snackBar: MatSnackBar, private catalogService: CatalogService,
-    private route: ActivatedRoute, private orderService: OrderService, public userResponseDialog: MatDialog) {
+  constructor(private itemStore: SelectedItemStore, private route: ActivatedRoute,
+    private orderService: OrderService, public userResponseDialog: MatDialog) {
 
   }
 
   ngOnInit() {
-    this.item = new LineItem();
-
-    if (this.selectedItemService.getSelectedItem().itemData != null) {
-      this.item = this.selectedItemService.getSelectedItem();
-      this.totalItemPrice = this.item.variationData.variationPrice;
-      this.parsePrice(this.totalItemPrice);
-    }
-    else {
-      this.catalogService.getVariation(this.route.snapshot.paramMap.get('id')).subscribe(lineItem => {
-        this.item.itemData = lineItem['itemData'];
-        this.item.variationData = lineItem['variationData'];
-        this.item.modifierListsData = lineItem['modifierListsData'];
-        this.totalItemPrice = this.item.variationData.variationPrice;
-        this.parsePrice(this.totalItemPrice);
-      });
-    }
-
-    this.subscriptions = new Subscription();
-
-    this.subscriptions.add(this.selectedItemService.getSelectedModifierListData().subscribe(data => {
-      this.nameOfCurrentlySelectedModifierList = data.nameOfList;
-    }));
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.item$ = this.itemStore.currentItem$;
   }
 
   parsePrice(price: number): void {
@@ -93,25 +67,25 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   }
 
   public loadModifierList(modifierListData: ModifierListData): void {
-    this.selectedItemService.setSelectedModifierList(modifierListData);
+    this.itemStore.setSelectedModList(modifierListData);
   }
 
   public addToOrder(): void {
 
-    var selectedModifiers;
-    if (this.modListDetailsComponent)
-      selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
+    // var selectedModifiers;
+    // if (this.modListDetailsComponent)
+    //   selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
 
-    var variationData: VariationData = this.item.variationData;
-    if (variationData.name == 'Regular')
-      variationData.name = this.item.itemData.name;
+    // var variationData: VariationData = this.item.variationData;
+    // if (variationData.name == 'Regular')
+    //   variationData.name = this.item.itemData.name;
 
-    var orderItem = this.orderService.newOrderItem(variationData, selectedModifiers);
-    this.orderService.addToOrder(orderItem);
+    // var orderItem = this.orderService.newOrderItem(variationData, selectedModifiers);
+    // this.orderService.addToOrder(orderItem);
 
-    this.userResponseDialog.open(UserResponseDialog, {
-      hasBackdrop: true
-    });
+    // this.userResponseDialog.open(UserResponseDialog, {
+    //   hasBackdrop: true
+    // });
   }
 }
 

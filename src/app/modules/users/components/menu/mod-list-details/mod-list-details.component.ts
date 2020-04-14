@@ -1,17 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModifierData } from 'src/app/models/ModifierData';
 import { ModifierListData } from 'src/app/models/ModifierListData';
 import { OrderService } from 'src/app/services/order.service';
 import { SelectedItemService } from 'src/app/services/selected-item.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { EditItemService } from 'src/app/services/edit-item.service';
+import { SelectedItemStore } from 'src/app/services/stores/selected-item.store';
 
 @Component({
   selector: 'app-mod-list-details',
   templateUrl: './mod-list-details.component.html',
   styleUrls: ['./mod-list-details.component.css']
 })
-export class ModListDetailsComponent implements OnInit, OnDestroy {
+export class ModListDetailsComponent implements OnInit {
 
   modifiers: Array<ModifierData>;
   modifierListData: ModifierListData;
@@ -21,29 +22,16 @@ export class ModListDetailsComponent implements OnInit, OnDestroy {
   selectedIndex;
   selectedId;
 
-  constructor(private selectedItemService: SelectedItemService, private orderService: OrderService, private editService: EditItemService) {
+  modListData$: Observable<ModifierListData>;
+
+  constructor(private itemStore: SelectedItemStore, private orderService: OrderService, private editService: EditItemService) {
 
   }
 
   ngOnInit() {
-    this.modifiers = new Array<ModifierData>();
+
+    this.modListData$ = this.itemStore.currentModList$;
     this.selectedModifiers = new Array<ModifierData>();
-
-    if (this.editService.unchangedItem) {
-      this.selectedModifiers = this.editService.unchangedItem.selectedModifiers;
-    }
-
-    this.subscriptions = new Subscription();
-
-    this.subscriptions.add(this.selectedItemService.getSelectedModifierListData().subscribe(data => {
-      this.modifiers = data.modifiers;
-      this.modifierListData = data;
-      this.multipleSelectionEnabled = (this.modifierListData.selectionType == "MULTIPLE");
-    }));
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
   }
 
   public changed(event: any): void {

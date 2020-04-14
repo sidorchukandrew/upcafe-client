@@ -1,5 +1,5 @@
-<div id="scrollable-wrapper">
-    <div class="modifier-wrapper" *ngFor="let modifier of modifiers; let i = index;">
+<div id="scrollable-wrapper" *ngIf="modListData$ | async as modListData">
+    <div class="modifier-wrapper" *ngFor="let modifier of modListData.modifiers; let i = index;">
 
         <div *ngIf="multipleSelectionEnabled">
             <mat-checkbox labelPosition="before" color="primary" (change)="changed($event);" [name]="modifier.id"

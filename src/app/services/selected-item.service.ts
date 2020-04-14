@@ -11,31 +11,4 @@ import { ModifierListData } from '../models/ModifierListData';
 })
 export class SelectedItemService {
 
-  currentItem: LineItem;
-  observableModifiers;
-  selectedModifierList: Array<ModifierData>;
-
-  constructor() {
-    this.currentItem = new LineItem();
-    this.observableModifiers = new Subject();
-    this.selectedModifierList = new Array<ModifierData>();
-  }
-
-  getSelectedItem() {
-    return this.currentItem;
-  }
-
-  setSelectedItem(item: CategoryItem, variationData: VariationData): void {
-    this.currentItem.itemData = item.itemData;
-    this.currentItem.variationData = variationData;
-    this.currentItem.modifierListsData = item.modifierListsData;
-  }
-
-  setSelectedModifierList(modifierListData: ModifierListData): void {
-    this.observableModifiers.next(modifierListData);
-  }
-
-  getSelectedModifierListData(): any {
-    return this.observableModifiers;
-  }
 }

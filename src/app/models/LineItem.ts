@@ -6,4 +6,4 @@ export class LineItem {
     itemData: ItemData;
     variationData: VariationData;
     modifierListsData: Array<ModifierListData>;
-}
+}   

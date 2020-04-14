@@ -7,7 +7,7 @@
         {{section.category | uppercase}}
     </div>
     <div class="scrolling-wrapper">
-        <div *ngFor="let item of section.categoryItems" style="display:inline;">
+        <div *ngFor="let item of section.items" style="display:inline;">
 
             <div *ngFor="let variation of item.variationsData" style="display: inline;">
                 <a class="card full-background" (click)="loadItem(item, variation)" [routerLink]="variation.variationId"

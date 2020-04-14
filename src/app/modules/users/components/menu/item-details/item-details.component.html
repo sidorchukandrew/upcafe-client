@@ -1,51 +1,58 @@
-<div id="full-page" [ngStyle]="{'background-image': 'url(' + item.itemData.imageData.url + ')'}" *ngIf="item.itemData">
-</div>
-<div id="summary-card">
-    <a id="back-button" routerLink="../">
-        <mat-icon>arrow_back_ios</mat-icon>
-    </a>
-    <div id="title" *ngIf="item.itemData">
-        {{item.itemData.name}}
-    </div>
-    <table id="price" class="theme-color-text">
-        <tr>
-            <td id="dollars">
-                ${{priceDollars}}.
-            </td>
-            <td id="cents">
-                {{priceCents}}
-            </td>
-        </tr>
-    </table>
-</div>
+<div *ngIf="item$ | async as item">
 
-<mat-accordion id="options-card-2" *ngIf="item.modifierListsData && item.modifierListsData.length > 0">
-    <mat-expansion-panel id="panel" [expanded]=true>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                <div id="options-card-title">
-                    Options
-                </div>
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div class="scrolling-wrapper">
-            <div class="modifier-list" *ngFor="let modList of item.modifierListsData">
-                <a class="modifier-list-image" (click)="loadModifierList(modList)"
-                    [ngStyle]="{'background-image': 'url(' + modList.imageUrl + ')'}"
-                    [class.selected]="modList.nameOfList == nameOfCurrentlySelectedModifierList">
-                    <div class="name">{{modList.nameOfList}}</div>
-                </a>
-            </div>
+    <div id="full-page" [ngStyle]="{'background-image': 'url(' + item.itemData.image.url + ')'}" *ngIf="item.itemData">
+    </div>
+    <div id="summary-card">
+        <a id="back-button" routerLink="../">
+            <mat-icon>arrow_back_ios</mat-icon>
+        </a>
+        <div id="title" *ngIf="item.itemData">
+            {{item.itemData.name}}
         </div>
-        <app-mod-list-details></app-mod-list-details>
-    </mat-expansion-panel>
-</mat-accordion>
-<div id="button-wrapper" *ngIf="item.modifierListsData && item.modifierListsData.length == 0"
-    style="background-color: rgba(0, 0, 0, 0);">
-    <button mat-raised-button id="add-to-order" color="primary" (click)='addToOrder();'>Add to
-        Order</button>
-</div>
-<div id="button-wrapper" *ngIf="item.modifierListsData && item.modifierListsData.length > 0">
-    <button mat-raised-button id="add-to-order" color="primary" (click)='addToOrder();'>Add to
-        Order</button>
+        <table id="price" class="theme-color-text">
+            <tr>
+                <td id="dollars">
+                    ${{priceDollars}}.
+                </td>
+                <td id="cents">
+                    {{priceCents}}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <mat-accordion id="options-card-2" *ngIf="item.modifierListsData && item.modifierListsData.length > 0">
+        <mat-expansion-panel id="panel" [expanded]=true>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <div id="options-card-title">
+                        Options
+                    </div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="scrolling-wrapper">
+                <div class="modifier-list" *ngFor="let modList of item.modifierListsData">
+
+                    <a class="modifier-list-image" (click)="loadModifierList(modList)"
+                        [ngStyle]="{'background-image': 'url(' + modList.imageUrl + ')'}"
+                        [class.selected]="modList.nameOfList == nameOfCurrentlySelectedModifierList">
+                        <div class="name">{{modList.nameOfList}}</div>
+                    </a>
+
+                </div>
+            </div>
+
+            <app-mod-list-details></app-mod-list-details>
+
+        </mat-expansion-panel>
+    </mat-accordion>
+    <div id="button-wrapper" *ngIf="item.modifierListsData && item.modifierListsData.length == 0"
+        style="background-color: rgba(0, 0, 0, 0);">
+        <button mat-raised-button id="add-to-order" color="primary" (click)='addToOrder();'>Add to
+            Order</button>
+    </div>
+    <div id="button-wrapper" *ngIf="item.modifierListsData && item.modifierListsData.length > 0">
+        <button mat-raised-button id="add-to-order" color="primary" (click)='addToOrder();'>Add to
+            Order</button>
+    </div>
 </div>
