@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class TimeService {
+export class HoursService {
 
   constructor(private http: HttpClient) { }
 

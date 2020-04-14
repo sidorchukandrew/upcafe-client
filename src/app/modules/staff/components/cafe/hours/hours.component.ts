@@ -2,10 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { CafeHours } from 'src/app/models/CafeHours';
 import { Block } from 'src/app/models/Block';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormControl } from '@angular/forms';
-import { OrderFeedService } from 'src/app/services/order-feed.service';
-import { parse } from 'querystring';
-import { TimeService } from 'src/app/services/time.service';
+import { HoursService } from 'src/app/services/hours.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { TimeUtilitiesService } from 'src/app/services/time-utilities.service';
 
@@ -31,7 +28,7 @@ export class HoursComponent implements OnInit {
 
   loading: boolean = false;
 
-  constructor(public dialog: MatDialog, private timeService: TimeService, private loadingService: LoadingService,
+  constructor(public dialog: MatDialog, private timeService: HoursService, private loadingService: LoadingService,
     public utils: TimeUtilitiesService) {
   }
 
@@ -74,9 +71,6 @@ export class HoursComponent implements OnInit {
   }
 
   updateView(blocks: Block[]): void {
-
-    console.log(blocks);
-
     this.clearTimes();
 
     blocks.forEach(block => {
@@ -188,13 +182,8 @@ export class HoursComponent implements OnInit {
 
   clearTimes(): void {
     this.cafeHours = {
-      mondayBlocks: [],
-      tuesdayBlocks: [],
-      wednesdayBlocks: [],
-      thursdayBlocks: [],
-      fridayBlocks: [],
-      saturdayBlocks: [],
-      sundayBlocks: []
+      mondayBlocks: [], tuesdayBlocks: [], wednesdayBlocks: [], thursdayBlocks: [],
+      fridayBlocks: [], saturdayBlocks: [], sundayBlocks: []
     }
   }
 
@@ -211,8 +200,6 @@ export class HoursComponent implements OnInit {
       this.loading = false;
     });
   }
-
-
 }
 
 export class Time {
@@ -328,7 +315,7 @@ export class SelectTimeComponent implements OnInit {
     }
   }
 
-  public addBlock(): void {
+  public submit(): void {
     this.formatMinutes(this.openTime, this.openTime.minutes);
     this.formatMinutes(this.closeTime, this.closeTime.minutes);
 

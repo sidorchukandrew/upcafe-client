@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TimeService } from './time.service';
+import { HoursService } from './hours.service';
 
 describe('TimeService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: TimeService = TestBed.get(TimeService);
+    const service: HoursService = TestBed.get(HoursService);
     expect(service).toBeTruthy();
   });
 });
