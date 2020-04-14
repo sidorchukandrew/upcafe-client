@@ -157,8 +157,8 @@
 
     <div class="block" *ngFor="let block of cafeHours.saturdayBlocks" matRipple>
         <span class="time" (click)="editBlock(block);">
-            {{utils.utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
-            {{utils.utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
+            {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
+            {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
         </span>
         <span class="delete-block" (click)="deleteBlock(block, cafeHours.saturdayBlocks)">
             <mat-icon>close</mat-icon>

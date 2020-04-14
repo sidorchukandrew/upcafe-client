@@ -5,8 +5,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
 import { OrderService } from 'src/app/services/order.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { SelectedItemStore } from 'src/app/services/stores/selected-item.store';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 
 @Component({
@@ -14,17 +15,18 @@ import { SelectedItemStore } from 'src/app/services/stores/selected-item.store';
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.css']
 })
-export class ItemDetailsComponent implements OnInit {
+export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   @ViewChild(ModListDetailsComponent, { static: false })
   private modListDetailsComponent: ModListDetailsComponent;
 
-  item$: Observable<LineItem>;
   totalItemPrice: number;
   priceDollars: number;
   priceCents: any;
   currentCents: number;
   nameOfCurrentlySelectedModifierList: string;
+  subscriptions: Subscription;
+  item: LineItem;
 
   constructor(private itemStore: SelectedItemStore, private route: ActivatedRoute,
     private orderService: OrderService, public userResponseDialog: MatDialog) {
@@ -32,7 +34,16 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.item$ = this.itemStore.currentItem$;
+    this.subscriptions = new Subscription();
+
+    this.subscriptions.add(this.itemStore.currentItem$.pipe(
+      tap(item => this.parsePrice(item.variationData.variationPrice)),
+      tap(item => this.item = item)
+    ).subscribe());
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   parsePrice(price: number): void {

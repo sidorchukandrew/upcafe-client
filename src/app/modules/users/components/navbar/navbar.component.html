@@ -1,4 +1,4 @@
-<div class="bottom theme-navbar-border" id="mobile-navbar">
+<div class="bottom " id="mobile-navbar">
     <a class="link" routerLink="home">
         <mat-icon class="icon" routerLinkActive="active">home</mat-icon>
         <span class="text" routerLinkActive="active">Home</span>
@@ -8,12 +8,14 @@
         <span class="text" routerLinkActive="active">Menu</span>
     </a>
     <a class="link" routerLink="cart">
-        <mat-icon class="icon" routerLinkActive="active">shopping_cart_outline</mat-icon>
+        <mat-icon class="icon" routerLinkActive="active" matBadge="2" matBadgePosition="above after"
+            matBadgeColor="accent">
+            shopping_cart_outline</mat-icon>
         <span class="text" routerLinkActive="active">Cart</span>
     </a>
 
-    <a class="link" routerLink="profile">
+    <a class="link" routerLink="account">
         <mat-icon class="icon" routerLinkActive="active">person</mat-icon>
-        <span class="text" routerLinkActive="active">Profile</span>
+        <span class="text" routerLinkActive="active">Account</span>
     </a>
 </div>

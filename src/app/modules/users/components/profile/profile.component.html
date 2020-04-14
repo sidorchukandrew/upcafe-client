@@ -1,0 +1,38 @@
+<div class="header">
+    <div class="title">
+        Account
+    </div>
+    <div class="user-summary">
+
+        <img [src]="imgUrl">
+
+        <div class="name">
+            {{name}}
+        </div>
+        <div class="email">
+            {{email}}
+        </div>
+    </div>
+</div>
+
+<div class="actions center-text">
+    <a class="action" matRipple>
+        Settings
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </a>
+    <hr>
+    <a class="action" matRipple>
+        Notifications
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </a>
+    <hr>
+    <a class="action" matRipple>
+        Edit Profile
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </a>
+    <mat-divider></mat-divider>
+    <a class="action" id="signout" matRipple>
+        SIGN OUT
+    </a>
+    <mat-divider></mat-divider>
+</div>

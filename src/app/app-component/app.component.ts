@@ -19,11 +19,6 @@ export class AppComponent implements OnInit {
 
   }
 
-  // ngOnDestroy(): void {
-  //   if (this.authService.isSignedIn()) {
-  //     this.authService.signOutCustomer();
-  //   }
-  // }
 
   public isSignedIn(): boolean {
     // this.router.navigate(['/user/menu']);

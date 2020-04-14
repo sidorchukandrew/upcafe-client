@@ -72,4 +72,13 @@ export class ModListDetailsComponent implements OnInit, OnDestroy {
   public setSelectedModifiers(modifiers: Array<ModifierData>): void {
     this.selectedModifiers = modifiers;
   }
+
+  public isSelected(id: string): boolean {
+    var index: number = this.selectedModifiers.findIndex(modifier => modifier.id == id);
+    return (index != -1);
+  }
+
+  public change(event) {
+    console.log(event);
+  }
 }

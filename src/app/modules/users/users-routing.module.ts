@@ -25,7 +25,7 @@ const routes: Routes = [
                 { path: 'menu', component: MenuComponent },
                 { path: 'home', component: HomeComponent },
                 { path: 'cart', component: CartComponent },
-                { path: 'profile', component: ProfileComponent },
+                { path: 'account', component: ProfileComponent },
                 { path: 'menu/eats', component: EatsComponent },
                 { path: 'menu/drinks', component: DrinksComponent },
                 { path: 'menu/snacks', component: SnacksComponent },

@@ -1,11 +1,11 @@
-#overlay {
+/* #overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 63px;
     background-color: #eee;
-}
+} */
 
 #title {
     padding-top: 35px;

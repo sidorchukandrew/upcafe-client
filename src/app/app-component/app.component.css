@@ -4,3 +4,11 @@
     width: 10%;
     min-width: 200px;
 }
+
+.black-bg {
+    background-color: black;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}

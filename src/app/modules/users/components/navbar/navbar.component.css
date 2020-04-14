@@ -5,11 +5,12 @@
 
 #mobile-navbar {
     width: 100%;
-    background-color: white;
+    background-color: black;
 }
 
 #mobile-navbar .link {
     color: #939cb8;
+    color: #adb7d5;
     cursor: pointer;
     height: 100%;
     display: inline-block;
