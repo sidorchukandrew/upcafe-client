@@ -1,95 +1,10 @@
 <div id="header" class="center-text big-text label-font padding-10 white-background">
     My Order
 </div>
-<div *ngIf="currentOrder == null" class="center-text" id="no-order">
-    <div id="no-order-wrapper">
-        <div id="no-order-image">
-            <mat-icon style="font-size: 150px; color: #a4d9fd; width: 150px; height: 150px;">shopping_basket</mat-icon>
-        </div>
-        <div id="no-order-content">
-            <div>
 
-                Looks like you haven't started an order yet
-            </div>
-            <div class="">
-                TAP THE MENU TO START ORDERING
-            </div>
-        </div>
-    </div>
-</div>
-<div *ngIf="currentOrder != null">
-    <div class="pickup-time">
-        <div class="title">
-            Pickup Time
-        </div>
-        <div class="available-times">
-            <div class="time" [class.selected]="selectedTime == time" *ngFor="let time of availableTimes"
-                (click)="timeSelected(time);" matRipple matRippleColor="rgba(100, 100, 100, .1)">
-                {{time}}
-            </div>
-        </div>
-    </div>
-    <div *ngFor="let orderItem of currentOrder.selectedLineItems"
-        class="left-margin-20 right-margin-20 order-item-panel">
-        <table class="full-width">
-            <tr>
-                <td style="width: 50%;">
-                    <div id="item-name" class="item-name" style="margin-right: 10px;">
-                        {{ orderItem.variationData.name }}
-                    </div>
-                </td>
-                <td id="quantity-selector" class="right-align-text">
-                    <div id="total-item-price">
-                        {{ orderItem.quantity * orderItem.price | currency }}
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="full-width">
-            <tr *ngIf="orderItem.selectedModifiers" style="color: grey;">
-                <td>
-                    <div *ngFor="let modifier of orderItem.selectedModifiers" class="smaller-text">
-                        {{modifier.name}}
 
-                        <span *ngIf="modifier.price != 0">
-                            ({{ modifier.price | currency }})
-                        </span>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="full-width">
-            <tr>
-                <td>
-                    <button mat-button class="item-action" color="primary"
-                        (click)="navigateToEditItem(orderItem)">EDIT</button>
-                    <button mat-button class="item-action" color="primary"
-                        (click)="removeFromOrder(orderItem);">REMOVE</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-</div>
-<div id="bottom-card" class="full-width navbar-space-bottom-position white-background shadow"
-    *ngIf="currentOrder != null">
-    <table class="full-width top-margin-15">
-        <tr class="label-font">
-            <td class="small-width right-align-text">
-                <div id="tax" class="inline-block theme-color">Tax:</div>
-            </td>
-            <td class="">
-                <div class="number inline-block">{{ (currentOrder.totalPrice * .08) | currency }}</div>
-            </td>
-            <td class="right-align-text">
-                <div id="subtotal" class="inline-block  theme-color">Subtotal:</div>
-            </td>
-            <td class="small-width right-align-text">
-                <div class="number inline-block right-margin-20">{{ currentOrder.totalPrice | currency }} </div>
-            </td>
-        </tr>
-    </table>
-    <button mat-raised-button id="continue" class="top-margin-15 bottom-margin-20" color="primary"
-        routerLink="payment">Continue to Payment
-    </button>
+<div [ngSwitch]="state$ | async">
+    <app-my-order *ngSwitchCase="'STARTED'"></app-my-order>
+    <app-track-order *ngSwitchCase="'PLACED'"></app-track-order>
+    <app-begin-order *ngSwitchCase="'NEW'"></app-begin-order>
 </div>

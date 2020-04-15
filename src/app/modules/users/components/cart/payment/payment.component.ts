@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
-import { Subscription } from 'rxjs';
+import { Subscription, concat } from 'rxjs';
 import { Order } from 'src/app/models/Order';
+import { tap } from 'rxjs/operators';
 
 declare var SqPaymentForm: any; //magic to allow us to access the SquarePaymentForm lib
 
@@ -26,7 +27,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.order = this.orderService.getCurrentOrder();
+    this.order = this.orderService.order;
     this.subscriptions = new Subscription();
 
     var applicationId = "sandbox-sq0idb-S7VRotepCHWB8XgYxKZIsQ";
@@ -103,21 +104,20 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   nonceReceived(nonce): void {
     this.processingPayment = true;
+    var id;
+    var totalPrice;
 
-    this.subscriptions.add(this.orderService.postOrder().subscribe(data => {
-      console.log("ORDER CONFIRMATION : ");
-      console.log(data);
+    var placeOrder$ = this.orderService.postOrder().pipe(
+      tap(data => id = data['id']),
+      tap(data => totalPrice = data['totalPrice'])
+    );
 
-      this.subscriptions.add(this.orderService.postPayment(nonce, data.id, data.totalPrice).subscribe(data => {
-        this.processingPayment = !data;
-        this.success = data;
+    var payForOrder$ = this.orderService.postPayment(nonce, id, totalPrice)
+      .pipe(
+        tap(() => this.success = true)
+      );
 
-        if (this.success) {
-          this.orderService.clearOrders();
-        }
-      }));
-    }));
-
+    concat(placeOrder$, payForOrder$).subscribe();
   }
 
   ngOnDestroy() {

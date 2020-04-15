@@ -25,7 +25,6 @@ export class SelectedItemStore {
     currentItem.modifierListsData = item.modifierListsData;
 
     this.itemSubject.next(currentItem);
-    console.log(this.itemSubject.value);
   }
 
   public setSelectedModList(modList: ModifierListData) {

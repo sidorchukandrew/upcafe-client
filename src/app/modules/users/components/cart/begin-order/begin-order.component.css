@@ -1,0 +1,14 @@
+#no-order {
+    height: 100%;
+
+}
+
+#no-order-wrapper {
+    position: absolute;
+    top: 20%;
+    width: 100%;
+}
+
+#no-order-content {
+    width: 100%;
+}

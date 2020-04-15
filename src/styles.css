@@ -82,8 +82,9 @@ a {
     color: #34a5f2;
 }
 
-.navbar-space-bottom-position {
-    height: 60px;
+.navbar-space-bottom {
+    /* height: 60px; */
+    margin-bottom: 60px;
 }
 
 .bottom {
@@ -136,4 +137,12 @@ a {
 
 .center-text {
     text-align: center;
+}
+
+
+::-webkit-scrollbar {
+    width: 0px;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
 }

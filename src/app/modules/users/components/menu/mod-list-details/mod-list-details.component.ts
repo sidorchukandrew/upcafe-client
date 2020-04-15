@@ -5,6 +5,7 @@ import { OrderService } from 'src/app/services/order.service';
 import { Subscription, Observable } from 'rxjs';
 import { EditItemService } from 'src/app/services/edit-item.service';
 import { SelectedItemStore } from 'src/app/services/stores/selected-item.store';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-mod-list-details',
@@ -28,7 +29,15 @@ export class ModListDetailsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions = new Subscription();
 
-    this.subscriptions.add(this.itemStore.currentModList$.subscribe(modListData => this.modListData = modListData));
+    this.subscriptions.add(this.itemStore.currentModList$
+      .subscribe(modListData => {
+        this.modListData = modListData;
+        if (modListData) {
+          this.multipleSelectionEnabled = modListData.selectionType == 'MULTIPLE';
+          console.log(this.multipleSelectionEnabled);
+        }
+      }));
+
     this.modListData = new ModifierListData('', '', '', []);
     this.selectedModifiers = new Array<ModifierData>();
   }
@@ -37,32 +46,31 @@ export class ModListDetailsComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  public changed(event: any): void {
-
-    var justSelected = this.modListData.modifiers.find(function (modifier) {
-      return modifier.id == event.source.name;
-    });
-
-    (event.checked) ? this.selectedModifiers.push(justSelected) : this.removeById(event.source.name);
-    console.log(this.orderService.editingItem);
+  public changed(checked: boolean, modifier: ModifierData): void {
+    (checked) ? this.selectedModifiers.push(modifier) : this.remove(modifier);
+    console.log(this.selectedModifiers);
   }
 
-  public removeById(id: string): void {
-    const index = this.selectedModifiers.findIndex(function (m) {
-      return m.id == id;
-    });
-
+  public remove(modifier: ModifierData): void {
+    const index = this.selectedModifiers.indexOf(modifier);
     if (index > -1)
       this.selectedModifiers.splice(index, 1);
   }
 
-  public selected(id: string): boolean {
+  public selected(modifier: ModifierData): boolean {
 
-    var index = this.selectedModifiers.findIndex(function (m) {
-      return (m.id == id);
+    var index = this.selectedModifiers.indexOf(modifier);
+    return index != -1;
+  }
+
+  public changedSingleSelection(modifier: ModifierData, modifiers: ModifierData[]) {
+
+    modifiers.forEach(m => {
+      console.log("Removing:", modifier);
+      this.remove(modifier);
     });
 
-    return index != -1;
+    this.selectedModifiers.push(modifier);
   }
 
   public getSelectedModifiers(): Array<ModifierData> {
@@ -73,12 +81,7 @@ export class ModListDetailsComponent implements OnInit, OnDestroy {
     this.selectedModifiers = modifiers;
   }
 
-  public isSelected(id: string): boolean {
-    var index: number = this.selectedModifiers.findIndex(modifier => modifier.id == id);
-    return (index != -1);
-  }
-
-  public change(event) {
+  display(event) {
     console.log(event);
   }
 }

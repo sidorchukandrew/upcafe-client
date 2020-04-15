@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SelectedItemStore } from 'src/app/services/stores/selected-item.store';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { VariationData } from 'src/app/models/VariationData';
 
 
 @Component({
@@ -80,20 +81,20 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   public addToOrder(): void {
 
-    // var selectedModifiers;
-    // if (this.modListDetailsComponent)
-    //   selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
+    var selectedModifiers;
+    if (this.modListDetailsComponent)
+      selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
 
-    // var variationData: VariationData = this.item.variationData;
-    // if (variationData.name == 'Regular')
-    //   variationData.name = this.item.itemData.name;
+    var variationData: VariationData = this.item.variationData;
+    if (variationData.name == 'Regular')
+      variationData.name = this.item.itemData.name;
 
-    // var orderItem = this.orderService.newOrderItem(variationData, selectedModifiers);
-    // this.orderService.addToOrder(orderItem);
+    var orderItem = this.orderService.newOrderItem(variationData, selectedModifiers);
+    this.orderService.addToOrder(orderItem);
 
-    // this.userResponseDialog.open(UserResponseDialog, {
-    //   hasBackdrop: true
-    // });
+    this.userResponseDialog.open(UserResponseDialog, {
+      hasBackdrop: true
+    });
   }
 }
 

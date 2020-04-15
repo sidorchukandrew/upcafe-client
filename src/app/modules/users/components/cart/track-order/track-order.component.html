@@ -1,0 +1,24 @@
+<div class="tracker">
+    <div class="step" id="placed">
+        <div class="icon" [class.active]="status == 'ORDER PLACED'"
+            [class.complete]="status == 'WORKING ON IT' || status == 'READY FOR PICKUP'"></div>
+        <div class="label">Order placed successfully</div>
+    </div>
+    <div class="stepper-line"></div>
+
+    <div class="step" id="started">
+        <div class="icon" [class.active]="status == 'WORKING ON IT'" [class.complete]="status == 'READY FOR PICKUP'">
+        </div>
+        <div class="label">We're working on your order!</div>
+    </div>
+    <div class="stepper-line"></div>
+    <div class="step" id="ready">
+        <div class="icon" [class.active]="status == 'READY FOR PICKUP'"></div>
+        <div class="label">Your order is ready for pickup</div>
+    </div>
+    <div class="stepper-line"></div>
+    <div class="step" id="picked-up">
+        <div class="icon"></div>
+        <div class="label">Picked up</div>
+    </div>
+</div>

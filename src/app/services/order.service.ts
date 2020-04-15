@@ -4,23 +4,26 @@ import { ModifierData } from '../models/ModifierData';
 import { OrderItem } from '../models/OrderItem';
 import { Order } from '../models/Order';
 import { HttpClient } from '@angular/common/http';
-// import { OrderConfirmation } from '../models/OrderConfirmation';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { Customer } from '../models/Customer';
 import { environment } from 'src/environments/environment';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  order: Order;
-  customer: Customer;
-  editingItem: OrderItem;
-  observableConfirmation: Subject<Order>;
+  public order: Order;
+  private customer: Customer;
+
+  private stateSubject: BehaviorSubject<string> = new BehaviorSubject<string>('NEW');
+  private statusSubject: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
+
+  public state$: Observable<string> = this.stateSubject.asObservable();
+  public status$: Observable<string> = this.statusSubject.asObservable();
 
   constructor(private http: HttpClient) {
-    this.observableConfirmation = new Subject();
 
     this.customer = {
       email: 'sidorchukandrew@gmail.com',
@@ -29,15 +32,6 @@ export class OrderService {
       id: 5,
       photoUrl: 'https://lh3.googleusercontent.com/a-/AOh14GhIz8ImV-cH4k5bKa2DDVJD-QPW238HRL6xL9ey=s96-c'
     }
-
-    localStorage.clear();
-    localStorage.setItem("firstName", this.customer.firstName);
-    localStorage.setItem("lastName", this.customer.lastName);
-    localStorage.setItem("id", this.customer.id + '');
-    localStorage.setItem("email", this.customer.email);
-    localStorage.setItem("photoUrl", this.customer.photoUrl);
-
-
   }
 
   public newOrderItem(variationData: VariationData, selectedModifiers: Array<ModifierData>): OrderItem {
@@ -48,6 +42,8 @@ export class OrderService {
       this.order.customer = this.customer;
       this.order.selectedLineItems = new Array<OrderItem>();
       this.order.totalPrice = 0;
+
+      this.stateSubject.next('STARTED');
     }
 
     var orderItem = new OrderItem();
@@ -71,35 +67,15 @@ export class OrderService {
     this.order.selectedLineItems.push(orderItem);
   }
 
-  public getCurrentOrder(): Order {
-    return this.order;
-  }
-
-  public setItemBeingEdited(orderItem: OrderItem) {
-    this.editingItem = orderItem;
-  }
-
-  public getItemBeingEdited(): OrderItem {
-    return this.editingItem;
-  }
-
   public postOrder(): any {
     if (this.order.pickupTime == null)
       this.order.pickupTime = 'ASAP';
     return this.http.post(environment.backendUrl + "/orders", this.order);
   }
 
-  public setConfirmation(confirmation: Order) {
-    this.observableConfirmation.next(confirmation);
-  }
-
-  public getConfirmation(): Subject<Order> {
-    return this.observableConfirmation;
-  }
-
   public clearOrders(): void {
-    console.log("Clearing order.");
-    this.observableConfirmation.next(null);
+    // this.stateSubject.next('NEW');
+    console.log("clearing orders");
     this.order = null;
   }
 
@@ -108,10 +84,32 @@ export class OrderService {
       "nonce": nonce,
       "orderId": orderId,
       "price": price
-    });
+    }).pipe(
+      tap(() => this.stateSubject.next('PLACED')),
+      tap(() => this.clearOrders())
+    );
   }
 
-  public getIncompleteCustomersOrders(): any {
-    return this.http.get(environment.backendUrl + "/orders/customer/5");
+  public retrieveOrder() {
+    return this.http.get<Order>(environment.backendUrl + "/orders/customer/" + this.customer.id, {
+      params: {
+        state: 'ACTIVE'
+      }
+    }).pipe(
+      tap(order => this.parseOrderStatus(order)),
+      tap(order => this.order = order)
+    );
+  }
+
+  private parseOrderStatus(order) {
+    if (order) {
+      console.log(order['state']);
+      this.statusSubject.next(order['state']);
+      this.stateSubject.next('PLACED');
+    }
+    else {
+      console.log("Theres no order to retrieve");
+      this.stateSubject.next('NEW');
+    }
   }
 }

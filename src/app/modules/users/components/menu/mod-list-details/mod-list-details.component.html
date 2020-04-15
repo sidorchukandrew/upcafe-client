@@ -1,28 +1,15 @@
 <div id="scrollable-wrapper" *ngIf="modListData">
-    <div class="modifier-wrapper" *ngFor="let modifier of modListData.modifiers; let i = index;">
 
-        <div *ngIf="multipleSelectionEnabled">
-            <mat-checkbox labelPosition="before" color="primary" (change)="changed($event);" [name]="modifier.id"
-                [checked]="selected(modifier.id)">
+    <div *ngIf="multipleSelectionEnabled">
+        <div class="modifier-wrapper" *ngFor="let modifier of modListData.modifiers;">
+            <div class="top-line">
                 <div class="bold small">
                     {{ modifier.name }}
                 </div>
-            </mat-checkbox>
-            <div class="small bottom-space-5">
-                {{ modifier.price | currency}}
+                <mat-checkbox labelPosition="before" color="primary" (change)="changed($event.checked, modifier);"
+                    [checked]="selected(modifier)">
+                </mat-checkbox>
             </div>
-
-            <mat-divider></mat-divider>
-        </div>
-
-        <div *ngIf="!multipleSelectionEnabled">
-            <mat-checkbox labelPosition="before" color="primary"
-                (change)="change($event); removeById(selectedId); changed($event); selectedIndex = i; selectedId = modifier.id"
-                [name]="modifier.id" [checked]="isSelected(id)">
-                <div class="bold small">
-                    {{ modifier.name }}
-                </div>
-            </mat-checkbox>
             <div class="small bottom-space-5">
                 {{ modifier.price | currency}}
             </div>
@@ -30,4 +17,22 @@
             <mat-divider></mat-divider>
         </div>
     </div>
-</div>
+
+    <div *ngIf="!multipleSelectionEnabled">
+        <div class="modifier-wrapper" *ngFor="let modifier of modListData.modifiers;">
+            <div class="top-line">
+                <div class="bold small">
+                    {{ modifier.name }}
+                </div>
+                <mat-checkbox labelPosition="before" color="primary"
+                    (change)="changedSingleSelection(modifier, modListData.modifiers);" [checked]="selected(modifier)">
+                </mat-checkbox>
+            </div>
+            <div class="small bottom-space-5">
+                {{ modifier.price | currency}}
+            </div>
+
+            <mat-divider></mat-divider>
+        </div>
+
+    </div>

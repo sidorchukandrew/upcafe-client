@@ -8,7 +8,7 @@ import { UserComponent } from './user/user.component';
 import {
   MatIconModule, MatRippleModule, MatButtonModule,
   MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule, MatSnackBarModule, MatDialogModule,
-  MatProgressSpinnerModule, MatBadgeModule
+  MatProgressSpinnerModule, MatBadgeModule, MatStepperModule
 } from '@angular/material';
 import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -23,18 +23,24 @@ import { SweetsComponent } from './components/menu/sweets/sweets.component';
 import { EditItemComponent } from './components/cart/edit-item/edit-item.component';
 import { PaymentComponent } from './components/cart/payment/payment.component';
 import { PickupComponent } from './components/cart/pickup/pickup.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BeginOrderComponent } from './components/cart/begin-order/begin-order.component';
+import { MyOrderComponent } from './components/cart/my-order/my-order.component';
+import { TrackOrderComponent } from './components/cart/track-order/track-order.component';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @NgModule({
   declarations: [DashboardComponent, NavbarComponent, UserComponent, MenuComponent, HomeComponent,
     CartComponent, ProfileComponent, EatsComponent, ItemDetailsComponent, ModListDetailsComponent, UserResponseDialog, DrinksComponent, SnacksComponent,
-    SweetsComponent, EditItemComponent, PaymentComponent, PickupComponent],
+    SweetsComponent, EditItemComponent, PaymentComponent, PickupComponent, BeginOrderComponent, MyOrderComponent, TrackOrderComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
     MatIconModule, MatRippleModule, MatButtonModule, MatExpansionModule, MatCheckboxModule, MatDividerModule, MatRadioModule,
-    MatSnackBarModule, MatDialogModule, MatProgressSpinnerModule, MatBadgeModule
+    MatSnackBarModule, MatDialogModule, MatProgressSpinnerModule, MatBadgeModule, MatStepperModule
   ],
-  entryComponents: [UserResponseDialog]
+  entryComponents: [UserResponseDialog],
+  providers: [
+
+  ]
 })
 export class UsersModule { }
