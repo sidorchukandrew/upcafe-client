@@ -3,7 +3,7 @@
 </div>
 
 
-<div [ngSwitch]="state$ | async">
+<div [ngSwitch]="state">
     <app-my-order *ngSwitchCase="'STARTED'"></app-my-order>
     <app-track-order *ngSwitchCase="'PLACED'"></app-track-order>
     <app-begin-order *ngSwitchCase="'NEW'"></app-begin-order>

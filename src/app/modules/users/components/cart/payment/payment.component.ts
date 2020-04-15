@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { Subscription, concat } from 'rxjs';
 import { Order } from 'src/app/models/Order';
-import { tap } from 'rxjs/operators';
+import { tap, concatMap } from 'rxjs/operators';
 
 declare var SqPaymentForm: any; //magic to allow us to access the SquarePaymentForm lib
 
@@ -104,20 +104,28 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   nonceReceived(nonce): void {
     this.processingPayment = true;
-    var id;
-    var totalPrice;
+    // var id;
+    // var totalPrice;
 
-    var placeOrder$ = this.orderService.postOrder().pipe(
-      tap(data => id = data['id']),
-      tap(data => totalPrice = data['totalPrice'])
-    );
+    // var placeOrder$ = this.orderService.postOrder().pipe(
+    //   tap(data => console.log(data)),
+    //   tap(data => id = data['id']),
+    //   tap(data => totalPrice = data['totalPrice'])
+    // );
 
-    var payForOrder$ = this.orderService.postPayment(nonce, id, totalPrice)
+    this.orderService.postOrder()
       .pipe(
-        tap(() => this.success = true)
-      );
+        tap(data => console.log(data)),
+        concatMap(data => this.orderService.postPayment(nonce, data['id'], data['totalPrice'])
+          .pipe(tap(() => this.success = true)))
+      ).subscribe();
 
-    concat(placeOrder$, payForOrder$).subscribe();
+    // var payForOrder$ = this.orderService.postPayment(nonce, id, totalPrice)
+    //   .pipe(
+    //     tap(() => this.success = true)
+    //   );
+
+    // concat(placeOrder$, payForOrder$).subscribe();
   }
 
   ngOnDestroy() {

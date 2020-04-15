@@ -8,7 +8,7 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
 import { OrdersComponent } from './components/orders/orders.component';
 import { ActiveOrdersComponent } from './components/active-orders/active-orders.component';
 import { CompletedOrdersComponent } from './components/completed-orders/completed-orders.component';
-import { LateOrdersComponent } from './components/late-orders/late-orders.component';
+import { ReadyOrdersComponent } from './components/ready-orders/ready-orders.component';
 
 const routes = [
     {
@@ -21,7 +21,7 @@ const routes = [
                 children: [
                     { path: 'new', component: IncomingOrdersComponent },
                     { path: 'active', component: ActiveOrdersComponent },
-                    { path: 'late', component: LateOrdersComponent },
+                    { path: 'ready', component: ReadyOrdersComponent },
                     { path: 'completed', component: CompletedOrdersComponent }
                 ]
             },

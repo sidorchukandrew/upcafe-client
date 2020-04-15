@@ -70,16 +70,19 @@ export class OrderService {
   public postOrder(): any {
     if (this.order.pickupTime == null)
       this.order.pickupTime = 'ASAP';
+
+    this.order.pickupDate = new Date().toDateString();
+
     return this.http.post(environment.backendUrl + "/orders", this.order);
   }
 
   public clearOrders(): void {
-    // this.stateSubject.next('NEW');
     console.log("clearing orders");
     this.order = null;
   }
 
   public postPayment(nonce: string, orderId: string, price: number): any {
+
     return this.http.post(environment.backendUrl + "/orders/pay", {
       "nonce": nonce,
       "orderId": orderId,
@@ -90,26 +93,47 @@ export class OrderService {
     );
   }
 
-  public retrieveOrder() {
+  public checkIfOrderAlreadyPlaced(): any {
     return this.http.get<Order>(environment.backendUrl + "/orders/customer/" + this.customer.id, {
       params: {
         state: 'ACTIVE'
       }
     }).pipe(
-      tap(order => this.parseOrderStatus(order)),
-      tap(order => this.order = order)
+      tap(order => this.parseStateOfApp(order))
     );
   }
 
-  private parseOrderStatus(order) {
+  public checkStatusOfOrder(): any {
+    return this.http.get<Order>(environment.backendUrl + "/orders/customer/" + this.customer.id, {
+      params: {
+        state: 'ACTIVE'
+      }
+    }).pipe(
+      tap(order => this.parseStatus(order))
+    );
+  }
+
+  private parseStatus(order: Order) {
     if (order) {
-      console.log(order['state']);
       this.statusSubject.next(order['state']);
+    }
+    else {
+      this.stateSubject.next("NEW");
+
+      this.statusSubject.next("");
+    }
+  }
+
+  private parseStateOfApp(order: Order): Order {
+
+    if (order) {
+      // this.statusSubject.next(order['state']);
       this.stateSubject.next('PLACED');
     }
     else {
-      console.log("Theres no order to retrieve");
-      this.stateSubject.next('NEW');
+      this.order ? this.stateSubject.next('STARTED') : this.stateSubject.next('NEW');
     }
+
+    return order;
   }
 }

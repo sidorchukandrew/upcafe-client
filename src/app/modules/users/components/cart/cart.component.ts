@@ -9,15 +9,15 @@ import { Observable } from 'rxjs';
 })
 export class CartComponent implements OnInit {
 
-  state$: Observable<string>;
+  state: string;
 
   constructor(private orderService: OrderService) { }
 
   ngOnInit() {
-    this.state$ = this.orderService.state$;
+    this.orderService.state$.subscribe(state => this.state = state);
 
-    if (this.orderService.order == null)
-      this.orderService.retrieveOrder().subscribe();
+    // // Only retrieve it if the order state is placed
+    this.orderService.checkIfOrderAlreadyPlaced().subscribe();
   }
 
 }

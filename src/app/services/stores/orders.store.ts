@@ -45,8 +45,8 @@ export class OrdersStore {
     return this.filterOrdersByState('ACTIVE');
   }
 
-  selectLateOrders(): Observable<Order[]> {
-    return this.filterOrdersByState('LATE');
+  selectReadyOrders(): Observable<Order[]> {
+    return this.filterOrdersByState('READY');
   }
 
   selectCompleteOrders(): Observable<Order[]> {
@@ -74,6 +74,10 @@ export class OrdersStore {
       });
 
       that.stompClient.subscribe('/active', (message) => {
+        that.loadOrdersFromAPI(new Date().toDateString());
+      });
+
+      that.stompClient.subscribe('/ready', (message) => {
         that.loadOrdersFromAPI(new Date().toDateString());
       });
 

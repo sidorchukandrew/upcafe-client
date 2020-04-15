@@ -16,9 +16,8 @@
     <button [class.selected]="selectedOrdersView == 'In Progress'" matRipple (click)="selectOrderView('In Progress');"
         routerLink="/staff/orders/active">In
         Progress</button>
-    <button [class.selected]="selectedOrdersView == 'Over Due'" matRipple (click)="selectOrderView('Over Due');"
-        routerLink="/staff/orders/late">Over
-        Due</button>
+    <button [class.selected]="selectedOrdersView == 'Ready For Pickup'" matRipple
+        (click)="selectOrderView('Ready For Pickup');" routerLink="/staff/orders/ready">Ready</button>
 </div>
 
 <router-outlet></router-outlet>
