@@ -8,8 +8,8 @@
         <span class="text" routerLinkActive="active">Menu</span>
     </a>
     <a class="link" routerLink="cart">
-        <mat-icon class="icon" routerLinkActive="active" matBadge="2" matBadgePosition="above after"
-            matBadgeColor="accent">
+        <mat-icon class="icon" routerLinkActive="active" [matBadge]="badgeNumber" [matBadgeHidden]="badgeNumber == 0"
+            matBadgePosition="above after" matBadgeColor="accent">
             shopping_cart_outline</mat-icon>
         <span class="text" routerLinkActive="active">Cart</span>
     </a>

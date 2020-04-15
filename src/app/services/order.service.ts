@@ -8,6 +8,7 @@ import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { Customer } from '../models/Customer';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
+import { CartBadgeService } from './cart-badge.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class OrderService {
   public state$: Observable<string> = this.stateSubject.asObservable();
   public status$: Observable<string> = this.statusSubject.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private badgeService: CartBadgeService) {
 
     this.customer = {
       email: 'sidorchukandrew@gmail.com',
@@ -63,6 +64,7 @@ export class OrderService {
   }
 
   public addToOrder(orderItem: OrderItem) {
+    this.badgeService.addedItemToCart();
     this.order.totalPrice += orderItem.price;
     this.order.selectedLineItems.push(orderItem);
   }

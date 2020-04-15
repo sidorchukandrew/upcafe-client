@@ -104,14 +104,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   nonceReceived(nonce): void {
     this.processingPayment = true;
-    // var id;
-    // var totalPrice;
-
-    // var placeOrder$ = this.orderService.postOrder().pipe(
-    //   tap(data => console.log(data)),
-    //   tap(data => id = data['id']),
-    //   tap(data => totalPrice = data['totalPrice'])
-    // );
 
     this.orderService.postOrder()
       .pipe(
@@ -120,12 +112,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
           .pipe(tap(() => this.success = true)))
       ).subscribe();
 
-    // var payForOrder$ = this.orderService.postPayment(nonce, id, totalPrice)
-    //   .pipe(
-    //     tap(() => this.success = true)
-    //   );
-
-    // concat(placeOrder$, payForOrder$).subscribe();
   }
 
   ngOnDestroy() {

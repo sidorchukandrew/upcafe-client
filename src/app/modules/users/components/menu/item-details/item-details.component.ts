@@ -103,10 +103,15 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   templateUrl: 'user-response-dialog.html',
   styleUrls: ['user-response-dialog.css']
 })
-export class UserResponseDialog {
+export class UserResponseDialog implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<UserResponseDialog>, private router: Router) { }
+
+  ngOnInit() {
+    window.navigator.vibrate(200);
+    setTimeout(() => this.dialogRef.close(), 1000);
+  }
 
   close(): void {
     this.dialogRef.close();

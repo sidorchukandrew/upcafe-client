@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { Observable } from 'rxjs';
+import { CartBadgeService } from 'src/app/services/cart-badge.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,11 +12,12 @@ export class CartComponent implements OnInit {
 
   state: string;
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private badgeService: CartBadgeService) { }
 
   ngOnInit() {
     this.orderService.state$.subscribe(state => this.state = state);
 
+    // this.badgeService.cartViewed();
     // // Only retrieve it if the order state is placed
     this.orderService.checkIfOrderAlreadyPlaced().subscribe();
   }
