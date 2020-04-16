@@ -6,7 +6,7 @@ import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.co
 import { OrderService } from 'src/app/services/order.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SelectedItemStore } from 'src/app/services/stores/selected-item.store';
-import { Subscription } from 'rxjs';
+import { Subscription, noop } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { VariationData } from 'src/app/models/VariationData';
 
@@ -30,7 +30,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   item: LineItem;
 
   constructor(private itemStore: SelectedItemStore, private route: ActivatedRoute,
-    private orderService: OrderService, public userResponseDialog: MatDialog) {
+    private orderService: OrderService, public userResponseDialog: MatDialog, private router: Router) {
 
   }
 
@@ -38,6 +38,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     this.subscriptions = new Subscription();
 
     this.subscriptions.add(this.itemStore.currentItem$.pipe(
+      tap(item => (item) ? noop : this.router.navigate(["user/menu/"])),
       tap(item => this.parsePrice(item.variationData.variationPrice)),
       tap(item => this.item = item)
     ).subscribe());

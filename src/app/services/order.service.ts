@@ -33,6 +33,8 @@ export class OrderService {
       id: 5,
       photoUrl: 'https://lh3.googleusercontent.com/a-/AOh14GhIz8ImV-cH4k5bKa2DDVJD-QPW238HRL6xL9ey=s96-c'
     }
+
+
   }
 
   public newOrderItem(variationData: VariationData, selectedModifiers: Array<ModifierData>): OrderItem {
@@ -137,5 +139,10 @@ export class OrderService {
     }
 
     return order;
+  }
+
+  public emptyCart(): void {
+    this.stateSubject.next('NEW');
+    this.order = null;
   }
 }

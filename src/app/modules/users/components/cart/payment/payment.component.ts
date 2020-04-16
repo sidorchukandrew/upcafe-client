@@ -3,6 +3,7 @@ import { OrderService } from 'src/app/services/order.service';
 import { Subscription, concat } from 'rxjs';
 import { Order } from 'src/app/models/Order';
 import { tap, concatMap } from 'rxjs/operators';
+import { CartBadgeService } from 'src/app/services/cart-badge.service';
 
 declare var SqPaymentForm: any; //magic to allow us to access the SquarePaymentForm lib
 
@@ -21,7 +22,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   processingPayment: boolean;
   success: boolean;
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService, private badgeService: CartBadgeService) {
     this.processingPayment = false;
     this.success = false;
   }
@@ -109,7 +110,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
       .pipe(
         tap(data => console.log(data)),
         concatMap(data => this.orderService.postPayment(nonce, data['id'], data['totalPrice'])
-          .pipe(tap(() => this.success = true)))
+          .pipe(
+            tap(() => this.success = true),
+            tap(() => this.badgeService.orderPaid())))
       ).subscribe();
 
   }

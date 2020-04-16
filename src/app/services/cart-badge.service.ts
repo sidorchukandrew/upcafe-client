@@ -11,11 +11,15 @@ export class CartBadgeService {
 
   constructor() { }
 
-  cartViewed(): void {
+  orderPaid(): void {
     this.numberSubject.next(0);
   }
 
   addedItemToCart(): void {
     this.numberSubject.next(this.numberSubject.value + 1);
+  }
+
+  removedItemFromCart(): void {
+    this.numberSubject.next(this.numberSubject.value - 1);
   }
 }

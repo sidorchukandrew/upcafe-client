@@ -4,6 +4,8 @@ import { OrderService } from 'src/app/services/order.service';
 import { Router } from '@angular/router';
 import { EditItemService } from 'src/app/services/edit-item.service';
 import { OrderItem } from 'src/app/models/OrderItem';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { CartBadgeService } from 'src/app/services/cart-badge.service';
 
 @Component({
   selector: 'app-my-order',
@@ -17,7 +19,7 @@ export class MyOrderComponent implements OnInit {
   selectedTime: string;
 
   constructor(private orderService: OrderService, private router: Router,
-    private editService: EditItemService) {
+    private editService: EditItemService, private badgeService: CartBadgeService) {
     this.availableTimes = ['7:00', '7:10', '7:20', '7:30', '7:40', '7:50', '8:00'];
   }
 
@@ -41,8 +43,12 @@ export class MyOrderComponent implements OnInit {
 
     this.currentOrder.totalPrice = newPrice;
 
-    if (this.currentOrder.selectedLineItems.length == 0)
+    this.badgeService.removedItemFromCart();
+
+    if (this.currentOrder.selectedLineItems.length == 0) {
       this.currentOrder = null;
+      this.orderService.emptyCart();
+    }
   }
 
   navigateToEditItem(orderItem: OrderItem) {

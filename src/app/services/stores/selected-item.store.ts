@@ -10,7 +10,7 @@ import { ModifierListData } from 'src/app/models/ModifierListData';
 })
 export class SelectedItemStore {
 
-  private itemSubject: BehaviorSubject<LineItem> = new BehaviorSubject<LineItem>(new LineItem);
+  private itemSubject: BehaviorSubject<LineItem> = new BehaviorSubject<LineItem>(null);
   private modListSubject: BehaviorSubject<ModifierListData> = new BehaviorSubject<ModifierListData>(null);
 
   public currentItem$: Observable<LineItem> = this.itemSubject.asObservable();
