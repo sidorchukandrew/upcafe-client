@@ -1,36 +1,36 @@
 #staff-navbar {
-    background-color: white;
-    width: 100%;
+  /* background-color: white; */
+  width: 100%;
 }
 
 
-.border-top {
-    border-top: solid 1px lightgrey;
-}
+/* .border-top {
+  border-top: solid 1px lightgrey;
+} */
 
 .link {
-    color: #939cb8;
-    cursor: pointer;
-    height: 100%;
-    display: inline-block;
-    padding: 5px;
-    width: 50%;
-    text-align: center;
+  color: #939cb8;
+  cursor: pointer;
+  height: 100%;
+  display: inline-block;
+  padding: 5px;
+  width: 50%;
+  text-align: center;
 }
 
 .icon {
-    font-size: 25px;
-    width: 25px;
-    height: 25px;
-    display: block;
-    margin: auto;
+  font-size: 25px;
+  width: 25px;
+  height: 25px;
+  display: block;
+  margin: auto;
 }
 
 .text {
-    font-size: 14px;
-    font-weight: 600;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .active {
-    color: #34a5f2;
+  color: #34a5f2;
 }

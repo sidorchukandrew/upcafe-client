@@ -1,148 +1,180 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: white;
+  background-color: #121212;
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 @font-face {
-    font-family: system;
-    font-style: normal;
-    font-weight: 300;
-    src: local(".HelveticaNeueDeskInterface-Light");
-    /* local(".SFNSText-Light"); */
-    /* , local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma"); */
+  font-family: system;
+  font-style: normal;
+  font-weight: 300;
+  src: local(".HelveticaNeueDeskInterface-Light");
+  /* local(".SFNSText-Light"); */
+  /* , local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma"); */
 }
 
 body {
-    margin: 0;
-    /* background-color: #edf1f7; */
-    /* background-color: #f7f8fc; */
-    /* font-family: system; */
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    outline: none;
+  margin: 0;
+  /* background-color: #edf1f7; */
+  /* background-color: #f7f8fc; */
+  /* font-family: system; */
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  outline: none;
 }
 
 .center-wrapper {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .signin-button {
-    color: white;
-    border: 0;
-    display: block;
-    font-size: 15px;
-    font-weight: 450;
-    cursor: pointer;
-    text-align: left;
-    border-radius: 4px;
-    height: 40px;
-    width: 250px;
-    padding: 1px;
-    margin-top: 10px;
+  color: white;
+  border: 0;
+  display: block;
+  font-size: 15px;
+  font-weight: 450;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 4px;
+  height: 40px;
+  width: 250px;
+  padding: 1px;
+  margin-top: 10px;
 }
 
 .form-field {
-    max-width: 300px;
-    width: 95%;
-    height: 50px;
+  max-width: 300px;
+  width: 95%;
+  height: 50px;
 }
 
 a {
-    text-decoration: none;
-    color: white;
-    outline-style: none;
+  text-decoration: none;
+  color: white;
+  outline-style: none;
 }
 
 
 .full-width {
-    width: 100%;
+  width: 100%;
 }
 
 .full-white {
-    height: 100%;
-    width: 100%;
-    background-color: #fafafa;
+  height: 100%;
+  width: 100%;
+  background-color: #fafafa;
 }
 
 .white-background {
-    background-color: white;
+  background-color: white;
 }
 
 .theme-color {
-    color: #34a5f2;
+  color: #34a5f2;
 }
 
 .navbar-space-bottom {
-    /* height: 60px; */
-    margin-bottom: 60px;
+  /* height: 60px; */
+  margin-bottom: 60px;
 }
 
 .bottom {
-    position: fixed;
-    bottom: 0;
+  position: fixed;
+  bottom: 0;
 }
 
 .shadow {
-    box-shadow: 0px 2px 5px 4px rgba(0, 0, 0, .12);
+  box-shadow: 0px 2px 5px 4px rgba(0, 0, 0, .12);
 }
 
 .sq-input {
-    height: 56px;
-    box-sizing: border-box;
-    border: 1px solid #E0E2E3;
-    background-color: white;
-    border-radius: 6px;
-    display: inline-block;
-    -webkit-transition: border-color .2s ease-in-out;
-    -moz-transition: border-color .2s ease-in-out;
-    -ms-transition: border-color .2s ease-in-out;
-    transition: border-color .2s ease-in-out;
+  height: 56px;
+  box-sizing: border-box;
+  border: 1px solid #E0E2E3;
+  background-color: white;
+  border-radius: 6px;
+  display: inline-block;
+  -webkit-transition: border-color .2s ease-in-out;
+  -moz-transition: border-color .2s ease-in-out;
+  -ms-transition: border-color .2s ease-in-out;
+  transition: border-color .2s ease-in-out;
 }
 
 .third {
-    float: left;
-    width: calc((100% - 32px) / 3);
-    padding: 0;
-    margin: 0 16px 16px 0;
+  float: left;
+  width: calc((100% - 32px) / 3);
+  padding: 0;
+  margin: 0 16px 16px 0;
 }
 
 .third:last-of-type {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 
 /* Define how SqPaymentForm iframes should look when they have focus */
 .sq-input--focus {
-    border: 1px solid #4A90E2;
+  border: 1px solid #4A90E2;
 }
 
 /* Define how SqPaymentForm iframes should look when they contain invalid values */
 .sq-input--error {
-    border: 1px solid #E02F2F;
+  border: 1px solid #E02F2F;
 }
 
 #sq-card-number {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 .center-text {
-    text-align: center;
+  text-align: center;
 }
 
 
 ::-webkit-scrollbar {
-    width: 0px;
-    /* Remove scrollbar space */
-    background: transparent;
-    /* Optional: just make scrollbar invisible */
+  width: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+.dark-theme {}
+
+.dark-theme .backdrop-background {
+  background-color: #121212;
+}
+
+.dark-theme .card-background {
+  background-color: #1e1e1e;
+  /* #383838 */
+}
+
+.dark-theme .title-color {
+  color: #e1e1e1;
+}
+
+.dark-theme .subtitle-color {
+  color: #7c7c7c;
+}
+
+.dark-theme .button-border {
+  /* border: 1px solid #e1e1e1; */
+  border: 1px solid #353535;
+}
+
+.dark-theme .button-border-dark {
+  border: 1px solid #353535;
+}
+
+.dark-theme .navbar-background {
+  background-color: #1e1e1e;
 }

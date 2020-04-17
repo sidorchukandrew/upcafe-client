@@ -1,59 +1,77 @@
 <mat-grid-list cols="1" gutterSize="15px" rowHeight="170px" class="wrapper">
-    <mat-grid-tile colspan="1" class="card" *ngFor="let order of orders$ | async">
-        <div class="content">
-            <div class="top-line">
-                <span class="pickup-time">
-                    {{utils.convertTime(order.pickupTime)}}
-                </span>
-                <span class="customer-name">
-                    {{order.customer.firstName}} {{order.customer.lastName}}
-                </span>
-                <span class="more-actions">
-                    <button mat-icon-button [matMenuTriggerFor]="moreActions">
-                        <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu #moreActions="matMenu">
-                        <button mat-menu-item>
-                            Details
-                        </button>
-                    </mat-menu>
-                </span>
-            </div>
-            <table class="order-data">
-                <tr>
-                    <td class="label">
-                        Price
-                    </td>
-                    <td class="value">
-                        {{order.totalPrice | currency}}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">
-                        Ordered At
-                    </td>
-                    <td class="value">
-                        {{ utils.convertTime(utils.extractTime(order.createdAt)) }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">
-                        Items
-                    </td>
-                    <td class="value">
-                        <span class="items" *ngFor="let item of order.selectedLineItems; let i = index;">
-                            {{utils.appendComma(item.variationData.name, i, order.selectedLineItems.length)}}
-                        </span>
-                    </td>
-                </tr>
-            </table>
-            <div class="button-wrapper">
-                <button mat-stroked-button color="primary" class="start-order" (click)="startOrder(order);">
-                    Start
-                </button>
-            </div>
-        </div>
-    </mat-grid-tile>
+  <mat-grid-tile
+    colspan="1"
+    class="card card-background"
+    *ngFor="let order of orders$ | async"
+  >
+    <div class="content">
+      <div class="top-line">
+        <span class="pickup-time title-color">
+          {{ utils.convertTime(order.pickupTime) }}
+        </span>
+        <span class="customer-name title-color">
+          {{ order.customer.firstName }} {{ order.customer.lastName }}
+        </span>
+        <span class="more-actions">
+          <button mat-icon-button [matMenuTriggerFor]="moreActions">
+            <mat-icon class="title-color">more_vert</mat-icon>
+          </button>
+          <mat-menu #moreActions="matMenu">
+            <button mat-menu-item>
+              Details
+            </button>
+          </mat-menu>
+        </span>
+      </div>
+      <table class="order-data">
+        <tr>
+          <td class="label subtitle-color">
+            Price
+          </td>
+          <td class="value subtitle-color">
+            {{ order.totalPrice | currency }}
+          </td>
+        </tr>
+        <tr>
+          <td class="label subtitle-color">
+            Ordered At
+          </td>
+          <td class="value subtitle-color">
+            {{ utils.convertTime(utils.extractTime(order.createdAt)) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="label subtitle-color">
+            Items
+          </td>
+          <td class="value subtitle-color">
+            <span
+              class="items"
+              *ngFor="let item of order.selectedLineItems; let i = index"
+            >
+              {{
+                utils.appendComma(
+                  item.variationData.name,
+                  i,
+                  order.selectedLineItems.length
+                )
+              }}
+            </span>
+          </td>
+        </tr>
+      </table>
+      <div class="button-wrapper">
+        <button
+          mat-stroked-button
+          color="primary"
+          class="start-order button-border"
+          (click)="startOrder(order)"
+        >
+          Start
+        </button>
+      </div>
+    </div>
+  </mat-grid-tile>
 </mat-grid-list>
 
 <div class="navbar-space-bottom-position"></div>

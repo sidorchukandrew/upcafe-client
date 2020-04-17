@@ -1,85 +1,69 @@
 .wrapper {
-    margin: 0px 15px;
+  margin: 0px 15px;
 }
 
 .card {
-    background-color: #f6f6f6;
-    color: black;
-    /* border: solid 1px #eaeaea; */
-    border-radius: 5px;
-    /* 
-    background-color: white;
-    color: black;
-    border: solid 1px lightgrey;
-    border-radius: 5px;
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12); */
+  /* background-color: #f6f6f6; */
+  /* color: black; */
+
+  /* border: solid 1px #eaeaea; */
+  border-radius: 5px;
 }
 
 .top-line {
-    position: relative;
-    margin-top: 10px;
-    margin-bottom: 5px;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .more-actions {
-    position: absolute;
-    right: 15px;
+  position: absolute;
+  right: 15px;
 }
 
 .content {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .pickup-time {
-    font-weight: 600;
-    margin: 10px 10px 5px 15px;
-    font-size: 1.2em;
+  font-weight: 600;
+  margin: 10px 10px 5px 15px;
+  font-size: 1.2em;
 }
 
 .customer-name {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .order-data {
-    width: 80%;
-    max-width: 400px;
-    margin: auto;
+  width: 80%;
+  max-width: 400px;
+  margin: auto;
 }
 
 .label {
-    color: #959aaa;
-    font-size: .9em;
-    width: 45%;
+  /* color: #959aaa; */
+  font-size: .9em;
+  width: 45%;
 }
 
 .value {
-    color: #5b5e68;
-    font-size: .9em;
-    width: 55%;
+  /* color: #5b5e68; */
+  font-size: .9em;
+  width: 55%;
 }
 
 .items {
-    display: inline-block;
+  display: inline-block;
 }
 
 .start-order {
-    margin-top: 10px;
-    width: 80%;
-    max-width: 350px;
-    background-color: white;
-}
-
-.working {
-    color: #3cb492;
-    background-color: #d5f0eb;
-}
-
-.unopened {
-    color: #287ace;
-    background-color: #e0ecfa;
+  margin-top: 10px;
+  width: 80%;
+  max-width: 350px;
 }
 
 .button-wrapper {
-    text-align: center;
+  text-align: center;
 }

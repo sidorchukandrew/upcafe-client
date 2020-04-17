@@ -1,72 +1,59 @@
-/* #overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 63px;
-    background-color: #eee;
-} */
-
 #title {
-    padding-top: 35px;
+  padding-top: 35px;
 }
 
 .capital-letter {
-    font-size: 1.1rem;
-    display: inline;
+  font-size: 1.1rem;
+  display: inline;
 }
 
 #menu-container {
-    padding: 3%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+  padding: 3%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .menu-button {
-    max-width: 200px;
-    max-height: 200px;
-    width: 45%;
+  max-width: 200px;
+  max-height: 200px;
+  width: 45%;
 
-    margin: 4px 5px 4px 5px;
-    padding: 40px;
+  margin: 4px 5px 4px 5px;
+  padding: 40px;
 
-    display: inline-block;
-
-    background-color: white;
-    color: black;
-
-    border-radius: 7px;
-    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .1);
+  display: inline-block;
+  border-radius: 7px;
+  /* box-shadow: 0 0 5px 1px rgba(0, 0, 0, .1); */
 }
 
 .menu-icon {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 40px;
-    height: 40px;
-    font-size: 40px;
-    margin: auto;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+  margin: auto;
 }
 
 .menu-button-title {
-    font-size: .9em;
+  font-size: .9em;
 }
 
 .image-width {
-    width: 60%;
+  width: 60%;
 }
 
 .center-text {
-    text-align: center;
+  text-align: center;
 }
 
 .label-font {
-    font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .big-text {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }

@@ -1,23 +1,46 @@
-<h2 style="margin-left:10px;">Today's Orders
-    <button mat-icon-button [matMenuTriggerFor]="moreViews">
-        <mat-icon>more_horiz</mat-icon>
+<h2 style="margin-left: 10px;" class="title-color">
+  Today's Orders
+  <button mat-icon-button [matMenuTriggerFor]="moreViews">
+    <mat-icon class="title-color">more_horiz</mat-icon>
+  </button>
+  <mat-menu #moreViews="matMenu">
+    <button
+      mat-menu-item
+      routerLink="/staff/orders/completed"
+      (click)="selectOrderView('Completed')"
+    >
+      <mat-icon *ngIf="selectedOrdersView == 'Completed'" color="primary"
+        >fiber_manual_record</mat-icon
+      >
+      Completed
     </button>
-    <mat-menu #moreViews="matMenu">
-        <button mat-menu-item routerLink="/staff/orders/completed" (click)="selectOrderView('Completed');">
-            <mat-icon *ngIf="selectedOrdersView == 'Completed'" color="primary">fiber_manual_record</mat-icon>
-            Completed
-        </button>
-    </mat-menu>
+  </mat-menu>
 </h2>
 <div class="order-views">
-    <button [class.selected]="selectedOrdersView == 'Up Next'" matRipple (click)="selectOrderView('Up Next');"
-        routerLink="/staff/orders/new">Up
-        Next</button>
-    <button [class.selected]="selectedOrdersView == 'In Progress'" matRipple (click)="selectOrderView('In Progress');"
-        routerLink="/staff/orders/active">In
-        Progress</button>
-    <button [class.selected]="selectedOrdersView == 'Ready For Pickup'" matRipple
-        (click)="selectOrderView('Ready For Pickup');" routerLink="/staff/orders/ready">Ready</button>
+  <button
+    [class.selected]="selectedOrdersView == 'Up Next'"
+    matRipple
+    (click)="selectOrderView('Up Next')"
+    routerLink="/staff/orders/new"
+  >
+    Up Next
+  </button>
+  <button
+    [class.selected]="selectedOrdersView == 'In Progress'"
+    matRipple
+    (click)="selectOrderView('In Progress')"
+    routerLink="/staff/orders/active"
+  >
+    In Progress
+  </button>
+  <button
+    [class.selected]="selectedOrdersView == 'Ready For Pickup'"
+    matRipple
+    (click)="selectOrderView('Ready For Pickup')"
+    routerLink="/staff/orders/ready"
+  >
+    Ready
+  </button>
 </div>
 
 <router-outlet></router-outlet>
