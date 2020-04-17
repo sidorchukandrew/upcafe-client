@@ -1,34 +1,33 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Block } from '../models/Block';
-import { environment } from 'src/environments/environment';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Block } from "../models/Block";
+import { environment } from "src/environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class HoursService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public postBlock(block: Block, weekOf: string): any {
     return this.http.post(environment.backendUrl + "/cafe/hours", {
       block: block,
-      weekOf: weekOf
+      weekOf: weekOf,
     });
   }
 
   public getBlocks(week: string): any {
     return this.http.get(environment.backendUrl + "/cafe/hours", {
       params: {
-        weekOf: week
-      }
+        weekOf: week,
+      },
     });
   }
 
   public updateBlock(block: Block, weekOf: string): any {
     return this.http.put(environment.backendUrl + "/cafe/hours", {
       block: block,
-      weekOf: weekOf
+      weekOf: weekOf,
     });
   }
 
@@ -36,8 +35,16 @@ export class HoursService {
     return this.http.delete(environment.backendUrl + "/cafe/hours", {
       params: {
         weekOf: weekOf,
-        blockId: blockId
-      }
+        blockId: blockId,
+      },
+    });
+  }
+
+  public getBlocksForDay(day: string): any {
+    return this.http.get<Block[]>(environment.backendUrl + "/cafe/hours", {
+      params: {
+        day: day,
+      },
     });
   }
 }

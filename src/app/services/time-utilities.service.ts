@@ -1,25 +1,23 @@
-import { Injectable } from '@angular/core';
-import { Order } from '../models/Order';
+import { Injectable } from "@angular/core";
+import { Order } from "../models/Order";
+import { Block } from "../models/Block";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class TimeUtilitiesService {
-
-  constructor() { }
+  constructor() {}
 
   public increasingTime(a: Order, b: Order): number {
-
     // If they're both ASAP, they have the same index
-    if (a.pickupTime == 'ASAP' && b.pickupTime == 'ASAP')
-      return 0;
+    if (a.pickupTime == "ASAP" && b.pickupTime == "ASAP") return 0;
 
     // Maybe one of them is ASAP, if so return which one should be first
-    if (a.pickupTime == 'ASAP') {
+    if (a.pickupTime == "ASAP") {
       return -1;
     }
 
-    if (b.pickupTime == 'ASAP') {
+    if (b.pickupTime == "ASAP") {
       return 1;
     }
 
@@ -39,13 +37,29 @@ export class TimeUtilitiesService {
     // The hours were the same, so compare the minutes
     var minutesA: number;
     var indexOfColon = a.pickupTime.indexOf(":");
-    minutesA = parseInt(a.pickupTime.slice(indexOfColon + 1, a.pickupTime.length));
+    minutesA = parseInt(
+      a.pickupTime.slice(indexOfColon + 1, a.pickupTime.length)
+    );
 
     var minutesB: number;
     var indexOfColon = b.pickupTime.indexOf(":");
-    minutesB = parseInt(b.pickupTime.slice(indexOfColon + 1, b.pickupTime.length));
+    minutesB = parseInt(
+      b.pickupTime.slice(indexOfColon + 1, b.pickupTime.length)
+    );
 
     return minutesA - minutesB;
+  }
+  public increasingTimeBlocks(a: Block, b: Block): number {
+    // None of them are ASAP, compare the hours
+    var hourA: number;
+    var indexOfColon = a.open.indexOf(":");
+    hourA = parseInt(a.open.slice(0, indexOfColon));
+
+    var hourB: number;
+    var indexOfColon = b.open.indexOf(":");
+    hourB = parseInt(b.open.slice(0, indexOfColon));
+
+    return hourA - hourB;
   }
 
   public parseHour(time: string): number {
@@ -59,29 +73,23 @@ export class TimeUtilitiesService {
   }
 
   public appendComma(name: string, index: number, length: number): string {
-
-    if (index < length - 1)
-      return name + ", ";
+    if (index < length - 1) return name + ", ";
 
     return name;
   }
 
   public convertTime(time: string): string {
-
-    if (time == 'ASAP')
-      return time;
+    if (time == "ASAP") return time;
 
     var indexOfColon = time.indexOf(":");
     var hour = parseInt(time.slice(0, indexOfColon));
 
-    if (hour > 12)
-      hour -= 12;
+    if (hour > 12) hour -= 12;
 
-    return (hour + ":" + time.slice(indexOfColon + 1, time.length));
+    return hour + ":" + time.slice(indexOfColon + 1, time.length);
   }
 
   public extractTime(dateUTC: string): string {
-
     var date = new Date(dateUTC);
 
     if (date.getMinutes() < 10)
@@ -91,17 +99,15 @@ export class TimeUtilitiesService {
   }
 
   public appendPeriod(time: string): string {
-
     var indexOfColon = time.indexOf(":");
     var hour = parseInt(time.slice(0, indexOfColon));
 
-    if (hour >= 12)
-      return 'PM';
+    if (hour >= 12) return "PM";
 
-    return 'AM';
+    return "AM";
   }
 
-  public getMonday(d): Date {
+  public getMonday(d: Date): Date {
     var day = d.getDay();
     var diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
     return new Date(d.setDate(diff));
@@ -113,5 +119,24 @@ export class TimeUtilitiesService {
     var date = d.getDate();
     var sundaysDate = date + diff;
     return new Date(d.setDate(sundaysDate));
+  }
+
+  public getDayBasedOnNumber(numberDay: number): string {
+    switch (numberDay) {
+      case 0:
+        return "Sunday";
+      case 1:
+        return "Monday";
+      case 2:
+        return "Tuesday";
+      case 3:
+        return "Wednesday";
+      case 4:
+        return "Thursday";
+      case 5:
+        return "Friday";
+      case 6:
+        return "Saturday";
+    }
   }
 }
