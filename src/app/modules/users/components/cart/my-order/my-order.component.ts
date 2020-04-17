@@ -27,7 +27,7 @@ export class MyOrderComponent implements OnInit {
     private editService: EditItemService,
     private badgeService: CartBadgeService,
     private hoursService: HoursService,
-    private timeUtils: TimeUtilitiesService
+    public timeUtils: TimeUtilitiesService
   ) {}
 
   ngOnInit() {
@@ -78,33 +78,6 @@ export class MyOrderComponent implements OnInit {
   }
 
   private breakHoursUp(blocks: Block[]): string[] {
-    var incrementFactor: number = 10;
-
-    console.log(blocks);
-    var pickupTimes: string[] = [];
-
-    blocks.forEach((block) => {
-      var openHour: number = this.timeUtils.parseHour(block.open);
-      var openMinutes: number = this.timeUtils.parseMinutes(block.open);
-
-      var closeHour: number = this.timeUtils.parseHour(block.close);
-      var closeMinutes: number = this.timeUtils.parseMinutes(block.close);
-
-      while (openHour < closeHour) {
-        openMinutes = incrementFactor + openMinutes;
-
-        if (openMinutes >= 60) {
-          openMinutes = openMinutes % 60;
-          openHour = openHour + 1;
-        }
-
-        if (openMinutes == 0)
-          pickupTimes.push(openHour + ":" + openMinutes + "0");
-        else pickupTimes.push(openHour + ":" + openMinutes);
-        console.log(pickupTimes);
-      }
-    });
-
-    return pickupTimes;
+    return this.timeUtils.getAvailablePickupTimes(blocks);
   }
 }

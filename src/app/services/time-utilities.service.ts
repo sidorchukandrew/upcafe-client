@@ -139,4 +139,111 @@ export class TimeUtilitiesService {
         return "Saturday";
     }
   }
+
+  public getAvailablePickupTimes(blocks: Block[]): string[] {
+    var incrementFactor: number = 10;
+    var now: Date = new Date();
+
+    var pickupTimes: string[] = [];
+
+    blocks.forEach((block) => {
+      var openHour: number = this.parseHour(block.open);
+      var openMinutes: number = this.parseMinutes(block.open);
+
+      var closeHour: number = this.parseHour(block.close);
+      var closeMinutes: number = this.parseMinutes(block.close);
+
+      var pickupHour: number = openHour;
+      var pickupMinutes: number = openMinutes;
+
+      // While the pickup hour consideration is less than when the cafe closes
+      while (pickupHour < closeHour) {
+        // Filter out all the times that have already passed
+        // If the hour is already passed, move on
+        if (now.getHours() > pickupHour) {
+          pickupHour++;
+        }
+        // The pickup hour consideration is in this hour, so check the minutes
+        else if (now.getHours() == pickupHour) {
+          if (now.getMinutes() + incrementFactor >= pickupMinutes) {
+            pickupMinutes = incrementFactor + pickupMinutes;
+
+            if (pickupMinutes >= 60) {
+              pickupMinutes = pickupMinutes % 60;
+              pickupHour = pickupHour + 1;
+            }
+          } else {
+            // USE THIS CONSIDERATION
+
+            //PADDING THE MINUTES
+            if (pickupMinutes < 10) {
+              pickupTimes.push(pickupHour + ":" + pickupMinutes + "0");
+            } else {
+              pickupTimes.push(pickupHour + ":" + pickupMinutes);
+            }
+
+            pickupMinutes = incrementFactor + pickupMinutes;
+
+            if (pickupMinutes >= 60) {
+              pickupMinutes = pickupMinutes % 60;
+              pickupHour = pickupHour + 1;
+            }
+          }
+        }
+        // The pickupHour consideration is less than close time
+        else {
+          //PADDING THE MINUTES
+          if (pickupMinutes < 10) {
+            pickupTimes.push(pickupHour + ":" + "0" + pickupMinutes);
+          } else {
+            pickupTimes.push(pickupHour + ":" + pickupMinutes);
+          }
+
+          pickupMinutes = incrementFactor + pickupMinutes;
+
+          if (pickupMinutes >= 60) {
+            pickupMinutes = pickupMinutes % 60;
+            pickupHour = pickupHour + 1;
+          }
+        }
+      }
+
+      if (pickupHour == closeHour) {
+        // Make sure that the pickup time isn't too near to the close time
+        while (closeMinutes - incrementFactor >= pickupMinutes) {
+          // If the pickup time consideration is before the current time, don't show it
+          if (now.getHours() > pickupHour) {
+            break;
+          } else if (now.getHours() == pickupHour) {
+            if (now.getMinutes() + incrementFactor >= pickupMinutes) {
+              //DON'T SHOW IT
+              pickupMinutes = pickupMinutes + incrementFactor;
+            } else {
+              //PADDING THE MINUTES
+              if (pickupMinutes < 10) {
+                pickupTimes.push(pickupHour + ":" + pickupMinutes + "0");
+              } else {
+                pickupTimes.push(pickupHour + ":" + pickupMinutes);
+              }
+
+              pickupMinutes = pickupMinutes + incrementFactor;
+            }
+          }
+
+          // Use this pickupTime consideration
+          else {
+            //PADDING THE MINUTES
+            if (pickupMinutes < 10) {
+              pickupTimes.push(pickupHour + ":" + pickupMinutes + "0");
+            } else {
+              pickupTimes.push(pickupHour + ":" + pickupMinutes);
+            }
+
+            pickupMinutes = pickupMinutes + incrementFactor;
+          }
+        }
+      }
+    });
+    return pickupTimes;
+  }
 }
