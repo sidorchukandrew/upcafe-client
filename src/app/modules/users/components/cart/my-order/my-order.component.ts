@@ -35,10 +35,12 @@ export class MyOrderComponent implements OnInit {
 
     var hours$ = this.hoursService.getBlocksForDay(new Date().toDateString());
 
-    hours$.subscribe((blocks) => {
-      blocks = blocks.sort(this.timeUtils.increasingTimeBlocks);
-      this.availableTimes = this.breakHoursUp(blocks);
-    });
+    hours$.pipe(
+      tap(blocks => blocks.sort(this.timeUtils.increasingTimeBlocks)),
+      map(blocks => this.breakHoursUp(blocks)),
+      tap(times => console.log(times)),
+      tap(times => this.availableTimes = times)
+    ).subscribe();
 
     this.currentOrder = this.orderService.order;
 
@@ -78,6 +80,7 @@ export class MyOrderComponent implements OnInit {
   }
 
   private breakHoursUp(blocks: Block[]): string[] {
+
     return this.timeUtils.getAvailablePickupTimes(blocks);
   }
 }

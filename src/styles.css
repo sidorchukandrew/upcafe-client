@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: #121212;
+  background-color: #080808;
 }
 
 html,
@@ -177,4 +177,8 @@ a {
 
 .dark-theme .navbar-background {
   background-color: #1e1e1e;
+}
+
+.title-size {
+  font-size: 1.1em;
 }

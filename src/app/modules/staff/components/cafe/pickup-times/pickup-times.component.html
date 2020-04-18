@@ -1,0 +1,57 @@
+<div class="header card-background">
+  <button mat-icon-button id="back-to-menu" routerLink="..">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+  <span class="title-color title-size">
+    Pickup Hours Settings
+  </span>
+</div>
+<div class="action-group card-background">
+  <div class="action">
+    <div class="name title-color">Interval</div>
+    <mat-select
+      class="interval"
+      [value]="settings.intervalBetweenPickupTimes"
+      *ngIf="settings"
+      (valueChange)="intervalChange($event)"
+    >
+      <mat-option value="10">10 min</mat-option>
+      <mat-option value="15">15 min</mat-option>
+      <mat-option value="20">20 min</mat-option>
+      <mat-option value="30">30 min</mat-option>
+    </mat-select>
+  </div>
+</div>
+<div class="description subtitle-color">
+  Select the amount of time between the available pick up times for customers to
+  choose from. For example, if the interval time is 10 min, pickup times will
+  show up <i>10:00, 10:10</i> or<i> 10:20</i>.
+</div>
+<div class="action-group card-background">
+  <div class="action">
+    <div class="name title-color">Open</div>
+    <mat-slide-toggle
+      *ngIf="settings"
+      color="primary"
+      [checked]="settings.pickupOnOpen"
+      (change)="pickupOnOpenChange($event)"
+    ></mat-slide-toggle>
+  </div>
+  <div class="divider">
+    <mat-divider></mat-divider>
+  </div>
+  <div class="action">
+    <div class="name title-color">Close</div>
+    <mat-slide-toggle
+      *ngIf="settings"
+      color="primary"
+      [checked]="settings.pickupOnClose"
+      (change)="pickupOnCloseChange($event)"
+    ></mat-slide-toggle>
+  </div>
+</div>
+<div class="description subtitle-color">
+  Toggle whether customers can choose the cafe's open or closing hours to pick
+  up their online orders. If the cafe opens at 10:00, customers can select to
+  pick up their orders at 10:00.
+</div>

@@ -1,0 +1,46 @@
+.header {
+  position: sticky;
+  width: 100%;
+  border-bottom: 1px solid#353535;
+  margin-bottom: 20px;
+}
+
+#back-to-menu {
+  color: #34a5f2;
+  padding-left: 10px;
+}
+
+.action-group {
+  border-bottom: 1px solid#353535;
+  border-top: 1px solid#353535;
+  margin: 20px 0px 0px 0px;
+}
+
+.action {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.description {
+  padding: 10px 25px;
+  font-size: .85em;
+}
+
+.mat-divider {
+  border-top-color: #353535;
+  margin-left: 17px;
+}
+
+.mat-select-arrow {
+  color: white !important;
+}
+
+.interval {
+  text-align: right;
+  max-width: 100px;
+}
+
+.mat-select-value {
+  color: #e1e1e1;
+}
