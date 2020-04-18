@@ -1,11 +1,13 @@
-<div class="header">
-    <button mat-icon-button id="back-to-menu" routerLink="..">
-        <mat-icon>arrow_back_ios</mat-icon>
-    </button>
-    <span class="title">Hours of Operation</span>
-
-    <div class="date-range">
-        <div class="arrow" matRipple (click)="previousWeek();">
+<div class="header card-background">
+  <button mat-icon-button id="back-to-menu" routerLink="..">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+  <span class="title-color title-size">
+    Hours of Operation
+  </span>
+</div>
+    <div class="date-range title-color">
+        <div class="arrow subtitle-color" matRipple (click)="previousWeek();">
             <mat-icon>keyboard_arrow_left</mat-icon>
         </div>
         <div class="section">
@@ -29,23 +31,22 @@
                 {{dayNames[endDate.getDay()]}}
             </div>
         </div>
-        <div class="arrow" matRipple (click)="nextWeek();">
+        <div class="arrow subtitle-color" matRipple (click)="nextWeek();">
             <mat-icon>keyboard_arrow_right</mat-icon>
         </div>
     </div>
-</div>
 
 <div class="day-card">
     <div class="topline">
-        <span class="name">Monday</span>
+        <span class="name title-color">Monday</span>
         <button mat-icon-button color="primary" class="add" (click)="selectHours('Monday', cafeHours.mondayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
 
-    <mat-divider></mat-divider>
+    <mat-divider class="divider-color"></mat-divider>
 
-    <div class="block" *ngFor="let block of cafeHours.mondayBlocks" matRipple>
+    <div class="block time-card-background" *ngFor="let block of cafeHours.mondayBlocks" matRipple>
         <span class="time" (click)="editBlock(block);">
             {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
             {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
@@ -58,16 +59,16 @@
 
 <div class="day-card">
     <div class="topline">
-        <span class="name">Tuesday</span>
+        <span class="name title-color">Tuesday</span>
         <button mat-icon-button color="primary" class="add" (click)="selectHours('Tuesday', cafeHours.tuesdayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
 
-    <mat-divider></mat-divider>
+    <mat-divider class="divider-color"></mat-divider>
 
-    <div class="block" *ngFor="let block of cafeHours.tuesdayBlocks" matRipple>
-        <span class="time" (click)="editBlock(block);">
+    <div class="block time-card-background" *ngFor="let block of cafeHours.tuesdayBlocks" matRipple>
+        <span class="time card-background" (click)="editBlock(block);">
             {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
             {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
         </span>
@@ -79,16 +80,16 @@
 
 <div class="day-card">
     <div class="topline">
-        <span class="name">Wednesday</span>
+        <span class="name title-color">Wednesday</span>
         <button mat-icon-button color="primary" class="add"
             (click)="selectHours('Wednesday', cafeHours.wednesdayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
 
-    <mat-divider></mat-divider>
+    <mat-divider class="divider-color"></mat-divider>
 
-    <div class="block" *ngFor="let block of cafeHours.wednesdayBlocks" matRipple>
+    <div class="block time-card-background" *ngFor="let block of cafeHours.wednesdayBlocks" matRipple>
         <span class="time" (click)="editBlock(block);">
             {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
             {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
@@ -101,16 +102,16 @@
 
 <div class="day-card">
     <div class="topline">
-        <span class="name">Thursday</span>
+        <span class="name title-color">Thursday</span>
         <button mat-icon-button color="primary" class="add"
             (click)="selectHours('Thursday', cafeHours.thursdayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
 
-    <mat-divider></mat-divider>
+    <mat-divider class="divider-color"></mat-divider>
 
-    <div class="block" *ngFor="let block of cafeHours.thursdayBlocks" matRipple>
+    <div class="block time-card-background" *ngFor="let block of cafeHours.thursdayBlocks" matRipple>
         <span class="time" (click)="editBlock(block);">
             {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
             {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
@@ -124,15 +125,15 @@
 
 <div class="day-card">
     <div class="topline">
-        <span class="name">Friday</span>
+        <span class="name title-color">Friday</span>
         <button mat-icon-button color="primary" class="add" (click)="selectHours('Friday', cafeHours.fridayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
 
-    <mat-divider></mat-divider>
+    <mat-divider class="divider-color"></mat-divider>
 
-    <div class="block" *ngFor="let block of cafeHours.fridayBlocks" matRipple>
+    <div class="block time-card-background" *ngFor="let block of cafeHours.fridayBlocks" matRipple>
         <span class="time" (click)="editBlock(block);">
             {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
             {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
@@ -146,16 +147,16 @@
 
 <div class="day-card">
     <div class="topline">
-        <span class="name">Saturday</span>
+        <span class="name title-color">Saturday</span>
         <button mat-icon-button color="primary" class="add"
             (click)="selectHours('Saturday', cafeHours.saturdayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
 
-    <mat-divider></mat-divider>
+    <mat-divider class="divider-color"></mat-divider>
 
-    <div class="block" *ngFor="let block of cafeHours.saturdayBlocks" matRipple>
+    <div class="block time-card-background" *ngFor="let block of cafeHours.saturdayBlocks" matRipple>
         <span class="time" (click)="editBlock(block);">
             {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
             {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
@@ -168,16 +169,16 @@
 
 <div class="day-card">
     <div class="topline">
-        <span class="name">Sunday</span>
+        <span class="name title-color">Sunday</span>
         <button mat-icon-button color="primary" class="add" (click)="selectHours('Sunday', cafeHours.sundayBlocks);">
             <mat-icon>add</mat-icon>
         </button>
     </div>
 
-    <mat-divider></mat-divider>
+    <mat-divider class="divider-color"></mat-divider>
 
-    <div class="block" *ngFor="let block of cafeHours.sundayBlocks" matRipple>
-        <span class="time" (click)="editBlock(block);">
+    <div class="block time-card-background" *ngFor="let block of cafeHours.sundayBlocks" matRipple>
+        <span class="time " (click)="editBlock(block);">
             {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
             {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
         </span>
@@ -186,6 +187,8 @@
         </span>
     </div>
 </div>
+
+<div style="min-height: 90px;"></div>
 
 <div class="footer">
 

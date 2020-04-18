@@ -33,15 +33,6 @@ export class MyOrderComponent implements OnInit {
   ngOnInit() {
     var today = new Date();
 
-    // var hours$ = this.hoursService.getBlocksForDay(new Date().toDateString());
-
-    // hours$.pipe(
-    //   tap(blocks => blocks.sort(this.timeUtils.increasingTimeBlocks)),
-    //   map(blocks => this.breakHoursUp(blocks)),
-    //   tap(times => console.log(times)),
-    //   tap(times => this.availableTimes = times)
-    // ).subscribe();
-
     var pickupTimes$ = this.hoursService.getAvailablePickupTimes();
 
     pickupTimes$.pipe(
@@ -84,10 +75,5 @@ export class MyOrderComponent implements OnInit {
   timeSelected(time: string) {
     this.selectedTime = time;
     this.currentOrder.pickupTime = time;
-  }
-
-  private breakHoursUp(blocks: Block[]): string[] {
-
-    return this.timeUtils.getAvailablePickupTimes(blocks);
   }
 }

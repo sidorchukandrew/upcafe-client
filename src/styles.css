@@ -182,3 +182,7 @@ a {
 .title-size {
   font-size: 1.1em;
 }
+
+.dark-theme .divider-color {
+  border-top: 1px solid #353535;
+}
