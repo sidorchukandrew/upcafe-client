@@ -27,6 +27,7 @@ export class PickupTimesComponent implements OnInit, OnDestroy {
     this.hoursService.getPickupSettings().subscribe((settings) => {
       this.settings = settings;
       this.settings.intervalBetweenPickupTimes = this.settings.intervalBetweenPickupTimes + "";
+      console.log(this.settings);
     });
 
 

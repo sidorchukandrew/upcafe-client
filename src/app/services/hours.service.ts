@@ -50,13 +50,17 @@ export class HoursService {
     });
   }
 
+  public getAvailablePickupTimes(): Observable<any> {
+    return this.http.get<Block[]>(environment.backendUrl + "/cafe/pickup");
+  }
+
   public getPickupSettings(): any {
     return this.http.get<PickupSettings>(
-      environment.backendUrl + "/cafe/pickup"
+      environment.backendUrl + "/cafe/settings/pickup"
     );
   }
 
   public updatePickupSettings(settings: PickupSettings): any {
-    return this.http.put(environment.backendUrl + "/cafe/pickup", settings);
+    return this.http.put(environment.backendUrl + "/cafe/settings/pickup", settings);
   }
 }
