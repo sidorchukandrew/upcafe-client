@@ -204,3 +204,19 @@ a {
 .light-theme .divider-color {
   border-top: 1px solid #b6b6b6;
 }
+
+.light-theme .title-color {
+  color: #1e1e1e;
+}
+
+.light-theme .subtitle-color {
+  color: #7c7c7c;
+}
+
+.light-theme .warn {
+  color: red;
+}
+
+.light-theme .navbar-background {
+  background-color: #1e1e1e;
+}

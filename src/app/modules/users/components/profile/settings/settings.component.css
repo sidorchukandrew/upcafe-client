@@ -1,7 +1,6 @@
 .header {
   position: sticky;
   width: 100%;
-  border-bottom: 1px solid#353535;
   margin-bottom: 20px;
 }
 
@@ -11,8 +10,6 @@
 }
 
 .action-group {
-  border-bottom: 1px solid#353535;
-  border-top: 1px solid#353535;
   margin: 20px 0px 0px 0px;
 }
 
