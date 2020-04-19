@@ -1,7 +1,6 @@
 .header {
-    background-color: #f6f6f6;
     border-radius: 5px;
-    margin: 10px;
+    margin: 10px 10px 20px 10px;
     padding-bottom: 20px;
 }
 
@@ -10,7 +9,6 @@
     font-size: 1.5em;
     font-weight: 600;
     padding: 10px;
-    color: darkslategray;
 }
 
 .user-summary {
@@ -24,20 +22,17 @@
 
 .user-summary .name {
     font-weight: 600;
-    color: darkslategrey
 }
 
 .user-summary .email {
     font-size: .9em;
-    color: darkslategray;
 }
 
 .action {
     display: flex;
     justify-content: space-between;
     text-align: left;
-    color: black;
-    padding: 20px 15px;
+    padding: 10px 15px;
 
 }
 
@@ -45,10 +40,5 @@
     text-align: center;
     display: block;
     font-weight: 600;
-    color: #f10404;
-}
-
-hr {
-    border-top: dashed 1px #aaa;
-    margin: 0;
+    padding: 20px;
 }

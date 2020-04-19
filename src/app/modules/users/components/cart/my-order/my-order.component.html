@@ -1,5 +1,5 @@
 <div class="pickup-time">
-  <div class="title">
+  <div class="title title-color">
     Pickup Time
     <span *ngIf="selectedTime">
       : {{ timeUtils.convertTime(selectedTime) }}
@@ -10,7 +10,7 @@
   </div>
   <div class="available-times">
     <div
-      class="time"
+      class="time button-border subtitle-color"
       [class.selected]="selectedTime == time"
       *ngFor="let time of availableTimes"
       (click)="timeSelected(time)"
@@ -26,16 +26,16 @@
 </div>
 <div
   *ngFor="let orderItem of currentOrder.selectedLineItems"
-  class="left-margin-20 right-margin-20 order-item-panel"
+  class="left-margin-20 right-margin-20 order-item-panel card-background"
 >
   <table class="full-width">
     <tr>
       <td style="width: 50%;">
-        <div id="item-name" class="item-name" style="margin-right: 10px;">
+        <div id="item-name" class="item-name title-color" style="margin-right: 10px;">
           {{ orderItem.variationData.name }}
         </div>
       </td>
-      <td id="quantity-selector" class="right-align-text">
+      <td id="quantity-selector" class="right-align-text title-color">
         <div id="total-item-price">
           {{ orderItem.quantity * orderItem.price | currency }}
         </div>
@@ -47,7 +47,7 @@
       <td>
         <div
           *ngFor="let modifier of orderItem.selectedModifiers"
-          class="smaller-text"
+          class="smaller-text subtitle-color"
         >
           {{ modifier.name }}
 
@@ -84,7 +84,7 @@
 
 <div
   id="bottom-card"
-  class="full-width navbar-space-bottom white-background shadow"
+  class="full-width navbar-space-bottom white-background shadow card-background"
   *ngIf="currentOrder != null"
 >
   <table class="full-width top-margin-15">
@@ -92,8 +92,8 @@
       <td class="small-width right-align-text">
         <div id="tax" class="inline-block theme-color">Tax:</div>
       </td>
-      <td class="">
-        <div class="number inline-block">
+      <td >
+        <div class="number inline-block title-color">
           {{ currentOrder.totalPrice * 0.08 | currency }}
         </div>
       </td>
@@ -101,7 +101,7 @@
         <div id="subtotal" class="inline-block theme-color">Subtotal:</div>
       </td>
       <td class="small-width right-align-text">
-        <div class="number inline-block right-margin-20">
+        <div class="number inline-block right-margin-20 title-color">
           {{ currentOrder.totalPrice | currency }}
         </div>
       </td>

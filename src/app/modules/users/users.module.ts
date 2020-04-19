@@ -18,6 +18,8 @@ import {
   MatProgressSpinnerModule,
   MatBadgeModule,
   MatStepperModule,
+  MatSlideToggleModule,
+  MatSlideToggle
 } from "@angular/material";
 import { MenuComponent } from "./components/menu/menu.component";
 import { HomeComponent } from "./components/home/home.component";
@@ -38,6 +40,7 @@ import { BeginOrderComponent } from "./components/cart/begin-order/begin-order.c
 import { MyOrderComponent } from "./components/cart/my-order/my-order.component";
 import { TrackOrderComponent } from "./components/cart/track-order/track-order.component";
 import { STEPPER_GLOBAL_OPTIONS } from "@angular/cdk/stepper";
+import { SettingsComponent } from './components/profile/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,7 @@ import { STEPPER_GLOBAL_OPTIONS } from "@angular/cdk/stepper";
     BeginOrderComponent,
     MyOrderComponent,
     TrackOrderComponent,
+    SettingsComponent,
   ],
   imports: [
     CommonModule,
@@ -76,6 +80,7 @@ import { STEPPER_GLOBAL_OPTIONS } from "@angular/cdk/stepper";
     MatProgressSpinnerModule,
     MatBadgeModule,
     MatStepperModule,
+    MatSlideToggleModule
   ],
   entryComponents: [UserResponseDialog],
   providers: [],

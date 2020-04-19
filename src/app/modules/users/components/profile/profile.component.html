@@ -1,38 +1,39 @@
-<div class="header">
-    <div class="title">
+<div class="header card-background">
+    <div class="title title-color">
         Account
     </div>
     <div class="user-summary">
 
         <img [src]="imgUrl">
 
-        <div class="name">
+        <div class="name title-color">
             {{name}}
         </div>
-        <div class="email">
+        <div class="email subtitle-color">
             {{email}}
         </div>
     </div>
 </div>
 
 <div class="actions center-text">
-    <a class="action" matRipple>
+    <mat-divider class="divider-color"></mat-divider>
+    <a class="action card-background" matRipple routerLink="settings">
         Settings
         <mat-icon>keyboard_arrow_right</mat-icon>
     </a>
-    <hr>
-    <a class="action" matRipple>
+      <mat-divider class="divider-color"></mat-divider>
+    <a class="action card-background" matRipple>
         Notifications
         <mat-icon>keyboard_arrow_right</mat-icon>
     </a>
-    <hr>
-    <a class="action" matRipple>
+    <mat-divider class="divider-color"></mat-divider>
+    <a class="action card-background" matRipple>
         Edit Profile
         <mat-icon>keyboard_arrow_right</mat-icon>
     </a>
-    <mat-divider></mat-divider>
-    <a class="action" id="signout" matRipple>
+    <mat-divider class="divider-color"></mat-divider>
+    <a class="action warn" id="signout" matRipple>
         SIGN OUT
     </a>
-    <mat-divider></mat-divider>
+  <mat-divider class="divider-color"></mat-divider>
 </div>

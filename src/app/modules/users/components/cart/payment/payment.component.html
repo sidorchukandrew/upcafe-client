@@ -1,8 +1,8 @@
 <div id="payment-details-view" *ngIf="!success">
-    <a id="back-button" class="theme-color" routerLink="..">
+    <button mat-icon-button id="back-button" class="theme-color" routerLink="..">
         <mat-icon class="double-size">navigate_before</mat-icon>
-    </a>
-    <div id="summary" class="center-text">
+    </button>
+    <div id="summary" class="center-text subtitle-color">
         <div id="total-label">Your total is</div>
         <div class="theme-color" id="total" *ngIf="order">{{order.totalPrice| currency}}</div>
     </div>

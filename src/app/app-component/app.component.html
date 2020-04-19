@@ -4,6 +4,7 @@
 <div class="center-wrapper">
     <img src="../../assets/logos/logo.png" id="upc-logo">
 </div> -->
-<div class="dark-theme">
+<div [class.dark-theme]="darkThemeOn"
+    [class.light-theme]="!darkThemeOn">
   <router-outlet></router-outlet>
 </div>

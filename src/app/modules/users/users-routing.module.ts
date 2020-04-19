@@ -13,6 +13,7 @@ import { SnacksComponent } from "./components/menu/snacks/snacks.component";
 import { SweetsComponent } from "./components/menu/sweets/sweets.component";
 import { EditItemComponent } from "./components/cart/edit-item/edit-item.component";
 import { PaymentComponent } from "./components/cart/payment/payment.component";
+import { SettingsComponent } from './components/profile/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: "cart/edit/:id", component: EditItemComponent },
   { path: "menu/sweets/:id", component: ItemDetailsComponent },
   { path: "cart/payment", component: PaymentComponent },
+  { path: "account/settings", component: SettingsComponent }
 ];
 
 @NgModule({
