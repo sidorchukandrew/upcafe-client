@@ -14,3 +14,7 @@
   display: block;
   margin: auto;
 }
+
+.navbar-space{
+  min-height:60px;
+}

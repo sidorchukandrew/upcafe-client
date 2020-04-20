@@ -16,7 +16,7 @@ export class CatalogService {
 
   constructor(private http: HttpClient) { }
 
-  public getCatalog(category: string): any {
+  public getCatalog<CatalogByCategory>(category: string): Observable<any> {
     return this.http.get(environment.backendUrl + "/catalog/" + category);
   }
 

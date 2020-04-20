@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { tap, concatMap, finalize } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,17 @@ export class LoadingService {
 
   constructor() { }
 
-  public setLoadingFor(observable: Observable<any>): Observable<any> {
-    this.loadingSubject.next(true);
-    observable.subscribe(() => this.loadingSubject.next(false));
-    return null;
+  public showLoadingUntilComplete<T>(obs$: Observable<T>): Observable<T> {
+
+    return of(null)
+      .pipe(
+        tap(() => this.toggleLoading()),
+        concatMap(() => obs$),
+        finalize(() => this.toggleLoading())
+      );
+  }
+
+  public toggleLoading(): void {
+    this.loadingSubject.next(!this.loadingSubject.value);
   }
 }

@@ -1,4 +1,4 @@
-<mat-grid-list cols="2" gutterSize="10px" class="buttons-wrapper">
+<mat-grid-list cols="2" gutterSize="16px" class="buttons-wrapper">
   <a>
     <mat-grid-tile
       colspan="1"
@@ -8,7 +8,7 @@
     >
       <div class="content title-color">
         <img
-          src="../../../../../assets/images/staff/blue/clock.png"
+          [src]="'../../../../../assets/images/staff/' + colorPack + '/clock.png'"
           class="icon"
         />
         Hours
@@ -23,7 +23,7 @@
     >
       <div class="content title-color">
         <img
-          src="../../../../../assets/images/staff/blue/lemon.png"
+          [src]="'../../../../../assets/images/staff/' + colorPack + '/trolley.png'"
           class="icon"
         />
         Stock
@@ -38,7 +38,7 @@
     >
       <div class="content title-color">
         <img
-          src="../../../../../assets/images/staff/blue/lemon.png"
+          [src]="'../../../../../assets/images/staff/' + colorPack + '/menu.png'"
           class="icon"
         />
         Catalog
@@ -54,11 +54,32 @@
     >
       <div class="content title-color">
         <img
-          src="../../../../../assets/images/staff/blue/car.png"
+          [src]="'../../../../../assets/images/staff/' + colorPack + '/truck.png'"
           class="icon"
         />
         Pickup Times
       </div>
     </mat-grid-tile>
   </a>
+
+  <a>
+    <mat-grid-tile colspan="1" class="settings-button card-background button-border-dark" matRipple routerLink="app">
+      <div class="content title-color">
+        <img [src]="'../../../../../assets/images/staff/' + colorPack + '/bugs.png'" class="icon" />
+        Bugs
+      </div>
+    </mat-grid-tile>
+  </a>
+
+  <a>
+    <mat-grid-tile colspan="1" class="settings-button card-background button-border-dark" matRipple routerLink="app">
+      <div class="content title-color">
+        <img [src]="'../../../../../assets/images/staff/' + colorPack + '/gear.png'" class="icon" />
+        App Settings
+      </div>
+    </mat-grid-tile>
+  </a>
 </mat-grid-list>
+
+<div class="navbar-space">
+</div>

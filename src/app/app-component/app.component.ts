@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ThemeService } from '../services/theme.service';
 import { Subscription, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
   darkThemeOn: boolean;
   darkThemeOn$: Observable<boolean>;
 
-  constructor(private authService: AuthorizationService, private themeService: ThemeService) { }
+  constructor(private authService: AuthorizationService, private themeService: ThemeService, public loadingService: LoadingService) { }
 
   ngOnInit() {
     this.subscriptions = new Subscription();

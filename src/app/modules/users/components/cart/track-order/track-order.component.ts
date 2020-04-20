@@ -14,6 +14,8 @@ export class TrackOrderComponent implements OnInit, OnDestroy {
   subscriptions: Subscription;
   order: Order;
 
+  checkInterval$;
+
   constructor(private orderService: OrderService) { }
 
   ngOnInit() {
@@ -23,14 +25,14 @@ export class TrackOrderComponent implements OnInit, OnDestroy {
     var status$ = this.orderService.status$.subscribe(status => this.status = status);
     var state$ = this.orderService.state$.subscribe(state => {
       if (state == 'NEW') {
-        clearInterval(checkInterval$);
+        clearInterval(this.checkInterval$);
         this.ngOnDestroy();
       }
     });
 
     this.orderService.checkStatusOfOrder().subscribe();
 
-    var checkInterval$ = setInterval(() => {
+    this.checkInterval$ = setInterval(() => {
       console.log("Checking");
       this.orderService.checkStatusOfOrder().subscribe();
     }, 5000);
@@ -44,6 +46,7 @@ export class TrackOrderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+    clearInterval(this.checkInterval$);
   }
 
 }
