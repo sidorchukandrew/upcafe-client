@@ -37,7 +37,7 @@ export function provideConfig() {
     AppComponent,
     SignInComponent,
     StaffSignInComponent,
-    LoadingComponent
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

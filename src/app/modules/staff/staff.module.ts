@@ -29,6 +29,7 @@ import { CompletedOrdersComponent } from "./components/completed-orders/complete
 import { OrdersComponent } from "./components/orders/orders.component";
 import { FormsModule } from "@angular/forms";
 import { PickupTimesComponent } from "./components/cafe/pickup-times/pickup-times.component";
+import { AppSettingsComponent } from "./components/app-settings/app-settings.component"
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { PickupTimesComponent } from "./components/cafe/pickup-times/pickup-time
     OrdersComponent,
     SelectTimeComponent,
     PickupTimesComponent,
+    AppSettingsComponent
   ],
   imports: [
     CommonModule,

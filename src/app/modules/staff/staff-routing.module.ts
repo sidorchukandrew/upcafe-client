@@ -10,6 +10,7 @@ import { ActiveOrdersComponent } from "./components/active-orders/active-orders.
 import { CompletedOrdersComponent } from "./components/completed-orders/completed-orders.component";
 import { ReadyOrdersComponent } from "./components/ready-orders/ready-orders.component";
 import { PickupTimesComponent } from "./components/cafe/pickup-times/pickup-times.component";
+import { AppSettingsComponent } from './components/app-settings/app-settings.component';
 
 const routes = [
   {
@@ -32,6 +33,7 @@ const routes = [
   { path: "orders/:id", component: OrderDetailsComponent },
   { path: "cafe/hours", component: HoursComponent },
   { path: "cafe/pickup", component: PickupTimesComponent },
+  { path: "cafe/app", component: AppSettingsComponent },
 ];
 
 @NgModule({
