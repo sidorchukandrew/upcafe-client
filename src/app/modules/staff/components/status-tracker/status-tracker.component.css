@@ -1,0 +1,41 @@
+.tracker {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  justify-content: center;
+}
+
+.tracker .step {
+  display: flex;
+  align-items: center;
+}
+
+.tracker .step .icon {
+  border-radius: 50%;
+  min-height: 15px;
+  min-width: 15px;
+  max-width: 15px;
+  max-height: 15px;
+
+  border: solid 2px rgba(0, 0, 0, .12);
+  background-color: white;
+}
+
+.tracker .step .active {
+  background-color: #34a5f2;
+  box-shadow: 0 0 2px 8px #34a5f230;
+  margin: 0px 5px;
+  border: none;
+}
+
+.tracker .step .complete {
+  background-color: #34a5f2;
+  border: none;
+}
+
+
+.tracker .line {
+  width: 15%;
+  border-width: 2px;
+  margin: 0px 10px;
+}

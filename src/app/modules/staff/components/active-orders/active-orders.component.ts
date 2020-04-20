@@ -20,8 +20,12 @@ export class ActiveOrdersComponent implements OnInit {
     this.orders$ = this.ordersStore.selectActiveOrders();
   }
 
-  ready(order: Order) {
-    console.log("clicked!");
-    this.ordersStore.sendUpdate(order, 'READY').subscribe();
+  ready(order: Order, event) {
+    console.log("clicked!", event);
+    // this.ordersStore.sendUpdate(order, 'READY').subscribe();
+  }
+
+  details(event, text) {
+    console.log("details", text);
   }
 }

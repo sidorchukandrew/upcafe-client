@@ -185,9 +185,9 @@ a {
   border-top: 1px solid #353535;
 }
 
-/* .dark-theme .pill-color {
+.dark-theme .pill-color {
   background-color: #383838;
-} */
+}
 
 .dark-theme .warn {
   color: rgb(255, 66, 66);

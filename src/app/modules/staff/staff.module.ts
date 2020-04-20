@@ -19,6 +19,7 @@ import {
   MatSelectModule,
   MatProgressBarModule,
   MatSlideToggleModule,
+  MatTooltipModule,
 } from "@angular/material";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { StaffNavbarComponent } from "./components/staff-navbar/staff-navbar.component";
@@ -29,7 +30,8 @@ import { CompletedOrdersComponent } from "./components/completed-orders/complete
 import { OrdersComponent } from "./components/orders/orders.component";
 import { FormsModule } from "@angular/forms";
 import { PickupTimesComponent } from "./components/cafe/pickup-times/pickup-times.component";
-import { AppSettingsComponent } from "./components/app-settings/app-settings.component"
+import { AppSettingsComponent } from "./components/app-settings/app-settings.component";
+import { StatusTrackerComponent } from './components/status-tracker/status-tracker.component'
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { AppSettingsComponent } from "./components/app-settings/app-settings.com
     OrdersComponent,
     SelectTimeComponent,
     PickupTimesComponent,
-    AppSettingsComponent
+    AppSettingsComponent,
+    StatusTrackerComponent
   ],
   imports: [
     CommonModule,
@@ -62,6 +65,7 @@ import { AppSettingsComponent } from "./components/app-settings/app-settings.com
     MatProgressBarModule,
     FormsModule,
     MatSlideToggleModule,
+    MatTooltipModule
   ],
   entryComponents: [SelectTimeComponent],
 })

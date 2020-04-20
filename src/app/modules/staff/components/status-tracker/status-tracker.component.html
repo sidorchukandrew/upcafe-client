@@ -1,0 +1,27 @@
+<div class="tracker">
+  <div class="step">
+    <div class="icon" [class.active]="status == 'ORDER PLACED'" [class.complete]="status == 'ACTIVE' || status == 'READY'
+            || status == 'COMPLETE'"></div>
+  </div>
+
+  <mat-divider class="divider-color line"></mat-divider>
+
+  <div class="step">
+    <div class="icon" [class.active]="status == 'ACTIVE'" [class.complete]="status == 'READY'
+      || status == 'COMPLETE'"></div>
+  </div>
+
+  <mat-divider class="divider-color line"></mat-divider>
+
+  <div class="step">
+    <div class="icon" [class.active]="status == 'READY'"
+      [class.complete]="status == 'COMPLETE'"></div>
+  </div>
+
+  <mat-divider class="divider-color line"></mat-divider>
+
+  <div class="step">
+    <div class="icon" [class.active]="status == 'COMPLETE'" (click)="tooltip.show();"
+      #tooltip="matTooltip" matTooltip="Complete" matTooltipPosition="above" matTooltipHideDelay=1000></div>
+  </div>
+</div>

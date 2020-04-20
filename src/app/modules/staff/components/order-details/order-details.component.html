@@ -1,1 +1,8 @@
-<p>order-details works!</p>
+<div class="status">
+  <div class="title-size title-color">Order Status</div>
+
+  <app-status-tracker [status]="detailsStore.orderBeingViewed.state"></app-status-tracker>
+  <div class="status subtitle-color">
+    {{detailsStore.orderBeingViewed.state}}
+  </div>
+</div>
