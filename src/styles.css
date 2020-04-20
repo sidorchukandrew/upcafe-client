@@ -189,20 +189,29 @@ a {
   border-top: 1px solid #353535;
 }
 
-.dark-theme .pill-color {
+/* .dark-theme .pill-color {
   background-color: #383838;
-}
+} */
 
 .dark-theme .warn {
   color: rgb(255, 66, 66);
 }
 
 .light-theme .card-background {
-  background-color: #f6f6f6;
+  background-color: #fdfdfd;
+}
+
+.light-theme .button-border {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.light-theme .profile-border {
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .light-theme .divider-color {
   border-top: 1px solid #b6b6b6;
+  border-top-color: rgba(0, 0, 0, 0.12);
 }
 
 .light-theme .title-color {
@@ -219,4 +228,18 @@ a {
 
 .light-theme .navbar-background {
   background-color: #1e1e1e;
+}
+
+.light-theme .pill-color {
+  background-color: #fefefe;
+}
+
+.dark-theme .time-card-background {
+  background-color: #1e1e1e;
+  color: #e1e1e1;
+}
+
+.light-theme .time-card-background {
+  background-color: #34a5f2;
+  color: white;
 }

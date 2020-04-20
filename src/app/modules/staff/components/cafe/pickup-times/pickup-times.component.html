@@ -5,22 +5,26 @@
   <span class="title-color title-size">
     Pickup Hours Settings
   </span>
+  <mat-divider class="divider-color"></mat-divider>
 </div>
+
 <div class="action-group card-background">
+  <mat-divider class="divider-color"></mat-divider>
   <div class="action">
     <div class="name title-color">Interval</div>
-    <mat-select
+      <mat-select
       class="interval"
       [value]="settings.intervalBetweenPickupTimes"
       *ngIf="settings"
       (valueChange)="intervalChange($event)"
-    >
+      >
       <mat-option value="10">10 min</mat-option>
       <mat-option value="15">15 min</mat-option>
       <mat-option value="20">20 min</mat-option>
       <mat-option value="30">30 min</mat-option>
     </mat-select>
   </div>
+  <mat-divider class="divider-color"></mat-divider>
 </div>
 <div class="description subtitle-color">
   Select the amount of time between the available pick up times for customers to
@@ -28,6 +32,7 @@
   show up <i>10:00, 10:10</i> or<i> 10:20</i>.
 </div>
 <div class="action-group card-background">
+  <mat-divider class="divider-color"></mat-divider>
   <div class="action">
     <div class="name title-color">Open</div>
     <mat-slide-toggle
@@ -37,9 +42,7 @@
       (change)="pickupOnOpenChange($event)"
     ></mat-slide-toggle>
   </div>
-  <div class="divider">
-    <mat-divider></mat-divider>
-  </div>
+  <mat-divider class="divider-color"></mat-divider>
   <div class="action">
     <div class="name title-color">Close</div>
     <mat-slide-toggle
@@ -49,6 +52,7 @@
       (change)="pickupOnCloseChange($event)"
     ></mat-slide-toggle>
   </div>
+  <mat-divider class="divider-color"></mat-divider>
 </div>
 <div class="description subtitle-color">
   Toggle whether customers can choose the cafe's open or closing hours to pick

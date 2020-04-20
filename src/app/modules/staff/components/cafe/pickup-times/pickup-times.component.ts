@@ -4,6 +4,7 @@ import { HoursService } from "src/app/services/hours.service";
 import { MatSlideToggleChange } from "@angular/material";
 import { Subject, BehaviorSubject, Observable, Subscription } from "rxjs";
 import { tap, debounceTime } from "rxjs/operators";
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: "app-pickup-times",

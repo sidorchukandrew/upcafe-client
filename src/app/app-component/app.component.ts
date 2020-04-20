@@ -48,7 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
   changeStyles(darkThemeOn: boolean) {
     this.darkThemeOn = darkThemeOn;
 
-    (darkThemeOn) ? document.body.style.backgroundColor = "#080808" : document.body.style.backgroundColor = "white";
+    (darkThemeOn) ? document.body.style.backgroundColor = "#080808" : document.body.style.backgroundColor = "#f6f6f6";
   }
 
 }

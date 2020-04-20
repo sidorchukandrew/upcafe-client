@@ -1,13 +1,13 @@
 <mat-grid-list cols="1" gutterSize="15px" rowHeight="170px" class="wrapper">
-    <mat-grid-tile colspan="1" class="card" *ngFor="let order of orders$ | async">
+    <mat-grid-tile colspan="1" class="card card-background" *ngFor="let order of orders$ | async">
         <div class="content">
-            <div class="pickup-time">
+            <div class="pickup-time title-color">
                 {{utils.convertTime(order.pickupTime)}}
             </div>
-            <div class="customer-name">
+            <div class="customer-name title-color">
                 {{order.customer.firstName}} {{order.customer.lastName}}
             </div>
-            <table class="order-data">
+            <table class="order-data subtitle-color">
                 <tr>
                     <td class="label">
                         Price
@@ -21,7 +21,7 @@
                         Ordered At
                     </td>
                     <td class="value">
-                        {{utils.convertTime(utils.extractTime(order.createdAt))}}
+                        {{utils.convertTime(utils.extractTime(order.createdAt))}} {{utils.appendPeriod(utils.extractTime(order.createdAt))}}
                     </td>
                 </tr>
                 <tr>
@@ -36,7 +36,7 @@
                 </tr>
             </table>
             <div class="button-wrapper">
-                <button mat-stroked-button color="primary" class="complete-order" (click)="complete(order);">
+                <button mat-stroked-button color="primary" class="complete-order button-border" (click)="complete(order);">
                     Picked Up
                 </button>
             </div>
