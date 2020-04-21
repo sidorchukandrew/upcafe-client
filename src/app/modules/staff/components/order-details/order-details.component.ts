@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersDetailsStore } from 'src/app/services/stores/order-details.store';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-order-details',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class OrderDetailsComponent implements OnInit {
 
 
-  constructor(public detailsStore: OrdersDetailsStore, private router: Router) { }
+  constructor(public detailsStore: OrdersDetailsStore, private router: Router, private location: Location) { }
 
   ngOnInit() {
 
@@ -18,6 +19,10 @@ export class OrderDetailsComponent implements OnInit {
     if(!!!this.detailsStore.orderBeingViewed) {
       this.router.navigate(["staff/orders/new"]);
     }
+  }
+
+  back() {
+    this.location.back();
   }
 
 }

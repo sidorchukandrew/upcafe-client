@@ -31,7 +31,8 @@ export class OrderService {
       firstName: 'Andrew',
       lastName: 'Sidorchuk',
       id: 5,
-      photoUrl: 'https://lh3.googleusercontent.com/a-/AOh14GhIz8ImV-cH4k5bKa2DDVJD-QPW238HRL6xL9ey=s96-c'
+      photoUrl: 'https://lh3.googleusercontent.com/a-/AOh14GhIz8ImV-cH4k5bKa2DDVJD-QPW238HRL6xL9ey=s96-c',
+      dateAccountCreated: ''
     }
 
 

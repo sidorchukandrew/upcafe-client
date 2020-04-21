@@ -1,8 +1,51 @@
-<div class="status">
-  <div class="title-size title-color">Order Status</div>
+<!-- <div class="full-white"></div> -->
 
-  <app-status-tracker [status]="detailsStore.orderBeingViewed.state"></app-status-tracker>
-  <div class="status subtitle-color">
-    {{detailsStore.orderBeingViewed.state}}
+<div class="pad">
+
+  <div class="header">
+    <button mat-icon-button (click)="back()" color="primary">
+      <mat-icon style="width:32px; height: 32px; font-size: 32px;">keyboard_backspace</mat-icon>
+    </button>
+    <div class="title title-color">Order Details</div>
   </div>
+
+  <mat-divider class="divider-color"></mat-divider>
+
+  <div class="section">
+    <div class="title-size title-color title">Items</div>
+
+    <div *ngFor="let item of detailsStore.orderBeingViewed.selectedLineItems">
+      <app-item [item]="item"></app-item>
+    </div>
+  </div>
+
+  <mat-divider class="divider-color"></mat-divider>
+
+  <div class="section">
+    <div class="title-size title-color title">Order Status</div>
+
+    <app-status-tracker [status]="detailsStore.orderBeingViewed.state"></app-status-tracker>
+
+    <div class="status title-color">
+      {{detailsStore.orderBeingViewed.state | titlecase}}
+    </div>
+  </div>
+
+  <mat-divider class="divider-color"></mat-divider>
+
+  <div class="section">
+    <div class="title-size title-color title">Customer Information</div>
+
+    <app-customer-info [customer]="detailsStore.orderBeingViewed.customer"></app-customer-info>
+  </div>
+</div>
+
+
+<div class="quick-actions">
+  <button mat-raised-button color="primary" class="main">
+    Ready for Pickup
+  </button>
+  <button mat-mini-fab class="card-background title-color">
+    <mat-icon>more_vert</mat-icon>
+  </button>
 </div>

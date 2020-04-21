@@ -31,7 +31,9 @@ import { OrdersComponent } from "./components/orders/orders.component";
 import { FormsModule } from "@angular/forms";
 import { PickupTimesComponent } from "./components/cafe/pickup-times/pickup-times.component";
 import { AppSettingsComponent } from "./components/app-settings/app-settings.component";
-import { StatusTrackerComponent } from './components/status-tracker/status-tracker.component'
+import { StatusTrackerComponent } from './components/status-tracker/status-tracker.component';
+import { CustomerInfoComponent } from './components/customer-info/customer-info.component';
+import { OrderItemDetailsComponent } from './components/order-item-details/order-item-details.component'
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { StatusTrackerComponent } from './components/status-tracker/status-track
     SelectTimeComponent,
     PickupTimesComponent,
     AppSettingsComponent,
-    StatusTrackerComponent
+    StatusTrackerComponent,
+    CustomerInfoComponent,
+    OrderItemDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,16 @@
             <div class="customer-name title-color">
                 {{order.customer.firstName}} {{order.customer.lastName}}
             </div>
+            <span class="more-actions">
+              <button mat-icon-button [matMenuTriggerFor]="moreActions">
+                <mat-icon class="title-color">more_vert</mat-icon>
+              </button>
+              <mat-menu #moreActions="matMenu">
+                <button mat-menu-item [routerLink]="'../' + order.id" (click)="detailsStore.loadOrderDetailsView(order)">
+                  Details
+                </button>
+              </mat-menu>
+            </span>
             <table class="order-data">
                 <tr>
                     <td class="label subtitle-color">
@@ -36,7 +46,8 @@
                 </tr>
             </table>
             <div class="button-wrapper">
-                <button mat-button color="primary" class="complete-order button-border" (click)="ready(order);">
+                <button mat-button color="primary" class="complete-order button-border" [routerLink]="'../' + order.id"
+                (click)="detailsStore.loadOrderDetailsView(order)">
                   Details
                 </button>
               <button mat-stroked-button color="primary" class="complete-order button-border" (click)="ready(order);">

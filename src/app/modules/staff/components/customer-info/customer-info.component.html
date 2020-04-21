@@ -1,0 +1,22 @@
+<table class="card-background card button-border">
+
+  <tr>
+    <td>
+
+      <div class="name title-color">
+        {{ customer.firstName }}  {{ customer.lastName }}
+      </div>
+      <div class="email subtitle-color">
+        {{ customer.email }}
+      </div>
+      <div class="membership subtitle-color">
+        Member since: {{ customer.dateAccountCreated }}
+      </div>
+    </td>
+
+    <td style="text-align: right;">
+        <img [src]="customer.photoUrl">
+    </td>
+
+  </tr>
+</table>

@@ -54,3 +54,8 @@
   max-width: 350px;
   /* background-color: white; */
 }
+
+.more-actions {
+  position: absolute;
+  right: 15px;
+}

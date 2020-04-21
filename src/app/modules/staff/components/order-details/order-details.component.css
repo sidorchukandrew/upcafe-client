@@ -1,0 +1,39 @@
+.pad {
+  padding: 20px;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.section .title {
+  font-weight: 600;
+  font-size: 1.1em;
+  padding: 0px 0px 15px 0px;
+}
+
+.section {
+  padding: 20px 0px;
+}
+
+.status {
+  font-size: .9em;
+}
+
+.header {
+  padding: 10px 0px 20px 0px;
+}
+
+.quick-actions {
+  position: fixed;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.quick-actions .main {
+  padding: 4px 20%;
+  margin-right: 10px;
+}

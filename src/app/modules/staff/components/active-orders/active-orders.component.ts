@@ -4,6 +4,7 @@ import { Order } from 'src/app/models/Order';
 import { Subscription, Observable } from 'rxjs';
 import { OrdersStore } from 'src/app/services/stores/orders.store';
 import { TimeUtilitiesService } from 'src/app/services/time-utilities.service';
+import { OrdersDetailsStore } from 'src/app/services/stores/order-details.store';
 
 @Component({
   selector: 'app-active-orders',
@@ -14,7 +15,7 @@ export class ActiveOrdersComponent implements OnInit {
 
   orders$: Observable<Order[]>;
 
-  constructor(private ordersStore: OrdersStore, public utils: TimeUtilitiesService) { }
+  constructor(private ordersStore: OrdersStore, public utils: TimeUtilitiesService, public detailsStore: OrdersDetailsStore) { }
 
   ngOnInit() {
     this.orders$ = this.ordersStore.selectActiveOrders();
