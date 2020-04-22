@@ -27,7 +27,6 @@ import { environment } from "../environments/environment";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { StaffSignInComponent } from "./components/staff-sign-in/staff-sign-in.component";
 import { LoadingComponent } from "./app-component/loading/loading.component";
-import { BugReportComponent } from "./components/bug-report/bug-report.component";
 
 let config = new AuthServiceConfig([
   {
@@ -50,7 +49,6 @@ export function provideConfig() {
     SignInComponent,
     StaffSignInComponent,
     LoadingComponent,
-    BugReportComponent,
   ],
   imports: [
     BrowserModule,

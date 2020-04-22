@@ -28,12 +28,15 @@ import { ActiveOrdersComponent } from "./components/active-orders/active-orders.
 import { ReadyOrdersComponent } from "./components/ready-orders/ready-orders.component";
 import { CompletedOrdersComponent } from "./components/completed-orders/completed-orders.component";
 import { OrdersComponent } from "./components/orders/orders.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PickupTimesComponent } from "./components/cafe/pickup-times/pickup-times.component";
 import { AppSettingsComponent } from "./components/app-settings/app-settings.component";
-import { StatusTrackerComponent } from './components/status-tracker/status-tracker.component';
-import { CustomerInfoComponent } from './components/customer-info/customer-info.component';
-import { OrderItemDetailsComponent } from './components/order-item-details/order-item-details.component'
+import { StatusTrackerComponent } from "./components/status-tracker/status-tracker.component";
+import { CustomerInfoComponent } from "./components/customer-info/customer-info.component";
+import { OrderItemDetailsComponent } from "./components/order-item-details/order-item-details.component";
+import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedback.component";
+import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
+import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { OrderItemDetailsComponent } from './components/order-item-details/order
     AppSettingsComponent,
     StatusTrackerComponent,
     CustomerInfoComponent,
-    OrderItemDetailsComponent
+    OrderItemDetailsComponent,
+    AppFeedbackComponent,
+    BugReportComponent,
+    FeatureRequestComponent,
   ],
   imports: [
     CommonModule,
@@ -69,7 +75,8 @@ import { OrderItemDetailsComponent } from './components/order-item-details/order
     MatProgressBarModule,
     FormsModule,
     MatSlideToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ReactiveFormsModule,
   ],
   entryComponents: [SelectTimeComponent],
 })

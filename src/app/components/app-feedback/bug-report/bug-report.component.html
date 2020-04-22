@@ -1,0 +1,49 @@
+<form [formGroup]="bugForm" (ngSubmit)="submit()">
+  <div formGroupName="bugInfo">
+    <div class="question subtitle-color">
+      Explain what you expected the application to do, or what was suppose to
+      happen
+    </div>
+    <textarea
+      matInput
+      formControlName="expected"
+      class="answer button-border card-background subtitle-color"
+      rows="4"
+    ></textarea>
+
+    <div class="question subtitle-color">
+      Explain what ended up happening
+      <textarea
+        formControlName="actual"
+        class="answer button-border card-background subtitle-color"
+        rows="4"
+      ></textarea>
+    </div>
+
+    <div class="question subtitle-color">
+      What page or section of the app did this occur?
+      <textarea
+        matInput
+        formControlName="page"
+        class="answer button-border card-background subtitle-color"
+        rows="4"
+      ></textarea>
+    </div>
+
+    <div class="question subtitle-color">
+      If there's anymore information that you think will help the developers fix
+      the bug, leave it here
+      <textarea
+        matInput
+        formControlName="extra"
+        class="answer button-border card-background subtitle-color"
+        rows="4"
+      ></textarea>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button mat-flat-button type="submit" color="primary">Submit</button>
+    <button mat-stroked-button type="reset" color="primary">Reset</button>
+  </div>
+</form>

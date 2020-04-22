@@ -1,0 +1,32 @@
+<div class="header card-background">
+  <button mat-icon-button routerLink="../cafe" id="back-to-menu">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+  <span class="title-color title-size">Feedback</span>
+  <mat-divider class="divider-color"></mat-divider>
+</div>
+<div class="padding">
+  <nav>
+    <ul>
+      <li>
+        <a
+          class="link card-background subtitle-color"
+          routerLinkActive="active"
+          routerLink="bugs"
+        >
+          Bug Report
+        </a>
+      </li>
+      <li>
+        <a
+          class="link card-background subtitle-color"
+          routerLinkActive="active"
+          routerLink="features"
+        >
+          Feature Request
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>
+</div>

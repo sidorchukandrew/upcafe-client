@@ -1,0 +1,28 @@
+<form [formGroup]="featuresForm" (ngSubmit)="submit()">
+  <div formGroupName="featureInfo">
+    <div class="question subtitle-color">
+      Explain what the feature is
+    </div>
+    <textarea
+      matInput
+      formControlName="description"
+      class="card-background button-border answer subtitle-color"
+      rows="4"
+    ></textarea>
+
+    <div class="question subtitle-color">
+      What page should this go on?
+    </div>
+    <textarea
+      matInput
+      formControlName="page"
+      class="card-background button-border answer subtitle-color"
+      rows="4"
+    ></textarea>
+  </div>
+
+  <div class="actions">
+    <button mat-flat-button type="submit" color="primary">Submit</button>
+    <button mat-stroked-button type="reset" color="primary">Reset</button>
+  </div>
+</form>

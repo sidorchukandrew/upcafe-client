@@ -2,14 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
-  selector: "app-bug-report",
-  templateUrl: "./bug-report.component.html",
-  styleUrls: ["./bug-report.component.css"],
+  selector: "app-feature-request",
+  templateUrl: "./feature-request.component.html",
+  styleUrls: ["./feature-request.component.css"],
 })
-export class BugReportComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
-
-  bugForm: FormGroup = this.fb.group({
+export class FeatureRequestComponent implements OnInit {
+  featuresForm: FormGroup = this.fb.group({
     reportInfo: this.fb.group({
       reporterName: [
         localStorage.getItem("firstName") +
@@ -22,13 +20,16 @@ export class BugReportComponent implements OnInit {
       platform: ["IOS"],
       browser: ["Firefox"],
     }),
-    bugInfo: this.fb.group({
+    featureInfo: this.fb.group({
+      page: [""],
       description: [""],
     }),
   });
+  constructor(private fb: FormBuilder) {}
+
   ngOnInit() {}
 
   submit() {
-    console.log(this.bugForm.value);
+    console.log(this.featuresForm.value);
   }
 }

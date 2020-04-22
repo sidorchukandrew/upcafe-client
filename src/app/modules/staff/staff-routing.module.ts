@@ -10,7 +10,10 @@ import { ActiveOrdersComponent } from "./components/active-orders/active-orders.
 import { CompletedOrdersComponent } from "./components/completed-orders/completed-orders.component";
 import { ReadyOrdersComponent } from "./components/ready-orders/ready-orders.component";
 import { PickupTimesComponent } from "./components/cafe/pickup-times/pickup-times.component";
-import { AppSettingsComponent } from './components/app-settings/app-settings.component';
+import { AppSettingsComponent } from "./components/app-settings/app-settings.component";
+import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedback.component";
+import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
+import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
 
 const routes = [
   {
@@ -34,6 +37,14 @@ const routes = [
   { path: "cafe/hours", component: HoursComponent },
   { path: "cafe/pickup", component: PickupTimesComponent },
   { path: "cafe/app", component: AppSettingsComponent },
+  {
+    path: "feedback",
+    component: AppFeedbackComponent,
+    children: [
+      { path: "bugs", component: BugReportComponent },
+      { path: "features", component: FeatureRequestComponent },
+    ],
+  },
 ];
 
 @NgModule({

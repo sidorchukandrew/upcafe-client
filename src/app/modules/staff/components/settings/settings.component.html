@@ -8,7 +8,9 @@
     >
       <div class="content title-color">
         <img
-          [src]="'../../../../../assets/images/staff/' + colorPack + '/clock.png'"
+          [src]="
+            '../../../../../assets/images/staff/' + colorPack + '/clock.png'
+          "
           class="icon"
         />
         Hours
@@ -23,7 +25,9 @@
     >
       <div class="content title-color">
         <img
-          [src]="'../../../../../assets/images/staff/' + colorPack + '/trolley.png'"
+          [src]="
+            '../../../../../assets/images/staff/' + colorPack + '/trolley.png'
+          "
           class="icon"
         />
         Stock
@@ -38,7 +42,9 @@
     >
       <div class="content title-color">
         <img
-          [src]="'../../../../../assets/images/staff/' + colorPack + '/menu.png'"
+          [src]="
+            '../../../../../assets/images/staff/' + colorPack + '/menu.png'
+          "
           class="icon"
         />
         Catalog
@@ -54,7 +60,9 @@
     >
       <div class="content title-color">
         <img
-          [src]="'../../../../../assets/images/staff/' + colorPack + '/truck.png'"
+          [src]="
+            '../../../../../assets/images/staff/' + colorPack + '/truck.png'
+          "
           class="icon"
         />
         Pickup Times
@@ -63,23 +71,42 @@
   </a>
 
   <a>
-    <mat-grid-tile colspan="1" class="settings-button card-background button-border" matRipple routerLink="app">
+    <mat-grid-tile
+      colspan="1"
+      class="settings-button card-background button-border"
+      matRipple
+      routerLink="../feedback/bugs"
+    >
       <div class="content title-color">
-        <img [src]="'../../../../../assets/images/staff/' + colorPack + '/bugs.png'" class="icon" />
+        <img
+          [src]="
+            '../../../../../assets/images/staff/' + colorPack + '/bugs.png'
+          "
+          class="icon"
+        />
         Bugs
       </div>
     </mat-grid-tile>
   </a>
 
   <a>
-    <mat-grid-tile colspan="1" class="settings-button card-background button-border" matRipple routerLink="app">
+    <mat-grid-tile
+      colspan="1"
+      class="settings-button card-background button-border"
+      matRipple
+      routerLink="app"
+    >
       <div class="content title-color">
-        <img [src]="'../../../../../assets/images/staff/' + colorPack + '/gear.png'" class="icon" />
+        <img
+          [src]="
+            '../../../../../assets/images/staff/' + colorPack + '/gear.png'
+          "
+          class="icon"
+        />
         App Settings
       </div>
     </mat-grid-tile>
   </a>
 </mat-grid-list>
 
-<div class="navbar-space">
-</div>
+<div class="navbar-space"></div>
