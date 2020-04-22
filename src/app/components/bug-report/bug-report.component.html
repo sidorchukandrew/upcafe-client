@@ -1,0 +1,10 @@
+<form [formGroup]="bugForm" (ngSubmit)="submit()">
+  <div formGroupName="bugInfo">
+    <mat-form-field appearance="outline">
+      <mat-label>Please describe the issue:</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+  </div>
+
+  <button mat-button type="submit" color="primary">Submit</button>
+</form>
