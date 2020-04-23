@@ -20,6 +20,7 @@ import {
   MatProgressBarModule,
   MatSlideToggleModule,
   MatTooltipModule,
+  MatCheckboxModule,
 } from "@angular/material";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { StaffNavbarComponent } from "./components/staff-navbar/staff-navbar.component";
@@ -76,6 +77,7 @@ import { FeatureRequestComponent } from "src/app/components/app-feedback/feature
     FormsModule,
     MatSlideToggleModule,
     MatTooltipModule,
+    MatCheckboxModule,
     ReactiveFormsModule,
   ],
   entryComponents: [SelectTimeComponent],

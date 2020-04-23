@@ -17,7 +17,13 @@
             <mat-icon class="title-color">more_vert</mat-icon>
           </button>
           <mat-menu #moreActions="matMenu">
-            <button mat-menu-item [routerLink]="'../' + order.id" (click)="detailsStore.loadOrderDetailsView(order)">
+            <button
+              mat-menu-item
+              [routerLink]="'../' + order.id"
+              (click)="
+                details(order.id); detailsStore.loadOrderDetailsView(order)
+              "
+            >
               Details
             </button>
           </mat-menu>
@@ -38,25 +44,17 @@
           </td>
           <td class="value subtitle-color">
             {{ utils.convertTime(utils.extractTime(order.createdAt)) }}
+            {{ utils.appendPeriod(utils.extractTime(order.createdAt)) }}
           </td>
         </tr>
         <tr>
           <td class="label subtitle-color">
-            Items
+            Items ({{ order.selectedLineItems.length }})
           </td>
           <td class="value subtitle-color">
-            <span
-              class="items"
-              *ngFor="let item of order.selectedLineItems; let i = index"
-            >
-              {{
-                utils.appendComma(
-                  item.variationData.name,
-                  i,
-                  order.selectedLineItems.length
-                )
-              }}
-            </span>
+            <div class="items">
+              {{ order.selectedLineItems[0].variationData.name }}
+            </div>
           </td>
         </tr>
       </table>

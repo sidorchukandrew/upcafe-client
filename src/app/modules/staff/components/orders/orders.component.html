@@ -18,15 +18,15 @@
 </h2>
 <div class="order-views">
   <button
-    [class.selected]="selectedOrdersView == 'Up Next'"
     matRipple
     (click)="selectOrderView('Up Next')"
     routerLink="/staff/orders/new"
+    routerLinkActive="selected"
   >
     Up Next
   </button>
   <button
-    [class.selected]="selectedOrdersView == 'In Progress'"
+    routerLinkActive="selected"
     matRipple
     (click)="selectOrderView('In Progress')"
     routerLink="/staff/orders/active"
@@ -34,7 +34,7 @@
     In Progress
   </button>
   <button
-    [class.selected]="selectedOrdersView == 'Ready For Pickup'"
+    routerLinkActive="selected"
     matRipple
     (click)="selectOrderView('Ready For Pickup')"
     routerLink="/staff/orders/ready"

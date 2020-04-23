@@ -1,47 +1,62 @@
-<mat-grid-list cols="1" gutterSize="15px" rowHeight="170px" class="wrapper">
-    <mat-grid-tile colspan="1" class="card card-background" *ngFor="let order of orders$ | async">
-        <div class="content">
-            <div class="pickup-time title-color">
-                {{utils.convertTime(order.pickupTime)}}
+<mat-grid-list
+  cols="1"
+  gutterSize="15px"
+  rowHeight="170px"
+  class="wrapper"
+  (swipeleft)="swipeLeft()"
+  (swiperight)="swipeRight()"
+>
+  <mat-grid-tile
+    colspan="1"
+    class="card card-background"
+    *ngFor="let order of orders$ | async"
+  >
+    <div class="content">
+      <div class="pickup-time title-color">
+        {{ utils.convertTime(order.pickupTime) }}
+      </div>
+      <div class="customer-name title-color">
+        {{ order.customer.firstName }} {{ order.customer.lastName }}
+      </div>
+      <table class="order-data subtitle-color">
+        <tr>
+          <td class="label">
+            Price
+          </td>
+          <td class="value">
+            {{ order.totalPrice | currency }}
+          </td>
+        </tr>
+        <tr>
+          <td class="label">
+            Ordered At
+          </td>
+          <td class="value">
+            {{ utils.convertTime(utils.extractTime(order.createdAt)) }}
+            {{ utils.appendPeriod(utils.extractTime(order.createdAt)) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="label">Items ({{ order.selectedLineItems.length }})</td>
+          <td class="value">
+            <div class="items">
+              {{ order.selectedLineItems[0].variationData.name }}
             </div>
-            <div class="customer-name title-color">
-                {{order.customer.firstName}} {{order.customer.lastName}}
-            </div>
-            <table class="order-data subtitle-color">
-                <tr>
-                    <td class="label">
-                        Price
-                    </td>
-                    <td class="value">
-                        {{order.totalPrice | currency}}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">
-                        Ordered At
-                    </td>
-                    <td class="value">
-                        {{utils.convertTime(utils.extractTime(order.createdAt))}} {{utils.appendPeriod(utils.extractTime(order.createdAt))}}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">
-                        Items
-                    </td>
-                    <td class="value">
-                        <div class="items" *ngFor="let item of order.selectedLineItems; let i = index;">
-                            {{utils.appendComma(item.variationData.name, i, order.selectedLineItems.length)}}
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <div class="button-wrapper">
-                <button mat-stroked-button color="primary" class="complete-order button-border" (click)="complete(order);">
-                    Picked Up
-                </button>
-            </div>
-        </div>
-    </mat-grid-tile>
+          </td>
+        </tr>
+      </table>
+      <div class="button-wrapper">
+        <button
+          mat-stroked-button
+          color="primary"
+          class="complete-order button-border"
+          (click)="complete(order)"
+        >
+          Picked Up
+        </button>
+      </div>
+    </div>
+  </mat-grid-tile>
 </mat-grid-list>
 
 <div class="navbar-space-bottom-position"></div>

@@ -40,17 +40,29 @@
 }
 
 .label {
-  color: #959aaa;
   font-size: .9em;
   width: 45%;
 }
 
 .value {
-  color: #5b5e68;
   font-size: .9em;
   width: 55%;
 }
 
 .items {
-  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  width: 99%;
+}
+
+.button-wrapper {
+  text-align: center;
+}
+
+.complete-order {
+  margin-top: 10px;
+  width: 80%;
+  max-width: 350px;
 }

@@ -1,61 +1,80 @@
 <mat-grid-list cols="1" gutterSize="15px" rowHeight="220px" class="wrapper">
-    <mat-grid-tile colspan="1" class="card card-background" *ngFor="let order of orders$ | async">
-        <div class="content">
-            <div class="pickup-time title-color">
-                {{utils.convertTime(order.pickupTime)}}
+  <mat-grid-tile
+    colspan="1"
+    class="card card-background"
+    *ngFor="let order of orders$ | async"
+  >
+    <div class="content">
+      <div class="pickup-time title-color">
+        {{ utils.convertTime(order.pickupTime) }}
+      </div>
+      <div class="customer-name title-color">
+        {{ order.customer.firstName }} {{ order.customer.lastName }}
+      </div>
+      <span class="more-actions">
+        <button mat-icon-button [matMenuTriggerFor]="moreActions">
+          <mat-icon class="title-color">more_vert</mat-icon>
+        </button>
+        <mat-menu #moreActions="matMenu">
+          <button
+            mat-menu-item
+            [routerLink]="'../' + order.id"
+            (click)="detailsStore.loadOrderDetailsView(order)"
+          >
+            Details
+          </button>
+        </mat-menu>
+      </span>
+      <table class="order-data">
+        <tr>
+          <td class="label subtitle-color">
+            Price
+          </td>
+          <td class="value subtitle-color">
+            {{ order.totalPrice | currency }}
+          </td>
+        </tr>
+        <tr>
+          <td class="label subtitle-color">
+            Ordered At
+          </td>
+          <td class="value subtitle-color">
+            {{ utils.convertTime(utils.extractTime(order.createdAt)) }}
+            {{ utils.appendPeriod(utils.extractTime(order.createdAt)) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="label subtitle-color">
+            Items ({{ order.selectedLineItems.length }})
+          </td>
+          <td class="value subtitle-color">
+            <div class="items">
+              {{ order.selectedLineItems[0].variationData.name }}
             </div>
-            <div class="customer-name title-color">
-                {{order.customer.firstName}} {{order.customer.lastName}}
-            </div>
-            <span class="more-actions">
-              <button mat-icon-button [matMenuTriggerFor]="moreActions">
-                <mat-icon class="title-color">more_vert</mat-icon>
-              </button>
-              <mat-menu #moreActions="matMenu">
-                <button mat-menu-item [routerLink]="'../' + order.id" (click)="detailsStore.loadOrderDetailsView(order)">
-                  Details
-                </button>
-              </mat-menu>
-            </span>
-            <table class="order-data">
-                <tr>
-                    <td class="label subtitle-color">
-                        Price
-                    </td>
-                    <td class="value subtitle-color">
-                        {{order.totalPrice | currency}}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label subtitle-color">
-                        Ordered At
-                    </td>
-                    <td class="value subtitle-color">
-                        {{utils.convertTime(utils.extractTime(order.createdAt))}}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label subtitle-color">
-                        Items
-                    </td>
-                    <td class="value subtitle-color">
-                        <div class="items" *ngFor="let item of order.selectedLineItems; let i = index;">
-                            {{utils.appendComma(item.variationData.name, i, order.selectedLineItems.length)}}
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <div class="button-wrapper">
-                <button mat-button color="primary" class="complete-order button-border" [routerLink]="'../' + order.id"
-                (click)="detailsStore.loadOrderDetailsView(order)">
-                  Details
-                </button>
-              <button mat-stroked-button color="primary" class="complete-order button-border" (click)="ready(order);">
-                    Ready For Pickup
-                </button>
-            </div>
-        </div>
-    </mat-grid-tile>
+          </td>
+        </tr>
+      </table>
+      <div class="button-wrapper">
+        <button
+          mat-button
+          color="primary"
+          class="complete-order button-border"
+          [routerLink]="'../' + order.id"
+          (click)="detailsStore.loadOrderDetailsView(order)"
+        >
+          Details
+        </button>
+        <button
+          mat-stroked-button
+          color="primary"
+          class="complete-order button-border"
+          (click)="ready(order)"
+        >
+          Ready For Pickup
+        </button>
+      </div>
+    </div>
+  </mat-grid-tile>
 </mat-grid-list>
 
 <div class="navbar-space-bottom-position"></div>

@@ -1,18 +1,27 @@
-import { Injectable } from '@angular/core';
-import { Order } from 'src/app/models/Order';
+import { Injectable } from "@angular/core";
+import { Order } from "src/app/models/Order";
+import { OrdersStore } from "./orders.store";
+import { Observable } from "rxjs";
+import { LoadingService } from "../loading.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class OrdersDetailsStore {
-
   public orderBeingViewed: Order;
+  private orderBeingViewed$: Observable<Order[]>;
 
-  constructor() { }
+  constructor(private ordersStore: OrdersStore) {}
 
   loadOrderDetailsView(order: Order) {
-    console.log("Pulling up details: ", order);
     this.orderBeingViewed = order;
   }
 
+  setOrderBeingViewed(id: string) {
+    this.orderBeingViewed$ = this.ordersStore.orders$;
+    this.orderBeingViewed$.subscribe((orders) => {
+      console.log("Changes!");
+      this.orderBeingViewed = orders.find((order) => id == order.id);
+    });
+  }
 }

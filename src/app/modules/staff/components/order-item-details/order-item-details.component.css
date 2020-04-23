@@ -1,0 +1,19 @@
+.card {
+  border-radius: 5px;
+  padding: 20px 10px;
+  margin: 5px 0px;
+}
+
+ul {
+  margin: 5px 0px;
+}
+
+.food-name {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.options {
+  font-size: 1em;
+}

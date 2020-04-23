@@ -1,24 +1,30 @@
 <div class="tracker">
-    <div class="step" id="placed">
-        <div class="icon" [class.active]="status == 'ORDER PLACED'"
-            [class.complete]="status == 'ACTIVE' || status == 'READY'"></div>
-        <div class="label">Order placed successfully</div>
-    </div>
-    <div class="stepper-line"></div>
+  <div class="step" id="placed">
+    <div
+      class="icon"
+      [class.active]="status == 'ORDER PLACED'"
+      [class.complete]="status == 'ACTIVE' || status == 'READY'"
+    ></div>
+    <div class="label">Order placed successfully</div>
+  </div>
+  <div class="stepper-line stepper-line-color"></div>
 
-    <div class="step" id="started">
-        <div class="icon" [class.active]="status == 'ACTIVE'" [class.complete]="status == 'READY'">
-        </div>
-        <div class="label">We're working on your order!</div>
-    </div>
-    <div class="stepper-line"></div>
-    <div class="step" id="ready">
-        <div class="icon" [class.active]="status == 'READY'"></div>
-        <div class="label">Your order is ready for pickup</div>
-    </div>
-    <div class="stepper-line"></div>
-    <div class="step" id="picked-up">
-        <div class="icon"></div>
-        <div class="label">Picked up</div>
-    </div>
+  <div class="step" id="started">
+    <div
+      class="icon"
+      [class.active]="status == 'ACTIVE'"
+      [class.complete]="status == 'READY'"
+    ></div>
+    <div class="label">We're working on your order!</div>
+  </div>
+  <div class="stepper-line stepper-line-color"></div>
+  <div class="step" id="ready">
+    <div class="icon" [class.active]="status == 'READY'"></div>
+    <div class="label">Your order is ready for pickup</div>
+  </div>
+  <div class="stepper-line stepper-line-color"></div>
+  <div class="step" id="picked-up">
+    <div class="icon"></div>
+    <div class="label">Picked up</div>
+  </div>
 </div>

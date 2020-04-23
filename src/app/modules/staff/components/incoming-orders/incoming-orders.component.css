@@ -50,7 +50,11 @@
 }
 
 .items {
-  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  width: 99%;
 }
 
 .start-order {

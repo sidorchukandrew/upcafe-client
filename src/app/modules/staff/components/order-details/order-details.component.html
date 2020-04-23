@@ -1,12 +1,24 @@
-<!-- <div class="full-white"></div> -->
-
 <div class="pad">
-
   <div class="header">
     <button mat-icon-button (click)="back()" color="primary">
-      <mat-icon style="width:32px; height: 32px; font-size: 32px;">keyboard_backspace</mat-icon>
+      <mat-icon style="width: 32px; height: 32px; font-size: 32px;">
+        keyboard_backspace
+      </mat-icon>
     </button>
     <div class="title title-color">Order Details</div>
+    <div class="main-info">
+      <span class="time title-color info">
+        {{ utils.convertTime(detailsStore.orderBeingViewed.pickupTime) }}
+
+        <span style="font-size: 0.8em;">
+          {{ utils.appendPeriod(detailsStore.orderBeingViewed.pickupTime) }}
+        </span>
+      </span>
+      <span class="name title-color title-size info">
+        {{ detailsStore.orderBeingViewed.customer.firstName }}
+        {{ detailsStore.orderBeingViewed.customer.lastName }}
+      </span>
+    </div>
   </div>
 
   <mat-divider class="divider-color"></mat-divider>
@@ -20,32 +32,96 @@
   </div>
 
   <mat-divider class="divider-color"></mat-divider>
+  <!--
+  <div class="section">
+    <div class="title-size title-color title">Customer Information</div>
+
+    <app-customer-info
+      [customer]="detailsStore.orderBeingViewed.customer"
+    ></app-customer-info>
+  </div> -->
+
+  <mat-divider class="divider-color"></mat-divider>
 
   <div class="section">
     <div class="title-size title-color title">Order Status</div>
 
-    <app-status-tracker [status]="detailsStore.orderBeingViewed.state"></app-status-tracker>
+    <app-status-tracker
+      [status]="detailsStore.orderBeingViewed.state"
+    ></app-status-tracker>
 
     <div class="status title-color">
-      {{detailsStore.orderBeingViewed.state | titlecase}}
+      {{ detailsStore.orderBeingViewed.state | titlecase }}
     </div>
   </div>
 
   <mat-divider class="divider-color"></mat-divider>
 
   <div class="section">
-    <div class="title-size title-color title">Customer Information</div>
-
-    <app-customer-info [customer]="detailsStore.orderBeingViewed.customer"></app-customer-info>
+    <div class="title-size title-color title">More Info</div>
+    <div class="price subtitle-color">
+      Total Price: {{ detailsStore.orderBeingViewed.totalPrice | currency }}
+    </div>
+    <div class="ordered-at subtitle-color">
+      Ordered At:
+      {{ utils.extractTime(detailsStore.orderBeingViewed.createdAt) }}
+    </div>
   </div>
 </div>
 
+<div style="min-height: 80px;"></div>
 
 <div class="quick-actions">
-  <button mat-raised-button color="primary" class="main">
-    Ready for Pickup
-  </button>
-  <button mat-mini-fab class="card-background title-color">
+  <span [ngSwitch]="detailsStore.orderBeingViewed.state">
+    <button
+      mat-raised-button
+      color="primary"
+      class="main"
+      *ngSwitchCase="'ORDER PLACED'"
+      (click)="update('ACTIVE')"
+    >
+      Start the Order
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="main"
+      *ngSwitchCase="'ACTIVE'"
+      (click)="update('READY')"
+    >
+      Ready for Pickup
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="main"
+      *ngSwitchCase="'READY'"
+      (click)="update('COMPLETE')"
+    >
+      Order was Picked Up
+    </button>
+  </span>
+  <button mat-icon-button [matMenuTriggerFor]="moreStatuses" color="primary">
     <mat-icon>more_vert</mat-icon>
   </button>
+
+  <mat-menu #moreStatuses="matMenu">
+    <button mat-menu-item (click)="update('ORDER PLACED')">
+      Order not yet started
+    </button>
+
+    <button mat-menu-item (click)="update('ACTIVE')">
+      Started
+    </button>
+
+    <button mat-menu-item (click)="update('READY')">
+      Ready for pickup
+    </button>
+
+    <button mat-menu-item (click)="update('COMPLETE')">
+      Picked up
+    </button>
+  </mat-menu>
 </div>

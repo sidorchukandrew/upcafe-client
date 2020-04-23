@@ -1,1 +1,21 @@
-<div class="title-color">{{ item }}</div>
+<div
+  class="card card-background"
+  [class.button-border]="!(theme.darkThemeOn$ | async)"
+>
+  <div class="food-name title-color">{{ item.variationData.name }}</div>
+  <div class="options subtitle-color">
+    Toppings:
+    <ul *ngIf="item.selectedModifiers">
+      <li
+        class="option title-color"
+        *ngFor="let modifier of item.selectedModifiers"
+      >
+        {{ modifier.name }}
+      </li>
+    </ul>
+    <div *ngIf="!item.selectedModifiers">
+      None
+    </div>
+    Quantity: ({{ item.quantity }})
+  </div>
+</div>
