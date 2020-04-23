@@ -77,8 +77,10 @@
       id="add-to-order"
       color="primary"
       (click)="addToOrder()"
+      [disabled]="(orderState$ | async) == 'PLACED'"
     >
-      Add to Order
+      <span *ngIf="(orderState$ | async) != 'PLACED'">Add to Order</span>
+      <mat-icon *ngIf="(orderState$ | async) == 'PLACED'">lock</mat-icon>
     </button>
   </div>
 </div>
