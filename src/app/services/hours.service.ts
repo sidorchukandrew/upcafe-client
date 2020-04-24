@@ -3,8 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import { Block } from "../models/Block";
 import { environment } from "src/environments/environment";
 import { PickupSettings } from "../models/PickupSettings";
-import { Observable } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
+import { Observable, throwError } from "rxjs";
+import { shareReplay, retry, catchError } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -20,11 +20,18 @@ export class HoursService {
   }
 
   public getBlocks(week: string): any {
-    return this.http.get(environment.backendUrl + "/cafe/hours", {
-      params: {
-        weekOf: week,
-      },
-    });
+    return this.http
+      .get(environment.backendUrl + "/cafe/hours", {
+        params: {
+          weekOf: week,
+        },
+      })
+      .pipe(
+        catchError((error) => {
+          console.log("IN hours service : ", error);
+          return throwError(error + "");
+        })
+      );
   }
 
   public updateBlock(block: Block, weekOf: string): any {
@@ -52,10 +59,9 @@ export class HoursService {
   }
 
   public getAvailablePickupTimes(): Observable<any> {
-    return this.http.get<Block[]>(environment.backendUrl + "/cafe/pickup")
-    .pipe(
-      shareReplay()
-    );
+    return this.http
+      .get<Block[]>(environment.backendUrl + "/cafe/pickup")
+      .pipe(shareReplay());
   }
 
   public getPickupSettings(): any {
@@ -65,6 +71,9 @@ export class HoursService {
   }
 
   public updatePickupSettings(settings: PickupSettings): any {
-    return this.http.put(environment.backendUrl + "/cafe/settings/pickup", settings);
+    return this.http.put(
+      environment.backendUrl + "/cafe/settings/pickup",
+      settings
+    );
   }
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./routing/app-routing.module";
@@ -27,6 +27,7 @@ import { environment } from "../environments/environment";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { StaffSignInComponent } from "./components/staff-sign-in/staff-sign-in.component";
 import { LoadingComponent } from "./app-component/loading/loading.component";
+import { HttpErrorInterceptor } from "./interceptors/HttpErrorInterceptor";
 
 let config = new AuthServiceConfig([
   {
@@ -71,6 +72,11 @@ export function provideConfig() {
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],
