@@ -1,42 +1,16 @@
-.tracker {
-  margin: 30px;
+.time {
+  color: #34a5f2;
+  font-size: 6em;
+  font-family: 'Sen';
 }
 
-.tracker .step {
-  margin: 10px 10px;
-  position: relative;
+.pickup-text {
+  font-size: 1.1em;
+  font-family: 'Sen';
 }
 
-.tracker .step .icon {
-  height: 14px;
-  width: 14px;
-  flex-shrink: 0;
-  position: relative;
-  border-radius: 50%;
-  background-color: #e8e5f3;
-  display: inline-block;
+.section {
+  margin: 20px 0px;
 }
 
-.tracker .step .label {
-  display: inline-block;
-  position: absolute;
-  height: 100%;
-  padding-left: 20px;
-  color: #666666;
-}
-
-.tracker .step .active {
-  background-color: #34a5f2;
-  box-shadow: 0 0 2px 8px #34a5f230;
-  margin: 5px 0;
-}
-
-.tracker .step .complete {
-  background-color: #34a5f2;
-}
-
-
-.tracker .stepper-line {
-  min-height: 70px;
-  margin-left: 17px;
-}
+.status-text {}

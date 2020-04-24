@@ -19,7 +19,7 @@ import {
   MatBadgeModule,
   MatStepperModule,
   MatSlideToggleModule,
-  MatSlideToggle
+  MatSlideToggle,
 } from "@angular/material";
 import { MenuComponent } from "./components/menu/menu.component";
 import { HomeComponent } from "./components/home/home.component";
@@ -39,8 +39,8 @@ import { PaymentComponent } from "./components/cart/payment/payment.component";
 import { BeginOrderComponent } from "./components/cart/begin-order/begin-order.component";
 import { MyOrderComponent } from "./components/cart/my-order/my-order.component";
 import { TrackOrderComponent } from "./components/cart/track-order/track-order.component";
-import { STEPPER_GLOBAL_OPTIONS } from "@angular/cdk/stepper";
-import { SettingsComponent } from './components/profile/settings/settings.component';
+import { SettingsComponent } from "./components/profile/settings/settings.component";
+import { StatusTrackerComponent } from "../staff/components/status-tracker/status-tracker.component";
 
 @NgModule({
   declarations: [
@@ -64,6 +64,7 @@ import { SettingsComponent } from './components/profile/settings/settings.compon
     MyOrderComponent,
     TrackOrderComponent,
     SettingsComponent,
+    StatusTrackerComponent,
   ],
   imports: [
     CommonModule,
@@ -80,7 +81,7 @@ import { SettingsComponent } from './components/profile/settings/settings.compon
     MatProgressSpinnerModule,
     MatBadgeModule,
     MatStepperModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
   entryComponents: [UserResponseDialog],
   providers: [],
