@@ -7,8 +7,9 @@ import { OrderService } from "src/app/services/order.service";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { SelectedItemStore } from "src/app/services/stores/selected-item.store";
 import { Subscription, noop, Observable } from "rxjs";
-import { tap } from "rxjs/operators";
+import { tap, map } from "rxjs/operators";
 import { VariationData } from "src/app/models/VariationData";
+import { HoursService } from "src/app/services/hours.service";
 
 @Component({
   selector: "app-item-details",
@@ -27,12 +28,14 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   subscriptions: Subscription;
   item: LineItem;
   orderState$: Observable<string>;
+  timesAvailable: boolean = false;
 
   constructor(
     private itemStore: SelectedItemStore,
     private orderService: OrderService,
     public userResponseDialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private hoursService: HoursService
   ) {}
 
   ngOnInit() {
@@ -50,6 +53,13 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.add(this.orderState$.subscribe());
+
+    this.hoursService
+      .getAvailablePickupTimes()
+      .pipe(map((available) => available["availableTimes"]))
+      .subscribe((times) => {
+        this.timesAvailable = times.length > 0;
+      });
   }
 
   ngOnDestroy() {
