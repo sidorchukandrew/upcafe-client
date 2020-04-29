@@ -13,7 +13,7 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
     // this.selectedOrdersView = "Up Next";
-    // this.router.navigate(['staff/orders/new']);
+    this.router.navigate(["staff/orders/new"]);
   }
 
   selectOrderView(view: string): void {

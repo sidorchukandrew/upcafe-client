@@ -4,7 +4,7 @@
 
 #back-to-menu {
   padding-left: 10px;
-  color: #34a5f2;
+  color: #49c9f2;
 }
 
 
@@ -31,6 +31,6 @@ nav ul li .link {
 }
 
 .active {
-  background-color: #34a5f2;
+  background-color: #49c9f2;
   color: white;
 }

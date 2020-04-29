@@ -1,7 +1,12 @@
 .time {
-  color: #34a5f2;
+  color: #49c9f2;
   font-size: 6em;
   font-family: 'Sen';
+}
+
+.padding-20 {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .pickup-text {

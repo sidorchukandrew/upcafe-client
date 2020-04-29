@@ -7,200 +7,305 @@
   </span>
   <mat-divider class="divider-color"></mat-divider>
 </div>
-    <div class="date-range title-color">
-        <div class="arrow subtitle-color" matRipple (click)="previousWeek();">
-            <mat-icon>keyboard_arrow_left</mat-icon>
-        </div>
-        <div class="section">
-            <span class="date">
-                {{startDate.getDate()}}
-            </span>
-            <div class="names">
-                {{monthNames[startDate.getMonth()]}}
+<div class="date-range title-color">
+  <div class="arrow subtitle-color" matRipple (click)="previousWeek()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </div>
+  <div class="section">
+    <span class="date">
+      {{ startDate.getDate() }}
+    </span>
+    <div class="names">
+      {{ monthNames[startDate.getMonth()] }}
 
-                {{dayNames[startDate.getDay()]}}
-            </div>
-        </div>
-        <span>-</span>
-        <div class="section">
-            <span class="date">
-                {{endDate.getDate()}}
-            </span>
-            <div class="names">
-                {{monthNames[endDate.getMonth()]}}
-
-                {{dayNames[endDate.getDay()]}}
-            </div>
-        </div>
-        <div class="arrow subtitle-color" matRipple (click)="nextWeek();">
-            <mat-icon>keyboard_arrow_right</mat-icon>
-        </div>
+      {{ dayNames[startDate.getDay()] }}
     </div>
+  </div>
+  <span>-</span>
+  <div class="section">
+    <span class="date">
+      {{ endDate.getDate() }}
+    </span>
+    <div class="names">
+      {{ monthNames[endDate.getMonth()] }}
 
-<div class="day-card">
-    <div class="topline">
-        <span class="name title-color">Monday</span>
-        <button mat-icon-button color="primary" class="add" (click)="selectHours('Monday', cafeHours.mondayBlocks);">
-            <mat-icon>add</mat-icon>
-        </button>
+      {{ dayNames[endDate.getDay()] }}
     </div>
-
-    <mat-divider class="divider-color"></mat-divider>
-
-    <div class="block time-card-background" *ngFor="let block of cafeHours.mondayBlocks" matRipple>
-        <span class="time" (click)="editBlock(block);">
-            {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
-            {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
-        </span>
-        <span class="delete-block" (click)="deleteBlock(block, cafeHours.mondayBlocks)">
-            <mat-icon>close</mat-icon>
-        </span>
-    </div>
+  </div>
+  <div class="arrow subtitle-color" matRipple (click)="nextWeek()">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </div>
 </div>
 
 <div class="day-card">
-    <div class="topline">
-        <span class="name title-color">Tuesday</span>
-        <button mat-icon-button color="primary" class="add" (click)="selectHours('Tuesday', cafeHours.tuesdayBlocks);">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
+  <div class="topline">
+    <span class="name title-color">Monday</span>
+    <button
+      mat-icon-button
+      color="primary"
+      class="add"
+      (click)="selectHours('Monday', cafeHours.mondayBlocks)"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 
-    <mat-divider class="divider-color"></mat-divider>
+  <mat-divider class="divider-color"></mat-divider>
 
-    <div class="block time-card-background" *ngFor="let block of cafeHours.tuesdayBlocks" matRipple>
-        <span class="time card-background" (click)="editBlock(block);">
-            {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
-            {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
-        </span>
-        <span class="delete-block" (click)="deleteBlock(block, cafeHours.tuesdayBlocks)">
-            <mat-icon>close</mat-icon>
-        </span>
-    </div>
+  <div
+    class="block time-card-background"
+    *ngFor="let block of cafeHours.mondayBlocks"
+    matRipple
+  >
+    <span class="time" (click)="editBlock(block)">
+      {{ utils.convertTime(block.open) }}
+      <span class="period">{{ utils.appendPeriod(block.open) }}</span> -
+      {{ utils.convertTime(block.close) }}
+      <span class="period">{{ utils.appendPeriod(block.close) }}</span>
+    </span>
+    <span
+      class="delete-block"
+      (click)="deleteBlock(block, cafeHours.mondayBlocks)"
+    >
+      <mat-icon>close</mat-icon>
+    </span>
+  </div>
 </div>
 
 <div class="day-card">
-    <div class="topline">
-        <span class="name title-color">Wednesday</span>
-        <button mat-icon-button color="primary" class="add"
-            (click)="selectHours('Wednesday', cafeHours.wednesdayBlocks);">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
+  <div class="topline">
+    <span class="name title-color">Tuesday</span>
+    <button
+      mat-icon-button
+      color="primary"
+      class="add"
+      (click)="selectHours('Tuesday', cafeHours.tuesdayBlocks)"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 
-    <mat-divider class="divider-color"></mat-divider>
+  <mat-divider class="divider-color"></mat-divider>
 
-    <div class="block time-card-background" *ngFor="let block of cafeHours.wednesdayBlocks" matRipple>
-        <span class="time" (click)="editBlock(block);">
-            {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
-            {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
-        </span>
-        <span class="delete-block" (click)="deleteBlock(block, cafeHours.wednesdayBlocks)">
-            <mat-icon>close</mat-icon>
-        </span>
-    </div>
+  <div
+    class="block time-card-background"
+    *ngFor="let block of cafeHours.tuesdayBlocks"
+    matRipple
+  >
+    <span class="time" (click)="editBlock(block)">
+      {{ utils.convertTime(block.open) }}
+      <span class="period">{{ utils.appendPeriod(block.open) }}</span> -
+      {{ utils.convertTime(block.close) }}
+      <span class="period">{{ utils.appendPeriod(block.close) }}</span>
+    </span>
+    <span
+      class="delete-block"
+      (click)="deleteBlock(block, cafeHours.tuesdayBlocks)"
+    >
+      <mat-icon>close</mat-icon>
+    </span>
+  </div>
 </div>
 
 <div class="day-card">
-    <div class="topline">
-        <span class="name title-color">Thursday</span>
-        <button mat-icon-button color="primary" class="add"
-            (click)="selectHours('Thursday', cafeHours.thursdayBlocks);">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
+  <div class="topline">
+    <span class="name title-color">Wednesday</span>
+    <button
+      mat-icon-button
+      color="primary"
+      class="add"
+      (click)="selectHours('Wednesday', cafeHours.wednesdayBlocks)"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 
-    <mat-divider class="divider-color"></mat-divider>
+  <mat-divider class="divider-color"></mat-divider>
 
-    <div class="block time-card-background" *ngFor="let block of cafeHours.thursdayBlocks" matRipple>
-        <span class="time" (click)="editBlock(block);">
-            {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
-            {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
-        </span>
-        <span class="delete-block" (click)="deleteBlock(block, cafeHours.thursdayBlocks)">
-            <mat-icon>close</mat-icon>
-        </span>
-    </div>
-</div>
-
-
-<div class="day-card">
-    <div class="topline">
-        <span class="name title-color">Friday</span>
-        <button mat-icon-button color="primary" class="add" (click)="selectHours('Friday', cafeHours.fridayBlocks);">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
-
-    <mat-divider class="divider-color"></mat-divider>
-
-    <div class="block time-card-background" *ngFor="let block of cafeHours.fridayBlocks" matRipple>
-        <span class="time" (click)="editBlock(block);">
-            {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
-            {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
-        </span>
-        <span class="delete-block" (click)="deleteBlock(block, cafeHours.fridayBlocks)">
-            <mat-icon>close</mat-icon>
-        </span>
-    </div>
-</div>
-
-
-<div class="day-card">
-    <div class="topline">
-        <span class="name title-color">Saturday</span>
-        <button mat-icon-button color="primary" class="add"
-            (click)="selectHours('Saturday', cafeHours.saturdayBlocks);">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
-
-    <mat-divider class="divider-color"></mat-divider>
-
-    <div class="block time-card-background" *ngFor="let block of cafeHours.saturdayBlocks" matRipple>
-        <span class="time" (click)="editBlock(block);">
-            {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
-            {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
-        </span>
-        <span class="delete-block" (click)="deleteBlock(block, cafeHours.saturdayBlocks)">
-            <mat-icon>close</mat-icon>
-        </span>
-    </div>
+  <div
+    class="block time-card-background"
+    *ngFor="let block of cafeHours.wednesdayBlocks"
+    matRipple
+  >
+    <span class="time" (click)="editBlock(block)">
+      {{ utils.convertTime(block.open) }}
+      <span class="period">{{ utils.appendPeriod(block.open) }}</span> -
+      {{ utils.convertTime(block.close) }}
+      <span class="period">{{ utils.appendPeriod(block.close) }}</span>
+    </span>
+    <span
+      class="delete-block"
+      (click)="deleteBlock(block, cafeHours.wednesdayBlocks)"
+    >
+      <mat-icon>close</mat-icon>
+    </span>
+  </div>
 </div>
 
 <div class="day-card">
-    <div class="topline">
-        <span class="name title-color">Sunday</span>
-        <button mat-icon-button color="primary" class="add" (click)="selectHours('Sunday', cafeHours.sundayBlocks);">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
+  <div class="topline">
+    <span class="name title-color">Thursday</span>
+    <button
+      mat-icon-button
+      color="primary"
+      class="add"
+      (click)="selectHours('Thursday', cafeHours.thursdayBlocks)"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 
-    <mat-divider class="divider-color"></mat-divider>
+  <mat-divider class="divider-color"></mat-divider>
 
-    <div class="block time-card-background" *ngFor="let block of cafeHours.sundayBlocks" matRipple>
-        <span class="time " (click)="editBlock(block);">
-            {{utils.convertTime(block.open)}} <span class="period">{{utils.appendPeriod(block.open)}}</span> -
-            {{utils.convertTime(block.close)}} <span class="period">{{utils.appendPeriod(block.close)}}</span>
-        </span>
-        <span class="delete-block" (click)="deleteBlock(block, cafeHours.sundayBlocks)">
-            <mat-icon>close</mat-icon>
-        </span>
-    </div>
+  <div
+    class="block time-card-background"
+    *ngFor="let block of cafeHours.thursdayBlocks"
+    matRipple
+  >
+    <span class="time" (click)="editBlock(block)">
+      {{ utils.convertTime(block.open) }}
+      <span class="period">{{ utils.appendPeriod(block.open) }}</span> -
+      {{ utils.convertTime(block.close) }}
+      <span class="period">{{ utils.appendPeriod(block.close) }}</span>
+    </span>
+    <span
+      class="delete-block"
+      (click)="deleteBlock(block, cafeHours.thursdayBlocks)"
+    >
+      <mat-icon>close</mat-icon>
+    </span>
+  </div>
+</div>
+
+<div class="day-card">
+  <div class="topline">
+    <span class="name title-color">Friday</span>
+    <button
+      mat-icon-button
+      color="primary"
+      class="add"
+      (click)="selectHours('Friday', cafeHours.fridayBlocks)"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <mat-divider class="divider-color"></mat-divider>
+
+  <div
+    class="block time-card-background"
+    *ngFor="let block of cafeHours.fridayBlocks"
+    matRipple
+  >
+    <span class="time" (click)="editBlock(block)">
+      {{ utils.convertTime(block.open) }}
+      <span class="period">{{ utils.appendPeriod(block.open) }}</span> -
+      {{ utils.convertTime(block.close) }}
+      <span class="period">{{ utils.appendPeriod(block.close) }}</span>
+    </span>
+    <span
+      class="delete-block"
+      (click)="deleteBlock(block, cafeHours.fridayBlocks)"
+    >
+      <mat-icon>close</mat-icon>
+    </span>
+  </div>
+</div>
+
+<div class="day-card">
+  <div class="topline">
+    <span class="name title-color">Saturday</span>
+    <button
+      mat-icon-button
+      color="primary"
+      class="add"
+      (click)="selectHours('Saturday', cafeHours.saturdayBlocks)"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <mat-divider class="divider-color"></mat-divider>
+
+  <div
+    class="block time-card-background"
+    *ngFor="let block of cafeHours.saturdayBlocks"
+    matRipple
+  >
+    <span class="time" (click)="editBlock(block)">
+      {{ utils.convertTime(block.open) }}
+      <span class="period">{{ utils.appendPeriod(block.open) }}</span> -
+      {{ utils.convertTime(block.close) }}
+      <span class="period">{{ utils.appendPeriod(block.close) }}</span>
+    </span>
+    <span
+      class="delete-block"
+      (click)="deleteBlock(block, cafeHours.saturdayBlocks)"
+    >
+      <mat-icon>close</mat-icon>
+    </span>
+  </div>
+</div>
+
+<div class="day-card">
+  <div class="topline">
+    <span class="name title-color">Sunday</span>
+    <button
+      mat-icon-button
+      color="primary"
+      class="add"
+      (click)="selectHours('Sunday', cafeHours.sundayBlocks)"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <mat-divider class="divider-color"></mat-divider>
+
+  <div
+    class="block time-card-background"
+    *ngFor="let block of cafeHours.sundayBlocks"
+    matRipple
+  >
+    <span class="time" (click)="editBlock(block)">
+      {{ utils.convertTime(block.open) }}
+      <span class="period">{{ utils.appendPeriod(block.open) }}</span> -
+      {{ utils.convertTime(block.close) }}
+      <span class="period">{{ utils.appendPeriod(block.close) }}</span>
+    </span>
+    <span
+      class="delete-block"
+      (click)="deleteBlock(block, cafeHours.sundayBlocks)"
+    >
+      <mat-icon>close</mat-icon>
+    </span>
+  </div>
 </div>
 
 <div style="min-height: 90px;"></div>
 
 <div class="footer">
-
-    <button mat-fab color="primary" id="apply-standard-hours" (click)="setStandardTimes();">
-        <mat-icon style="height: 36px;
-    width: 36px;
-    font-size: 36px;
-    top: 50%;
-    transform: translate(0px,-6px);">
-            schedule
-        </mat-icon>
-    </button>
-    <mat-progress-bar mode="query" class="saving-indicator" *ngIf="loading"></mat-progress-bar>
+  <button
+    mat-fab
+    color="primary"
+    id="apply-standard-hours"
+    (click)="setStandardTimes()"
+  >
+    <mat-icon
+      style="
+        height: 36px;
+        width: 36px;
+        font-size: 36px;
+        top: 50%;
+        transform: translate(0px, -6px);
+      "
+    >
+      schedule
+    </mat-icon>
+  </button>
+  <mat-progress-bar
+    mode="query"
+    class="saving-indicator"
+    *ngIf="loading"
+  ></mat-progress-bar>
 </div>

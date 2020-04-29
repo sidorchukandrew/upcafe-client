@@ -9,34 +9,34 @@
 @include mat-core();
 
 $facebook: (50: #7fdddd,
-    100: white,
-    200: #34a5f2,
-    300: #7faedd,
-    400: #7faedd,
-    500: #7faedd,
-    600: #1877f2,
-    700: #1877f2,
-    800: #1877f2,
-    900: #1877f2,
+  100: white,
+  200: #49c9f2,
+  300: #7faedd,
+  400: #7faedd,
+  500: #7faedd,
+  600: #1877f2,
+  700: #1877f2,
+  800: #1877f2,
+  900: #1877f2,
+  A100: white,
+  A200: white,
+  A400: #1877f2,
+  A700: #1877f2,
+  contrast: (50: white,
+    100: black,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
     A100: white,
     A200: white,
-    A400: #1877f2,
-    A700: #1877f2,
-    contrast: (50: white,
-        100: black,
-        200: white,
-        300: white,
-        400: white,
-        500: white,
-        600: white,
-        700: white,
-        800: white,
-        900: white,
-        A100: white,
-        A200: white,
-        A400: white,
-        A700: white,
-    ));
+    A400: white,
+    A700: white,
+  ));
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -66,5 +66,5 @@ $dark-theme: mat-dark-theme($signin-primary, $signin-accent, $dark-warn);
 // CSS class whatever you want. In this example, any component inside of an element with
 // `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
 .sign-in-theme {
-    @include angular-material-theme($dark-theme);
+  @include angular-material-theme($dark-theme);
 }

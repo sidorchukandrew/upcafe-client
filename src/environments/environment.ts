@@ -7,7 +7,7 @@ export const environment = {
   facebookAppId: "2249530618689721",
   googleAppId:
     "1080231906554-teq42cgth129b4t4f04rtcjhgaveodd0.apps.googleusercontent.com",
-  backendUrl: "http://192.168.0.25:8080",
+  backendUrl: "http://192.168.0.10:8080",
 };
 
 /*

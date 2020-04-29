@@ -3,6 +3,8 @@ import { OrderService } from "src/app/services/order.service";
 import { Subscription } from "rxjs";
 import { Order } from "src/app/models/Order";
 import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
+import { LoadingService } from "src/app/services/loading.service";
+import { tap } from "rxjs/operators";
 
 @Component({
   selector: "app-track-order",
@@ -18,12 +20,19 @@ export class TrackOrderComponent implements OnInit, OnDestroy {
 
   constructor(
     private orderService: OrderService,
-    public utils: TimeUtilitiesService
+    public utils: TimeUtilitiesService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {
     this.subscriptions = new Subscription();
     this.order = this.orderService.order;
+
+    var loadOrderPlaced$ = this.loadingService
+      .showLoadingUntilComplete(this.orderService.checkStatusOfOrder())
+      .pipe(tap(() => (this.order = this.orderService.order)));
+
+    this.subscriptions.add(loadOrderPlaced$.subscribe());
 
     var status$ = this.orderService.status$.subscribe(
       (status) => (this.status = status)
@@ -34,8 +43,6 @@ export class TrackOrderComponent implements OnInit, OnDestroy {
         this.ngOnDestroy();
       }
     });
-
-    this.orderService.checkStatusOfOrder().subscribe();
 
     this.checkInterval$ = setInterval(() => {
       console.log("Checking");
