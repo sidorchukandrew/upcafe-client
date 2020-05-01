@@ -1,1 +1,35 @@
-<p>order-summary works!</p>
+<ng-container *ngIf="order">
+  <div class="card-background title-color button-border summary-card">
+    <div class="section">
+      <div class="item" *ngFor="let item of order.selectedLineItems">
+        <div class="top-line">
+          <span>
+            <span>{{ item.variationData.name }}</span>
+            <span class="bold"> ({{ item.price | currency }}) </span>
+          </span>
+          <span class="item-total-price bold">
+            {{ item.variationData.variationPrice | currency }}
+          </span>
+        </div>
+
+        <div class="modifiers">
+          <div
+            class="modifier"
+            *ngFor="let modifier of item.selectedModifiers; let i = index"
+          >
+            {{ appendComma(modifier.name, i, item.selectedModifiers.length) }}
+          </div>
+        </div>
+      </div>
+      <mat-divider class="divider-color"></mat-divider>
+    </div>
+
+    <div class="section title-color bold price-summary">
+      <span class="label" style="margin-right: 8px;">Total</span>
+      <span class="filler subtitle-color">
+        ..........................................................................................
+      </span>
+      <span style="margin-left: 8px;">{{ order.totalPrice | currency }}</span>
+    </div>
+  </div>
+</ng-container>

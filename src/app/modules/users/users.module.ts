@@ -41,6 +41,7 @@ import { MyOrderComponent } from "./components/cart/my-order/my-order.component"
 import { TrackOrderComponent } from "./components/cart/track-order/track-order.component";
 import { SettingsComponent } from "./components/profile/settings/settings.component";
 import { StatusTrackerComponent } from "../staff/components/status-tracker/status-tracker.component";
+import { OrderSummaryComponent } from "./components/cart/order-summary/order-summary.component";
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { StatusTrackerComponent } from "../staff/components/status-tracker/statu
     TrackOrderComponent,
     SettingsComponent,
     StatusTrackerComponent,
+    OrderSummaryComponent,
   ],
   imports: [
     CommonModule,

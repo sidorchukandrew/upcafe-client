@@ -72,12 +72,6 @@ export class TimeUtilitiesService {
     return parseInt(time.slice(indexOfColon + 1, time.length));
   }
 
-  public appendComma(name: string, index: number, length: number): string {
-    if (index < length - 1) return name + ", ";
-
-    return name;
-  }
-
   public convertTime(time: string): string {
     if (time == "ASAP") return time;
 

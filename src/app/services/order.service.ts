@@ -132,6 +132,10 @@ export class OrderService {
       );
   }
 
+  public getOrderById(id: string): any {
+    return this.http.get(environment.backendUrl + "/orders/" + id);
+  }
+
   private parseStatus(order: Order) {
     if (order) {
       this.statusSubject.next(order["state"]);

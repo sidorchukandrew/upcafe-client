@@ -1,7 +1,10 @@
 <div class="padding-20">
-  <div class="time center-text">
+  <div class="time center-text" *ngIf="order; else noTimeYet">
     {{ utils.convertTime(order.pickupTime) }}
   </div>
+  <ng-template class="time center-text" #noTimeYet>
+    --:--
+  </ng-template>
   <div class="pickup-text subtitle-color center-text">PICKUP TIME</div>
 
   <!-- <img src="../../../../../../assets/logos/cup_only.png" style="width: 100%;" /> -->
@@ -9,7 +12,10 @@
     <app-status-tracker [status]="status"></app-status-tracker>
 
     <ng-container [ngSwitch]="status">
-      <div class="status-text subtitle-color center-text" *ngSwitchCase="'NEW'">
+      <div
+        class="status-text subtitle-color center-text"
+        *ngSwitchCase="'ORDER PLACED'"
+      >
         Your order was placed successfully
       </div>
       <div
@@ -28,6 +34,7 @@
   </div>
 
   <mat-divider class="divider-color"></mat-divider>
-
-  <!-- <app-order-summary></app-order-summary> -->
+  <div class="section" *ngIf="order">
+    <app-order-summary [id]="order.id"></app-order-summary>
+  </div>
 </div>

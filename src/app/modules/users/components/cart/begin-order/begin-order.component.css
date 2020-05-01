@@ -1,14 +1,25 @@
 #no-order {
-    height: 100%;
-
+  position: absolute;
+  top: 50%;
+  transform: translateY(-60%);
+  width: 100%;
 }
 
-#no-order-wrapper {
-    position: absolute;
-    top: 20%;
-    width: 100%;
-}
 
 #no-order-content {
-    width: 100%;
+  font-family: 'Sen';
+}
+
+#no-order-image {
+  display: inline-block;
+  padding: 30px;
+  border-radius: 25px;
+  margin-bottom: 30px;
+}
+
+.check-button {
+  margin-top: 30px;
+  width: 80%;
+  max-width: 350px;
+  padding: 10px;
 }

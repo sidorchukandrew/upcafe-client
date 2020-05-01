@@ -28,7 +28,6 @@ import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { StaffSignInComponent } from "./components/staff-sign-in/staff-sign-in.component";
 import { LoadingComponent } from "./app-component/loading/loading.component";
 import { HttpErrorInterceptor } from "./interceptors/HttpErrorInterceptor";
-import { OrderSummaryComponent } from "./modules/users/components/cart/order-summary/order-summary.component";
 
 let config = new AuthServiceConfig([
   {
@@ -51,7 +50,6 @@ export function provideConfig() {
     SignInComponent,
     StaffSignInComponent,
     LoadingComponent,
-    OrderSummaryComponent,
   ],
   imports: [
     BrowserModule,

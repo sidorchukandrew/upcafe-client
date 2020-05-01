@@ -1,16 +1,22 @@
 <div class="center-text" id="no-order">
-    <div id="no-order-wrapper">
-        <div id="no-order-image">
-            <mat-icon style="font-size: 150px; color: #a4d9fd; width: 150px; height: 150px;">shopping_basket</mat-icon>
-        </div>
-        <div id="no-order-content">
-            <div>
-
-                Looks like you haven't started an order yet
-            </div>
-            <div class="">
-                TAP THE MENU TO START ORDERING
-            </div>
-        </div>
+  <div id="no-order-wrapper">
+    <div id="no-order-image" class="card-background">
+      <i
+        class="material-icons-outlined theme-color"
+        style="font-size: 110px; width: 110px; height: 110px;"
+        >remove_shopping_cart
+      </i>
     </div>
+    <div id="no-order-content" class="subtitle-color">
+      <div>Looks like you haven't added <br />anything to your order yet</div>
+      <button
+        mat-raised-button
+        color="primary"
+        routerLink="../menu"
+        class="check-button"
+      >
+        START ORDER
+      </button>
+    </div>
+  </div>
 </div>
