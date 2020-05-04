@@ -1,19 +1,24 @@
-import { Injectable } from '@angular/core';
-import { User } from '../models/User';
-import { SocialUser, AuthService } from 'angularx-social-login';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Injectable } from "@angular/core";
+import { User } from "../models/User";
+import { SocialUser, AuthService } from "angularx-social-login";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthorizationService {
-
   private signedIn: boolean = false;
 
   private currentUser: User;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.currentUser = new User();
+    this.currentUser.firstName = "Andrew";
+    this.currentUser.lastName = "Sidorchuk";
+    this.currentUser.email = "sidorchukandrew@gmail.com";
+    this.currentUser.photoUrl = "https://google.com";
+  }
 
   public isSignedIn(): boolean {
     // return this.signedIn;
@@ -29,13 +34,14 @@ export class AuthorizationService {
   }
 
   public attemptStaffSignIn(username: string, password: string): void {
-
     var formData: any = {
-      "username": username,
-      "password": password
+      username: username,
+      password: password,
     };
 
-    this.http.post(environment.backendUrl + "/signin/staff", formData).subscribe();
+    this.http
+      .post(environment.backendUrl + "/signin/staff", formData)
+      .subscribe();
   }
 
   public customerSignIn(socialUser: SocialUser): void {
@@ -46,10 +52,16 @@ export class AuthorizationService {
     customer.email = socialUser.email;
     customer.photoUrl = socialUser.photoUrl;
 
-    this.http.post(environment.backendUrl + "/signin/customer", customer).subscribe();
+    this.http
+      .post(environment.backendUrl + "/signin/customer", customer)
+      .subscribe();
   }
 
   public signOutCustomer(): void {
     this.http.get(environment.backendUrl + "/signout/customer").subscribe();
+  }
+
+  public getUser(): User {
+    return this.currentUser;
   }
 }
