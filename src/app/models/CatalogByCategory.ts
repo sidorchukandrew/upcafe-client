@@ -1,12 +1,9 @@
-import { CategoryItem } from './CategoryItem';
-import { Category } from './Category';
+import { CategoryItem } from "./CategoryItem";
+import { Category } from "./Category";
+import { MenuItem } from "./MenuItem";
 
 export class CatalogByCategory {
-    categoryItems: Array<CategoryItem>;
-    category: string;
+  menuItems: MenuItem[];
+  category: string;
 
-    constructor(categoryItems: Array<CategoryItem>, category: string) {
-        this.categoryItems = categoryItems;
-        this.category = category;
-    }
 }

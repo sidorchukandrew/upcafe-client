@@ -4,27 +4,24 @@ import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { CategoryItem } from 'src/app/models/CategoryItem';
 import { VariationData } from 'src/app/models/VariationData';
 import { ModifierListData } from 'src/app/models/ModifierListData';
+import { MenuItem } from 'src/app/models/MenuItem';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SelectedItemStore {
 
-  private itemSubject: BehaviorSubject<LineItem> = new BehaviorSubject<LineItem>(null);
+  private itemSubject: BehaviorSubject<MenuItem> = new BehaviorSubject<MenuItem>(null);
   private modListSubject: BehaviorSubject<ModifierListData> = new BehaviorSubject<ModifierListData>(null);
 
-  public currentItem$: Observable<LineItem> = this.itemSubject.asObservable();
+  public currentItem$: Observable<MenuItem> = this.itemSubject.asObservable();
   public currentModList$: Observable<ModifierListData> = this.modListSubject.asObservable();
 
   constructor() { }
 
-  public setSelectedItem(item: CategoryItem, variationData: VariationData): void {
-    var currentItem: LineItem = new LineItem();
-    currentItem.itemData = item.itemData;
-    currentItem.variationData = variationData;
-    currentItem.modifierListsData = item.modifierListsData;
+  public setSelectedItem(menuItem: MenuItem): void {
 
-    this.itemSubject.next(currentItem);
+    this.itemSubject.next(menuItem);
   }
 
   public setSelectedModList(modList: ModifierListData) {

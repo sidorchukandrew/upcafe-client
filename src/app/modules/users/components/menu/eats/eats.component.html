@@ -1,26 +1,32 @@
 <div id="header">
-    <img src="../../../../../../assets/logos/white_blue_text_only.png" id="logo">
+  <img
+    src="../../../../../../assets/logos/white_blue_text_only.png"
+    id="logo"
+  />
 </div>
 <div class="space"></div>
 <div *ngFor="let section of catalog.catalogSections">
-    <div class="category-title title-color">
-        {{section.category | uppercase}}
-    </div>
-    <div class="scrolling-wrapper">
-        <div *ngFor="let item of section.items" style="display:inline;">
-
-            <div *ngFor="let variation of item.variationsData" style="display: inline;">
-                <a class="card full-background" (click)="loadItem(item, variation)" [routerLink]="variation.variationId"
-                    *ngIf="item.itemData.image"
-                    [ngStyle]="{'background-image': 'url(' + item.itemData.image.url + ')'}">
-                    <div class="item-name" *ngIf="variation.name == 'Regular'">{{item.itemData.name}}</div>
-                    <div class="item-name" *ngIf="variation.name != 'Regular'">{{variation.name}}</div>
-                    <div class="item-name" *ngIf="variation.name == ''">{{item.itemData.name}}</div>
-                    <div class="price">{{variation.variationPrice | currency}}</div>
-                </a>
-            </div>
+  <div class="category-title title-color">
+    {{ section.category | uppercase }}
+  </div>
+  <div class="scrolling-wrapper">
+    <div *ngFor="let item of section.menuItems" style="display: inline;">
+      <a
+        class="card full-background"
+        (click)="loadItem(item)"
+        [routerLink]="item.id"
+        *ngIf="item.image"
+        [ngStyle]="{
+          'background-image': 'url(' + item.image.url + ')'
+        }"
+      >
+        <div class="item-name">
+          {{ item.name }}
         </div>
-        <div class="space"></div>
+        <div class="price">{{ item.price | currency }}</div>
+      </a>
     </div>
+    <div class="space"></div>
+  </div>
 </div>
 <div id="space-for-nav"></div>

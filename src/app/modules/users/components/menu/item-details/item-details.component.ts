@@ -10,6 +10,7 @@ import { Subscription, noop, Observable } from "rxjs";
 import { tap, map } from "rxjs/operators";
 import { VariationData } from "src/app/models/VariationData";
 import { HoursService } from "src/app/services/hours.service";
+import { MenuItem } from 'src/app/models/MenuItem';
 
 @Component({
   selector: "app-item-details",
@@ -26,7 +27,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   currentCents: number;
   nameOfCurrentlySelectedModifierList: string;
   subscriptions: Subscription;
-  item: LineItem;
+  item: MenuItem;
   orderState$: Observable<string>;
   timesAvailable: boolean = false;
 
@@ -46,7 +47,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
       this.itemStore.currentItem$
         .pipe(
           tap((item) => (item ? noop : this.router.navigate(["user/menu/"]))),
-          tap((item) => this.parsePrice(item.variationData.variationPrice)),
+          tap((item) => this.parsePrice(item.price)),
           tap((item) => (this.item = item))
         )
         .subscribe()
@@ -100,18 +101,12 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   public addToOrder(): void {
     var selectedModifiers;
+
     if (this.modListDetailsComponent)
       selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
 
-    var variationData: VariationData = this.item.variationData;
-    if (variationData.name == "Regular")
-      variationData.name = this.item.itemData.name;
-
-    var orderItem = this.orderService.newOrderItem(
-      variationData,
-      selectedModifiers
-    );
-    this.orderService.addToOrder(orderItem);
+    // var orderItem = this.orderService.newOrderItem();
+    // this.orderService.addToOrder(orderItem);
 
     this.userResponseDialog.open(UserResponseDialog, {
       hasBackdrop: true,

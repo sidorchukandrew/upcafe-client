@@ -1,15 +1,15 @@
 <div *ngIf="item">
   <div
     id="full-page"
-    [ngStyle]="{ 'background-image': 'url(' + item.itemData.image.url + ')' }"
-    *ngIf="item.itemData"
+    [ngStyle]="{ 'background-image': 'url(' + item.image.url + ')' }"
+    *ngIf="item"
   ></div>
   <div id="summary-card">
     <a id="back-button" routerLink="../">
       <mat-icon>arrow_back_ios</mat-icon>
     </a>
-    <div id="title" *ngIf="item.itemData">
-      {{ item.itemData.name }}
+    <div id="title" *ngIf="item">
+      {{ item.name }}
     </div>
     <table id="price" class="theme-color-text">
       <tr>
@@ -23,7 +23,7 @@
 
   <mat-accordion
     id="options-card-2"
-    *ngIf="item.modifierListsData && item.modifierListsData.length > 0"
+    *ngIf="item.modifierLists && item.modifierLists.length > 0"
   >
     <mat-expansion-panel id="panel" [expanded]="true">
       <mat-expansion-panel-header>
@@ -36,17 +36,17 @@
       <div class="scrolling-wrapper">
         <div
           class="modifier-list"
-          *ngFor="let modList of item.modifierListsData"
+          *ngFor="let modList of item.modifierLists"
         >
           <a
             class="modifier-list-image"
             (click)="loadModifierList(modList)"
-            [ngStyle]="{ 'background-image': 'url(' + modList.imageUrl + ')' }"
+            [ngStyle]="{ 'background-image': 'url(' + modList.image.url + ')' }"
             [class.selected]="
-              modList.nameOfList == nameOfCurrentlySelectedModifierList
+              modList.name == nameOfCurrentlySelectedModifierList
             "
           >
-            <div class="name">{{ modList.nameOfList }}</div>
+            <div class="name">{{ modList.name }}</div>
           </a>
         </div>
       </div>
@@ -56,7 +56,7 @@
   </mat-accordion>
   <div
     id="button-wrapper"
-    *ngIf="item.modifierListsData && item.modifierListsData.length == 0"
+    *ngIf="item.modifierLists && item.modifierLists.length == 0"
     style="background-color: rgba(0, 0, 0, 0);"
   >
     <button
@@ -70,7 +70,7 @@
   </div>
   <div
     id="button-wrapper"
-    *ngIf="item.modifierListsData && item.modifierListsData.length > 0"
+    *ngIf="item.modifierLists && item.modifierLists.length > 0"
   >
     <button
       mat-raised-button
