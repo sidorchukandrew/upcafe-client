@@ -39,17 +39,17 @@
             Ordered At
           </td>
           <td class="value subtitle-color">
-            {{ utils.convertTime(utils.extractTime(order.createdAt)) }}
-            {{ utils.appendPeriod(utils.extractTime(order.createdAt)) }}
+            {{ utils.convertTime(utils.extractTime(order.placedAt)) }}
+            {{ utils.appendPeriod(utils.extractTime(order.placedAt)) }}
           </td>
         </tr>
         <tr>
           <td class="label subtitle-color">
-            Items ({{ order.selectedLineItems.length }})
+            Items ({{ order.orderItems.length }})
           </td>
           <td class="value subtitle-color">
             <div class="items">
-              {{ order.selectedLineItems[0].variationData.name }}
+              {{ order.orderItems[0].name }}
             </div>
           </td>
         </tr>

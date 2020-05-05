@@ -96,9 +96,9 @@ export class OrdersStore {
     });
   }
 
-  public sendUpdate(order: Order, state: string): any {
+  public sendUpdate(order: Order, status: string): any {
     return this.http.post(environment.backendUrl + "/orders", order, {
-      params: { state: state },
+      params: { status: status },
     });
   }
 }

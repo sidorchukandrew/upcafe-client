@@ -7,8 +7,8 @@ export class Order {
     id: string;
     pickupTime: string;
     pickupDate: string;
-    createdAt: string;
-    closedAt: string;
+    placedAt: string;
+    completedAt: string;
     customer: Customer;
     status: string;
 }
