@@ -94,8 +94,8 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     if (this.modListDetailsComponent)
       selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
 
-    var orderItem = this.orderService.newOrderItem(this.item, null, 0);
-    // this.orderService.addToOrder(orderItem);
+    var orderItem = this.orderService.newOrderItem(this.item, selectedModifiers, this.totalItemPrice);
+    this.orderService.addToOrder(orderItem);
 
     this.userResponseDialog.open(UserResponseDialog, {
       hasBackdrop: true,

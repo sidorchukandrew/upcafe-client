@@ -1,13 +1,9 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { ModifierData } from 'src/app/models/ModifierData';
-import { ModifierListData } from 'src/app/models/ModifierListData';
-import { CustomerOrderService } from 'src/app/services/customer-order.service';
-import { Subscription, Observable, noop } from 'rxjs';
-import { EditItemService } from 'src/app/services/edit-item.service';
-import { SelectedItemStore } from 'src/app/services/stores/selected-item.store';
-import { tap } from 'rxjs/operators';
+import { noop } from 'rxjs';
 import { ModifierList } from 'src/app/models/ModifierList';
 import { Modifier } from 'src/app/models/Modifier';
+import { OrderModifier } from 'src/app/models/OrderModifier';
 
 @Component({
   selector: 'app-mod-list-details',
@@ -19,7 +15,7 @@ export class ModListDetailsComponent implements OnInit {
   @Input("modList") modifierList: ModifierList;
   @Output() selectionMade = new EventEmitter<number>();
 
-  selectedModifiers: Array<ModifierData>;
+  selectedModifiers: Array<OrderModifier>;
   multipleSelectionEnabled: boolean;
   selectedIndex;
   selectedId;
@@ -65,12 +61,8 @@ export class ModListDetailsComponent implements OnInit {
     this.selectedModifiers.push(modifier);
   }
 
-  public getSelectedModifiers(): Array<ModifierData> {
+  public getSelectedModifiers(): Array<OrderModifier> {
     return this.selectedModifiers;
-  }
-
-  public setSelectedModifiers(modifiers: Array<ModifierData>): void {
-    this.selectedModifiers = modifiers;
   }
 
   display(event) {
