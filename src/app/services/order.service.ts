@@ -9,6 +9,7 @@ import { Customer } from "../models/Customer";
 import { environment } from "src/environments/environment";
 import { tap } from "rxjs/operators";
 import { CartBadgeService } from "./cart-badge.service";
+import { MenuItem } from '../models/MenuItem';
 
 @Injectable({
   providedIn: "root",
@@ -42,10 +43,7 @@ export class OrderService {
     };
   }
 
-  public newOrderItem(
-    variationData: VariationData,
-    selectedModifiers: Array<ModifierData>
-  ): OrderItem {
+  public newOrderItem(item: MenuItem, selectedModifiers): OrderItem {
     if (this.order == null) {
       console.log("Creating new order.");
       this.order = new Order();

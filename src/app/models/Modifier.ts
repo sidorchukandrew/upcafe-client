@@ -3,7 +3,7 @@ import { Image } from './Image';
 export class Modifier {
 
   id: string;
-  price: DoubleRange;
+  price: number;
   name: string;
   onByDefault: boolean;
   inStock: boolean;

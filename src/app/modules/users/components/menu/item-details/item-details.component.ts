@@ -105,7 +105,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     if (this.modListDetailsComponent)
       selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
 
-    // var orderItem = this.orderService.newOrderItem();
+    var orderItem = this.orderService.newOrderItem();
     // this.orderService.addToOrder(orderItem);
 
     this.userResponseDialog.open(UserResponseDialog, {
