@@ -109,9 +109,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.orderService.postOrder()
       .pipe(
         tap(data => console.log(data)),
-        // concatMap(data => this.orderService.postPayment(nonce, data['id'], data['totalPrice'])),
-        // tap(() => this.success = true),
-        // tap(() => this.badgeService.orderPaid())
+        concatMap(data => this.orderService.postPayment(nonce, data['id'], data['totalPrice'])),
+        tap(() => this.success = true),
+        tap(() => this.badgeService.orderPaid())
       ).subscribe();
 
   }
