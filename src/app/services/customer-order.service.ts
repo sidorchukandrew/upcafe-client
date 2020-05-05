@@ -73,7 +73,7 @@ export class CustomerOrderService {
   }
 
   public postOrder(): any {
-    if (this.order.pickupTime == null) this.order.pickupTime = "ASAP";
+    if (this.order.pickupTime == null) this.order.pickupTime = "12:00";
 
     this.order.pickupDate = new Date().toDateString();
 

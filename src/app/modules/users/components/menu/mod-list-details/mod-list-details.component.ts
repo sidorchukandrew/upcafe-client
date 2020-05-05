@@ -24,12 +24,18 @@ export class ModListDetailsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.selectedModifiers = new Array<ModifierData>();
+    this.selectedModifiers = new Array<OrderModifier>();
   }
 
   public changed(checked: boolean, modifier: Modifier): void {
     if(checked) {
-      this.selectedModifiers.push(modifier);
+      var orderModifier: OrderModifier = {
+        id: modifier.id,
+        name: modifier.name,
+        price: modifier.price
+      }
+
+      this.selectedModifiers.push(orderModifier);
 
       modifier.price > 0 ? this.selectionMade.emit(modifier.price) : noop;
     }

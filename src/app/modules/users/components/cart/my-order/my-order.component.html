@@ -25,14 +25,14 @@
   </div>
 </div>
 <div
-  *ngFor="let orderItem of currentOrder.selectedLineItems"
+  *ngFor="let orderItem of currentOrder.orderItems"
   class="left-margin-20 right-margin-20 order-item-panel card-background"
 >
   <table class="full-width">
     <tr>
       <td style="width: 50%;">
         <div id="item-name" class="item-name title-color" style="margin-right: 10px;">
-          {{ orderItem.variationData.name }}
+          {{ orderItem.name }}
         </div>
       </td>
       <td id="quantity-selector" class="right-align-text title-color">
