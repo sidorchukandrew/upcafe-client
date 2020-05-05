@@ -12,19 +12,12 @@ import { MenuItem } from 'src/app/models/MenuItem';
 export class SelectedItemStore {
 
   private itemSubject: BehaviorSubject<MenuItem> = new BehaviorSubject<MenuItem>(null);
-  private modListSubject: BehaviorSubject<ModifierListData> = new BehaviorSubject<ModifierListData>(null);
 
   public currentItem$: Observable<MenuItem> = this.itemSubject.asObservable();
-  public currentModList$: Observable<ModifierListData> = this.modListSubject.asObservable();
 
   constructor() { }
 
   public setSelectedItem(menuItem: MenuItem): void {
-
     this.itemSubject.next(menuItem);
-  }
-
-  public setSelectedModList(modList: ModifierListData) {
-    this.modListSubject.next(modList);
   }
 }

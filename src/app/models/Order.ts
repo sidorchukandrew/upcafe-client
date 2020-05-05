@@ -2,7 +2,7 @@ import { OrderItem } from './OrderItem';
 import { Customer } from './Customer';
 
 export class Order {
-    selectedLineItems: Array<OrderItem>;
+    orderItems: Array<OrderItem>;
     totalPrice: number;
     id: string;
     pickupTime: string;
@@ -10,5 +10,5 @@ export class Order {
     createdAt: string;
     closedAt: string;
     customer: Customer;
-    state: string;
+    status: string;
 }

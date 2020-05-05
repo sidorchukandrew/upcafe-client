@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { OrderService } from "src/app/services/order.service";
+import { CustomerOrderService } from "src/app/services/customer-order.service";
 
 @Component({
   selector: "app-user",
@@ -7,7 +7,7 @@ import { OrderService } from "src/app/services/order.service";
   styleUrls: ["./user.component.css"],
 })
 export class UserComponent implements OnInit {
-  constructor(private ordersService: OrderService) {}
+  constructor(private ordersService: CustomerOrderService) {}
 
   ngOnInit() {
     this.ordersService.checkIfOrderAlreadyPlaced().subscribe();

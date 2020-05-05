@@ -56,9 +56,9 @@ export class OrdersStore {
     return this.filterById(id);
   }
 
-  filterOrdersByState(state: string): Observable<Order[]> {
+  filterOrdersByState(status: string): Observable<Order[]> {
     return this.orders$.pipe(
-      map((orders) => orders.filter((order) => order.state == state)),
+      map((orders) => orders.filter((order) => order.status == status)),
       map((orders) => orders.sort(this.utils.increasingTime))
     );
   }

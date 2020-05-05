@@ -3,7 +3,7 @@ import { LineItem } from "src/app/models/LineItem";
 import { ModifierListData } from "src/app/models/ModifierListData";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ModListDetailsComponent } from "../mod-list-details/mod-list-details.component";
-import { OrderService } from "src/app/services/order.service";
+import { CustomerOrderService } from "src/app/services/customer-order.service";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { SelectedItemStore } from "src/app/services/stores/selected-item.store";
 import { Subscription, noop, Observable } from "rxjs";
@@ -11,6 +11,7 @@ import { tap, map } from "rxjs/operators";
 import { VariationData } from "src/app/models/VariationData";
 import { HoursService } from "src/app/services/hours.service";
 import { MenuItem } from 'src/app/models/MenuItem';
+import { ModifierList } from 'src/app/models/ModifierList';
 
 @Component({
   selector: "app-item-details",
@@ -25,7 +26,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   priceDollars: number;
   priceCents: any;
   currentCents: number;
-  nameOfCurrentlySelectedModifierList: string;
+  selectedModifierList: ModifierList;
   subscriptions: Subscription;
   item: MenuItem;
   orderState$: Observable<string>;
@@ -33,7 +34,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private itemStore: SelectedItemStore,
-    private orderService: OrderService,
+    private orderService: CustomerOrderService,
     public userResponseDialog: MatDialog,
     private router: Router,
     private hoursService: HoursService
@@ -61,10 +62,16 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
       .subscribe((times) => {
         this.timesAvailable = times.length > 0;
       });
+
+    this.totalItemPrice = this.item.price;
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  addToPrice(price: number) {
+    this.totalItemPrice = this.totalItemPrice + price;
   }
 
   parsePrice(price: number): void {
@@ -81,31 +88,13 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  async counter(start: number, end: number, durationMs: number) {
-    var delayTime: number = durationMs / (end - start);
-
-    while (start < end) {
-      start = start + 1;
-      this.currentCents = start;
-      await this.delay(delayTime);
-    }
-  }
-
-  private delay(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
-  public loadModifierList(modifierListData: ModifierListData): void {
-    this.itemStore.setSelectedModList(modifierListData);
-  }
-
   public addToOrder(): void {
     var selectedModifiers;
 
     if (this.modListDetailsComponent)
       selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
 
-    var orderItem = this.orderService.newOrderItem();
+    var orderItem = this.orderService.newOrderItem(this.item, null, 0);
     // this.orderService.addToOrder(orderItem);
 
     this.userResponseDialog.open(UserResponseDialog, {
@@ -139,3 +128,18 @@ export class UserResponseDialog implements OnInit {
     this.close();
   }
 }
+
+
+  // async counter(start: number, end: number, durationMs: number) {
+  //   var delayTime: number = durationMs / (end - start);
+
+  //   while (start < end) {
+  //     start = start + 1;
+  //     this.currentCents = start;
+  //     await this.delay(delayTime);
+  //   }
+  // }
+
+  // private delay(ms: number) {
+  //   return new Promise((resolve) => setTimeout(resolve, ms));
+  // }

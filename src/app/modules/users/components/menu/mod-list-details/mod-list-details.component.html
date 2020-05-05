@@ -1,13 +1,13 @@
-<div id="scrollable-wrapper" *ngIf="modListData">
+<div id="scrollable-wrapper" *ngIf="modifierList">
 
-    <div *ngIf="multipleSelectionEnabled">
-        <div class="modifier-wrapper" *ngFor="let modifier of modListData.modifiers;">
+    <div *ngIf="modifierList.selectionType == 'MULTIPLE'">
+        <div class="modifier-wrapper" *ngFor="let modifier of modifierList.modifiers">
             <div class="top-line">
                 <div class="bold small">
                     {{ modifier.name }}
                 </div>
-                <mat-checkbox labelPosition="before" color="primary" (change)="changed($event.checked, modifier);"
-                    [checked]="selected(modifier)">
+                <mat-checkbox labelPosition="before" color="primary"
+                    [checked]="selected(modifier)" (change)="changed($event.checked, modifier)">
                 </mat-checkbox>
             </div>
             <div class="small bottom-space-5">
@@ -18,14 +18,15 @@
         </div>
     </div>
 
-    <div *ngIf="!multipleSelectionEnabled">
-        <div class="modifier-wrapper" *ngFor="let modifier of modListData.modifiers;">
+    <div *ngIf="modifierList.selectionType != 'MULTIPLE'">
+        <div class="modifier-wrapper" *ngFor="let modifier of modifierList.modifiers;">
             <div class="top-line">
                 <div class="bold small">
                     {{ modifier.name }}
                 </div>
                 <mat-checkbox labelPosition="before" color="primary"
-                    (change)="changedSingleSelection(modifier, modListData.modifiers);" [checked]="selected(modifier)">
+                     [checked]="selected(modifier)"
+                     (change)="changedSingleSelection(modifier, modifierList.modifiers)">
                 </mat-checkbox>
             </div>
             <div class="small bottom-space-5">

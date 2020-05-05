@@ -40,18 +40,16 @@
         >
           <a
             class="modifier-list-image"
-            (click)="loadModifierList(modList)"
+            (click)="selectedModifierList = modList"
             [ngStyle]="{ 'background-image': 'url(' + modList.image.url + ')' }"
-            [class.selected]="
-              modList.name == nameOfCurrentlySelectedModifierList
-            "
+            [class.selected]="selectedModifierList == modList"
           >
             <div class="name">{{ modList.name }}</div>
           </a>
         </div>
       </div>
 
-      <app-mod-list-details></app-mod-list-details>
+      <app-mod-list-details [modList]="selectedModifierList" (selectionMade)="addToPrice($event)"></app-mod-list-details>
     </mat-expansion-panel>
   </mat-accordion>
   <div
@@ -65,7 +63,7 @@
       color="primary"
       (click)="addToOrder()"
     >
-      Add to Order
+      Add to Order {{totalItemPrice | currency}}
     </button>
   </div>
   <div
@@ -77,12 +75,13 @@
       id="add-to-order"
       color="primary"
       (click)="addToOrder()"
-      [disabled]="(orderState$ | async) == 'PLACED' || !timesAvailable"
-    >
-      <span *ngIf="(orderState$ | async) != 'PLACED' && timesAvailable"
-        >Add to Order</span
+       [disabled]="(orderState$ | async) == 'PLACED' || !timesAvailable && false"
       >
-      <mat-icon *ngIf="(orderState$ | async) == 'PLACED' || !timesAvailable"
+
+      <span *ngIf="(orderState$ | async) != 'PLACED' && timesAvailable || true"
+        >Add to Order {{totalItemPrice | currency}}</span
+      >
+      <mat-icon *ngIf="(orderState$ | async) == 'PLACED' || !timesAvailable && false"
         >lock</mat-icon
       >
     </button>
