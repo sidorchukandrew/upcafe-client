@@ -104,7 +104,7 @@ export class CustomerOrderService {
         environment.backendUrl + "/orders/customer/" + this.customer.id,
         {
           params: {
-            state: "ACTIVE",
+            status: "ACTIVE",
           },
         }
       )
@@ -117,7 +117,7 @@ export class CustomerOrderService {
         environment.backendUrl + "/orders/customer/" + this.customer.id,
         {
           params: {
-            state: "ACTIVE",
+            status: "ACTIVE",
           },
         }
       )
@@ -133,7 +133,7 @@ export class CustomerOrderService {
 
   private parseStatus(order: Order) {
     if (order) {
-      this.statusSubject.next(order["state"]);
+      this.statusSubject.next(order["status"]);
     } else {
       this.stateSubject.next("NEW");
 
@@ -143,7 +143,6 @@ export class CustomerOrderService {
 
   private parseStateOfApp(order: Order): Order {
     if (order) {
-      // this.statusSubject.next(order['state']);
       this.stateSubject.next("PLACED");
     } else {
       this.order
