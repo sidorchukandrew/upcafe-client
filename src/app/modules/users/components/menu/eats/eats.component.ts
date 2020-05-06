@@ -96,6 +96,7 @@ export class EatsComponent implements OnInit, OnDestroy {
 import {Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { ModifierList } from 'src/app/models/ModifierList';
+import { CustomerOrderService } from 'src/app/services/customer-order.service';
 
 @Component({
   selector: 'item-details-sheet',
@@ -109,12 +110,17 @@ export class ItemDetailsSheet {
   public selectedModifierList: ModifierList;
 
   private bottomSheetRef: MatBottomSheet;
-  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {
+  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private orderService: CustomerOrderService) {
     this.item = data['item'];
     this.bottomSheetRef = data['bottomSheet'];
   }
 
   close() {
     this.bottomSheetRef.dismiss();
+  }
+
+  addToOrder() {
+    var orderItem = this.orderService.newOrderItem(this.item, null, this.item.price);
+    this.orderService.addToOrder(orderItem);
   }
 }
