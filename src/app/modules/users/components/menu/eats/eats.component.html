@@ -14,8 +14,7 @@
       <ng-container *ngIf="item.image">
         <a
         class="card full-background"
-        (click)="loadItem(item)"
-        [routerLink]="item.id"
+        (click)="openBottomSheet(item)"
         [ngStyle]="{
           'background-image': 'url(' + item.image.url + ')'
         }"
@@ -28,7 +27,7 @@
     </ng-container>
 
       <ng-container *ngIf="!item.image">
-        <a class="card card-background default-item-background shadow" (click)="loadItem(item)" [routerLink]="item.id">
+        <a class="card card-background default-item-background shadow" (click)="openBottomSheet(item);">
           <div class="item-name">
             {{ item.name }}
           </div>
@@ -40,3 +39,5 @@
   </div>
 </div>
 <div id="space-for-nav"></div>
+        <!-- (click)="loadItem(item)" -->
+                <!-- [routerLink]="item.id" -->

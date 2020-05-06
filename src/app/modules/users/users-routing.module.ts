@@ -14,6 +14,9 @@ import { SweetsComponent } from "./components/menu/sweets/sweets.component";
 import { EditItemComponent } from "./components/cart/edit-item/edit-item.component";
 import { PaymentComponent } from "./components/cart/payment/payment.component";
 import { SettingsComponent } from './components/profile/settings/settings.component';
+import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedback.component";
+import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
+import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
 
 const routes: Routes = [
   {
@@ -36,7 +39,13 @@ const routes: Routes = [
   { path: "cart/edit/:id", component: EditItemComponent },
   { path: "menu/sweets/:id", component: ItemDetailsComponent },
   { path: "cart/payment", component: PaymentComponent },
-  { path: "account/settings", component: SettingsComponent }
+  { path: "account/settings", component: SettingsComponent },
+  { path: "account/feedback", component: AppFeedbackComponent,
+    children: [
+      { path: "bugs", component: BugReportComponent },
+      { path: "features", component: FeatureRequestComponent }
+    ]
+  }
 ];
 
 @NgModule({

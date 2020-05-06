@@ -1,14 +1,14 @@
 <ng-container *ngIf="order">
   <div class="card-background title-color button-border summary-card">
     <div class="section">
-      <div class="item" *ngFor="let item of order.selectedLineItems">
+      <div class="item" *ngFor="let item of order.orderItems">
         <div class="top-line">
           <span>
-            <span>{{ item.variationData.name }}</span>
+            <span>{{ item.name }}</span>
             <span class="bold"> ({{ item.price | currency }}) </span>
           </span>
           <span class="item-total-price bold">
-            {{ item.variationData.variationPrice | currency }}
+            {{ item.price | currency }}
           </span>
         </div>
 
