@@ -21,12 +21,14 @@ import {
   MatInputModule,
   MatIconModule,
   MatProgressSpinnerModule,
+  MatDialogModule
 } from "@angular/material";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { LoadingComponent } from "./components/loading/loading.component";
 import { HttpErrorInterceptor } from "./interceptors/HttpErrorInterceptor";
+import { NoAccountDialogComponent } from './components/no-account-dialog/no-account-dialog.component';
 
 let config = new AuthServiceConfig([
   {
@@ -44,11 +46,7 @@ export function provideConfig() {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SignInComponent,
-    LoadingComponent,
-  ],
+  declarations: [AppComponent, SignInComponent, LoadingComponent, NoAccountDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -62,6 +60,7 @@ export function provideConfig() {
     MatIconModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
     }),
@@ -76,6 +75,9 @@ export function provideConfig() {
       useClass: HttpErrorInterceptor,
       multi: true,
     },
+  ],
+  entryComponents: [
+    NoAccountDialogComponent
   ],
   bootstrap: [AppComponent],
 })

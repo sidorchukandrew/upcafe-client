@@ -4,6 +4,14 @@
   max-width: 500px;
 }
 
+.black-background {
+  position:absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: -2;
+}
+
 #signin-google {
     /* background-color: rgb(66, 133, 244); */
     background-color: white;
