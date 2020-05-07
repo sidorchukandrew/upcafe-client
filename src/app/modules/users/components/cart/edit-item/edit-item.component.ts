@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { ModListDetailsComponent } from '../../menu/mod-list-details/mod-list-details.component';
-import { LineItem } from 'src/app/models/LineItem';
+// import { ModListDetailsComponent } from '../../menu/mod-list-details/mod-list-details.component';
 import { CatalogService } from 'src/app/services/catalog.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerOrderService } from 'src/app/services/customer-order.service';
-import { ModifierListData } from 'src/app/models/ModifierListData';
 // import { SelectedItemService } from 'src/app/services/selected-item.service';
 import { Subscription } from 'rxjs';
 import { EditItemService } from 'src/app/services/edit-item.service';

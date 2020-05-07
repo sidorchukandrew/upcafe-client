@@ -52,13 +52,13 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
-  public isSignedIn(): boolean {
-    return this.authService.isSignedIn();
-  }
+  // public isSignedIn(): boolean {
+  //   return this.authService.isSignedIn();
+  // }
 
-  public signOutCustomer(): void {
-    return this.authService.signOutCustomer();
-  }
+  // public signOutCustomer(): void {
+  //   return this.authService.signOutCustomer();
+  // }
 
   changeStyles(darkThemeOn: boolean) {
     this.darkThemeOn = darkThemeOn;

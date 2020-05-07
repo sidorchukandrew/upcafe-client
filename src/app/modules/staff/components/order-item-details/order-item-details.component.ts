@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { LineItem } from "src/app/models/LineItem";
 import { OrderItem } from "src/app/models/OrderItem";
 import { ThemeService } from "src/app/services/theme.service";
 

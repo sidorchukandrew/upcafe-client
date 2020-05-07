@@ -1,6 +1,4 @@
 import { Injectable } from "@angular/core";
-import { VariationData } from "../models/VariationData";
-import { ModifierData } from "../models/ModifierData";
 import { OrderItem } from "../models/OrderItem";
 import { Order } from "../models/Order";
 import { HttpClient } from "@angular/common/http";

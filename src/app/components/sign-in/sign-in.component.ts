@@ -13,11 +13,16 @@ export class SignInComponent implements OnInit {
   private signedIn: boolean = false;
   private user: SocialUser;
 
-  constructor(private thirdPartyAuthService: AuthService) { }
+  constructor(private thirdPartyAuthService: AuthService,private customAuthService: AuthorizationService) { }
 
   ngOnInit(): void {
     this.thirdPartyAuthService.authState.subscribe((user) => {
-      console.log(user);
+
+      if(user != null)
+        this.customAuthService.attemptSignIn(user).subscribe(success => {
+          if(!success)
+            this.customAuthService.createUser(user).subscribe();
+        });
     });
   }
 

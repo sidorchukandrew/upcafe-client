@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy } from "@angular/core";
-import { LineItem } from "src/app/models/LineItem";
-import { ModifierListData } from "src/app/models/ModifierListData";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ModListDetailsComponent } from "../mod-list-details/mod-list-details.component";
 import { CustomerOrderService } from "src/app/services/customer-order.service";
@@ -8,7 +6,6 @@ import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { SelectedItemStore } from "src/app/services/stores/selected-item.store";
 import { Subscription, noop, Observable } from "rxjs";
 import { tap, map } from "rxjs/operators";
-import { VariationData } from "src/app/models/VariationData";
 import { HoursService } from "src/app/services/hours.service";
 import { MenuItem } from 'src/app/models/MenuItem';
 import { ModifierList } from 'src/app/models/ModifierList';

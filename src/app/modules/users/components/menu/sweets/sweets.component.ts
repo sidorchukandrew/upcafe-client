@@ -3,8 +3,6 @@ import { CatalogService } from 'src/app/services/catalog.service';
 import { HttpClient } from '@angular/common/http';
 import { CatalogByCategory } from 'src/app/models/CatalogByCategory';
 import { Catalog } from 'src/app/models/Catalog';
-import { CategoryItem } from 'src/app/models/CategoryItem';
-import { VariationData } from 'src/app/models/VariationData';
 import { SelectedItemStore } from 'src/app/services/stores/selected-item.store';
 
 @Component({
@@ -36,7 +34,7 @@ export class SweetsComponent implements OnInit {
     });
   }
 
-  loadItem(lineItem: CategoryItem, variationData: VariationData): void {
-    // this.itemStore.setSelectedItem(lineItem, variationData);
-  }
+  // loadItem(lineItem: CategoryItem, variationData: VariationData): void {
+  //   // this.itemStore.setSelectedItem(lineItem, variationData);
+  // }
 }
