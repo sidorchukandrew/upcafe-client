@@ -10,10 +10,8 @@ import { Order } from "src/app/models/Order";
   styleUrls: ["./staff.component.css"],
 })
 export class StaffComponent implements OnInit {
-  orders$: Observable<Order[]>;
-  orders: Order[];
+
   constructor(
-    private ordersFeed: OrderFeedService,
     private ordersStore: OrdersStore
   ) {}
 

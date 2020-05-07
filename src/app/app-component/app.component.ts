@@ -1,12 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from "@angular/core";
-import {
-  AuthService,
-  GoogleLoginProvider,
-  FacebookLoginProvider,
-} from "angularx-social-login";
-import { SocialUser } from "angularx-social-login";
 import { AuthorizationService } from "../services/authorization.service";
-import { Router } from "@angular/router";
 import { ThemeService } from "../services/theme.service";
 import { Subscription, Observable } from "rxjs";
 import { tap } from "rxjs/operators";
@@ -52,13 +45,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
-  // public isSignedIn(): boolean {
-  //   return this.authService.isSignedIn();
-  // }
-
-  // public signOutCustomer(): void {
-  //   return this.authService.signOutCustomer();
-  // }
 
   changeStyles(darkThemeOn: boolean) {
     this.darkThemeOn = darkThemeOn;

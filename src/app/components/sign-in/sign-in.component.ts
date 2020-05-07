@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import {
   AuthService,
   GoogleLoginProvider,
@@ -24,10 +24,12 @@ import { NoAccountDialogComponent } from "../no-account-dialog/no-account-dialog
   templateUrl: "./sign-in.component.html",
   styleUrls: ["./sign-in.component.css"],
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit, OnDestroy {
   private user: User;
   private socialUser: SocialUser;
   private dialogRef: MatDialogRef<NoAccountDialogComponent>;
+
+  private oldBackground: string = document.body.style.backgroundColor;
 
   constructor(
     private thirdPartyAuthService: AuthService,
@@ -37,11 +39,12 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
 
+    document.body.style.background = "#080808";
     this.thirdPartyAuthService.authState
       .pipe(
         filter((socialUser) => socialUser != null),
         tap((socialUser) => (this.socialUser = socialUser)),
-        tap(socialUser => console.log(socialUser)),
+        tap((socialUser) => console.log(socialUser)),
         switchMap((socialUser) =>
           this.customAuthService.attemptSignIn(socialUser)
         ),
@@ -52,6 +55,10 @@ export class SignInComponent implements OnInit {
         tap(() => this.showNoAccountYetDialog(this.socialUser))
       )
       .subscribe();
+  }
+
+  ngOnDestroy() {
+    document.body.style.background = this.oldBackground;
   }
 
   showNoAccountYetDialog(user: SocialUser): void {
@@ -65,7 +72,7 @@ export class SignInComponent implements OnInit {
         filter((socialUser) => socialUser != null),
         concatMap((socialUser) => this.customAuthService.createUser(socialUser))
       )
-      .subscribe(createdUser => this.user = createdUser);
+      .subscribe((createdUser) => (this.user = createdUser));
   }
 
   signInWithGoogle(): void {
