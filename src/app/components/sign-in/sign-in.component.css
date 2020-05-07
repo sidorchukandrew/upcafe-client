@@ -1,3 +1,9 @@
+#upcafe-logo {
+  margin: 30px;
+  width: 50%;
+  max-width: 500px;
+}
+
 #signin-google {
     /* background-color: rgb(66, 133, 244); */
     background-color: white;
