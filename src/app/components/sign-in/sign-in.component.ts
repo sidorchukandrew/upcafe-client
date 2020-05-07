@@ -13,15 +13,11 @@ export class SignInComponent implements OnInit {
   private signedIn: boolean = false;
   private user: SocialUser;
 
-  constructor(private thirdPartyAuthService: AuthService, private customAuthService: AuthorizationService) { }
+  constructor(private thirdPartyAuthService: AuthService) { }
 
   ngOnInit(): void {
     this.thirdPartyAuthService.authState.subscribe((user) => {
       console.log(user);
-      this.user = user;
-      if (user != null) {
-        this.customAuthService.customerSignIn(this.user);
-      }
     });
   }
 
@@ -35,7 +31,5 @@ export class SignInComponent implements OnInit {
 
   signOut(): void {
     this.thirdPartyAuthService.signOut();
-    this.user = null;
-    this.signedIn = false;
   }
 }

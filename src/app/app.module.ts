@@ -25,8 +25,7 @@ import {
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
-import { StaffSignInComponent } from "./components/staff-sign-in/staff-sign-in.component";
-import { LoadingComponent } from "./app-component/loading/loading.component";
+import { LoadingComponent } from "./components/loading/loading.component";
 import { HttpErrorInterceptor } from "./interceptors/HttpErrorInterceptor";
 
 let config = new AuthServiceConfig([
@@ -48,7 +47,6 @@ export function provideConfig() {
   declarations: [
     AppComponent,
     SignInComponent,
-    StaffSignInComponent,
     LoadingComponent,
   ],
   imports: [
