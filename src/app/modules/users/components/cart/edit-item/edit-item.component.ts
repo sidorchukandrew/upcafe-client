@@ -3,7 +3,7 @@ import { ModListDetailsComponent } from '../../menu/mod-list-details/mod-list-de
 import { LineItem } from 'src/app/models/LineItem';
 import { CatalogService } from 'src/app/services/catalog.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrderService } from 'src/app/services/order.service';
+import { CustomerOrderService } from 'src/app/services/customer-order.service';
 import { ModifierListData } from 'src/app/models/ModifierListData';
 // import { SelectedItemService } from 'src/app/services/selected-item.service';
 import { Subscription } from 'rxjs';
@@ -28,7 +28,7 @@ export class EditItemComponent {
   //   subscriptions: Subscription;
 
   //   constructor(private catalogService: CatalogService,
-  //     private route: ActivatedRoute, private orderService: OrderService, private router: Router, private selectedItemService: SelectedItemService,
+  //     private route: ActivatedRoute, private orderService: CustomerOrderService, private router: Router, private selectedItemService: SelectedItemService,
   //     private editService: EditItemService) {
   //     this.nameOfCurrentlySelectedModifierList = '';
   //     this.item = new LineItem();

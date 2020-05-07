@@ -1,11 +1,12 @@
-import { VariationData } from './VariationData';
-import { ModifierData } from './ModifierData';
+import { OrderModifier } from './OrderModifier';
+
 
 export class OrderItem {
-    variationData: VariationData;
-    selectedModifiers: Array<ModifierData>;
+    variationId: string;
+    selectedModifiers: OrderModifier[];
     price: number;
     quantity: number;
+    name: string;
 
     constructor() {
         this.quantity = 1;

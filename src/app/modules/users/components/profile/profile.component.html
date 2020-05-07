@@ -1,10 +1,7 @@
-<div class="header card-background profile-border">
-    <div class="title title-color">
-        Account
-    </div>
+<div class="header">
     <div class="user-summary">
 
-        <img [src]="imgUrl">
+        <img [src]="imgUrl" class="avatar">
 
         <div class="name title-color">
             {{name}}
@@ -15,25 +12,58 @@
     </div>
 </div>
 
-<div class="actions center-text">
-    <mat-divider class="divider-color"></mat-divider>
-    <a class="action card-background title-color" matRipple routerLink="settings">
-        Settings
-        <mat-icon>keyboard_arrow_right</mat-icon>
-    </a>
+<mat-divider class="divider-color"></mat-divider>
+<table class="actions">
+    <tr class="action title-color" routerLink="settings">
+        <td class="icon">
+          <mat-icon class="title-color">settings</mat-icon>
+        </td>
+        <td class="action-name">
+          <span class="description">
+            Settings
+          </span>
+          <mat-icon class="subtitle-color">keyboard_arrow_right</mat-icon>
+        </td>
+        <mat-divider class="divider-color"></mat-divider>
+    </tr>
+    <tr class="action title-color">
+      <td class="icon">
+        <mat-icon class="title-color" style="transform: rotate(36deg);">notifications_none</mat-icon>
+      </td>
+      <td class="action-name" matRipple>
+        <span class="description">
+          Push notifications
+        </span>
+        <mat-icon class="subtitle-color">keyboard_arrow_right</mat-icon>
+      </td>
       <mat-divider class="divider-color"></mat-divider>
-    <a class="action card-background title-color" matRipple>
+    </tr>
+    <tr class="action title-color"  routerLink="feedback/bugs">
+      <ng-container matRipple>
+        <td class="icon">
+          <mat-icon class="title-color">mail_outline</mat-icon>
+        </td>
+        <td class="action-name">
+          <span class="description">
+            Send feedback
+          </span>
+          <mat-icon class="subtitle-color">keyboard_arrow_right</mat-icon>
+        </td>
+        <mat-divider class="divider-color"></mat-divider>
+      </ng-container>
+    </tr>
+  <!-- <a class="action  title-color" matRipple>
         Notifications
         <mat-icon>keyboard_arrow_right</mat-icon>
     </a>
     <mat-divider class="divider-color"></mat-divider>
-    <a class="action card-background title-color" matRipple>
+    <a class="action  title-color" matRipple>
         Edit Profile
         <mat-icon>keyboard_arrow_right</mat-icon>
     </a>
     <mat-divider class="divider-color"></mat-divider>
-    <a class="action warn card-background" id="signout" matRipple>
+    <a class="action warn " id="signout" matRipple>
         SIGN OUT
     </a>
-  <mat-divider class="divider-color"></mat-divider>
-</div>
+  <mat-divider class="divider-color"></mat-divider> -->
+  </table>

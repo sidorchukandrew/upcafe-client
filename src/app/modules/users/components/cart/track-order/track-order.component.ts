@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from "@angular/core";
-import { OrderService } from "src/app/services/order.service";
+import { CustomerOrderService } from "src/app/services/customer-order.service";
 import { Subscription } from "rxjs";
 import { Order } from "src/app/models/Order";
 import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
@@ -19,7 +19,7 @@ export class TrackOrderComponent implements OnInit, OnDestroy {
   checkInterval$;
 
   constructor(
-    private orderService: OrderService,
+    private orderService: CustomerOrderService,
     public utils: TimeUtilitiesService,
     private loadingService: LoadingService
   ) {}

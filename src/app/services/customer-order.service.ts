@@ -9,20 +9,18 @@ import { Customer } from "../models/Customer";
 import { environment } from "src/environments/environment";
 import { tap } from "rxjs/operators";
 import { CartBadgeService } from "./cart-badge.service";
+import { MenuItem } from '../models/MenuItem';
+import { OrderModifier } from '../models/OrderModifier';
 
 @Injectable({
   providedIn: "root",
 })
-export class OrderService {
+export class CustomerOrderService {
   public order: Order;
   private customer: Customer;
 
-  private stateSubject: BehaviorSubject<string> = new BehaviorSubject<string>(
-    "NEW"
-  );
-  private statusSubject: BehaviorSubject<string> = new BehaviorSubject<string>(
-    undefined
-  );
+  private stateSubject: BehaviorSubject<string> = new BehaviorSubject<string>("NEW");
+  private statusSubject: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
 
   public state$: Observable<string> = this.stateSubject.asObservable();
   public status$: Observable<string> = this.statusSubject.asObservable();
@@ -42,43 +40,40 @@ export class OrderService {
     };
   }
 
-  public newOrderItem(
-    variationData: VariationData,
-    selectedModifiers: Array<ModifierData>
-  ): OrderItem {
+  public newOrderItem(item: MenuItem, selectedModifiers: OrderModifier[], cumulativePrice: number): OrderItem {
+
+    this.startOrderIfNotStartedYet();
+
+    var orderItem = new OrderItem();
+    orderItem.variationId = item.id;
+    orderItem.price = cumulativePrice;
+    orderItem.quantity = 1;
+    orderItem.name = item.name;
+    orderItem.selectedModifiers = selectedModifiers;
+
+    return orderItem;
+  }
+
+  private startOrderIfNotStartedYet(): void {
     if (this.order == null) {
       console.log("Creating new order.");
       this.order = new Order();
       this.order.customer = this.customer;
-      this.order.selectedLineItems = new Array<OrderItem>();
+      this.order.orderItems = new Array<OrderItem>();
       this.order.totalPrice = 0;
 
       this.stateSubject.next("STARTED");
     }
-
-    var orderItem = new OrderItem();
-    orderItem.variationData = variationData;
-    orderItem.selectedModifiers = selectedModifiers;
-
-    var price: number = 0;
-
-    if (selectedModifiers) selectedModifiers.forEach((m) => (price += m.price));
-
-    price += variationData.variationPrice;
-
-    orderItem.price = price;
-
-    return orderItem;
   }
 
   public addToOrder(orderItem: OrderItem) {
     this.badgeService.addedItemToCart();
     this.order.totalPrice += orderItem.price;
-    this.order.selectedLineItems.push(orderItem);
+    this.order.orderItems.push(orderItem);
   }
 
   public postOrder(): any {
-    if (this.order.pickupTime == null) this.order.pickupTime = "ASAP";
+    if (this.order.pickupTime == null) this.order.pickupTime = "12:00";
 
     this.order.pickupDate = new Date().toDateString();
 
@@ -109,7 +104,7 @@ export class OrderService {
         environment.backendUrl + "/orders/customer/" + this.customer.id,
         {
           params: {
-            state: "ACTIVE",
+            status: "ACTIVE",
           },
         }
       )
@@ -122,7 +117,7 @@ export class OrderService {
         environment.backendUrl + "/orders/customer/" + this.customer.id,
         {
           params: {
-            state: "ACTIVE",
+            status: "ACTIVE",
           },
         }
       )
@@ -138,7 +133,7 @@ export class OrderService {
 
   private parseStatus(order: Order) {
     if (order) {
-      this.statusSubject.next(order["state"]);
+      this.statusSubject.next(order["status"]);
     } else {
       this.stateSubject.next("NEW");
 
@@ -148,7 +143,6 @@ export class OrderService {
 
   private parseStateOfApp(order: Order): Order {
     if (order) {
-      // this.statusSubject.next(order['state']);
       this.stateSubject.next("PLACED");
     } else {
       this.order

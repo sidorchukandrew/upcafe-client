@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { OrderService } from 'src/app/services/order.service';
+import { CustomerOrderService } from 'src/app/services/customer-order.service';
 import { Subscription, concat } from 'rxjs';
 import { Order } from 'src/app/models/Order';
 import { tap, concatMap } from 'rxjs/operators';
@@ -22,7 +22,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   processingPayment: boolean;
   success: boolean;
 
-  constructor(private orderService: OrderService, private badgeService: CartBadgeService) {
+  constructor(private orderService: CustomerOrderService, private badgeService: CartBadgeService) {
     this.processingPayment = false;
     this.success = false;
   }
@@ -109,10 +109,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.orderService.postOrder()
       .pipe(
         tap(data => console.log(data)),
-        concatMap(data => this.orderService.postPayment(nonce, data['id'], data['totalPrice'])
-          .pipe(
-            tap(() => this.success = true),
-            tap(() => this.badgeService.orderPaid())))
+        concatMap(data => this.orderService.postPayment(nonce, data['id'], data['totalPrice'])),
+        tap(() => this.success = true),
+        tap(() => this.badgeService.orderPaid())
       ).subscribe();
 
   }

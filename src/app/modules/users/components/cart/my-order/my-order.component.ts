@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Order } from "src/app/models/Order";
-import { OrderService } from "src/app/services/order.service";
+import { CustomerOrderService } from "src/app/services/customer-order.service";
 import { Router } from "@angular/router";
 import { EditItemService } from "src/app/services/edit-item.service";
 import { OrderItem } from "src/app/models/OrderItem";
@@ -22,7 +22,7 @@ export class MyOrderComponent implements OnInit {
   selectedTime: string;
 
   constructor(
-    private orderService: OrderService,
+    private orderService: CustomerOrderService,
     private router: Router,
     private editService: EditItemService,
     private badgeService: CartBadgeService,
@@ -46,30 +46,30 @@ export class MyOrderComponent implements OnInit {
   }
 
   removeFromOrder(orderItem: OrderItem): void {
-    var index = this.currentOrder.selectedLineItems.indexOf(orderItem);
-    this.currentOrder.selectedLineItems.splice(index, 1);
+    // var index = this.currentOrder.selectedLineItems.indexOf(orderItem);
+    // this.currentOrder.selectedLineItems.splice(index, 1);
 
-    var newPrice: number = 0;
-    this.currentOrder.selectedLineItems.forEach((item) => {
-      newPrice += item.price * item.quantity;
-    });
+    // var newPrice: number = 0;
+    // this.currentOrder.selectedLineItems.forEach((item) => {
+    //   newPrice += item.price * item.quantity;
+    // });
 
-    this.currentOrder.totalPrice = newPrice;
+    // this.currentOrder.totalPrice = newPrice;
 
-    this.badgeService.removedItemFromCart();
+    // this.badgeService.removedItemFromCart();
 
-    if (this.currentOrder.selectedLineItems.length == 0) {
-      this.currentOrder = null;
-      this.orderService.emptyCart();
-    }
+    // if (this.currentOrder.selectedLineItems.length == 0) {
+    //   this.currentOrder = null;
+    //   this.orderService.emptyCart();
+    // }
   }
 
   navigateToEditItem(orderItem: OrderItem) {
-    this.editService.unchangedItem = orderItem;
-    this.router.navigate([
-      "user/cart/edit",
-      orderItem.variationData.variationId,
-    ]);
+    // this.editService.unchangedItem = orderItem;
+    // this.router.navigate([
+    //   "user/cart/edit",
+    //   orderItem.variationData.variationId,
+    // ]);
   }
 
   timeSelected(time: string) {

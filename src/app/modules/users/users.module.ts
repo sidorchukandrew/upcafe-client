@@ -19,13 +19,13 @@ import {
   MatBadgeModule,
   MatStepperModule,
   MatSlideToggleModule,
-  MatSlideToggle,
+  MatBottomSheetModule
 } from "@angular/material";
 import { MenuComponent } from "./components/menu/menu.component";
 import { HomeComponent } from "./components/home/home.component";
 import { CartComponent } from "./components/cart/cart.component";
 import { ProfileComponent } from "./components/profile/profile.component";
-import { EatsComponent } from "./components/menu/eats/eats.component";
+import { EatsComponent, ItemDetailsSheet } from "./components/menu/eats/eats.component";
 import {
   ItemDetailsComponent,
   UserResponseDialog,
@@ -42,6 +42,10 @@ import { TrackOrderComponent } from "./components/cart/track-order/track-order.c
 import { SettingsComponent } from "./components/profile/settings/settings.component";
 import { StatusTrackerComponent } from "../staff/components/status-tracker/status-tracker.component";
 import { OrderSummaryComponent } from "./components/cart/order-summary/order-summary.component";
+import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedback.component";
+import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
+import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -67,6 +71,7 @@ import { OrderSummaryComponent } from "./components/cart/order-summary/order-sum
     SettingsComponent,
     StatusTrackerComponent,
     OrderSummaryComponent,
+    ItemDetailsSheet, AppFeedbackComponent, BugReportComponent, FeatureRequestComponent
   ],
   imports: [
     CommonModule,
@@ -84,8 +89,10 @@ import { OrderSummaryComponent } from "./components/cart/order-summary/order-sum
     MatBadgeModule,
     MatStepperModule,
     MatSlideToggleModule,
+    MatBottomSheetModule,
+    ReactiveFormsModule
   ],
-  entryComponents: [UserResponseDialog],
+  entryComponents: [UserResponseDialog, ItemDetailsSheet],
   providers: [],
 })
 export class UsersModule {}

@@ -1,53 +1,48 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { ModifierData } from 'src/app/models/ModifierData';
-import { ModifierListData } from 'src/app/models/ModifierListData';
-import { OrderService } from 'src/app/services/order.service';
-import { Subscription, Observable } from 'rxjs';
-import { EditItemService } from 'src/app/services/edit-item.service';
-import { SelectedItemStore } from 'src/app/services/stores/selected-item.store';
-import { tap } from 'rxjs/operators';
+import { noop } from 'rxjs';
+import { ModifierList } from 'src/app/models/ModifierList';
+import { Modifier } from 'src/app/models/Modifier';
+import { OrderModifier } from 'src/app/models/OrderModifier';
 
 @Component({
   selector: 'app-mod-list-details',
   templateUrl: './mod-list-details.component.html',
   styleUrls: ['./mod-list-details.component.css']
 })
-export class ModListDetailsComponent implements OnInit, OnDestroy {
+export class ModListDetailsComponent implements OnInit {
 
-  selectedModifiers: Array<ModifierData>;
+  @Input("modList") modifierList: ModifierList;
+  @Output() selectionMade = new EventEmitter<number>();
+
+  selectedModifiers: Array<OrderModifier>;
   multipleSelectionEnabled: boolean;
-  subscriptions: Subscription;
   selectedIndex;
   selectedId;
 
-  modListData: ModifierListData;
-
-  constructor(private itemStore: SelectedItemStore, private orderService: OrderService, private editService: EditItemService) {
-
-  }
+  constructor() { }
 
   ngOnInit() {
-    this.subscriptions = new Subscription();
 
-    this.subscriptions.add(this.itemStore.currentModList$
-      .subscribe(modListData => {
-        this.modListData = modListData;
-        if (modListData) {
-          this.multipleSelectionEnabled = modListData.selectionType == 'MULTIPLE';
-          console.log(this.multipleSelectionEnabled);
-        }
-      }));
-
-    this.modListData = new ModifierListData('', '', '', []);
-    this.selectedModifiers = new Array<ModifierData>();
+    this.selectedModifiers = new Array<OrderModifier>();
   }
 
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
-  }
+  public changed(checked: boolean, modifier: Modifier): void {
+    if(checked) {
+      var orderModifier: OrderModifier = {
+        id: modifier.id,
+        name: modifier.name,
+        price: modifier.price
+      }
 
-  public changed(checked: boolean, modifier: ModifierData): void {
-    (checked) ? this.selectedModifiers.push(modifier) : this.remove(modifier);
+      this.selectedModifiers.push(orderModifier);
+
+      modifier.price > 0 ? this.selectionMade.emit(modifier.price) : noop;
+    }
+    else {
+      this.remove(modifier);
+      modifier.price > 0 ? this.selectionMade.emit(-modifier.price) : noop;
+    }
     console.log(this.selectedModifiers);
   }
 
@@ -58,12 +53,11 @@ export class ModListDetailsComponent implements OnInit, OnDestroy {
   }
 
   public selected(modifier: ModifierData): boolean {
-
     var index = this.selectedModifiers.indexOf(modifier);
     return index != -1;
   }
 
-  public changedSingleSelection(modifier: ModifierData, modifiers: ModifierData[]) {
+  public changedSingleSelection(modifier: Modifier, modifiers: Modifier[]) {
 
     modifiers.forEach(m => {
       console.log("Removing:", modifier);
@@ -73,12 +67,8 @@ export class ModListDetailsComponent implements OnInit, OnDestroy {
     this.selectedModifiers.push(modifier);
   }
 
-  public getSelectedModifiers(): Array<ModifierData> {
+  public getSelectedModifiers(): Array<OrderModifier> {
     return this.selectedModifiers;
-  }
-
-  public setSelectedModifiers(modifiers: Array<ModifierData>): void {
-    this.selectedModifiers = modifiers;
   }
 
   display(event) {

@@ -26,7 +26,7 @@
   <div class="section">
     <div class="title-size title-color title">Items</div>
 
-    <div *ngFor="let item of detailsStore.orderBeingViewed.selectedLineItems">
+    <div *ngFor="let item of detailsStore.orderBeingViewed.orderItems">
       <app-item [item]="item"></app-item>
     </div>
   </div>
@@ -47,11 +47,11 @@
     <div class="title-size title-color title">Order Status</div>
 
     <app-status-tracker
-      [status]="detailsStore.orderBeingViewed.state"
+      [status]="detailsStore.orderBeingViewed.status"
     ></app-status-tracker>
 
     <div class="status title-color">
-      {{ detailsStore.orderBeingViewed.state | titlecase }}
+      {{ detailsStore.orderBeingViewed.status | titlecase }}
     </div>
   </div>
 
@@ -64,7 +64,7 @@
     </div>
     <div class="ordered-at subtitle-color">
       Ordered At:
-      {{ utils.extractTime(detailsStore.orderBeingViewed.createdAt) }}
+      {{ utils.extractTime(detailsStore.orderBeingViewed.placedAt) }}
     </div>
   </div>
 </div>
@@ -72,7 +72,7 @@
 <div style="min-height: 80px;"></div>
 
 <div class="quick-actions">
-  <span [ngSwitch]="detailsStore.orderBeingViewed.state">
+  <span [ngSwitch]="detailsStore.orderBeingViewed.status">
     <button
       mat-raised-button
       color="primary"

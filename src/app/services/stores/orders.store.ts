@@ -56,9 +56,9 @@ export class OrdersStore {
     return this.filterById(id);
   }
 
-  filterOrdersByState(state: string): Observable<Order[]> {
+  filterOrdersByState(status: string): Observable<Order[]> {
     return this.orders$.pipe(
-      map((orders) => orders.filter((order) => order.state == state)),
+      map((orders) => orders.filter((order) => order.status == status)),
       map((orders) => orders.sort(this.utils.increasingTime))
     );
   }
@@ -96,9 +96,9 @@ export class OrdersStore {
     });
   }
 
-  public sendUpdate(order: Order, state: string): any {
+  public sendUpdate(order: Order, status: string): any {
     return this.http.post(environment.backendUrl + "/orders", order, {
-      params: { state: state },
+      params: { status: status },
     });
   }
 }
