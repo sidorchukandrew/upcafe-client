@@ -25,10 +25,11 @@ import { LoadingComponent } from "./components/loading/loading.component";
 import { HttpErrorInterceptor } from "./interceptors/HttpErrorInterceptor";
 import { NoAccountDialogComponent } from './components/no-account-dialog/no-account-dialog.component';
 import { SignInOptionsComponent } from './components/sign-in-options/sign-in-options.component';
+import { SignInResultComponent } from './components/sign-in-result/sign-in-result.component';
 
 
 @NgModule({
-  declarations: [AppComponent, SignInComponent, LoadingComponent, NoAccountDialogComponent, SignInOptionsComponent],
+  declarations: [AppComponent, SignInComponent, LoadingComponent, NoAccountDialogComponent, SignInOptionsComponent, SignInResultComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

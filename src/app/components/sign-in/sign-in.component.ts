@@ -31,6 +31,6 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   public signInWithGoogle(): void {
-    this.router.navigate([environment.backendUrl + "/oauth2/authorization/google?redirect_uri=http://localhost:4200/signed_in"]);
+    window.location.href = environment.backendUrl + "/oauth2/authorization/google?redirect_uri=http://localhost:4200/options";
   }
 }
