@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from "@angular/core";
-import { AuthorizationService } from "../services/authorization.service";
+import { AuthenticationService } from "../services/authentication.service";
 import { ThemeService } from "../services/theme.service";
 import { Subscription, Observable } from "rxjs";
 import { tap } from "rxjs/operators";
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
   loading: boolean;
 
   constructor(
-    private authService: AuthorizationService,
+    private authService: AuthenticationService,
     private themeService: ThemeService,
     public loadingService: LoadingService
   ) {}

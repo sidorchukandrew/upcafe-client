@@ -6,11 +6,6 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./routing/app-routing.module";
 import { AppComponent } from "./app-component/app.component";
 
-import {
-  SocialLoginModule,
-  AuthServiceConfig,
-  FacebookLoginProvider,
-} from "angularx-social-login";
 import { GoogleLoginProvider } from "angularx-social-login";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
@@ -29,28 +24,14 @@ import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { LoadingComponent } from "./components/loading/loading.component";
 import { HttpErrorInterceptor } from "./interceptors/HttpErrorInterceptor";
 import { NoAccountDialogComponent } from './components/no-account-dialog/no-account-dialog.component';
+import { SignInOptionsComponent } from './components/sign-in-options/sign-in-options.component';
 
-let config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(environment.googleAppId),
-  },
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider(environment.facebookAppId),
-  },
-]);
-
-export function provideConfig() {
-  return config;
-}
 
 @NgModule({
-  declarations: [AppComponent, SignInComponent, LoadingComponent, NoAccountDialogComponent],
+  declarations: [AppComponent, SignInComponent, LoadingComponent, NoAccountDialogComponent, SignInOptionsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SocialLoginModule,
     BrowserAnimationsModule,
     MatRippleModule,
     MatButtonModule,
@@ -66,10 +47,6 @@ export function provideConfig() {
     }),
   ],
   providers: [
-    {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig,
-    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
