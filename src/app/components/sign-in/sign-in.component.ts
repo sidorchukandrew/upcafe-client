@@ -1,18 +1,10 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { AuthenticationService } from "../../services/authentication.service";
-import {
-  tap,
-  concatMap,
-  filter,
-  concat,
-  switchMap,
-  retry,
-} from "rxjs/operators";
-import { User } from "src/app/models/User";
-import { noop } from "rxjs";
 import { MatDialog, MatDialogRef } from "@angular/material";
 import { NoAccountDialogComponent } from "../no-account-dialog/no-account-dialog.component";
 import { Router } from '@angular/router';
+
+import { environment } from "../../../environments/environment";
 
 @Component({
   selector: "app-sign-in",
@@ -20,7 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ["./sign-in.component.css"],
 })
 export class SignInComponent implements OnInit, OnDestroy {
-  private user: User;
   private dialogRef: MatDialogRef<NoAccountDialogComponent>;
 
   private oldBackground: string = document.body.style.backgroundColor;
@@ -37,5 +28,9 @@ export class SignInComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     console.log("destroying");
     document.body.style.background = this.oldBackground;
+  }
+
+  public signInWithGoogle(): void {
+    this.router.navigate([environment.backendUrl + "/oauth2/authorization/google?redirect_uri=http://localhost:4200/signed_in"]);
   }
 }

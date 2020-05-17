@@ -3,7 +3,7 @@
     <img src="../../../assets/logos/logo.png" id="upcafe-logo">
   </div>
   <div class="center-wrapper">
-    <button mat-raised-button color="accent" class="signin-button">
+  <button mat-raised-button color="accent" class="signin-button" (click)="signInWithGoogle()">
       <div class="logo-container">
         <div class="logo" id="google-logo">
           <svg height="20" viewBox="0 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -40,12 +40,4 @@
       <div class="signin-with-text">Sign in with Facebook</div>
     </button>
   </div>
-
-  <!-- <div class="center-wrapper">
-        <div id="signin-staff">
-            <div style="color:grey">Are you staff? </div><a routerLink="signin/staff" style="margin-left:5px;">Sign
-                in here <mat-icon>
-                    arrow_forward</mat-icon></a>
-        </div>
-    </div> -->
 </div>

@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
   loading: boolean;
 
   constructor(
-    private authService: AuthenticationService,
+    private authenticationService: AuthenticationService,
     private themeService: ThemeService,
     public loadingService: LoadingService
   ) {}
