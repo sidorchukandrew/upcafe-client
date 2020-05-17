@@ -23,13 +23,12 @@ import { environment } from "../environments/environment";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { LoadingComponent } from "./components/loading/loading.component";
 import { HttpErrorInterceptor } from "./interceptors/HttpErrorInterceptor";
-import { NoAccountDialogComponent } from './components/no-account-dialog/no-account-dialog.component';
 import { SignInOptionsComponent } from './components/sign-in-options/sign-in-options.component';
-import { SignInResultComponent } from './components/sign-in-result/sign-in-result.component';
+import { WrongProviderDialog } from './components/wrong-provider-dialog/wrong-provider-dialog.component';
 
 
 @NgModule({
-  declarations: [AppComponent, SignInComponent, LoadingComponent, NoAccountDialogComponent, SignInOptionsComponent, SignInResultComponent],
+  declarations: [AppComponent, SignInComponent, LoadingComponent, SignInOptionsComponent, WrongProviderDialog],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -55,7 +54,7 @@ import { SignInResultComponent } from './components/sign-in-result/sign-in-resul
     },
   ],
   entryComponents: [
-    NoAccountDialogComponent
+    WrongProviderDialog
   ],
   bootstrap: [AppComponent],
 })

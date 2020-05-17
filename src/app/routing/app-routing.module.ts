@@ -2,12 +2,10 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { SignInComponent } from "../components/sign-in/sign-in.component";
 import { SignInOptionsComponent } from "../components/sign-in-options/sign-in-options.component";
-import { SignInResultComponent } from '../components/sign-in-result/sign-in-result.component';
 
 const routes: Routes = [
   { path: "", component: SignInComponent },
-  { path: "options", component: SignInOptionsComponent },
-  { path: "result", component: SignInResultComponent },
+  { path: "roles", component: SignInOptionsComponent },
   {
     path: "user",
     loadChildren: () =>

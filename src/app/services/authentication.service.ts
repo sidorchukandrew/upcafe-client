@@ -47,10 +47,10 @@ export class AuthenticationService {
     localStorage.setItem("ACCESS_TOKEN", token);
   }
 
-  public getUserFromApi(): Observable<User> {
+  public getUserFromApi(token: string): Observable<User> {
     return this.http.get<User>("http://localhost:8080/user/me", {
       headers: {
-        "Authorization": "Bearer " + localStorage.getItem("ACCESS_TOKEN")
+        "Authorization": "Bearer " + token
       }
     });
   }
