@@ -96,6 +96,7 @@ export class AuthenticationService {
     this.hasRoleStaff = false;
     this.hasRoleAdmin = false;
     this.signedInWithRole = null;
+    localStorage.removeItem("SIGNED_IN_AS");
   }
 
   private clearUser(): void {
