@@ -4,6 +4,10 @@ import { User } from "../models/User";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 
+export const ROLE_CUSTOMER: string = "ROLE_CUSTOMER";
+export const ROLE_STAFF: string = "ROLE_STAFF";
+export const ROLE_ADMIN: string = "ROLE_ADMIN";
+
 @Injectable({
   providedIn: "root",
 })
@@ -42,11 +46,11 @@ export class AuthenticationService {
 
   private setRolesInMemory(roles: string[]): void {
     roles.forEach((role) => {
-      if (role == "ROLE_CUSTOMER") {
+      if (role == ROLE_CUSTOMER) {
         this.hasRoleCustomer = true;
-      } else if (role == "ROLE_STAFF") {
+      } else if (role == ROLE_STAFF) {
         this.hasRoleStaff = true;
-      } else if (role == "ROLE_ADMIN") {
+      } else if (role == ROLE_ADMIN) {
         console.log("setting admin to true");
         this.hasRoleAdmin = true;
       }

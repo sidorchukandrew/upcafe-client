@@ -2,15 +2,18 @@
   <div class="title title-color">How would you like to sign in?</div>
   <div class="roles">
     <div id="customer">
-      <button mat-stroked-button color="primary" class="role" *ngIf="isCustomer">Customer</button>
+      <button mat-raised-button color="primary" class="role" *ngIf="isCustomer"
+      (click)="signInAsCustomer()">Customer</button>
     </div>
 
     <div id="staff" *ngIf="isStaff">
-      <button mat-stroked-button class="role" color="primary">Staff</button>
+      <button mat-raised-button class="role" color="primary"
+      (click)="signInAsStaff()">Staff</button>
     </div>
 
     <div id="admin" *ngIf="isAdmin">
-      <button mat-stroked-button class="role" color="primary">Admin</button>
+      <button mat-raised-button class="role" color="primary"
+      (click)="signInAsAdmin()" disabled=true>Admin</button>
     </div>
   </div>
 </div>
