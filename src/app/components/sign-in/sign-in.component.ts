@@ -35,7 +35,7 @@ export class SignInComponent implements OnInit, OnDestroy {
          if (paramMap.has("token")) {
            this.authenticationService.setAccessToken(paramMap.get("token"));
            this.authenticationService
-             .getUserFromApi(paramMap.get("token"))
+             .getUserFromApi()
              .pipe(
                tap((user) => this.authenticationService.setSignedInUser(user))
              )

@@ -12,13 +12,12 @@ export const ROLE_ADMIN: string = "ROLE_ADMIN";
   providedIn: "root",
 })
 export class AuthenticationService {
-  private authenticatedUser: BehaviorSubject<User> = new BehaviorSubject<User>(
-    null
-  );
+  private authenticatedUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   private hasRoleCustomer: boolean = false;
   private hasRoleStaff: boolean = false;
   private hasRoleAdmin: boolean = false;
   private signedInWithRole: string = "";
+  private accessToken: string = "";
 
   public authenticatedUser$: Observable<
     User
@@ -70,14 +69,15 @@ export class AuthenticationService {
 
   public setAccessToken(token: string): void {
     localStorage.setItem("ACCESS_TOKEN", token);
+    this.accessToken = token;
   }
 
-  public getUserFromApi(token: string): Observable<User> {
-    return this.http.get<User>("http://localhost:8080/user/me", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
+  public getAccessToken(): string {
+    return this.accessToken;
+  }
+
+  public getUserFromApi(): Observable<User> {
+    return this.http.get<User>("http://localhost:8080/user/me");
   }
 
   public signOut(): void {
@@ -104,6 +104,7 @@ export class AuthenticationService {
 
   private clearAccessToken(): void {
     localStorage.removeItem("ACCESS_TOKEN");
+    this.accessToken = null;
   }
 
   public isAdmin(): boolean {
