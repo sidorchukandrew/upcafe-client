@@ -4,7 +4,7 @@ import { Order } from "src/app/models/Order";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { tap, map, retry } from "rxjs/operators";
-import { TimeUtilitiesService } from "../time-utilities.service";
+import { TimeUtilitiesService } from "../services/time-utilities.service";
 
 declare var SockJS;
 declare var Stomp;

@@ -50,7 +50,6 @@ export class AuthenticationService {
       } else if (role == ROLE_STAFF) {
         this.hasRoleStaff = true;
       } else if (role == ROLE_ADMIN) {
-        console.log("setting admin to true");
         this.hasRoleAdmin = true;
       }
     });

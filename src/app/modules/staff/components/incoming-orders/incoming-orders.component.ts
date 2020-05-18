@@ -9,9 +9,9 @@ import {
 } from "@angular/core";
 import { Order } from "src/app/models/Order";
 import { Observable } from "rxjs";
-import { OrdersStore } from "src/app/services/stores/orders.store";
+import { OrdersStore } from "src/app/stores/orders.store";
 import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
-import { OrdersDetailsStore } from "src/app/services/stores/order-details.store";
+import { OrdersDetailsStore } from "src/app/stores/order-details.store";
 import { Router } from "@angular/router";
 
 @Component({

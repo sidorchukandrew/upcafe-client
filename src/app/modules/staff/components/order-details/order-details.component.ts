@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { OrdersDetailsStore } from "src/app/services/stores/order-details.store";
+import { OrdersDetailsStore } from "src/app/stores/order-details.store";
 import { Router } from "@angular/router";
 import { Location } from "@angular/common";
 import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
-import { OrdersStore } from "src/app/services/stores/orders.store";
+import { OrdersStore } from "src/app/stores/orders.store";
 import { tap, concat } from "rxjs/operators";
 
 @Component({

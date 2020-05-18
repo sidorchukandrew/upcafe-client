@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Order } from "src/app/models/Order";
-import { OrdersStore } from "src/app/services/stores/orders.store";
+import { OrdersStore } from "src/app/stores/orders.store";
 import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
 import { Router } from "@angular/router";
 

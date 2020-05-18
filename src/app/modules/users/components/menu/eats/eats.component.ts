@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { CatalogService } from "src/app/services/catalog.service";
 import { CatalogByCategory } from "src/app/models/CatalogByCategory";
 import { Catalog } from "src/app/models/Catalog";
-import { SelectedItemStore } from "src/app/services/stores/selected-item.store";
+import { SelectedItemStore } from "src/app/stores/selected-item.store";
 import { LoadingService } from "src/app/services/loading.service";
 import { tap, concat, map } from "rxjs/operators";
 import { Subscription } from "rxjs";

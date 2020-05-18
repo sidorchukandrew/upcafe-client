@@ -17,35 +17,49 @@ import { SettingsComponent } from './components/profile/settings/settings.compon
 import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedback.component";
 import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
 import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
+import { CustomerGuard } from 'src/app/guards/customer.guard';
 
 const routes: Routes = [
   {
     path: "",
-    component: UserComponent,
+    canActivate: [CustomerGuard],
     children: [
-      { path: "menu", component: MenuComponent },
-      { path: "home", component: HomeComponent },
-      { path: "cart", component: CartComponent },
-      { path: "account", component: ProfileComponent },
-      { path: "menu/eats", component: EatsComponent },
-      { path: "menu/drinks", component: DrinksComponent },
-      { path: "menu/snacks", component: SnacksComponent },
-      { path: "menu/sweets", component: SweetsComponent },
-    ],
-  },
-  { path: "menu/eats/:id", component: ItemDetailsComponent },
-  { path: "menu/snacks/:id", component: ItemDetailsComponent },
-  { path: "menu/drinks/:id", component: ItemDetailsComponent },
-  { path: "cart/edit/:id", component: EditItemComponent },
-  { path: "menu/sweets/:id", component: ItemDetailsComponent },
-  { path: "cart/payment", component: PaymentComponent },
-  { path: "account/settings", component: SettingsComponent },
-  { path: "account/feedback", component: AppFeedbackComponent,
-    children: [
-      { path: "bugs", component: BugReportComponent },
-      { path: "features", component: FeatureRequestComponent }
+      {
+        path: "",
+        canActivateChild: [CustomerGuard],
+        children: [
+          {
+            path: "",
+            component: UserComponent,
+            children: [
+              { path: "menu", component: MenuComponent },
+              { path: "home", component: HomeComponent },
+              { path: "cart", component: CartComponent },
+              { path: "account", component: ProfileComponent },
+              { path: "menu/eats", component: EatsComponent },
+              { path: "menu/drinks", component: DrinksComponent },
+              { path: "menu/snacks", component: SnacksComponent },
+              { path: "menu/sweets", component: SweetsComponent },
+            ],
+          },
+          { path: "menu/eats/:id", component: ItemDetailsComponent },
+          { path: "menu/snacks/:id", component: ItemDetailsComponent },
+          { path: "menu/drinks/:id", component: ItemDetailsComponent },
+          { path: "cart/edit/:id", component: EditItemComponent },
+          { path: "menu/sweets/:id", component: ItemDetailsComponent },
+          { path: "cart/payment", component: PaymentComponent },
+          { path: "account/settings", component: SettingsComponent },
+          {
+            path: "account/feedback", component: AppFeedbackComponent,
+            children: [
+              { path: "bugs", component: BugReportComponent },
+              { path: "features", component: FeatureRequestComponent }
+            ]
+          }
+        ]
+      }
     ]
-  }
+  },
 ];
 
 @NgModule({

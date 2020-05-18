@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { OrderFeedService } from "src/app/services/order-feed.service";
-import { OrdersStore } from "src/app/services/stores/orders.store";
+import { OrdersStore } from "src/app/stores/orders.store";
 import { Observable } from "rxjs";
 import { Order } from "src/app/models/Order";
 

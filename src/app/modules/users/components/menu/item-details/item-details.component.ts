@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ModListDetailsComponent } from "../mod-list-details/mod-list-details.component";
 import { CustomerOrderService } from "src/app/services/customer-order.service";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
-import { SelectedItemStore } from "src/app/services/stores/selected-item.store";
+import { SelectedItemStore } from "src/app/stores/selected-item.store";
 import { Subscription, noop, Observable } from "rxjs";
 import { tap, map } from "rxjs/operators";
 import { HoursService } from "src/app/services/hours.service";

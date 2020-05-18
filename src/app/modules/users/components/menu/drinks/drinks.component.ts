@@ -3,7 +3,7 @@ import { CatalogService } from 'src/app/services/catalog.service';
 import { HttpClient } from '@angular/common/http';
 import { CatalogByCategory } from 'src/app/models/CatalogByCategory';
 import { Catalog } from 'src/app/models/Catalog';
-import { SelectedItemStore } from 'src/app/services/stores/selected-item.store';
+import { SelectedItemStore } from 'src/app/stores/selected-item.store';
 import { Subscription } from 'rxjs';
 import { map, tap, concat } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services/loading.service';

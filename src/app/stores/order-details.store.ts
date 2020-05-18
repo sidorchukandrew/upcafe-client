@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Order } from "src/app/models/Order";
 import { OrdersStore } from "./orders.store";
 import { Observable } from "rxjs";
-import { LoadingService } from "../loading.service";
+import { LoadingService } from "../services/loading.service";
 
 @Injectable({
   providedIn: "root",
