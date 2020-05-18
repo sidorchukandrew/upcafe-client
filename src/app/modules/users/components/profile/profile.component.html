@@ -1,69 +1,74 @@
 <div class="header">
-    <div class="user-summary">
+  <div class="user-summary" *ngIf=" user$ | async as user">
 
-        <img [src]="imgUrl" class="avatar">
+    <img [src]="user.imageUrl" class="avatar">
 
-        <div class="name title-color">
-            {{name}}
-        </div>
-        <div class="email subtitle-color">
-            {{email}}
-        </div>
+    <div class="name title-color">
+      {{user.name}}
     </div>
+    <div class="email subtitle-color">
+      {{user.email}}
+    </div>
+  </div>
 </div>
 
 <mat-divider class="divider-color"></mat-divider>
 <table class="actions">
-    <tr class="action title-color" routerLink="settings">
-        <td class="icon">
-          <mat-icon class="title-color">settings</mat-icon>
-        </td>
-        <td class="action-name">
-          <span class="description">
-            Settings
-          </span>
-          <mat-icon class="subtitle-color">keyboard_arrow_right</mat-icon>
-        </td>
-        <mat-divider class="divider-color"></mat-divider>
-    </tr>
-    <tr class="action title-color">
+  <tr class="action title-color" routerLink="settings">
+    <td class="icon">
+      <mat-icon class="title-color">settings</mat-icon>
+    </td>
+    <td class="action-name">
+      <span class="description">
+        Settings
+      </span>
+      <mat-icon class="subtitle-color">keyboard_arrow_right</mat-icon>
+    </td>
+    <mat-divider class="divider-color"></mat-divider>
+  </tr>
+  <tr class="action title-color">
+    <td class="icon">
+      <mat-icon class="title-color" style="transform: rotate(36deg);">notifications_none</mat-icon>
+    </td>
+    <td class="action-name" matRipple>
+      <span class="description">
+        Push notifications
+      </span>
+      <mat-icon class="subtitle-color">keyboard_arrow_right</mat-icon>
+    </td>
+    <mat-divider class="divider-color"></mat-divider>
+  </tr>
+  <tr class="action title-color" routerLink="feedback/bugs">
+    <ng-container matRipple>
       <td class="icon">
-        <mat-icon class="title-color" style="transform: rotate(36deg);">notifications_none</mat-icon>
+        <mat-icon class="title-color">mail_outline</mat-icon>
       </td>
-      <td class="action-name" matRipple>
+      <td class="action-name">
         <span class="description">
-          Push notifications
+          Send feedback
         </span>
         <mat-icon class="subtitle-color">keyboard_arrow_right</mat-icon>
       </td>
       <mat-divider class="divider-color"></mat-divider>
-    </tr>
-    <tr class="action title-color"  routerLink="feedback/bugs">
-      <ng-container matRipple>
-        <td class="icon">
-          <mat-icon class="title-color">mail_outline</mat-icon>
-        </td>
-        <td class="action-name">
-          <span class="description">
-            Send feedback
-          </span>
-          <mat-icon class="subtitle-color">keyboard_arrow_right</mat-icon>
-        </td>
-        <mat-divider class="divider-color"></mat-divider>
-      </ng-container>
-    </tr>
-  <!-- <a class="action  title-color" matRipple>
-        Notifications
-        <mat-icon>keyboard_arrow_right</mat-icon>
-    </a>
+    </ng-container>
+  </tr>
+  <tr class="action title-color" *ngIf="isStaff" routerLink="../../roles">
+    <ng-container matRipple>
+      <td class="icon">
+        <mat-icon class="title-color">people</mat-icon>
+      </td>
+      <td class="action-name">
+        <span class="description">
+          Switch roles
+        </span>
+        <mat-icon class="subtitle-color">keyboard_arrow_right</mat-icon>
+      </td>
+    </ng-container>
     <mat-divider class="divider-color"></mat-divider>
-    <a class="action  title-color" matRipple>
-        Edit Profile
-        <mat-icon>keyboard_arrow_right</mat-icon>
-    </a>
-    <mat-divider class="divider-color"></mat-divider>
-    <a class="action warn " id="signout" matRipple>
-        SIGN OUT
-    </a>
-  <mat-divider class="divider-color"></mat-divider> -->
-  </table>
+  </tr>
+</table>
+
+<div id="signout" class="title-color" matRipple (click)="signOut()">
+  SIGN OUT
+</div>
+<mat-divider class="divider-color"></mat-divider>

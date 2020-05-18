@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -7,16 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  imgUrl: string;
-  name: string;
-  email: string;
+  public user$: Observable<User> = this.authenticationService.authenticatedUser$;
+  isStaff: boolean = false;
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
-    this.imgUrl = "https://lh3.googleusercontent.com/a-/AOh14GhIz8ImV-cH4k5bKa2DDVJD-QPW238HRL6xL9ey=s96-c";
-    this.name = "Andrew Sidorchuk";
-    this.email = "sidorchukandrew@gmail.com";
+    this.isStaff = this.authenticationService.isStaff();
+  }
+
+  public signOut(): void {
+    this.authenticationService.signOut();
+    this.router.navigateByUrl("");
   }
 
 }
