@@ -1,0 +1,22 @@
+
+#main-content {
+  width: 80%;
+  max-width: 500px;
+  margin: auto
+}
+
+#main-content .title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+#main-content .roles {
+  text-align: center;
+}
+
+#main-content .roles .role {
+  width: 60%;
+  max-width: 300px;
+  margin: 10px;
+}

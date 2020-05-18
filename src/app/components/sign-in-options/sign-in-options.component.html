@@ -1,1 +1,16 @@
-<p>sign-in-options works!</p>
+<div id="main-content" *ngIf="isCustomer && isStaff">
+  <div class="title title-color">How would you like to sign in?</div>
+  <div class="roles">
+    <div id="customer">
+      <button mat-stroked-button color="primary" class="role" *ngIf="isCustomer">Customer</button>
+    </div>
+
+    <div id="staff" *ngIf="isStaff">
+      <button mat-stroked-button class="role" color="primary">Staff</button>
+    </div>
+
+    <div id="admin" *ngIf="isAdmin">
+      <button mat-stroked-button class="role" color="primary">Admin</button>
+    </div>
+  </div>
+</div>
