@@ -56,6 +56,9 @@ export class AuthenticationService {
   }
 
   public setSignedInUser(user: User): void {
+
+    this.signOut();
+
     localStorage.setItem("name", user.name);
     localStorage.setItem("email", user.email);
     localStorage.setItem("imageUrl", user.imageUrl);
@@ -89,6 +92,7 @@ export class AuthenticationService {
     this.hasRoleCustomer = false;
     this.hasRoleStaff = false;
     this.hasRoleAdmin = false;
+    this.signInWithRole = null;
   }
 
   private clearUser(): void {

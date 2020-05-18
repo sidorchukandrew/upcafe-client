@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 import { StaffComponent } from "./staff/staff.component";
 import { IncomingOrdersComponent } from "./components/incoming-orders/incoming-orders.component";
 import { HoursComponent } from "./components/cafe/hours/hours.component";
@@ -14,37 +14,51 @@ import { AppSettingsComponent } from "./components/app-settings/app-settings.com
 import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedback.component";
 import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
 import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
+import { StaffGuard } from 'src/app/guards/staff.guard';
 
-const routes = [
+const routes: Routes = [
   {
     path: "",
-    component: StaffComponent,
+    canActivate: [StaffGuard],
     children: [
       {
-        path: "orders",
-        component: OrdersComponent,
+        path: "",
+        canActivateChild: [StaffGuard],
         children: [
-          { path: "new", component: IncomingOrdersComponent },
-          { path: "active", component: ActiveOrdersComponent },
-          { path: "ready", component: ReadyOrdersComponent },
-          { path: "completed", component: CompletedOrdersComponent },
-        ],
-      },
-      { path: "cafe", component: SettingsComponent },
-    ],
+          {
+            path: "",
+            component: StaffComponent,
+            children: [
+              {
+                path: "orders",
+                component: OrdersComponent,
+                children: [
+                  { path: "new", component: IncomingOrdersComponent },
+                  { path: "active", component: ActiveOrdersComponent },
+                  { path: "ready", component: ReadyOrdersComponent },
+                  { path: "completed", component: CompletedOrdersComponent },
+                ],
+              },
+              { path: "cafe", component: SettingsComponent },
+            ],
+          },
+          { path: "orders/:id", component: OrderDetailsComponent },
+          { path: "cafe/hours", component: HoursComponent },
+          { path: "cafe/pickup", component: PickupTimesComponent },
+          { path: "cafe/app", component: AppSettingsComponent },
+          {
+            path: "feedback",
+            component: AppFeedbackComponent,
+            children: [
+              { path: "bugs", component: BugReportComponent },
+              { path: "features", component: FeatureRequestComponent },
+            ],
+          },
+        ]
+      }
+    ]
   },
-  { path: "orders/:id", component: OrderDetailsComponent },
-  { path: "cafe/hours", component: HoursComponent },
-  { path: "cafe/pickup", component: PickupTimesComponent },
-  { path: "cafe/app", component: AppSettingsComponent },
-  {
-    path: "feedback",
-    component: AppFeedbackComponent,
-    children: [
-      { path: "bugs", component: BugReportComponent },
-      { path: "features", component: FeatureRequestComponent },
-    ],
-  },
+
 ];
 
 @NgModule({

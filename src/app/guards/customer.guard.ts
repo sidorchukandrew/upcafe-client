@@ -21,6 +21,11 @@ export class CustomerGuard implements CanActivate, CanActivateChild {
       return this.router.createUrlTree([""]);
     }
 
+    if (!this.authenticationService.isCustomer()) {
+      console.log("You are not authorized to view this page.");
+      return this.router.createUrlTree([""]);
+    }
+
     if(this.authenticationService.getRoleSignedInWith() != ROLE_CUSTOMER) {
       console.log("You need to sign in as a customer");
       return this.router.createUrlTree(["roles"]);
