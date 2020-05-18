@@ -16,14 +16,9 @@ export class StaffGuard implements CanActivate, CanActivateChild {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (!this.authenticationService.isCustomer()) {
-      console.log("You need to sign in first");
-      return this.router.createUrlTree([""]);
-    }
-
     if(!this.authenticationService.isStaff()) {
       console.log("You are not authorized to view this page.");
-      return this.router.createUrlTree([""]);
+      return this.router.createUrlTree(["user"]);
     }
 
     if (this.authenticationService.getRoleSignedInWith() != ROLE_STAFF) {

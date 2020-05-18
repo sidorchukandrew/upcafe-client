@@ -19,9 +19,7 @@ export class AuthenticationService {
   private signedInWithRole: string = "";
   private accessToken: string = "";
 
-  public authenticatedUser$: Observable<
-    User
-  > = this.authenticatedUser.asObservable();
+  public authenticatedUser$: Observable<User> = this.authenticatedUser.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {
     if (localStorage.getItem("ACCESS_TOKEN")) {
@@ -39,6 +37,10 @@ export class AuthenticationService {
         });
 
         this.setRolesInMemory(this.authenticatedUser.getValue().roles);
+
+        if(localStorage.getItem("SIGNED_IN_AS")) {
+          this.signedInWithRole = localStorage.getItem("SIGNED_IN_AS");
+        }
       }
     }
   }
@@ -57,7 +59,8 @@ export class AuthenticationService {
 
   public setSignedInUser(user: User): void {
 
-    this.signOut();
+    this.clearRoles();
+    this.clearUser();
 
     localStorage.setItem("name", user.name);
     localStorage.setItem("email", user.email);
@@ -92,7 +95,7 @@ export class AuthenticationService {
     this.hasRoleCustomer = false;
     this.hasRoleStaff = false;
     this.hasRoleAdmin = false;
-    this.signInWithRole = null;
+    this.signedInWithRole = null;
   }
 
   private clearUser(): void {
@@ -127,6 +130,7 @@ export class AuthenticationService {
   }
 
   public signInWithRole(role: string): void {
+    localStorage.setItem("SIGNED_IN_AS", role);
     this.signedInWithRole = role;
   }
 }
