@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { StaffRoutingModule } from "./staff-routing.module";
 import { IncomingOrdersComponent } from "./components/incoming-orders/incoming-orders.component";
-import { StaffComponent } from "./staff/staff.component";
+import { StaffComponent } from "./components/staff/staff.component";
 import {
   HoursComponent,
   SelectTimeComponent,
@@ -38,6 +38,7 @@ import { OrderItemDetailsComponent } from "./components/order-item-details/order
 import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedback.component";
 import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
 import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
+import { InventoryComponent } from './components/inventory/inventory.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { FeatureRequestComponent } from "src/app/components/app-feedback/feature
     AppFeedbackComponent,
     BugReportComponent,
     FeatureRequestComponent,
+    InventoryComponent,
   ],
   imports: [
     CommonModule,

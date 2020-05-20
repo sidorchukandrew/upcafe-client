@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { StaffComponent } from "./staff/staff.component";
+import { StaffComponent } from "./components/staff/staff.component";
 import { IncomingOrdersComponent } from "./components/incoming-orders/incoming-orders.component";
 import { HoursComponent } from "./components/cafe/hours/hours.component";
 import { SettingsComponent } from "./components/settings/settings.component";
@@ -15,6 +15,7 @@ import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedba
 import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
 import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
 import { StaffGuard } from 'src/app/guards/staff.guard';
+import { InventoryComponent } from './components/inventory/inventory.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,7 @@ const routes: Routes = [
           { path: "cafe/hours", component: HoursComponent },
           { path: "cafe/pickup", component: PickupTimesComponent },
           { path: "cafe/app", component: AppSettingsComponent },
+          { path: "cafe/inventory", component: InventoryComponent },
           {
             path: "feedback",
             component: AppFeedbackComponent,
