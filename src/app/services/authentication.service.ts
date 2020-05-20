@@ -26,6 +26,7 @@ export class AuthenticationService {
       // TODO: CHANGE HOW ROLES ARE LOADED IN. ANYONE CAN GO INTO LOCAL STORAGE
       //    AND CHANGE THEIR ROLES
 
+      this.accessToken = localStorage.getItem("ACCESS_TOKEN");
       // Load the user into main memory
       if (localStorage.getItem("name")) {
         this.authenticatedUser.next({
@@ -82,7 +83,7 @@ export class AuthenticationService {
   }
 
   public getUserFromApi(): Observable<User> {
-    return this.http.get<User>("http://localhost:8080/user/me");
+    return this.http.get<User>("http://localhost:8080/users/me");
   }
 
   public signOut(): void {

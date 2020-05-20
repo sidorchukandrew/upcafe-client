@@ -4,6 +4,7 @@ import { ThemeService } from "../services/theme.service";
 import { Subscription, Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 import { LoadingService } from "../services/loading.service";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: "app-root",
@@ -28,6 +29,8 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+
+
     this.subscriptions = new Subscription();
 
     this.darkThemeOn$ = this.themeService.darkThemeOn$;
