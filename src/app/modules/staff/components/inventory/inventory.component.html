@@ -1,23 +1,24 @@
 <div class="header">
   <div class="center-wrapper">
     <div class="search-bar-container">
+
       <div id="search-bar-image" class="subtitle-color" [ngClass]="{'dark-theme': darkThemeOn,
-          'light-theme': !darkThemeOn}">
-        <mat-icon>search</mat-icon>
+      'light-theme': !darkThemeOn}">
+      <mat-icon>search</mat-icon>
       </div>
       <input type="text" placeholder="Search" class="subtitle-color" id="search-bar" [ngClass]="{'dark-theme': darkThemeOn,
+          'light-theme': !darkThemeOn}" [formControl]="searchBar">
+          <div id="delete-search"  [ngClass]="{'dark-theme': darkThemeOn,
           'light-theme': !darkThemeOn}">
-      <div id="delete-search"  [ngClass]="{'dark-theme': darkThemeOn,
-          'light-theme': !darkThemeOn}">
-          <mat-icon matRipple class="subtitle-color">clear</mat-icon>
+          <mat-icon matRipple class="subtitle-color" *ngIf="searchBar.value" (click)="clearSearch()">clear</mat-icon>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<ng-container *ngIf="catalog">
+<ng-container *ngIf="filteredCatalog">
   <div class="items">
-    <div class="item" *ngFor="let item of catalog.itemsList" [ngClass]="{'dark-theme-border': darkThemeOn,
+    <div class="item" *ngFor="let item of filteredCatalog.itemsList" [ngClass]="{'dark-theme-border': darkThemeOn,
           'light-theme-border': !darkThemeOn}">
       <div class="title-color title" >
         {{item.name}}
@@ -33,6 +34,8 @@
 
   </div>
 </ng-container>
+
+<div id="fixed-space"></div>
 
 <div class="bottom-actions">
   <button mat-raised-button id="save-changes" *ngIf="changedItems.size > 0" (click)="save()">Save Stock</button>

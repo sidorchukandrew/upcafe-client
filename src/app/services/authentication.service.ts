@@ -44,6 +44,38 @@ export class AuthenticationService {
         }
       }
     }
+    else {
+      this.loadMockData();
+    }
+  }
+
+  private loadMockData(): void {
+    localStorage.setItem("ACCESS_TOKEN", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkwMDE1MzU0LCJleHAiOjE1OTA4NzkzNTR9.70PGQFv7w9mofKMIprsOBLM6pigza_qV6Kf8TWOwzU0");
+    localStorage.setItem("name", "Andrew Sidorchuk");
+    localStorage.setItem("email", "sidorchukandrew@gmail.com");
+    localStorage.setItem("roles", "ROLE_CUSTOMER,ROLE_STAFF");
+    localStorage.setItem("id", "1");
+    // localStorage.setItem("SIGNED_IN_AS", "ROLE_STAFF");
+    localStorage.setItem("imageUrl", "https://lh3.googleusercontent.com/a-/AOh14GhIz8ImV-cH4k5bKa2DDVJD-QPW238HRL6xL9ey");
+
+
+    this.accessToken = localStorage.getItem("ACCESS_TOKEN");
+    // Load the user into main memory
+    if (localStorage.getItem("name")) {
+      this.authenticatedUser.next({
+        name: localStorage.getItem("name"),
+        email: localStorage.getItem("email"),
+        id: parseInt(localStorage.getItem("id")),
+        roles: localStorage.getItem("roles").split(","),
+        imageUrl: localStorage.getItem("imageUrl"),
+      });
+
+      this.setRolesInMemory(this.authenticatedUser.getValue().roles);
+
+      if (localStorage.getItem("SIGNED_IN_AS")) {
+        this.signedInWithRole = localStorage.getItem("SIGNED_IN_AS");
+      }
+    }
   }
 
   private setRolesInMemory(roles: string[]): void {
