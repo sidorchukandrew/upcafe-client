@@ -20,4 +20,8 @@ export class CatalogService {
   public getVariation(id: string) {
     return this.http.get(environment.backendUrl + "/catalog/variations/" + id);
   }
-}
+
+  public getCatalog(): Observable<any> {
+    return this.http.get(environment.backendUrl + "/catalogs");
+  }
+ }
