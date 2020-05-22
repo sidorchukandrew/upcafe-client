@@ -33,3 +33,7 @@
 
   </div>
 </ng-container>
+
+<div class="bottom-actions">
+  <button mat-raised-button id="save-changes" *ngIf="changedItems.size > 0" (click)="save()">Save Stock</button>
+</div>

@@ -93,3 +93,15 @@
 .out {
   color: #007bff;
 }
+
+.bottom-actions {
+  position: fixed;
+  bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+#save-changes {
+  background-color: #007bff;
+  color: white;
+}
