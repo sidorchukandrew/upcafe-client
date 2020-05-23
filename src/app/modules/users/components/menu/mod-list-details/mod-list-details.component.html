@@ -1,39 +1,40 @@
 <div id="scrollable-wrapper" *ngIf="modifierList">
 
-    <div *ngIf="modifierList.selectionType == 'MULTIPLE'">
-        <div class="modifier-wrapper" *ngFor="let modifier of modifierList.modifiers">
-            <div class="top-line">
-                <div class="bold small">
-                    {{ modifier.name }}
-                </div>
-                <mat-checkbox labelPosition="before" color="primary"
-                    [checked]="selected(modifier)" (change)="changed($event.checked, modifier)">
-                </mat-checkbox>
-            </div>
-            <div class="small bottom-space-5">
-                {{ modifier.price | currency}}
-            </div>
-
-            <mat-divider></mat-divider>
+  <div *ngIf="modifierList.selectionType == 'MULTIPLE'">
+    <div class="modifier-wrapper" *ngFor="let modifier of modifierList.modifiers">
+      <div class="top-line">
+        <div class="bold small">
+          {{ modifier.name }}
+          <span *ngIf="!modifier.inStock" class="out">(Temporarily Out)</span>
         </div>
+        <mat-checkbox labelPosition="before" color="primary" [checked]="selected(modifier)"
+          (change)="changed($event.checked, modifier)" [disabled]="!modifier.inStock">
+        </mat-checkbox>
+      </div>
+      <div class="small bottom-space-5">
+        {{ modifier.price | currency}}
+      </div>
+
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+
+  <div *ngIf="modifierList.selectionType != 'MULTIPLE'">
+    <div class="modifier-wrapper" *ngFor="let modifier of modifierList.modifiers;">
+      <div class="top-line">
+        <div class="bold small">
+          {{ modifier.name }}
+          <span *ngIf="!modifier.inStock" class="out">(Temporarily Out)</span>
+        </div>
+        <mat-checkbox labelPosition="before" color="primary" [checked]="selected(modifier)"
+          [disabled]="!modifier.inStock" (change)="changedSingleSelection(modifier, modifierList.modifiers)">
+        </mat-checkbox>
+      </div>
+      <div class="small bottom-space-5">
+        {{ modifier.price | currency}}
+      </div>
+
+      <mat-divider></mat-divider>
     </div>
 
-    <div *ngIf="modifierList.selectionType != 'MULTIPLE'">
-        <div class="modifier-wrapper" *ngFor="let modifier of modifierList.modifiers;">
-            <div class="top-line">
-                <div class="bold small">
-                    {{ modifier.name }}
-                </div>
-                <mat-checkbox labelPosition="before" color="primary"
-                     [checked]="selected(modifier)"
-                     (change)="changedSingleSelection(modifier, modifierList.modifiers)">
-                </mat-checkbox>
-            </div>
-            <div class="small bottom-space-5">
-                {{ modifier.price | currency}}
-            </div>
-
-            <mat-divider></mat-divider>
-        </div>
-
-    </div>
+  </div>

@@ -110,6 +110,8 @@ export class ItemDetailsSheet {
   private bottomSheetRef: MatBottomSheet;
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private orderService: CustomerOrderService) {
     this.item = data['item'];
+
+    console.log(this.item);
     this.bottomSheetRef = data['bottomSheet'];
   }
 
