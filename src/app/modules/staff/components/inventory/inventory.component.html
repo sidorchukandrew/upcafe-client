@@ -16,6 +16,14 @@
     </div>
   </div>
 
+  <div class="catalog-segmented-control title-color">
+    <div id="items-control" class="control" [ngClass]="{'selected': selectedCatalogItemSearch == 'items'}" (click)="changeSelectedCatalogItemSearch('items')">
+      items
+    </div>
+    <div id="modifiers-control" class="control" [ngClass]="{'selected': selectedCatalogItemSearch == 'modifiers'}" (click)="changeSelectedCatalogItemSearch('modifiers')">
+      modifiers
+    </div>
+  </div>
 
   <app-modifier-list-inventory [modifierListCatalog]="filteredCatalog.modifierLists" *ngIf="filteredCatalog"></app-modifier-list-inventory>
   <app-item-inventory [itemCatalog]="filteredCatalog.itemsList" (stockChanged)="addToChangedStocks($event)" *ngIf="filteredCatalog"></app-item-inventory>

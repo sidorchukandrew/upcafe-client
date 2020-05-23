@@ -21,6 +21,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
   changedItems: Set<MenuItem>;
   searchBar: FormControl;
   filteredCatalog: CatalogWhole;
+  selectedCatalogItemSearch: string = "items";
 
   constructor(private catalogService: CatalogService, private themeService: ThemeService) { }
 
@@ -81,6 +82,11 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+
+  public changeSelectedCatalogItemSearch(searchCategory: string): void {
+    this.selectedCatalogItemSearch = searchCategory;
   }
 
   clicked($event: MouseEvent) {
