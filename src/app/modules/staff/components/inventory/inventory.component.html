@@ -1,4 +1,13 @@
-<div class="header">
+<div class="header card-background">
+  <button mat-icon-button id="back-to-menu" routerLink="..">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+  <span class="title-color title-size">
+    Inventory
+  </span>
+  <mat-divider class="divider-color"></mat-divider>
+</div>
+
   <div class="center-wrapper">
     <div class="search-bar-container">
 
@@ -14,7 +23,6 @@
         </div>
       </div>
     </div>
-  </div>
 
   <div class="catalog-segmented-control title-color">
     <div id="items-control" class="control" [ngClass]="{'selected': selectedCatalogItemSearch == 'items'}" (click)="changeSelectedCatalogItemSearch('items')">
@@ -34,5 +42,10 @@
   <div id="fixed-space"></div>
 
 <div class="bottom-actions">
-  <button mat-raised-button id="save-changes" *ngIf="changedStock.items.size > 0 || changedStock.modifiers.size > 0" (click)="save()">Save Stock</button>
+  <button mat-raised-button id="save-changes" *ngIf="changedStock.items.size > 0 || changedStock.modifiers.size > 0" (click)="save()">
+   <span *ngIf="!saving">
+     Save Stock
+   </span>
+   <mat-spinner *ngIf="saving" diameter="30" style="margin: auto;" color="accent"></mat-spinner>
+  </button>
 </div>

@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { CatalogWhole } from 'src/app/models/CatalogWhole';
 import { MenuItem } from 'src/app/models/MenuItem';
 import { FormControl } from '@angular/forms';
-import { tap, debounceTime } from 'rxjs/operators';
+import { tap, debounceTime, map } from 'rxjs/operators';
 import { ModifierList } from 'src/app/models/ModifierList';
 import { CatalogInventoryChange } from 'src/app/models/CatalogInventoryChange';
 import { Modifier } from 'src/app/models/Modifier';
@@ -24,6 +24,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
   searchBar: FormControl;
   filteredCatalog: CatalogWhole;
   selectedCatalogItemSearch: string = "items";
+  saving: boolean = false;
 
   constructor(private catalogService: CatalogService, private themeService: ThemeService) { }
 
@@ -115,12 +116,19 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
   public save(): void {
 
-    this.catalogService.updateInventory(this.changedStock).subscribe();
-
-    this.changedStock = {
-      items: new Set<MenuItem>(),
-      modifiers: new Set<Modifier>()
-    }
+    this.saving = true;
+    this.catalogService.updateInventory(this.changedStock)
+      .pipe(
+        map(updateInventoryResponse => updateInventoryResponse['success']),
+        tap(successful => {
+          if (successful) this.saving = false;
+        })
+      ).subscribe(() => {
+        this.changedStock = {
+          items: new Set<MenuItem>(),
+          modifiers: new Set<Modifier>()
+        }
+      });
   }
 
   public clearSearch(): void {

@@ -1,7 +1,12 @@
 .header {
-  text-align: center;
-  padding: 15px;
-  height: 20px;
+  position: sticky;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+#back-to-menu {
+  color: #49c9f2;
+  padding-left: 10px;
 }
 
 #search-bar-image {
@@ -26,7 +31,6 @@ java each and everything git hub computer angular   */
   display: flex;
   width: 85%;
   max-width: 400px;
-
 }
 
 #search-bar {
@@ -57,7 +61,7 @@ java each and everything git hub computer angular   */
 
 
 .catalog-segmented-control {
-  margin-top: 50px;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -105,6 +109,8 @@ java each and everything git hub computer angular   */
 #save-changes {
   background-color: #007bff;
   color: white;
+  height:40px;
+  width: 100px;
 }
 
 #fixed-space {

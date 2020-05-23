@@ -42,7 +42,7 @@ $facebook: (50: #1877f2,
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $upcafe-client-primary: mat-palette($facebook, 200);
-$upcafe-client-accent: mat-palette($mat-pink, A200, A100, A400);
+$upcafe-client-accent: mat-palette($facebook, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $upcafe-client-warn: mat-palette($mat-red);

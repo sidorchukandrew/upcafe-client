@@ -21,6 +21,7 @@ import {
   MatSlideToggleModule,
   MatTooltipModule,
   MatCheckboxModule,
+  MatProgressSpinnerModule
 } from "@angular/material";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { StaffNavbarComponent } from "./components/staff-navbar/staff-navbar.component";
@@ -85,6 +86,7 @@ import { ModifierListInventoryComponent } from './components/modifier-list-inven
     MatTooltipModule,
     MatCheckboxModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   entryComponents: [SelectTimeComponent],
 })
