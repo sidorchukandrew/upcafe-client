@@ -79,6 +79,8 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
   public toggleInStock(item: MenuItem): void {
     item.inStock = !item.inStock;
+
+    this.catalog.itemsList.find(itemInCatalog => item.id == itemInCatalog.id).inStock = item.inStock;
     this.changedItems.add(item);
   }
 
