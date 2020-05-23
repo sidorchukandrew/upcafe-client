@@ -16,26 +16,11 @@
     </div>
   </div>
 
-<ng-container *ngIf="filteredCatalog">
-  <div class="items">
-    <div class="item" *ngFor="let item of filteredCatalog.itemsList" [ngClass]="{'dark-theme-border': darkThemeOn,
-          'light-theme-border': !darkThemeOn}">
-      <div class="title-color title" >
-        {{item.name}}
-      </div>
 
-      <div class="inventory-container subtitle-color">
-        <div class="button" [ngClass]="{'in': item.inStock, 'out': !item.inStock}" (click)="toggleInStock(item)">
-          <ng-container *ngIf="item.inStock">In</ng-container>
-          <ng-container *ngIf="!item.inStock">Out</ng-container>
-        </div>
-      </div>
-    </div>
+  <app-modifier-list-inventory [modifierListCatalog]="filteredCatalog.modifierLists" *ngIf="filteredCatalog"></app-modifier-list-inventory>
+  <app-item-inventory [itemCatalog]="filteredCatalog.itemsList" (stockChanged)="addToChangedStocks($event)" *ngIf="filteredCatalog"></app-item-inventory>
 
-  </div>
-</ng-container>
-
-<div id="fixed-space"></div>
+  <div id="fixed-space"></div>
 
 <div class="bottom-actions">
   <button mat-raised-button id="save-changes" *ngIf="changedItems.size > 0" (click)="save()">Save Stock</button>

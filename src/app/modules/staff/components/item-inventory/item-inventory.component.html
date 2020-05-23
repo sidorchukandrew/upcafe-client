@@ -1,0 +1,18 @@
+<ng-container *ngIf="filteredCatalog">
+  <div class="items">
+    <div class="item" *ngFor="let item of filteredCatalog" [ngClass]="{'dark-theme-border': darkThemeOn,
+          'light-theme-border': !darkThemeOn}">
+      <div class="title-color title">
+        {{item.name}}
+      </div>
+
+      <div class="inventory-container subtitle-color">
+        <div class="button" [ngClass]="{'in': item.inStock, 'out': !item.inStock}" (click)="toggleInStock(item)">
+          <ng-container *ngIf="item.inStock">In</ng-container>
+          <ng-container *ngIf="!item.inStock">Out</ng-container>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ng-container>

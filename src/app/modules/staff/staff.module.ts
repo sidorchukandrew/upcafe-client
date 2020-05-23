@@ -39,6 +39,8 @@ import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedba
 import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
 import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
 import { InventoryComponent } from './components/inventory/inventory.component';
+import { ItemInventoryComponent } from './components/item-inventory/item-inventory.component';
+import { ModifierListInventoryComponent } from './components/modifier-list-inventory/modifier-list-inventory.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { InventoryComponent } from './components/inventory/inventory.component';
     BugReportComponent,
     FeatureRequestComponent,
     InventoryComponent,
+    ItemInventoryComponent,
+    ModifierListInventoryComponent,
   ],
   imports: [
     CommonModule,
