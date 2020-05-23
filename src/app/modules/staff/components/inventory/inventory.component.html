@@ -25,11 +25,14 @@
     </div>
   </div>
 
-  <app-modifier-list-inventory *ngIf="selectedCatalogItemSearch == 'modifiers' && filteredCatalog" [modifierListCatalog]="filteredCatalog.modifierLists" ></app-modifier-list-inventory>
-  <app-item-inventory  *ngIf="selectedCatalogItemSearch == 'items' && filteredCatalog" [itemCatalog]="filteredCatalog.itemsList" (stockChanged)="addToChangedStocks($event)"></app-item-inventory>
+  <app-modifier-list-inventory *ngIf="selectedCatalogItemSearch == 'modifiers' && filteredCatalog"
+  [modifierListCatalog]="filteredCatalog.modifierLists" (stockChanged)="addToChangedModifierStock($event)" ></app-modifier-list-inventory>
+
+  <app-item-inventory  *ngIf="selectedCatalogItemSearch == 'items' && filteredCatalog"
+  [itemCatalog]="filteredCatalog.itemsList" (stockChanged)="addToChangedItemStock($event)"></app-item-inventory>
 
   <div id="fixed-space"></div>
 
 <div class="bottom-actions">
-  <button mat-raised-button id="save-changes" *ngIf="changedItems.size > 0" (click)="save()">Save Stock</button>
+  <button mat-raised-button id="save-changes" *ngIf="changedStock.items.size > 0 || changedStock.modifiers.size > 0" (click)="save()">Save Stock</button>
 </div>

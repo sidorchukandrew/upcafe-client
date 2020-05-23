@@ -7,6 +7,8 @@ import { MenuItem } from 'src/app/models/MenuItem';
 import { FormControl } from '@angular/forms';
 import { tap, debounceTime } from 'rxjs/operators';
 import { ModifierList } from 'src/app/models/ModifierList';
+import { CatalogInventoryChange } from 'src/app/models/CatalogInventoryChange';
+import { Modifier } from 'src/app/models/Modifier';
 
 @Component({
   selector: 'app-inventory',
@@ -18,7 +20,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription;
   darkThemeOn: boolean = false;
   catalog: CatalogWhole;
-  changedItems: Set<MenuItem>;
+  changedStock: CatalogInventoryChange;
   searchBar: FormControl;
   filteredCatalog: CatalogWhole;
   selectedCatalogItemSearch: string = "items";
@@ -27,7 +29,10 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.changedItems = new Set<MenuItem>();
+    this.changedStock = {
+      items: new Set<MenuItem>(),
+      modifiers: new Set<Modifier>()
+    }
     this.searchBar = new FormControl();
 
     this.catalogService.getCatalog().subscribe(catalogResponse => {
@@ -68,16 +73,25 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.themeService.darkThemeOn$.subscribe(on => this.darkThemeOn = on));
 
-    // this.searchBar.valueChanges
-    //   .pipe(
-    //     debounceTime(300),
-    //     tap(query => {
-    //       this.filteredCatalog.itemsList = this.catalog.itemsList.filter(item => {
-    //         return item.name.toLowerCase().includes(query.toLowerCase())
-    //       });
-    //     })
-    //   )
-    //   .subscribe();
+    this.searchBar.valueChanges
+      .pipe(
+        debounceTime(300),
+        tap(query => {
+
+          if(this.selectedCatalogItemSearch == 'items') {
+            this.filteredCatalog.itemsList = this.catalog.itemsList.filter(item => {
+              return item.name.toLowerCase().includes(query.toLowerCase())
+            });
+          }
+
+          else if (this.selectedCatalogItemSearch == 'modifiers') {
+            this.filteredCatalog.modifierLists = this.catalog.modifierLists.filter(modifierList => {
+              return modifierList.name.toLowerCase().includes(query.toLowerCase())
+            });
+          }
+        })
+      )
+      .subscribe();
   }
 
   ngOnDestroy() {
@@ -89,17 +103,24 @@ export class InventoryComponent implements OnInit, OnDestroy {
     this.selectedCatalogItemSearch = searchCategory;
   }
 
-  clicked($event: MouseEvent) {
-    $event.stopPropagation();
+  public addToChangedItemStock(item: MenuItem): void {
+    // this.catalog.itemsList.find(itemInCatalog => item.id == itemInCatalog.id).inStock = item.inStock;
+    this.changedStock.items.add(item);
   }
 
-  public addToChangedStocks(item: MenuItem): void {
-    this.catalog.itemsList.find(itemInCatalog => item.id == itemInCatalog.id).inStock = item.inStock;
-    this.changedItems.add(item);
+  public addToChangedModifierStock(modifier: Modifier): void {
+    // this.catalog.itemsList.find(itemInCatalog => item.id == itemInCatalog.id).inStock = item.inStock;
+    this.changedStock.modifiers.add(modifier);
   }
 
   public save(): void {
-    this.changedItems = new Set<MenuItem>();
+
+    this.catalogService.updateInventory(this.changedStock).subscribe();
+
+    this.changedStock = {
+      items: new Set<MenuItem>(),
+      modifiers: new Set<Modifier>()
+    }
   }
 
   public clearSearch(): void {
