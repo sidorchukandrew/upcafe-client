@@ -27,13 +27,18 @@
         </div>
       </ng-container>
     </div>
-    <app-mod-list-details [modList]="selectedModifierList"></app-mod-list-details>
+    <app-mod-list-details [modList]="selectedModifierList" (selectionMade)="addToOrderItemPrice($event)"></app-mod-list-details>
 </div>
 
 <div class="actions">
   <button mat-raised-button color="primary" id="add-to-order-button" (click)="addToOrder()" [disabled]="!item.inStock">
     <ng-container *ngIf="item.inStock">
-      Add to Order
+      <div style="display: inline-block">
+        Add to Order
+      </div>
+      <div id="order-item-price">
+          {{orderItemPrice | currency}}
+      </div>
     </ng-container>
     <ng-container *ngIf="!item.inStock">
       Temporarily Out

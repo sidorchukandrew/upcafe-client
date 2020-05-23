@@ -5,7 +5,7 @@ import { Catalog } from "src/app/models/Catalog";
 import { SelectedItemStore } from "src/app/stores/selected-item.store";
 import { LoadingService } from "src/app/services/loading.service";
 import { tap, concat, map } from "rxjs/operators";
-import { Subscription } from "rxjs";
+import { Subscription, Observable, BehaviorSubject } from "rxjs";
 import { MenuItem } from 'src/app/models/MenuItem';
 import { MatBottomSheet } from '@angular/material';
 import { UserResponseDialog } from '../item-details/item-details.component';
@@ -17,6 +17,7 @@ import { UserResponseDialog } from '../item-details/item-details.component';
 })
 export class EatsComponent implements OnInit, OnDestroy {
   catalog: Catalog;
+
   private subscriptions: Subscription;
 
   constructor(
@@ -77,11 +78,11 @@ export class EatsComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  loadItem(menuItem: MenuItem): void {
+  public loadItem(menuItem: MenuItem): void {
     this.itemStore.setSelectedItem(menuItem);
   }
 
-  openBottomSheet(item: MenuItem): void {
+  public openBottomSheet(item: MenuItem): void {
 
     var panelClass: string;
 
@@ -109,23 +110,28 @@ import { CustomerOrderService } from 'src/app/services/customer-order.service';
 export class ItemDetailsSheet {
 
   public item: MenuItem;
-
   public selectedModifierList: ModifierList;
+  orderItemPrice: number;
 
   private bottomSheetRef: MatBottomSheet;
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private orderService: CustomerOrderService) {
     this.item = data['item'];
 
-    console.log(this.item);
+    this.orderItemPrice = this.item.price;
     this.bottomSheetRef = data['bottomSheet'];
   }
 
-  close() {
+  public close() {
     this.bottomSheetRef.dismiss();
   }
 
-  addToOrder() {
+  public addToOrder() {
     var orderItem = this.orderService.newOrderItem(this.item, null, this.item.price);
     this.orderService.addToOrder(orderItem);
   }
+
+  public addToOrderItemPrice(modifierCost: number) {
+    this.orderItemPrice = this.orderItemPrice + modifierCost;
+  }
+
 }

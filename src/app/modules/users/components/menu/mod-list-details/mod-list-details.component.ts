@@ -40,7 +40,6 @@ export class ModListDetailsComponent implements OnInit {
       this.remove(modifier);
       modifier.price > 0 ? this.selectionMade.emit(-modifier.price) : noop;
     }
-    console.log(this.selectedModifiers);
   }
 
   // public remove(modifier: ModifierData): void {
@@ -60,7 +59,6 @@ export class ModListDetailsComponent implements OnInit {
 
   public changedSingleSelection(modifier: Modifier, modifiers: Modifier[]) {
     modifiers.forEach((m) => {
-      console.log("Removing:", modifier);
       this.remove(modifier);
     });
 
