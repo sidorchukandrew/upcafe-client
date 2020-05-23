@@ -82,11 +82,16 @@ export class EatsComponent implements OnInit, OnDestroy {
   }
 
   openBottomSheet(item: MenuItem): void {
+
+    var panelClass: string;
+
+    item.modifierLists.length > 0 ? panelClass = "panel-with-modifiers" : panelClass = "panel-without-modifiers";
+
     const bottomSheetRef = this.bottomSheet.open(ItemDetailsSheet, {
       data: {bottomSheet: this.bottomSheet,
               item: item
       },
-      panelClass: "panel"
+      panelClass: panelClass
     });
   }
 }

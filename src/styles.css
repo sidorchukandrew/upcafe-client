@@ -236,11 +236,20 @@ a {
   border-left: 1px solid #353535;
 }
 
-.panel {
+.panel-with-modifiers {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   height: 85vh !important;
   max-height: 90vh !important;
   min-height: 85vh !important;
+  padding: 0 !important;
+}
+
+.panel-without-modifiers {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 50vh !important;
+  max-height: 55vh !important;
+  min-height: 50vh !important;
   padding: 0 !important;
 }

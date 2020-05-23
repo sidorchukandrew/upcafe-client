@@ -4,8 +4,18 @@
       Customize
   </div>
 </div>
-
 <div class="body">
+
+  <div class="information">
+    <div class="name">
+      {{item.name}}
+    </div>
+    <div class="price">
+      {{item.price | currency}}
+    </div>
+  </div>
+
+
     <div class="scrolling-wrapper">
       <ng-container *ngFor="let modList of item.modifierLists">
         <div class="modifier-list">
