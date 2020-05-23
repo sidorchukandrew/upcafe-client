@@ -25,8 +25,8 @@
     </div>
   </div>
 
-  <app-modifier-list-inventory [modifierListCatalog]="filteredCatalog.modifierLists" *ngIf="filteredCatalog"></app-modifier-list-inventory>
-  <app-item-inventory [itemCatalog]="filteredCatalog.itemsList" (stockChanged)="addToChangedStocks($event)" *ngIf="filteredCatalog"></app-item-inventory>
+  <app-modifier-list-inventory *ngIf="selectedCatalogItemSearch == 'modifiers' && filteredCatalog" [modifierListCatalog]="filteredCatalog.modifierLists" ></app-modifier-list-inventory>
+  <app-item-inventory  *ngIf="selectedCatalogItemSearch == 'items' && filteredCatalog" [itemCatalog]="filteredCatalog.itemsList" (stockChanged)="addToChangedStocks($event)"></app-item-inventory>
 
   <div id="fixed-space"></div>
 
