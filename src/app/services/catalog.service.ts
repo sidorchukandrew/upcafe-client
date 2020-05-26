@@ -28,9 +28,6 @@ export class CatalogService {
 
   public updateInventory(inventoryChange: CatalogInventoryChange): Observable<any> {
 
-    console.log(Array.from(inventoryChange.items));
-    console.log(Array.from(inventoryChange.modifiers));
-
     return this.http.put(environment.backendUrl + "/catalog/inventory", {
       "variations": Array.from(inventoryChange.items),
       "modifiers": Array.from(inventoryChange.modifiers)
