@@ -12,12 +12,13 @@ import { OrderModifier } from 'src/app/models/OrderModifier';
 })
 export class ModListDetailsComponent implements OnInit {
   @Input("modList") modifierList: ModifierList;
-  @Output() selectionMade = new EventEmitter<number>();
+  @Output() priceAdjusted = new EventEmitter<number>();
 
   selectedModifiers: Array<OrderModifier>;
   multipleSelectionEnabled: boolean;
   selectedIndex;
   selectedId;
+
 
   constructor() {}
 
@@ -35,39 +36,47 @@ export class ModListDetailsComponent implements OnInit {
 
       this.selectedModifiers.push(orderModifier);
 
-      modifier.price > 0 ? this.selectionMade.emit(modifier.price) : noop;
+      console.log(this.selectedModifiers);
+
+      modifier.price > 0 ? this.priceAdjusted.emit(modifier.price) : noop;
     } else {
       this.remove(modifier);
-      modifier.price > 0 ? this.selectionMade.emit(-modifier.price) : noop;
+      modifier.price > 0 ? this.priceAdjusted.emit(-modifier.price) : noop;
     }
   }
 
-  // public remove(modifier: ModifierData): void {
-  //   const index = this.selectedModifiers.indexOf(modifier);
-  //   if (index > -1)
-  //     this.selectedModifiers.splice(index, 1);
-  // }
+  public remove(modifier: Modifier): void {
 
-  // public selected(modifier: ModifierData): boolean {
-  //   var index = this.selectedModifiers.indexOf(modifier);
-  //   return index != -1;
-  // }
+    const index = this.selectedModifiers.findIndex(orderModifier => orderModifier.id == modifier.id);
+    if (index > -1)
+      this.selectedModifiers.splice(index, 1);
+  }
 
-  public remove(something: any) {}
-
-  public selected(something: any) {}
+  public selected(modifier: Modifier): boolean {
+    const index = this.selectedModifiers.findIndex(orderModifier => orderModifier.id == modifier.id);
+    return index != -1;
+  }
 
   public changedSingleSelection(modifier: Modifier, modifiers: Modifier[]) {
     modifiers.forEach((m) => {
-      this.remove(modifier);
+      this.remove(m);
     });
 
-    this.selectedModifiers.push(modifier);
+    var orderModifier: OrderModifier = {
+      id: modifier.id,
+      name: modifier.name,
+      price: modifier.price,
+    };
+
+    this.selectedModifiers.push(orderModifier);
+
+    console.log(this.selectedModifiers);
   }
 
   public getSelectedModifiers(): Array<OrderModifier> {
     return this.selectedModifiers;
   }
+
 
   display(event) {
     console.log(event);

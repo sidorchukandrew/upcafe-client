@@ -1,5 +1,4 @@
 <form [formGroup]="featuresForm" (ngSubmit)="submit()">
-  <div formGroupName="featureInfo">
     <div class="question subtitle-color">
       Explain what the feature is
     </div>
@@ -19,7 +18,6 @@
       class="card-background button-border answer subtitle-color"
       rows="4"
     ></textarea>
-  </div>
 
   <div class="actions">
     <button mat-flat-button type="submit" color="primary">Submit</button>

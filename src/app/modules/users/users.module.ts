@@ -46,6 +46,7 @@ import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedba
 import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
 import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { SelectorComponent } from './selector/selector.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     SettingsComponent,
     StatusTrackerComponent,
     OrderSummaryComponent,
-    ItemDetailsSheet, AppFeedbackComponent, BugReportComponent, FeatureRequestComponent
+    ItemDetailsSheet, AppFeedbackComponent, BugReportComponent, FeatureRequestComponent, SelectorComponent
   ],
   imports: [
     CommonModule,

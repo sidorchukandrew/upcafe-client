@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { OrderItem } from "../models/OrderItem";
 import { Order } from "../models/Order";
 import { HttpClient } from "@angular/common/http";
-import { Subject, BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { Customer } from "../models/Customer";
 import { environment } from "src/environments/environment";
 import { tap } from "rxjs/operators";

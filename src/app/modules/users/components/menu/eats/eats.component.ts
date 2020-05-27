@@ -126,7 +126,7 @@ export class ItemDetailsSheet {
   }
 
   public addToOrder() {
-    var orderItem = this.orderService.newOrderItem(this.item, null, this.item.price);
+    var orderItem = this.orderService.newOrderItem(this.item, null, this.orderItemPrice);
     this.orderService.addToOrder(orderItem);
   }
 

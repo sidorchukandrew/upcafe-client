@@ -1,5 +1,4 @@
 <form [formGroup]="bugForm" (ngSubmit)="submit()">
-  <div formGroupName="bugInfo">
     <div class="question subtitle-color">
       Explain what you expected the application to do, or what was suppose to
       happen
@@ -40,7 +39,6 @@
         rows="4"
       ></textarea>
     </div>
-  </div>
 
   <div class="actions">
     <button mat-flat-button type="submit" color="primary">Submit</button>

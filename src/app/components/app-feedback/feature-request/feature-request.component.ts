@@ -1,34 +1,45 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { FeedbackService } from 'src/app/services/feedback.service';
+import { FeatureRequest } from 'src/app/models/FeatureRequest';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Observable, Subscription } from 'rxjs';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: "app-feature-request",
   templateUrl: "./feature-request.component.html",
   styleUrls: ["./feature-request.component.css"],
 })
-export class FeatureRequestComponent implements OnInit {
-  featuresForm: FormGroup = this.fb.group({
-    reportInfo: this.fb.group({
-      reporterName: [
-        localStorage.getItem("firstName") +
-          " " +
-          localStorage.getItem("lastName"),
-      ],
-      reporterEmail: [localStorage.getItem("email")],
-      reportedDateTime: [new Date()],
-      platform: ["IOS"],
-      browser: ["Firefox"],
-    }),
-    featureInfo: this.fb.group({
+export class FeatureRequestComponent implements OnInit, OnDestroy {
+
+  public featuresForm: FormGroup = this.fb.group({
       page: [""],
-      description: [""],
-    }),
+      description: [""]
   });
-  constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {}
+  private user: User;
+  private subscriptions: Subscription;
 
-  submit() {
-    console.log(this.featuresForm.value);
+  constructor(private fb: FormBuilder, private feedbackService: FeedbackService,
+    private authenticationService: AuthenticationService) {}
+
+  ngOnInit() {
+
+   this.subscriptions = new Subscription();
+   this.subscriptions.add(this.authenticationService.authenticatedUser$.subscribe(user => this.user = user));
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
+
+  public submit(): void {
+    this.feedbackService.submitFeatureRequest({
+      dateReported: new Date(),
+      description: this.featuresForm.value.description,
+      page: this.featuresForm.value.page,
+      reporter: this.user
+    }).subscribe();
   }
 }
