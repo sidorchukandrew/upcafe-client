@@ -40,6 +40,6 @@ export class FeatureRequestComponent implements OnInit, OnDestroy {
       description: this.featuresForm.value.description,
       page: this.featuresForm.value.page,
       reporter: this.user
-    }).subscribe();
+    }).subscribe(() => this.featuresForm.reset());
   }
 }
