@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { HoursService } from "src/app/services/hours.service";
 import { LoadingService } from "src/app/services/loading.service";
 import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
+import { map } from 'rxjs/operators';
 
 export class HoursGroup {
   section: string;
@@ -75,7 +76,10 @@ export class HoursComponent implements OnInit {
 
     this.timeService
       .getBlocks(this.startDate.toDateString())
-      .subscribe((result) => this.updateView(result));
+      .pipe(
+        map(response => response["blocks"])
+      )
+      .subscribe(blocks => this.updateView(blocks));
   }
 
   nextWeek() {
@@ -85,7 +89,10 @@ export class HoursComponent implements OnInit {
 
     this.timeService
       .getBlocks(this.startDate.toDateString())
-      .subscribe((result) => this.updateView(result));
+      .pipe(
+        map(response => response["blocks"])
+      )
+      .subscribe(blocks => this.updateView(blocks));
   }
 
   previousWeek() {
@@ -95,24 +102,27 @@ export class HoursComponent implements OnInit {
 
     this.timeService
       .getBlocks(this.startDate.toDateString())
-      .subscribe((result) => this.updateView(result));
+      .pipe(
+        map(response => response["blocks"])
+      )
+      .subscribe(blocks => this.updateView(blocks));
   }
 
   updateView(blocks: Block[]): void {
     this.clearTimes();
 
-    blocks.forEach((block) => {
-      if (block.day == "Monday") this.cafeHours.mondayBlocks.push(block);
-      else if (block.day == "Tuesday") this.cafeHours.tuesdayBlocks.push(block);
-      else if (block.day == "Wednesday")
-        this.cafeHours.wednesdayBlocks.push(block);
-      else if (block.day == "Thursday")
-        this.cafeHours.thursdayBlocks.push(block);
-      else if (block.day == "Friday") this.cafeHours.fridayBlocks.push(block);
-      else if (block.day == "Saturday")
-        this.cafeHours.saturdayBlocks.push(block);
-      else if (block.day == "Sunday") this.cafeHours.sundayBlocks.push(block);
-    });
+    if(blocks) {
+
+      blocks.forEach((block) => {
+        if (block.day.substr(0, 3) == "Mon") this.cafeHours.mondayBlocks.push(block);
+        else if (block.day.substr(0, 3) == "Tue") this.cafeHours.tuesdayBlocks.push(block);
+        else if (block.day.substr(0, 3) == "Wed") this.cafeHours.wednesdayBlocks.push(block);
+        else if (block.day.substr(0, 3) == "Thu") this.cafeHours.thursdayBlocks.push(block);
+        else if (block.day.substr(0, 3) == "Fri") this.cafeHours.fridayBlocks.push(block);
+        else if (block.day.substr(0, 3) == "Sat") this.cafeHours.saturdayBlocks.push(block);
+        else if (block.day.substr(0, 3) == "Sun") this.cafeHours.sundayBlocks.push(block);
+      });
+    }
   }
 
   resetDate() {
@@ -121,16 +131,23 @@ export class HoursComponent implements OnInit {
     this.endDate = this.utils.getSunday(this.today);
   }
 
-  selectHours(day: string, blocks: Array<Block>): void {
+  selectHours(dayName: string, blocks: Array<Block>): void {
+    var dayNumber: number = this.utils.toDayOfWeek(dayName);
+
+    var date: Date = this.utils.getMonday(this.today);
+    date.setDate(date.getDate() + dayNumber);
+
+    console.log(date.toDateString());
+
     const dialogRef = this.dialog.open(SelectTimeComponent, {
-      data: { day: day, open: "", close: "" },
+      data: { day: date.toDateString(), open: "", close: "" },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result == null) return;
 
       this.timeService
-        .postBlock(result, this.startDate.toDateString())
+        .postBlock(result)
         .subscribe((result) => console.log(result));
 
       blocks.push(result);

@@ -12,10 +12,11 @@ import { shareReplay, retry, catchError } from "rxjs/operators";
 export class HoursService {
   constructor(private http: HttpClient) {}
 
-  public postBlock(block: Block, weekOf: string): any {
+  public postBlock(block: Block): any {
     return this.http.post(environment.backendUrl + "/cafe/hours", {
-      block: block,
-      weekOf: weekOf,
+      "open": block.open,
+      "close": block.close,
+      "day": block.day
     });
   }
 
