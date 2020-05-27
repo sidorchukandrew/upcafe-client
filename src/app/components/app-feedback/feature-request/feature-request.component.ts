@@ -5,6 +5,8 @@ import { FeatureRequest } from 'src/app/models/FeatureRequest';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/User';
+import { LoadingService } from 'src/app/services/loading.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: "app-feature-request",
@@ -22,7 +24,7 @@ export class FeatureRequestComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription;
 
   constructor(private fb: FormBuilder, private feedbackService: FeedbackService,
-    private authenticationService: AuthenticationService) {}
+    private authenticationService: AuthenticationService, private loadingService: LoadingService) {}
 
   ngOnInit() {
 
@@ -35,11 +37,15 @@ export class FeatureRequestComponent implements OnInit, OnDestroy {
   }
 
   public submit(): void {
-    this.feedbackService.submitFeatureRequest({
+    var submitFeature$ = this.feedbackService.submitFeatureRequest({
       dateReported: new Date(),
       description: this.featuresForm.value.description,
       page: this.featuresForm.value.page,
       reporter: this.user
-    }).subscribe(() => this.featuresForm.reset());
+    }).pipe(
+      tap(() => this.featuresForm.reset())
+    );
+
+    this.subscriptions.add(this.loadingService.showLoadingUntilComplete(submitFeature$).subscribe());
   }
 }

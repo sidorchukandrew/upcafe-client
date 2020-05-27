@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs';
 import { FeedbackService } from 'src/app/services/feedback.service';
 import { Platform } from '@angular/cdk/platform';
 import { MatButton } from '@angular/material';
+import { LoadingService } from 'src/app/services/loading.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: "app-bug-report",
@@ -18,7 +20,7 @@ export class BugReportComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription;
 
   constructor(private fb: FormBuilder, private authenticationService: AuthenticationService,
-    private feedbackService: FeedbackService, private platform: Platform) {}
+    private feedbackService: FeedbackService, private platform: Platform, private loadingService: LoadingService) {}
 
   bugForm: FormGroup = this.fb.group({
       expected: [""],
@@ -49,7 +51,7 @@ export class BugReportComponent implements OnInit, OnDestroy {
 
     console.log(window.navigator.userAgent);
 
-    this.feedbackService.submitBug({
+    var submitBug$ = this.feedbackService.submitBug({
       reporter: this.user,
       dateReported: new Date(),
       actual: this.bugForm.value.actual,
@@ -58,6 +60,10 @@ export class BugReportComponent implements OnInit, OnDestroy {
       extraInformation: this.bugForm.value.extra,
       browser: browser,
       platform: platform
-    }).subscribe(() => this.bugForm.reset());
+    }).pipe(
+      tap(() => this.bugForm.reset())
+    );
+
+    this.subscriptions.add(this.loadingService.showLoadingUntilComplete(submitBug$).subscribe());
   }
 }

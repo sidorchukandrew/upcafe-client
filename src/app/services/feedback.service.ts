@@ -12,8 +12,8 @@ export class FeedbackService {
 
   constructor(private http: HttpClient) { }
 
-  public submitBug(bug: BugReport): Observable<any> {
-    return this.http.post(environment.backendUrl + "/api/v1/bugs", bug);
+  public submitBug(bug: BugReport): Observable<BugReport> {
+    return this.http.post<BugReport>(environment.backendUrl + "/api/v1/bugs", bug);
   }
 
   public submitFeatureRequest(featureRequest: FeatureRequest): Observable<any> {
