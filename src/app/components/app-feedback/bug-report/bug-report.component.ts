@@ -1,13 +1,14 @@
-import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { User } from 'src/app/models/User';
 import { Subscription } from 'rxjs';
 import { FeedbackService } from 'src/app/services/feedback.service';
 import { Platform } from '@angular/cdk/platform';
-import { MatButton } from '@angular/material';
 import { LoadingService } from 'src/app/services/loading.service';
 import { tap } from 'rxjs/operators';
+import { FeedbackSubmissionDialog } from 'src/app/modules/staff/components/feedback-submission-dialog/feedback-submission-dialog.component';
+import { MatDialogRef, MatDialog } from '@angular/material';
 
 @Component({
   selector: "app-bug-report",
@@ -20,7 +21,8 @@ export class BugReportComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription;
 
   constructor(private fb: FormBuilder, private authenticationService: AuthenticationService,
-    private feedbackService: FeedbackService, private platform: Platform, private loadingService: LoadingService) {}
+    private feedbackService: FeedbackService, private platform: Platform, private loadingService: LoadingService,
+    private matDialog: MatDialog) {}
 
   bugForm: FormGroup = this.fb.group({
       expected: [""],
@@ -61,9 +63,16 @@ export class BugReportComponent implements OnInit, OnDestroy {
       browser: browser,
       platform: platform
     }).pipe(
-      tap(() => this.bugForm.reset())
+      tap(() => this.bugForm.reset()),
+      tap(() => this.showDialog("success"))
     );
 
     this.subscriptions.add(this.loadingService.showLoadingUntilComplete(submitBug$).subscribe());
+  }
+
+  private showDialog(message: string): void {
+    this.matDialog.open(FeedbackSubmissionDialog, {
+      data: message
+    });
   }
 }

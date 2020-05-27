@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { FeedbackService } from 'src/app/services/feedback.service';
-import { FeatureRequest } from 'src/app/models/FeatureRequest';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { LoadingService } from 'src/app/services/loading.service';
 import { tap } from 'rxjs/operators';
+import { FeedbackSubmissionDialog } from 'src/app/modules/staff/components/feedback-submission-dialog/feedback-submission-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: "app-feature-request",
@@ -24,7 +25,8 @@ export class FeatureRequestComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription;
 
   constructor(private fb: FormBuilder, private feedbackService: FeedbackService,
-    private authenticationService: AuthenticationService, private loadingService: LoadingService) {}
+    private authenticationService: AuthenticationService, private loadingService: LoadingService,
+    private matDialog: MatDialog) {}
 
   ngOnInit() {
 
@@ -43,9 +45,16 @@ export class FeatureRequestComponent implements OnInit, OnDestroy {
       page: this.featuresForm.value.page,
       reporter: this.user
     }).pipe(
-      tap(() => this.featuresForm.reset())
+      tap(() => this.featuresForm.reset()),
+      tap(() => this.showDialog("success"))
     );
 
     this.subscriptions.add(this.loadingService.showLoadingUntilComplete(submitFeature$).subscribe());
+  }
+
+  private showDialog(message: string): void {
+    this.matDialog.open(FeedbackSubmissionDialog, {
+      data: message
+    });
   }
 }

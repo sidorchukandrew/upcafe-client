@@ -42,6 +42,7 @@ import { FeatureRequestComponent } from "src/app/components/app-feedback/feature
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { ItemInventoryComponent } from './components/item-inventory/item-inventory.component';
 import { ModifierListInventoryComponent } from './components/modifier-list-inventory/modifier-list-inventory.component';
+import { FeedbackSubmissionDialog } from './components/feedback-submission-dialog/feedback-submission-dialog.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { ModifierListInventoryComponent } from './components/modifier-list-inven
     InventoryComponent,
     ItemInventoryComponent,
     ModifierListInventoryComponent,
+    FeedbackSubmissionDialog,
   ],
   imports: [
     CommonModule,
@@ -88,6 +90,6 @@ import { ModifierListInventoryComponent } from './components/modifier-list-inven
     ReactiveFormsModule,
     MatProgressSpinnerModule
   ],
-  entryComponents: [SelectTimeComponent],
+  entryComponents: [SelectTimeComponent, FeedbackSubmissionDialog],
 })
 export class StaffModule {}
