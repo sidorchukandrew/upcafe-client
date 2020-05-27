@@ -5,9 +5,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { LoadingService } from 'src/app/services/loading.service';
-import { tap } from 'rxjs/operators';
-import { FeedbackSubmissionDialog } from 'src/app/modules/staff/components/feedback-submission-dialog/feedback-submission-dialog.component';
-import { MatDialog } from '@angular/material';
+import { tap } from 'rxjs/operators';import { MatDialog } from '@angular/material';
+import { FeedbackSubmissionDialog } from '../feedback-submission-dialog/feedback-submission-dialog.component';
 
 @Component({
   selector: "app-feature-request",

@@ -40,13 +40,11 @@ import { BeginOrderComponent } from "./components/cart/begin-order/begin-order.c
 import { MyOrderComponent } from "./components/cart/my-order/my-order.component";
 import { TrackOrderComponent } from "./components/cart/track-order/track-order.component";
 import { SettingsComponent } from "./components/profile/settings/settings.component";
-import { StatusTrackerComponent } from "../staff/components/status-tracker/status-tracker.component";
 import { OrderSummaryComponent } from "./components/cart/order-summary/order-summary.component";
-import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedback.component";
-import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
-import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { SelectorComponent } from './selector/selector.component';
+import { StatusTrackerModule } from '../status-tracker/status-tracker.module';
+import { FeedbackModule } from '../feedback/feedback.module';
 
 @NgModule({
   declarations: [
@@ -70,9 +68,8 @@ import { SelectorComponent } from './selector/selector.component';
     MyOrderComponent,
     TrackOrderComponent,
     SettingsComponent,
-    StatusTrackerComponent,
     OrderSummaryComponent,
-    ItemDetailsSheet, AppFeedbackComponent, BugReportComponent, FeatureRequestComponent, SelectorComponent
+    ItemDetailsSheet, SelectorComponent
   ],
   imports: [
     CommonModule,
@@ -91,7 +88,9 @@ import { SelectorComponent } from './selector/selector.component';
     MatStepperModule,
     MatSlideToggleModule,
     MatBottomSheetModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StatusTrackerModule,
+    FeedbackModule
   ],
   entryComponents: [UserResponseDialog, ItemDetailsSheet],
   providers: [],

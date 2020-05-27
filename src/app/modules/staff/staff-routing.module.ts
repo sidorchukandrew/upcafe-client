@@ -11,9 +11,9 @@ import { CompletedOrdersComponent } from "./components/completed-orders/complete
 import { ReadyOrdersComponent } from "./components/ready-orders/ready-orders.component";
 import { PickupTimesComponent } from "./components/cafe/pickup-times/pickup-times.component";
 import { AppSettingsComponent } from "./components/app-settings/app-settings.component";
-import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedback.component";
-import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
-import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
+import { AppFeedbackComponent } from "src/app/modules/feedback/app-feedback/app-feedback.component";
+import { BugReportComponent } from "src/app/modules/feedback/app-feedback/bug-report/bug-report.component";
+import { FeatureRequestComponent } from "src/app/modules/feedback/app-feedback/feature-request/feature-request.component";
 import { StaffGuard } from 'src/app/guards/staff.guard';
 import { InventoryComponent } from './components/inventory/inventory.component';
 

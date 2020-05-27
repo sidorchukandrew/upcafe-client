@@ -7,8 +7,8 @@ import { FeedbackService } from 'src/app/services/feedback.service';
 import { Platform } from '@angular/cdk/platform';
 import { LoadingService } from 'src/app/services/loading.service';
 import { tap } from 'rxjs/operators';
-import { FeedbackSubmissionDialog } from 'src/app/modules/staff/components/feedback-submission-dialog/feedback-submission-dialog.component';
 import { MatDialogRef, MatDialog } from '@angular/material';
+import { FeedbackSubmissionDialog } from '../feedback-submission-dialog/feedback-submission-dialog.component';
 
 @Component({
   selector: "app-bug-report",

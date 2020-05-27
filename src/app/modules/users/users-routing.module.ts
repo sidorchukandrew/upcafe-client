@@ -14,9 +14,9 @@ import { SweetsComponent } from "./components/menu/sweets/sweets.component";
 import { EditItemComponent } from "./components/cart/edit-item/edit-item.component";
 import { PaymentComponent } from "./components/cart/payment/payment.component";
 import { SettingsComponent } from './components/profile/settings/settings.component';
-import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedback.component";
-import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
-import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
+import { AppFeedbackComponent } from "src/app/modules/feedback/app-feedback/app-feedback.component";
+import { BugReportComponent } from "src/app/modules/feedback/app-feedback/bug-report/bug-report.component";
+import { FeatureRequestComponent } from "src/app/modules/feedback/app-feedback/feature-request/feature-request.component";
 import { CustomerGuard } from 'src/app/guards/customer.guard';
 
 const routes: Routes = [

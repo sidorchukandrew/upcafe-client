@@ -33,16 +33,13 @@ import { OrdersComponent } from "./components/orders/orders.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PickupTimesComponent } from "./components/cafe/pickup-times/pickup-times.component";
 import { AppSettingsComponent } from "./components/app-settings/app-settings.component";
-import { StatusTrackerComponent } from "./components/status-tracker/status-tracker.component";
 import { CustomerInfoComponent } from "./components/customer-info/customer-info.component";
 import { OrderItemDetailsComponent } from "./components/order-item-details/order-item-details.component";
-import { AppFeedbackComponent } from "src/app/components/app-feedback/app-feedback.component";
-import { BugReportComponent } from "src/app/components/app-feedback/bug-report/bug-report.component";
-import { FeatureRequestComponent } from "src/app/components/app-feedback/feature-request/feature-request.component";
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { ItemInventoryComponent } from './components/item-inventory/item-inventory.component';
 import { ModifierListInventoryComponent } from './components/modifier-list-inventory/modifier-list-inventory.component';
-import { FeedbackSubmissionDialog } from './components/feedback-submission-dialog/feedback-submission-dialog.component';
+import { StatusTrackerModule } from '../status-tracker/status-tracker.module';
+import { FeedbackModule } from '../feedback/feedback.module';
 
 @NgModule({
   declarations: [
@@ -59,16 +56,11 @@ import { FeedbackSubmissionDialog } from './components/feedback-submission-dialo
     SelectTimeComponent,
     PickupTimesComponent,
     AppSettingsComponent,
-    StatusTrackerComponent,
     CustomerInfoComponent,
     OrderItemDetailsComponent,
-    AppFeedbackComponent,
-    BugReportComponent,
-    FeatureRequestComponent,
     InventoryComponent,
     ItemInventoryComponent,
     ModifierListInventoryComponent,
-    FeedbackSubmissionDialog,
   ],
   imports: [
     CommonModule,
@@ -88,8 +80,10 @@ import { FeedbackSubmissionDialog } from './components/feedback-submission-dialo
     MatTooltipModule,
     MatCheckboxModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    StatusTrackerModule,
+    FeedbackModule
   ],
-  entryComponents: [SelectTimeComponent, FeedbackSubmissionDialog],
+  entryComponents: [SelectTimeComponent],
 })
 export class StaffModule {}
