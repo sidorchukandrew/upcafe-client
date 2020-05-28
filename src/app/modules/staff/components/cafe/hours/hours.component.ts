@@ -132,22 +132,17 @@ export class HoursComponent implements OnInit {
   }
 
   selectHours(dayName: string, blocks: Array<Block>): void {
-    var dayNumber: number = this.utils.toDayOfWeek(dayName);
 
-    var date: Date = this.utils.getMonday(this.today);
-    date.setDate(date.getDate() + dayNumber);
-
-    console.log(date.toDateString());
 
     const dialogRef = this.dialog.open(SelectTimeComponent, {
-      data: { day: date.toDateString(), open: "", close: "" },
+      data: { day: dayName, open: "", close: "" },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result == null) return;
 
       this.timeService
-        .postBlock(result)
+        .postBlock(result, this.startDate.toDateString())
         .subscribe((result) => console.log(result));
 
       blocks.push(result);
@@ -215,10 +210,6 @@ export class HoursComponent implements OnInit {
 
       if (block.open == result.open && block.close == result.close) return;
 
-      block.day = result.day;
-      block.id = result.id;
-      block.open = result.open;
-      block.close = result.close;
 
       this.loading = true;
       this.timeService
@@ -226,6 +217,10 @@ export class HoursComponent implements OnInit {
         .subscribe(
           () => {
             this.loading = false;
+            block.day = result.day;
+            block.id = result.id;
+            block.open = result.open;
+            block.close = result.close;
           },
           (error) => {
             console.log(error);
@@ -247,12 +242,12 @@ export class HoursComponent implements OnInit {
     };
   }
 
-  deleteBlock(block: Block, dayBlocks: Array<Block>): void {
+  public deleteBlock(block: Block, dayBlocks: Array<Block>): void {
     this.loading = true;
 
     this.timeService
-      .deleteBlock(block.id, this.startDate.toDateString())
-      .subscribe((result) => {
+      .deleteBlock(block.id)
+      .subscribe(result => {
         var index: number = dayBlocks.indexOf(block);
 
         if (index != -1) dayBlocks.splice(index, 1);

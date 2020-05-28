@@ -12,11 +12,9 @@ import { shareReplay, retry, catchError } from "rxjs/operators";
 export class HoursService {
   constructor(private http: HttpClient) {}
 
-  public postBlock(block: Block): any {
-    return this.http.post(environment.backendUrl + "/cafe/hours", {
-      "open": block.open,
-      "close": block.close,
-      "day": block.day
+  public postBlock(block: Block, weekOf: string): any {
+    return this.http.post(environment.backendUrl + "/cafe/hours", block, {
+      params: {weekOf: weekOf}
     });
   }
 
@@ -36,16 +34,12 @@ export class HoursService {
   }
 
   public updateBlock(block: Block, weekOf: string): any {
-    return this.http.put(environment.backendUrl + "/cafe/hours", {
-      block: block,
-      weekOf: weekOf,
-    });
+    return this.http.put(environment.backendUrl + "/cafe/hours", block);
   }
 
-  public deleteBlock(blockId: string, weekOf: string): any {
+  public deleteBlock(blockId: string): any {
     return this.http.delete(environment.backendUrl + "/cafe/hours", {
       params: {
-        weekOf: weekOf,
         blockId: blockId,
       },
     });

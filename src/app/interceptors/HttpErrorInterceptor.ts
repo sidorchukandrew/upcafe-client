@@ -19,6 +19,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private displayError(response: HttpErrorResponse) {
+    console.log(response);
     let errorMessage: string = "";
 
     if (response.error instanceof ErrorEvent) {
