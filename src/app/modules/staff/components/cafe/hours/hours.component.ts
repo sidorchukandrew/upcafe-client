@@ -205,22 +205,22 @@ export class HoursComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result == null) return;
+    dialogRef.afterClosed().subscribe((editedBlock) => {
+      if (editedBlock == null) return;
 
-      if (block.open == result.open && block.close == result.close) return;
+      if (block.open == editedBlock.open && block.close == editedBlock.close) return;
 
 
       this.loading = true;
       this.timeService
-        .updateBlock(result, this.startDate.toDateString())
+        .updateBlock(editedBlock)
         .subscribe(
           () => {
             this.loading = false;
-            block.day = result.day;
-            block.id = result.id;
-            block.open = result.open;
-            block.close = result.close;
+            block.day = editedBlock.day;
+            block.id = editedBlock.id;
+            block.open = editedBlock.open;
+            block.close = editedBlock.close;
           },
           (error) => {
             console.log(error);

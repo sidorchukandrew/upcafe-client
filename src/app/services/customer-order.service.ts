@@ -96,6 +96,19 @@ export class CustomerOrderService {
       );
   }
 
+  public remove(orderItem: OrderItem): void {
+    var index = this.order.orderItems.indexOf(orderItem);
+
+    if(index != -1) {
+      this.order.orderItems.splice(index, 1);
+      this.order.totalPrice = this.order.totalPrice - orderItem.price;
+      this.badgeService.removedItemFromCart();
+    }
+    else {
+      console.log("Its not in the order");
+    }
+  }
+
   public checkIfOrderAlreadyPlaced(): any {
     return this.http
       .get<Order>(

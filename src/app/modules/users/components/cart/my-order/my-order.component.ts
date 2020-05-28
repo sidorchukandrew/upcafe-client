@@ -26,13 +26,11 @@ export class MyOrderComponent implements OnInit {
     private orderService: CustomerOrderService,
     private router: Router,
     private editService: EditItemService,
-    private badgeService: CartBadgeService,
     private hoursService: HoursService,
     public timeUtils: TimeUtilitiesService
   ) {}
 
   ngOnInit() {
-    var today = new Date();
 
     var pickupTimes$ = this.hoursService.getAvailablePickupTimes();
 
@@ -45,9 +43,8 @@ export class MyOrderComponent implements OnInit {
     if (this.currentOrder) this.selectedTime = this.currentOrder.pickupTime;
   }
 
-  removeFromOrder(orderItem: OrderItem): void {
-    // var index = this.currentOrder.selectedLineItems.indexOf(orderItem);
-    // this.currentOrder.selectedLineItems.splice(index, 1);
+  public removeFromOrder(orderItem: OrderItem): void {
+    this.orderService.remove(orderItem);
 
     // var newPrice: number = 0;
     // this.currentOrder.selectedLineItems.forEach((item) => {
@@ -62,14 +59,6 @@ export class MyOrderComponent implements OnInit {
     //   this.currentOrder = null;
     //   this.orderService.emptyCart();
     // }
-  }
-
-  navigateToEditItem(orderItem: OrderItem) {
-    // this.editService.unchangedItem = orderItem;
-    // this.router.navigate([
-    //   "user/cart/edit",
-    //   orderItem.variationData.variationId,
-    // ]);
   }
 
   timeSelected(time: string) {

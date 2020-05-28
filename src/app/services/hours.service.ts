@@ -34,7 +34,7 @@ export class HoursService {
       );
   }
 
-  public updateBlock(block: Block, weekOf: string): any {
+  public updateBlock(block: Block): any {
     return this.http.put(environment.backendUrl + "/cafe/hours", block);
   }
 
