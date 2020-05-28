@@ -10,6 +10,7 @@ import { HoursService } from "src/app/services/hours.service";
 import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
 import { Block } from "src/app/models/Block";
 import { map, tap } from "rxjs/operators";
+import { PickupTime } from 'src/app/models/PickupTime';
 
 @Component({
   selector: "app-my-order",
@@ -18,7 +19,7 @@ import { map, tap } from "rxjs/operators";
 })
 export class MyOrderComponent implements OnInit {
   currentOrder: Order;
-  availableTimes: Array<string>;
+  availableTimes: Array<PickupTime>;
   selectedTime: string;
 
   constructor(
@@ -36,7 +37,6 @@ export class MyOrderComponent implements OnInit {
     var pickupTimes$ = this.hoursService.getAvailablePickupTimes();
 
     pickupTimes$.pipe(
-      map(available => available['availableTimes']),
       tap(times => this.availableTimes = times)
     ).subscribe();
 

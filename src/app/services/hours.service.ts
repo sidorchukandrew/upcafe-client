@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { PickupSettings } from "../models/PickupSettings";
 import { Observable, throwError } from "rxjs";
 import { shareReplay, retry, catchError } from "rxjs/operators";
+import { PickupTime } from '../models/PickupTime';
 
 @Injectable({
   providedIn: "root",
@@ -53,9 +54,11 @@ export class HoursService {
     });
   }
 
-  public getAvailablePickupTimes(): Observable<any> {
+  public getAvailablePickupTimes(): Observable<Array<PickupTime>> {
     return this.http
-      .get<Block[]>(environment.backendUrl + "/cafe/pickup")
+      .get<Array<PickupTime>>(environment.backendUrl + "/cafe/hours", {
+        params: { search: "available"}
+      })
       .pipe(shareReplay());
   }
 
