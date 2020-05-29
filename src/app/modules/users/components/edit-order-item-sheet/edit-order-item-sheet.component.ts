@@ -18,7 +18,6 @@ export class EditOrderItemSheet {
 
   public orderItemPrice: number;
 
-  private bottomSheetRef: MatBottomSheet;
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private orderService: CustomerOrderService,
   private bottomSheet: MatBottomSheet) {
     this.orderItem = data['orderItem'];
@@ -29,5 +28,10 @@ export class EditOrderItemSheet {
   public close() {
     this.bottomSheet.dismiss();
   }
+
+  public addToOrderItemPrice(modifierCost: number) {
+    this.orderItemPrice = this.orderItemPrice + modifierCost;
+  }
+
 
 }

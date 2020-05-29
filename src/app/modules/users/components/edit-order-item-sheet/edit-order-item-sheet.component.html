@@ -32,7 +32,8 @@
       </div>
     </ng-container>
   </div>
-  <app-mod-list-details id="mod-list-details" [modList]="selectedModifierList" [selectedModifiers]="orderItem.selectedModifiers"></app-mod-list-details>
+  <app-mod-list-details id="mod-list-details" [modList]="selectedModifierList" (priceAdjusted)="addToOrderItemPrice($event)"
+    ></app-mod-list-details>
 </div>
 
 <div class="actions">

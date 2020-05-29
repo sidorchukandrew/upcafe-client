@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
 import { CatalogService } from "src/app/services/catalog.service";
 import { CatalogByCategory } from "src/app/models/CatalogByCategory";
 import { Catalog } from "src/app/models/Catalog";
@@ -101,6 +101,7 @@ import {Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { ModifierList } from 'src/app/models/ModifierList';
 import { CustomerOrderService } from 'src/app/services/customer-order.service';
+import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
 
 @Component({
   selector: 'item-details-sheet',
@@ -114,6 +115,9 @@ export class ItemDetailsSheet {
   orderItemPrice: number;
 
   private bottomSheetRef: MatBottomSheet;
+
+  @ViewChild("modListDetails", {static: false}) modListDetails: ModListDetailsComponent;
+
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private orderService: CustomerOrderService) {
     this.item = data['item'];
 
@@ -127,6 +131,7 @@ export class ItemDetailsSheet {
 
   public addToOrder() {
     var orderItem = this.orderService.newOrderItem(this.item, null, this.orderItemPrice);
+    orderItem.selectedModifiers = this.modListDetails.getSelectedModifiers();
     this.orderService.addToOrder(orderItem);
   }
 
