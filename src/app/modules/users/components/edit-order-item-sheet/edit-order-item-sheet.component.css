@@ -96,3 +96,11 @@
   max-width: 50%;
   border-radius: 4px;
 }
+
+#modifier-chips {
+  padding: 10px;
+}
+
+.chip {
+  font-size: .85em;
+}

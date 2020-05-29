@@ -1,6 +1,9 @@
  .radio-button-ripple {
    padding: 1px;
    border-radius: 50px;
+   outline: none;
+   margin-right: 5px;
+   -webkit-tap-highlight-color: transparent;
  }
 
  .radio-button {
@@ -9,10 +12,14 @@
    border-style: solid;
    border-radius: 50%;
    border-color: rgba(0, 0, 0, 0.54);
+   outline: none;
+   -webkit-tap-highlight-color: transparent;
  }
 
  .selected-button {
    border-color: #49c9f2;
+   outline: none;
+   -webkit-tap-highlight-color: transparent;
  }
 
  .inner-circle {
@@ -21,10 +28,14 @@
    transition: background-color ease-in-out 280ms;
    border-radius: 50px;
    margin: 2px;
+   outline: none;
+   -webkit-tap-highlight-color: transparent;
  }
 
  .inner-selected {
    background-color: #49c9f2;
+   outline: none;
+   -webkit-tap-highlight-color: transparent;
  }
 
 

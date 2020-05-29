@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 // import { ModifierData } from 'src/app/models/ModifierData';
 import { noop } from 'rxjs';
 import { ModifierList } from 'src/app/models/ModifierList';
@@ -11,10 +11,11 @@ import { SelectionEvent } from '../../../selector/selector.component';
   templateUrl: "./mod-list-details.component.html",
   styleUrls: ["./mod-list-details.component.css"],
 })
-export class ModListDetailsComponent implements OnInit {
+export class ModListDetailsComponent implements OnInit, OnChanges {
   @Input("modList") modifierList: ModifierList;
   @Input("selectedModifiers") orderModifiers: Array<OrderModifier>;
-  @Output() priceAdjusted = new EventEmitter<number>();
+  @Output("priceAdjusted") priceAdjusted = new EventEmitter<number>();
+  @Output("listChange") listChange: EventEmitter<Array<OrderModifier>> = new EventEmitter();
 
   selectedModifiers: Array<OrderModifier>;
 
@@ -22,6 +23,11 @@ export class ModListDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.selectedModifiers = new Array<OrderModifier>();
+    if(this.orderModifiers) this.selectedModifiers = this.orderModifiers;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes.orderModifiers) this.orderModifiers = changes.orderModifiers.currentValue;
   }
 
   public remove(modifier: Modifier): void {
@@ -56,6 +62,7 @@ export class ModListDetailsComponent implements OnInit {
     }
 
     console.log(this.selectedModifiers);
+    this.listChange.emit(this.selectedModifiers);
   }
 
   public modifierInListAlreadySelected(modifierList: ModifierList): Modifier {

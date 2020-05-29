@@ -19,7 +19,8 @@ import {
   MatBadgeModule,
   MatStepperModule,
   MatSlideToggleModule,
-  MatBottomSheetModule
+  MatBottomSheetModule,
+  MatChipsModule
 } from "@angular/material";
 import { MenuComponent } from "./components/menu/menu.component";
 import { HomeComponent } from "./components/home/home.component";
@@ -82,6 +83,7 @@ import { SingleSelectionGroupComponent } from './components/single-selection-gro
     MatExpansionModule,
     MatCheckboxModule,
     MatDividerModule,
+    MatChipsModule,
     MatRadioModule,
     MatSnackBarModule,
     MatDialogModule,

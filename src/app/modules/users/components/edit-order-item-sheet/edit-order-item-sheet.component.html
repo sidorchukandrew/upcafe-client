@@ -17,8 +17,17 @@
     </div>
   </div>
 
-  <div class="selected-modifiers">
+  <div id="modifier-chips">
+    <mat-chip-list>
 
+      <mat-chip class="chip" *ngFor="let modifier of selectedModifiers" removable=true (removed)="remove(modifier)">
+
+        {{modifier.name}}
+
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+
+    </mat-chip-list>
   </div>
 
   <div class="scrolling-wrapper" id="modifier-list-container">
@@ -32,17 +41,18 @@
       </div>
     </ng-container>
   </div>
-  <app-mod-list-details id="mod-list-details" [modList]="selectedModifierList" (priceAdjusted)="addToOrderItemPrice($event)"
-    ></app-mod-list-details>
+  <app-mod-list-details id="mod-list-details" [modList]="selectedModifierList"
+    (priceAdjusted)="addToOrderItemPrice($event)" [selectedModifiers]="orderItem.selectedModifiers" #modListDetails>
+  </app-mod-list-details>
 </div>
 
 <div class="actions">
   <button mat-raised-button color="primary" id="add-to-order-button">
-      <div style="display: inline-block">
-        Add to Order
-      </div>
-      <div id="order-item-price">
-        {{orderItemPrice | currency}}
-      </div>
+    <div style="display: inline-block">
+      Update Order
+    </div>
+    <div id="order-item-price">
+      {{orderItemPrice | currency}}
+    </div>
   </button>
 </div>

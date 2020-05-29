@@ -102,6 +102,7 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { ModifierList } from 'src/app/models/ModifierList';
 import { CustomerOrderService } from 'src/app/services/customer-order.service';
 import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
+import { OrderModifier } from 'src/app/models/OrderModifier';
 
 @Component({
   selector: 'item-details-sheet',
@@ -114,6 +115,8 @@ export class ItemDetailsSheet {
   public selectedModifierList: ModifierList;
   orderItemPrice: number;
 
+  public selectedModifiers: Array<OrderModifier>;
+
   private bottomSheetRef: MatBottomSheet;
 
   @ViewChild("modListDetails", {static: false}) modListDetails: ModListDetailsComponent;
@@ -123,6 +126,7 @@ export class ItemDetailsSheet {
 
     this.orderItemPrice = this.item.price;
     this.bottomSheetRef = data['bottomSheet'];
+    this.selectedModifierList = this.item.modifierLists[0];
   }
 
   public close() {
@@ -139,4 +143,16 @@ export class ItemDetailsSheet {
     this.orderItemPrice = this.orderItemPrice + modifierCost;
   }
 
+  public modifierSelected(modifiers: Array<OrderModifier>): void {
+    this.selectedModifiers = modifiers;
+  }
+
+  public remove(modifierToRemove: OrderModifier): void {
+
+    const index = this.selectedModifiers.findIndex(orderModifier => orderModifier.id == modifierToRemove.id);
+    if (index > -1) {
+      this.selectedModifiers.splice(index, 1);
+      this.addToOrderItemPrice(-modifierToRemove.price);
+    }
+  }
 }
