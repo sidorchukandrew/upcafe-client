@@ -1,19 +1,41 @@
-<div id="main-content" *ngIf="isCustomer && isStaff">
-  <div class="title title-color">How would you like to sign in?</div>
-  <div class="roles">
-    <div id="customer">
-      <button mat-raised-button color="primary" class="role" *ngIf="isCustomer"
-      (click)="signInAsCustomer()">Customer</button>
+<div class="sign-in-wrapper">
+
+  <div id="main-content" *ngIf="isCustomer && isStaff">
+
+    <div class="greeting title-color">
+      Hey, {{userShortName}}!
     </div>
 
-    <div id="staff" *ngIf="isStaff">
-      <button mat-raised-button class="role" color="primary"
-      (click)="signInAsStaff()">Staff</button>
-    </div>
+    <img [src]="user.imageUrl" class="avatar">
 
-    <div id="admin" *ngIf="isAdmin">
-      <button mat-raised-button class="role" color="primary"
-      (click)="signInAsAdmin()" disabled=true>Admin</button>
+    <div class="title title-color">How would you like to sign in?</div>
+
+    <div class="roles button-border card-background">
+      <div id="customer" class="role" (click)="signInAsCustomer()">
+        <div class="role-name title-color">
+          Customer
+        </div>
+        <button mat-button class="sign-in-button">Sign in</button>
+      </div>
+
+      <mat-divider class="divider-color"></mat-divider>
+
+      <div id="staff" class="role" *ngIf="isStaff" (click)="signInAsStaff()">
+        <div class="role-name title-color">
+          Staff
+        </div>
+        <button mat-button class="sign-in-button">Sign in</button>
+      </div>
+
+      <mat-divider class="divider-color" *ngIf="isAdmin"></mat-divider>
+
+      <div id="admin" class="role" *ngIf="isAdmin" (click)="signInAsAdmin()">
+        <div class="role-name title-color">
+          Admin
+        </div>
+        <button mat-button class="sign-in-button">Sign in</button>
+      </div>
     </div>
   </div>
+
 </div>

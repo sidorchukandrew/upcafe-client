@@ -11,7 +11,10 @@ export class SuccessfulUpdateDialog implements OnInit {
   constructor(private matDialog: MatDialogRef<SuccessfulUpdateDialog>) { }
 
   ngOnInit() {
-    setTimeout(() => this.matDialog.close(), 1000);
+    setTimeout(() => {
+      window.navigator.vibrate(200);
+      this.matDialog.close();
+    }, 1000);
   }
 
 }

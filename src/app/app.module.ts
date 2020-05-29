@@ -15,7 +15,8 @@ import {
   MatInputModule,
   MatIconModule,
   MatProgressSpinnerModule,
-  MatDialogModule
+  MatDialogModule,
+  MatDividerModule
 } from "@angular/material";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
@@ -42,6 +43,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
     HttpClientModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatDividerModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
     }),
