@@ -1,12 +1,12 @@
 #scrollable-wrapper {
-    max-height: 150px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    margin-top: 10px;
+  max-height: 150px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-top: 10px;
 }
 
 .modifier-wrapper {
-    margin: 10px;
+  margin: 10px;
 }
 
 .out {
@@ -15,31 +15,31 @@
 }
 
 .bold {
-    font-weight: 800;
+  font-weight: 800;
 }
 
 .small {
-    font-size: .9em;
+  font-size: .9em;
 }
 
 .align-right {
-    position: absolute;
-    right: 0;
+  position: absolute;
+  right: 0;
 }
 
 .right-space {
-    margin-right: 40px;
+  margin-right: 40px;
 }
 
 .bottom-space-5 {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .name {
-    display: inline-block;
+  display: inline-block;
 }
 
 .top-line {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }

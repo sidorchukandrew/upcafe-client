@@ -1,0 +1,98 @@
+.header {
+  background-color: #49c9f2;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.header .item-name {
+  padding: 15px;
+  font-size: 1.2em;
+}
+
+
+.body {
+  padding: 10px;
+}
+
+.information {
+  padding: 10px;
+}
+
+.information .name {
+  font-weight: 500;
+  font-size: 1.3em;
+}
+
+.information .price {
+  font-size: 1.1em;
+}
+
+.scrolling-wrapper {
+  margin-left: 10px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.modifier-list-image {
+  height: 70px;
+  width: 70px;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 50%;
+  border-color: lightgrey;
+  background-size: 90%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  display: block;
+  margin: auto;
+  transition: border-color .25s ease-in-out;
+}
+
+.selected {
+  border-color: #49c9f2;
+}
+
+.modifier-list {
+  display: inline-block;
+  margin: 0px 10px;
+}
+
+.modifier-list .name {
+  text-align: center;
+  margin-top: 5px;
+  width: 100%;
+}
+
+#close-button {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.actions {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+}
+
+#add-to-order-button {
+  width: 90vw;
+  max-width: 400px;
+  padding: 5px;
+}
+
+
+#order-item-price {
+  padding-left: 5px;
+  display: inline-block;
+}
+
+#item-image {
+  max-width: 50%;
+  border-radius: 4px;
+}

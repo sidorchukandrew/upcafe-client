@@ -42,9 +42,11 @@ import { TrackOrderComponent } from "./components/cart/track-order/track-order.c
 import { SettingsComponent } from "./components/profile/settings/settings.component";
 import { OrderSummaryComponent } from "./components/cart/order-summary/order-summary.component";
 import { ReactiveFormsModule } from "@angular/forms";
-import { SelectorComponent } from './selector/selector.component';
+import { MultipleSelectorComponent } from './selector/selector.component';
 import { StatusTrackerModule } from '../status-tracker/status-tracker.module';
 import { FeedbackModule } from '../feedback/feedback.module';
+import { EditOrderItemSheet } from './components/edit-order-item-sheet/edit-order-item-sheet.component';
+import { SingleSelectionGroupComponent } from './components/single-selection-group/single-selection-group.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,7 @@ import { FeedbackModule } from '../feedback/feedback.module';
     TrackOrderComponent,
     SettingsComponent,
     OrderSummaryComponent,
-    ItemDetailsSheet, SelectorComponent
+    ItemDetailsSheet, MultipleSelectorComponent, EditOrderItemSheet, SingleSelectionGroupComponent
   ],
   imports: [
     CommonModule,
@@ -92,7 +94,7 @@ import { FeedbackModule } from '../feedback/feedback.module';
     StatusTrackerModule,
     FeedbackModule
   ],
-  entryComponents: [UserResponseDialog, ItemDetailsSheet],
+  entryComponents: [UserResponseDialog, ItemDetailsSheet, EditOrderItemSheet],
   providers: [],
 })
 export class UsersModule {}

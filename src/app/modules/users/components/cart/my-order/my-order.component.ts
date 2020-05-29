@@ -4,13 +4,13 @@ import { CustomerOrderService } from "src/app/services/customer-order.service";
 import { Router } from "@angular/router";
 import { EditItemService } from "src/app/services/edit-item.service";
 import { OrderItem } from "src/app/models/OrderItem";
-import { BehaviorSubject, Observable } from "rxjs";
-import { CartBadgeService } from "src/app/services/cart-badge.service";
 import { HoursService } from "src/app/services/hours.service";
 import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
-import { Block } from "src/app/models/Block";
-import { map, tap } from "rxjs/operators";
+import { tap } from "rxjs/operators";
 import { PickupTime } from 'src/app/models/PickupTime';
+import { MatBottomSheet } from '@angular/material';
+import { EditOrderItemSheet } from '../../edit-order-item-sheet/edit-order-item-sheet.component';
+import { CatalogService } from 'src/app/services/catalog.service';
 
 @Component({
   selector: "app-my-order",
@@ -27,7 +27,9 @@ export class MyOrderComponent implements OnInit {
     private router: Router,
     private editService: EditItemService,
     private hoursService: HoursService,
-    public timeUtils: TimeUtilitiesService
+    public timeUtils: TimeUtilitiesService,
+    private bottomSheet: MatBottomSheet,
+    private catalogService: CatalogService
   ) {}
 
   ngOnInit() {
@@ -45,24 +47,28 @@ export class MyOrderComponent implements OnInit {
 
   public removeFromOrder(orderItem: OrderItem): void {
     this.orderService.remove(orderItem);
-
-    // var newPrice: number = 0;
-    // this.currentOrder.selectedLineItems.forEach((item) => {
-    //   newPrice += item.price * item.quantity;
-    // });
-
-    // this.currentOrder.totalPrice = newPrice;
-
-    // this.badgeService.removedItemFromCart();
-
-    // if (this.currentOrder.selectedLineItems.length == 0) {
-    //   this.currentOrder = null;
-    //   this.orderService.emptyCart();
-    // }
   }
 
   timeSelected(time: string) {
     this.selectedTime = time;
     this.currentOrder.pickupTime = time;
+  }
+
+  public editItem(orderItem: OrderItem) {
+
+    this.catalogService.getVariation(orderItem.variationId).subscribe(menuItem => {
+
+      var panelClass: string;
+
+      menuItem.modifierLists.length > 0 ? panelClass = "panel-with-modifiers" : panelClass = "panel-without-modifiers";
+
+      this.bottomSheet.open(EditOrderItemSheet, {
+        data: {
+          orderItem: orderItem,
+          menuItem: menuItem
+        },
+        panelClass: panelClass
+      });
+    });
   }
 }

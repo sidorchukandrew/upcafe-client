@@ -4,6 +4,7 @@ import { noop } from 'rxjs';
 import { ModifierList } from 'src/app/models/ModifierList';
 import { Modifier } from 'src/app/models/Modifier';
 import { OrderModifier } from 'src/app/models/OrderModifier';
+import { SelectionEvent } from '../../../selector/selector.component';
 
 @Component({
   selector: "app-mod-list-details",
@@ -12,37 +13,15 @@ import { OrderModifier } from 'src/app/models/OrderModifier';
 })
 export class ModListDetailsComponent implements OnInit {
   @Input("modList") modifierList: ModifierList;
+  @Input("selectedModifiers") orderModifiers: Array<OrderModifier>;
   @Output() priceAdjusted = new EventEmitter<number>();
 
   selectedModifiers: Array<OrderModifier>;
-  multipleSelectionEnabled: boolean;
-  selectedIndex;
-  selectedId;
-
 
   constructor() {}
 
   ngOnInit() {
     this.selectedModifiers = new Array<OrderModifier>();
-  }
-
-  public changed(checked: boolean, modifier: Modifier): void {
-    if (checked) {
-      var orderModifier: OrderModifier = {
-        id: modifier.id,
-        name: modifier.name,
-        price: modifier.price,
-      };
-
-      this.selectedModifiers.push(orderModifier);
-
-      console.log(this.selectedModifiers);
-
-      modifier.price > 0 ? this.priceAdjusted.emit(modifier.price) : noop;
-    } else {
-      this.remove(modifier);
-      modifier.price > 0 ? this.priceAdjusted.emit(-modifier.price) : noop;
-    }
   }
 
   public remove(modifier: Modifier): void {
@@ -52,31 +31,46 @@ export class ModListDetailsComponent implements OnInit {
       this.selectedModifiers.splice(index, 1);
   }
 
-  public selected(modifier: Modifier): boolean {
+  public alreadySelected(modifier: Modifier): boolean {
     const index = this.selectedModifiers.findIndex(orderModifier => orderModifier.id == modifier.id);
     return index != -1;
-  }
-
-  public changedSingleSelection(modifier: Modifier, modifiers: Modifier[]) {
-    modifiers.forEach((m) => {
-      this.remove(m);
-    });
-
-    var orderModifier: OrderModifier = {
-      id: modifier.id,
-      name: modifier.name,
-      price: modifier.price,
-    };
-
-    this.selectedModifiers.push(orderModifier);
-
-    console.log(this.selectedModifiers);
   }
 
   public getSelectedModifiers(): Array<OrderModifier> {
     return this.selectedModifiers;
   }
 
+  public selectionMade(selection: SelectionEvent) {
+    if(selection.on) {
+      this.selectedModifiers.push({
+        id: selection.modifier.id,
+        name: selection.modifier.name,
+        price: selection.modifier.price
+      });
+      this.priceAdjusted.emit(selection.modifier.price);
+    }
+    else {
+      console.log("REMOVING : ", selection);
+      this.remove(selection.modifier);
+      this.priceAdjusted.emit(-selection.modifier.price);
+    }
+
+    console.log(this.selectedModifiers);
+  }
+
+  public modifierInListAlreadySelected(modifierList: ModifierList): Modifier {
+
+    var selectedModifiersInThisList: Array<Modifier> = new Array<Modifier>();
+    modifierList.modifiers.forEach(modifierInList => {
+
+      if(this.alreadySelected(modifierInList)) selectedModifiersInThisList.push(modifierInList);
+    });
+
+    if(selectedModifiersInThisList.length == 1) return selectedModifiersInThisList[0];
+
+
+    return null;
+ }
 
   display(event) {
     console.log(event);

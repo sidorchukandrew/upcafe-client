@@ -107,6 +107,12 @@ export class CustomerOrderService {
     else {
       console.log("Its not in the order");
     }
+
+
+    if (this.order.orderItems.length == 0) {
+      this.order = null;
+      this.emptyCart();
+    }
   }
 
   public checkIfOrderAlreadyPlaced(): any {

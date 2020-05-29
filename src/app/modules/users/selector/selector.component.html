@@ -1,1 +1,20 @@
-<p>selector works!</p>
+<ng-container *ngIf="disabled">
+  <div class="radio-button-ripple">
+
+    <div class="radio-button disabled">
+      <div class="inner-circle disabled-inner">
+
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!disabled">
+  <div class="radio-button-ripple" matRipple>
+    <div class="radio-button" [class.selected-button]="isSelected" (click)="selected()">
+      <div class="inner-circle" [class.inner-selected]="isSelected">
+
+      </div>
+    </div>
+  </div>
+</ng-container>

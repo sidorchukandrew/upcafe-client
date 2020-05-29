@@ -1,0 +1,47 @@
+<div class="header">
+  <button mat-icon-button (click)="close()" id="close-button">
+    <mat-icon>close</mat-icon>
+  </button>
+  <div class="item-name">
+    Customize
+  </div>
+</div>
+<div class="body">
+
+  <div class="information">
+    <div class="name">
+      {{menuItem.name}}
+    </div>
+    <div class="price">
+      {{menuItem.price | currency}}
+    </div>
+  </div>
+
+  <div class="selected-modifiers">
+
+  </div>
+
+  <div class="scrolling-wrapper" id="modifier-list-container">
+    <ng-container *ngFor="let modList of menuItem.modifierLists">
+      <div class="modifier-list">
+        <a class="modifier-list-image" (click)="selectedModifierList = modList"
+          [ngStyle]="{ 'background-image': 'url(' + modList.image.url + ')' }"
+          [class.selected]="selectedModifierList == modList">
+        </a>
+        <div class="name">{{ modList.name }}</div>
+      </div>
+    </ng-container>
+  </div>
+  <app-mod-list-details id="mod-list-details" [modList]="selectedModifierList" [selectedModifiers]="orderItem.selectedModifiers"></app-mod-list-details>
+</div>
+
+<div class="actions">
+  <button mat-raised-button color="primary" id="add-to-order-button">
+      <div style="display: inline-block">
+        Add to Order
+      </div>
+      <div id="order-item-price">
+        {{orderItemPrice | currency}}
+      </div>
+  </button>
+</div>

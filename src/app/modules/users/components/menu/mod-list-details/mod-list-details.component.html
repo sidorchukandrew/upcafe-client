@@ -1,24 +1,5 @@
 <div id="scrollable-wrapper" *ngIf="modifierList">
 
-  <!-- <div *ngIf="modifierList.selectionType == 'MULTIPLE'">
-    <div class="modifier-wrapper" *ngFor="let modifier of modifierList.modifiers">
-      <div class="top-line">
-        <div class="bold small">
-          {{ modifier.name }}
-          <span *ngIf="!modifier.inStock" class="out">(Temporarily Out)</span>
-        </div>
-        <mat-checkbox labelPosition="before" color="primary" [checked]="selected(modifier)"
-          (change)="changed($event.checked, modifier)" [disabled]="!modifier.inStock">
-        </mat-checkbox>
-      </div>
-      <div class="small bottom-space-5">
-        {{ modifier.price | currency}}
-      </div>
-
-      <mat-divider></mat-divider>
-    </div>
-  </div> -->
-
     <div *ngIf="modifierList.selectionType == 'MULTIPLE'">
       <div class="modifier-wrapper" *ngFor="let modifier of modifierList.modifiers">
 
@@ -27,14 +8,9 @@
             {{ modifier.name }}
             <span *ngIf="!modifier.inStock" class="out">(Temporarily Out)</span>
           </div>
-          <mat-radio-group>
-            <mat-radio-button color="primary" [value]=modifier (change)="display($event)" [disabled]="!modifier.inStock"></mat-radio-button>
-          </mat-radio-group>
 
-
-          <!-- <mat-checkbox labelPosition="before" color="primary" [checked]="selected(modifier)"
-            (change)="changed($event.checked, modifier)" [disabled]="!modifier.inStock">
-          </mat-checkbox> -->
+          <app-multiple-selector [modifier]="modifier" [on]="alreadySelected(modifier)" (selectionMade)="selectionMade($event)"
+          [disabled]="!modifier.inStock"></app-multiple-selector>
         </div>
         <div class="small bottom-space-5">
           {{ modifier.price | currency}}
@@ -45,23 +21,8 @@
     </div>
 
   <div *ngIf="modifierList.selectionType != 'MULTIPLE'">
-    <mat-radio-group (change)="changedSingleSelection($event.value, modifierList.modifiers)">
-      <div class="modifier-wrapper" *ngFor="let modifier of modifierList.modifiers;">
-        <div class="top-line">
-          <div class="bold small">
-            {{ modifier.name }}
-            <span *ngIf="!modifier.inStock" class="out">(Temporarily Out)</span>
-          </div>
+    <app-single-selection-group [modifierList]="modifierList" (selectionMade)="selectionMade($event)" [on]="modifierInListAlreadySelected(modifierList)">
 
-          <mat-radio-button [value]="modifier" color="primary" [checked]="selected(modifier)"
-          [disabled]="!modifier.inStock"></mat-radio-button>
-        </div>
-        <div class="small bottom-space-5">
-          {{ modifier.price | currency}}
-        </div>
-
-        <mat-divider></mat-divider>
-      </div>
-    </mat-radio-group>
+    </app-single-selection-group>
 
   </div>
