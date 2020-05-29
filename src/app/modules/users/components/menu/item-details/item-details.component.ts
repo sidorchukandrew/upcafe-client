@@ -94,37 +94,37 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     var orderItem = this.orderService.newOrderItem(this.item, selectedModifiers, this.totalItemPrice);
     this.orderService.addToOrder(orderItem);
 
-    this.userResponseDialog.open(UserResponseDialog, {
-      hasBackdrop: true,
-    });
+    // this.userResponseDialog.open(UserResponseDialog, {
+    //   hasBackdrop: true,
+    // });
   }
 }
 
-@Component({
-  selector: "user-response-dialog",
-  templateUrl: "user-response-dialog.html",
-  styleUrls: ["user-response-dialog.css"],
-})
-export class UserResponseDialog implements OnInit {
-  constructor(
-    public dialogRef: MatDialogRef<UserResponseDialog>,
-    private router: Router
-  ) {}
+// @Component({
+//   selector: "user-response-dialog",
+//   templateUrl: "user-response-dialog.html",
+//   styleUrls: ["user-response-dialog.css"],
+// })
+// export class UserResponseDialog implements OnInit {
+//   constructor(
+//     public dialogRef: MatDialogRef<UserResponseDialog>,
+//     private router: Router
+//   ) {}
 
-  ngOnInit() {
-    window.navigator.vibrate(200);
-    setTimeout(() => this.dialogRef.close(), 1000);
-  }
+//   ngOnInit() {
+//     window.navigator.vibrate(200);
+//     setTimeout(() => this.dialogRef.close(), 1000);
+//   }
 
-  close(): void {
-    this.dialogRef.close();
-  }
+//   close(): void {
+//     this.dialogRef.close();
+//   }
 
-  viewOrder(): void {
-    this.router.navigate(["user/cart"]);
-    this.close();
-  }
-}
+//   viewOrder(): void {
+//     this.router.navigate(["user/cart"]);
+//     this.close();
+//   }
+// }
 
 
   // async counter(start: number, end: number, durationMs: number) {

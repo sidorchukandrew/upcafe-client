@@ -5,10 +5,9 @@ import { Catalog } from "src/app/models/Catalog";
 import { SelectedItemStore } from "src/app/stores/selected-item.store";
 import { LoadingService } from "src/app/services/loading.service";
 import { tap, concat, map } from "rxjs/operators";
-import { Subscription, Observable, BehaviorSubject } from "rxjs";
+import { Subscription } from "rxjs";
 import { MenuItem } from 'src/app/models/MenuItem';
-import { MatBottomSheet } from '@angular/material';
-import { UserResponseDialog } from '../item-details/item-details.component';
+import { MatBottomSheet, MatDialog } from '@angular/material';
 
 @Component({
   selector: "app-eats",
@@ -103,6 +102,7 @@ import { ModifierList } from 'src/app/models/ModifierList';
 import { CustomerOrderService } from 'src/app/services/customer-order.service';
 import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
 import { OrderModifier } from 'src/app/models/OrderModifier';
+import { UserResponseDialog } from './user-response-dialog.component';
 
 @Component({
   selector: 'item-details-sheet',
@@ -121,7 +121,8 @@ export class ItemDetailsSheet {
 
   @ViewChild("modListDetails", {static: false}) modListDetails: ModListDetailsComponent;
 
-  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private orderService: CustomerOrderService) {
+  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private orderService: CustomerOrderService,
+              private successDialog: MatDialog) {
     this.item = data['item'];
 
     this.orderItemPrice = this.item.price;
@@ -137,6 +138,8 @@ export class ItemDetailsSheet {
     var orderItem = this.orderService.newOrderItem(this.item, null, this.orderItemPrice);
     orderItem.selectedModifiers = this.modListDetails.getSelectedModifiers();
     this.orderService.addToOrder(orderItem);
+    this.close();
+    this.successDialog.open(UserResponseDialog);
   }
 
   public addToOrderItemPrice(modifierCost: number) {

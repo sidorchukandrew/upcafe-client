@@ -29,7 +29,6 @@ import { ProfileComponent } from "./components/profile/profile.component";
 import { EatsComponent, ItemDetailsSheet } from "./components/menu/eats/eats.component";
 import {
   ItemDetailsComponent,
-  UserResponseDialog,
 } from "./components/menu/item-details/item-details.component";
 import { ModListDetailsComponent } from "./components/menu/mod-list-details/mod-list-details.component";
 import { DrinksComponent } from "./components/menu/drinks/drinks.component";
@@ -48,6 +47,8 @@ import { StatusTrackerModule } from '../status-tracker/status-tracker.module';
 import { FeedbackModule } from '../feedback/feedback.module';
 import { EditOrderItemSheet } from './components/edit-order-item-sheet/edit-order-item-sheet.component';
 import { SingleSelectionGroupComponent } from './components/single-selection-group/single-selection-group.component';
+import { UserResponseDialog } from './components/menu/eats/user-response-dialog.component';
+import { SuccessfulUpdateDialog } from './components/successful-update-dialog/successful-update-dialog.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,7 @@ import { SingleSelectionGroupComponent } from './components/single-selection-gro
     TrackOrderComponent,
     SettingsComponent,
     OrderSummaryComponent,
-    ItemDetailsSheet, MultipleSelectorComponent, EditOrderItemSheet, SingleSelectionGroupComponent
+    ItemDetailsSheet, MultipleSelectorComponent, EditOrderItemSheet, SingleSelectionGroupComponent, SuccessfulUpdateDialog
   ],
   imports: [
     CommonModule,
@@ -96,7 +97,7 @@ import { SingleSelectionGroupComponent } from './components/single-selection-gro
     StatusTrackerModule,
     FeedbackModule
   ],
-  entryComponents: [UserResponseDialog, ItemDetailsSheet, EditOrderItemSheet],
+  entryComponents: [UserResponseDialog, ItemDetailsSheet, EditOrderItemSheet, SuccessfulUpdateDialog],
   providers: [],
 })
 export class UsersModule {}

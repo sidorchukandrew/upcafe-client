@@ -1,10 +1,11 @@
 import { Component, Inject, ViewChild } from '@angular/core';
-import { MatBottomSheet, MAT_BOTTOM_SHEET_DATA } from '@angular/material';
+import { MatBottomSheet, MAT_BOTTOM_SHEET_DATA, MatDialog } from '@angular/material';
 import { MenuItem } from 'src/app/models/MenuItem';
 import { OrderItem } from 'src/app/models/OrderItem';
 import { ModifierList } from 'src/app/models/ModifierList';
 import { ModListDetailsComponent } from '../menu/mod-list-details/mod-list-details.component';
 import { OrderModifier } from 'src/app/models/OrderModifier';
+import { SuccessfulUpdateDialog } from '../successful-update-dialog/successful-update-dialog.component';
 
 @Component({
   selector: 'app-edit-order-item-sheet',
@@ -22,7 +23,8 @@ export class EditOrderItemSheet {
 
   @ViewChild("modListDetails", {static: false}) modListDetails: ModListDetailsComponent;
 
-  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private bottomSheet: MatBottomSheet) {
+  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private bottomSheet: MatBottomSheet,
+              private successfulUpdateDialog: MatDialog) {
     this.orderItem = data['orderItem'];
     this.menuItem = data['menuItem'];
     this.orderItemPrice = this.orderItem.price;
@@ -40,7 +42,7 @@ export class EditOrderItemSheet {
 
   public updateOrder(): void {
     this.orderItem.selectedModifiers = this.modListDetails.getSelectedModifiers();
-    console.log("updated")
+    this.successfulUpdateDialog.open(SuccessfulUpdateDialog);
     this.close();
   }
 
