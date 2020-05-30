@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CustomerOrderService } from 'src/app/services/customer-order.service';
+import { OrderPlacingService } from 'src/app/services/order-placing.service';
 import { Subscription, concat } from 'rxjs';
 import { Order } from 'src/app/models/Order';
 import { tap, concatMap } from 'rxjs/operators';
@@ -22,7 +22,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   processingPayment: boolean;
   success: boolean;
 
-  constructor(private orderService: CustomerOrderService, private badgeService: CartBadgeService) {
+  constructor(private orderService: OrderPlacingService, private badgeService: CartBadgeService) {
     this.processingPayment = false;
     this.success = false;
   }

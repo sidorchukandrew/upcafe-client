@@ -13,7 +13,7 @@ import { OrderModifier } from '../models/OrderModifier';
 @Injectable({
   providedIn: "root",
 })
-export class CustomerOrderService {
+export class OrderPlacingService {
   public order: Order;
   private customer: Customer;
 

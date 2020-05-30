@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CustomerOrderService } from "src/app/services/customer-order.service";
+import { OrderPlacingService } from "src/app/services/order-placing.service";
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ["./user.component.css"],
 })
 export class UserComponent implements OnInit {
-  constructor(private ordersService: CustomerOrderService, private http: HttpClient) {}
+  constructor(private ordersService: OrderPlacingService, private http: HttpClient) {}
 
   ngOnInit() {
     this.ordersService.checkIfOrderAlreadyPlaced().subscribe();

@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CustomerOrderService } from "src/app/services/customer-order.service";
-import { Observable } from "rxjs";
+import { OrderPlacingService } from "src/app/services/order-placing.service";
 import { CartBadgeService } from "src/app/services/cart-badge.service";
 
 @Component({
@@ -12,7 +11,7 @@ export class CartComponent implements OnInit {
   state: string;
 
   constructor(
-    private orderService: CustomerOrderService,
+    private orderService: OrderPlacingService,
     private badgeService: CartBadgeService
   ) {}
 

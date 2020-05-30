@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Order } from "src/app/models/Order";
-import { CustomerOrderService } from "src/app/services/customer-order.service";
+import { OrderPlacingService } from "src/app/services/order-placing.service";
 import { Router } from "@angular/router";
-import { EditItemService } from "src/app/services/edit-item.service";
 import { OrderItem } from "src/app/models/OrderItem";
 import { HoursService } from "src/app/services/hours.service";
 import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
@@ -23,9 +22,8 @@ export class MyOrderComponent implements OnInit {
   selectedTime: string;
 
   constructor(
-    private orderService: CustomerOrderService,
+    private orderService: OrderPlacingService,
     private router: Router,
-    private editService: EditItemService,
     private hoursService: HoursService,
     public timeUtils: TimeUtilitiesService,
     private bottomSheet: MatBottomSheet,

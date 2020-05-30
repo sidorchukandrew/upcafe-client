@@ -5,7 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { HoursService } from "src/app/services/hours.service";
 import { LoadingService } from "src/app/services/loading.service";
 import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
-import { map } from 'rxjs/operators';
+import { map, filter, tap } from 'rxjs/operators';
 
 export class HoursGroup {
   section: string;
@@ -19,7 +19,6 @@ export class HoursGroup {
 })
 export class HoursComponent implements OnInit {
   cafeHours: CafeHours;
-  standardHours: CafeHours;
   startDate: Date;
   endDate: Date;
   today: Date;
@@ -38,18 +37,8 @@ export class HoursComponent implements OnInit {
   ngOnInit() {
     this.dayNames = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
     this.monthNames = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "June",
-      "July",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
+      "Jan", "Feb", "Mar", "Apr", "May", "June", "July",
+      "Aug", "Sep", "Oct", "Nov", "Dec",
     ];
     this.today = new Date();
     this.startDate = this.utils.getMonday(this.today);
@@ -61,16 +50,6 @@ export class HoursComponent implements OnInit {
       thursdayBlocks: [],
       fridayBlocks: [],
       saturdayBlocks: [],
-      sundayBlocks: [],
-    };
-
-    this.standardHours = {
-      mondayBlocks: [],
-      tuesdayBlocks: [],
-      wednesdayBlocks: [],
-      thursdayBlocks: [],
-      fridayBlocks: [new Block("9:00", "10:00", "Friday", "0")],
-      saturdayBlocks: [new Block("9:00", "10:00", "Saturday", "0")],
       sundayBlocks: [],
     };
 
@@ -90,6 +69,8 @@ export class HoursComponent implements OnInit {
     this.timeService
       .getBlocks(this.startDate.toDateString())
       .pipe(
+        tap(() => this.clearTimes()),
+        filter(response => response != null),
         map(response => response["blocks"])
       )
       .subscribe(blocks => this.updateView(blocks));
@@ -103,14 +84,14 @@ export class HoursComponent implements OnInit {
     this.timeService
       .getBlocks(this.startDate.toDateString())
       .pipe(
+        tap(() => this.clearTimes()),
+        filter(response => response != null),
         map(response => response["blocks"])
       )
       .subscribe(blocks => this.updateView(blocks));
   }
 
   updateView(blocks: Block[]): void {
-    this.clearTimes();
-
     if(blocks) {
 
       blocks.forEach((block) => {
@@ -141,59 +122,18 @@ export class HoursComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result == null) return;
 
-      this.timeService
-        .postBlock(result, this.startDate.toDateString())
-        .subscribe((result) => console.log(result));
+      this.timeService.postBlock(result, this.startDate.toDateString())
+        .subscribe(
+          (result) => {
+            console.log(result);
+            blocks.push(result);
+        },
+        error => console.error(error));
 
-      blocks.push(result);
+
     });
   }
 
-  setStandardTimes(): void {
-    this.clearTimes();
-
-    this.standardHours.mondayBlocks.forEach((block) => {
-      this.cafeHours.mondayBlocks.push(
-        new Block(block.open, block.close, block.day, block.id)
-      );
-    });
-
-    this.standardHours.tuesdayBlocks.forEach((block) => {
-      this.cafeHours.tuesdayBlocks.push(
-        new Block(block.open, block.close, block.day, block.id)
-      );
-    });
-
-    this.standardHours.wednesdayBlocks.forEach((block) => {
-      this.cafeHours.wednesdayBlocks.push(
-        new Block(block.open, block.close, block.day, block.id)
-      );
-    });
-
-    this.standardHours.thursdayBlocks.forEach((block) => {
-      this.cafeHours.thursdayBlocks.push(
-        new Block(block.open, block.close, block.day, block.id)
-      );
-    });
-
-    this.standardHours.fridayBlocks.forEach((block) => {
-      this.cafeHours.fridayBlocks.push(
-        new Block(block.open, block.close, block.day, block.id)
-      );
-    });
-
-    this.standardHours.saturdayBlocks.forEach((block) => {
-      this.cafeHours.saturdayBlocks.push(
-        new Block(block.open, block.close, block.day, block.id)
-      );
-    });
-
-    this.standardHours.sundayBlocks.forEach((block) => {
-      this.cafeHours.sundayBlocks.push(
-        new Block(block.open, block.close, block.day, block.id)
-      );
-    });
-  }
 
   editBlock(block: Block): void {
     const dialogRef = this.dialog.open(SelectTimeComponent, {

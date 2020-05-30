@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, ViewChild, OnDestroy } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
+import { Router } from "@angular/router";
 import { ModListDetailsComponent } from "../mod-list-details/mod-list-details.component";
-import { CustomerOrderService } from "src/app/services/customer-order.service";
-import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { OrderPlacingService } from "src/app/services/order-placing.service";
+import { MatDialog } from "@angular/material/dialog";
 import { SelectedItemStore } from "src/app/stores/selected-item.store";
 import { Subscription, noop, Observable } from "rxjs";
 import { tap, map } from "rxjs/operators";
@@ -31,7 +31,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private itemStore: SelectedItemStore,
-    private orderService: CustomerOrderService,
+    private orderService: OrderPlacingService,
     public userResponseDialog: MatDialog,
     private router: Router,
     private hoursService: HoursService

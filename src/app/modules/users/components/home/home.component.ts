@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Order } from 'src/app/models/Order';
-import { CustomerOrderService } from 'src/app/services/customer-order.service';
 
 @Component({
   selector: "app-home",
@@ -14,7 +12,7 @@ export class HomeComponent implements OnInit {
   todayNumber: number;
   userSelectedDate: number;
 
-  constructor(private orderService: CustomerOrderService) {
+  constructor() {
   }
 
   ngOnInit() {

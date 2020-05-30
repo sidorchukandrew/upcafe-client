@@ -99,7 +99,7 @@ export class EatsComponent implements OnInit, OnDestroy {
 import {Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { ModifierList } from 'src/app/models/ModifierList';
-import { CustomerOrderService } from 'src/app/services/customer-order.service';
+import { OrderPlacingService } from 'src/app/services/order-placing.service';
 import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
 import { OrderModifier } from 'src/app/models/OrderModifier';
 import { UserResponseDialog } from './user-response-dialog.component';
@@ -121,7 +121,7 @@ export class ItemDetailsSheet {
 
   @ViewChild("modListDetails", {static: false}) modListDetails: ModListDetailsComponent;
 
-  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private orderService: CustomerOrderService,
+  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private orderService: OrderPlacingService,
               private successDialog: MatDialog) {
     this.item = data['item'];
 

@@ -34,7 +34,6 @@ import { ModListDetailsComponent } from "./components/menu/mod-list-details/mod-
 import { DrinksComponent } from "./components/menu/drinks/drinks.component";
 import { SnacksComponent } from "./components/menu/snacks/snacks.component";
 import { SweetsComponent } from "./components/menu/sweets/sweets.component";
-import { EditItemComponent } from "./components/cart/edit-item/edit-item.component";
 import { PaymentComponent } from "./components/cart/payment/payment.component";
 import { BeginOrderComponent } from "./components/cart/begin-order/begin-order.component";
 import { MyOrderComponent } from "./components/cart/my-order/my-order.component";
@@ -66,7 +65,6 @@ import { SuccessfulUpdateDialog } from './components/successful-update-dialog/su
     DrinksComponent,
     SnacksComponent,
     SweetsComponent,
-    EditItemComponent,
     PaymentComponent,
     BeginOrderComponent,
     MyOrderComponent,
