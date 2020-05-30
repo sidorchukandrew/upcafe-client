@@ -50,7 +50,7 @@ const routes: Routes = [
           { path: "orders/:id", component: OrderDetailsComponent },
           { path: "cafe/hours", component: HoursComponent },
           { path: "cafe/pickup", component: PickupTimesComponent },
-          { path: "cafe/app", component: AppSettingsComponent },
+          { path: "account/app", component: AppSettingsComponent },
           { path: "cafe/inventory", component: InventoryComponent },
           {
             path: "feedback",

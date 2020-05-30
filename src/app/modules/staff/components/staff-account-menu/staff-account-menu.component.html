@@ -1,6 +1,6 @@
 <mat-divider class="divider-color"></mat-divider>
 <table class="actions">
-  <tr class="action title-color" routerLink="settings">
+  <tr class="action title-color" routerLink="app">
     <td class="icon">
       <mat-icon class="title-color">settings</mat-icon>
     </td>
@@ -24,7 +24,7 @@
     </td>
     <mat-divider class="divider-color"></mat-divider>
   </tr>
-  <tr class="action title-color" routerLink="feedback/bugs">
+  <tr class="action title-color" routerLink="../feedback/bugs">
     <ng-container matRipple>
       <td class="icon">
         <mat-icon class="title-color">mail_outline</mat-icon>
@@ -38,7 +38,7 @@
       <mat-divider class="divider-color"></mat-divider>
     </ng-container>
   </tr>
-  <tr class="action title-color" *ngIf="isStaff" routerLink="../../roles">
+  <tr class="action title-color" routerLink="../../roles">
     <ng-container matRipple>
       <td class="icon">
         <mat-icon class="title-color">people</mat-icon>
