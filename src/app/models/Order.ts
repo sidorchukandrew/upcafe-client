@@ -1,5 +1,5 @@
 import { OrderItem } from './OrderItem';
-import { Customer } from './Customer';
+import { User } from './User';
 
 export class Order {
     orderItems: Array<OrderItem>;
@@ -9,6 +9,6 @@ export class Order {
     pickupDate: string;
     placedAt: string;
     completedAt: string;
-    customer: Customer;
+    customer: User;
     status: string;
 }

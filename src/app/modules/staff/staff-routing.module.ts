@@ -16,6 +16,7 @@ import { BugReportComponent } from "src/app/modules/feedback/app-feedback/bug-re
 import { FeatureRequestComponent } from "src/app/modules/feedback/app-feedback/feature-request/feature-request.component";
 import { StaffGuard } from 'src/app/guards/staff.guard';
 import { InventoryComponent } from './components/inventory/inventory.component';
+import { StaffAccountMenuComponent } from './components/staff-account-menu/staff-account-menu.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,9 @@ const routes: Routes = [
                 ],
               },
               { path: "cafe", component: SettingsComponent },
+              {
+                path: "account", component: StaffAccountMenuComponent
+              },
             ],
           },
           { path: "orders/:id", component: OrderDetailsComponent },

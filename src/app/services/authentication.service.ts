@@ -122,6 +122,7 @@ export class AuthenticationService {
     this.clearUser();
     this.clearAccessToken();
     this.clearRoles();
+    this.authenticatedUser.next(null);
   }
 
   private clearRoles(): void {

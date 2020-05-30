@@ -26,7 +26,7 @@ export class ActiveOrdersComponent implements OnInit {
     this.orders$ = this.ordersStore.selectActiveOrders();
   }
 
-  ready(order: Order, event) {
+  ready(order: Order) {
     this.ordersStore.sendUpdate(order, "READY").subscribe();
   }
 

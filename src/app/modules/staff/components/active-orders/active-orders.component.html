@@ -9,7 +9,7 @@
         {{ utils.convertTime(order.pickupTime) }}
       </div>
       <div class="customer-name title-color">
-        {{ order.customer.firstName }} {{ order.customer.lastName }}
+        {{ order.customer.name }}
       </div>
       <span class="more-actions">
         <button mat-icon-button [matMenuTriggerFor]="moreActions">

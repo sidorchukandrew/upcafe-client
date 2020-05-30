@@ -9,34 +9,30 @@ import { tap } from "rxjs/operators";
 import { CartBadgeService } from "./cart-badge.service";
 import { MenuItem } from '../models/MenuItem';
 import { OrderModifier } from '../models/OrderModifier';
+import { User } from '../models/User';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: "root",
 })
 export class OrderPlacingService {
   public order: Order;
-  private customer: Customer;
 
   private stateSubject: BehaviorSubject<string> = new BehaviorSubject<string>("NEW");
   private statusSubject: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
 
   public state$: Observable<string> = this.stateSubject.asObservable();
   public status$: Observable<string> = this.statusSubject.asObservable();
+  private customer$: Observable<User> = this.authenticationService.authenticatedUser$;
+  private customer: User;
 
   constructor(
     private http: HttpClient,
-    private badgeService: CartBadgeService
+    private badgeService: CartBadgeService,
+    private authenticationService: AuthenticationService
   ) {
-    this.customer = {
-      email: "sidorchukandrew@gmail.com",
-      firstName: "Andrew",
-      lastName: "Sidorchuk",
-      id: 5,
-      photoUrl:
-        "https://lh3.googleusercontent.com/a-/AOh14GhIz8ImV-cH4k5bKa2DDVJD-QPW238HRL6xL9ey=s96-c",
-      dateAccountCreated: "",
-    };
-  }
+    this.customer$.subscribe(user => this.customer = user);
+   }
 
   public newOrderItem(item: MenuItem, selectedModifiers: OrderModifier[], cumulativePrice: number): OrderItem {
 
@@ -71,7 +67,6 @@ export class OrderPlacingService {
   }
 
   public postOrder(): any {
-    if (this.order.pickupTime == null) this.order.pickupTime = "12:00";
 
     this.order.pickupDate = new Date().toDateString();
 
