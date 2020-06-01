@@ -8,44 +8,48 @@
   <mat-divider class="divider-color"></mat-divider>
 </div>
 
-  <div class="center-wrapper">
-    <div class="search-bar-container">
+<div class="center-wrapper">
+  <div class="search-bar-container">
 
-      <div id="search-bar-image" class="subtitle-color" [ngClass]="{'dark-theme': darkThemeOn,
+    <div id="search-bar-image" class="subtitle-color" [ngClass]="{'dark-theme': darkThemeOn,
       'light-theme': !darkThemeOn}">
       <mat-icon>search</mat-icon>
-      </div>
-      <input type="text" placeholder="Search" class="subtitle-color" id="search-bar" [ngClass]="{'dark-theme': darkThemeOn,
+    </div>
+    <input type="text" placeholder="Search" class="subtitle-color" id="search-bar" [ngClass]="{'dark-theme': darkThemeOn,
           'light-theme': !darkThemeOn}" [formControl]="searchBar">
-          <div id="delete-search"  [ngClass]="{'dark-theme': darkThemeOn,
+    <div id="delete-search" [ngClass]="{'dark-theme': darkThemeOn,
           'light-theme': !darkThemeOn}">
-          <mat-icon matRipple class="subtitle-color" *ngIf="searchBar.value" (click)="clearSearch()">clear</mat-icon>
-        </div>
-      </div>
-    </div>
-
-  <div class="catalog-segmented-control title-color">
-    <div id="items-control" class="control" [ngClass]="{'selected': selectedCatalogItemSearch == 'items'}" (click)="changeSelectedCatalogItemSearch('items')">
-      items
-    </div>
-    <div id="modifiers-control" class="control" [ngClass]="{'selected': selectedCatalogItemSearch == 'modifiers'}" (click)="changeSelectedCatalogItemSearch('modifiers')">
-      modifiers
+      <mat-icon matRipple class="subtitle-color" *ngIf="searchBar.value" (click)="clearSearch()">clear</mat-icon>
     </div>
   </div>
+</div>
 
-  <app-modifier-list-inventory *ngIf="selectedCatalogItemSearch == 'modifiers' && filteredCatalog"
-  [modifierListCatalog]="filteredCatalog.modifierLists" (stockChanged)="addToChangedModifierStock($event)" ></app-modifier-list-inventory>
+<div class="catalog-segmented-control title-color">
+  <div id="items-control" class="control" [ngClass]="{'selected': selectedCatalogItemSearch == 'items'}"
+    (click)="changeSelectedCatalogItemSearch('items')">
+    items
+  </div>
+  <div id="modifiers-control" class="control" [ngClass]="{'selected': selectedCatalogItemSearch == 'modifiers'}"
+    (click)="changeSelectedCatalogItemSearch('modifiers')">
+    modifiers
+  </div>
+</div>
 
-  <app-item-inventory  *ngIf="selectedCatalogItemSearch == 'items' && filteredCatalog"
+<app-modifier-list-inventory *ngIf="selectedCatalogItemSearch == 'modifiers' && filteredCatalog"
+  [modifierListCatalog]="filteredCatalog.modifierLists" (stockChanged)="addToChangedModifierStock($event)">
+</app-modifier-list-inventory>
+
+<app-item-inventory *ngIf="selectedCatalogItemSearch == 'items' && filteredCatalog"
   [itemCatalog]="filteredCatalog.itemsList" (stockChanged)="addToChangedItemStock($event)"></app-item-inventory>
 
-  <div id="fixed-space"></div>
+<div id="fixed-space"></div>
 
 <div class="bottom-actions">
-  <button mat-raised-button id="save-changes" *ngIf="changedStock.items.size > 0 || changedStock.modifiers.size > 0" (click)="save()">
-   <span *ngIf="!saving">
-     Save Stock
-   </span>
-   <mat-spinner *ngIf="saving" diameter="30" style="margin: auto;" color="accent"></mat-spinner>
+  <button mat-raised-button id="save-changes" *ngIf="changedStock.items.size > 0 || changedStock.modifiers.size > 0"
+    (click)="save()">
+    <span *ngIf="!saving">
+      Save Stock
+    </span>
+    <mat-spinner *ngIf="saving" diameter="30" style="margin: auto;" color="accent"></mat-spinner>
   </button>
 </div>

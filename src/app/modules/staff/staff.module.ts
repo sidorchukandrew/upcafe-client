@@ -41,6 +41,7 @@ import { ModifierListInventoryComponent } from './components/modifier-list-inven
 import { StatusTrackerModule } from '../status-tracker/status-tracker.module';
 import { FeedbackModule } from '../feedback/feedback.module';
 import { StaffAccountMenuComponent } from './components/staff-account-menu/staff-account-menu.component';
+import { CatalogViewComponent } from './components/catalog-view/catalog-view.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { StaffAccountMenuComponent } from './components/staff-account-menu/staff
     ItemInventoryComponent,
     ModifierListInventoryComponent,
     StaffAccountMenuComponent,
+    CatalogViewComponent,
   ],
   imports: [
     CommonModule,

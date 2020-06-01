@@ -17,6 +17,7 @@ import { FeatureRequestComponent } from "src/app/modules/feedback/app-feedback/f
 import { StaffGuard } from 'src/app/guards/staff.guard';
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { StaffAccountMenuComponent } from './components/staff-account-menu/staff-account-menu.component';
+import { CatalogViewComponent } from './components/catalog-view/catalog-view.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,7 @@ const routes: Routes = [
               { path: "features", component: FeatureRequestComponent },
             ],
           },
+          { path: "cafe/catalog", component: CatalogViewComponent }
         ]
       }
     ]
