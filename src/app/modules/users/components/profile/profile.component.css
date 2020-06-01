@@ -13,13 +13,13 @@
 
 
 .user-summary {
-  text-align: left;
+  text-align: center;
 }
 
 .user-summary img {
   border-radius: 50%;
   padding: 10px;
-  width: 80px;
+  width: 120px;
 }
 
 .user-summary .name {

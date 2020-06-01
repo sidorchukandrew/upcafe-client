@@ -1,3 +1,17 @@
+<div class="header">
+  <div class="user-summary" *ngIf="user$ | async as user">
+
+    <img [src]="user.imageUrl" class="avatar">
+
+    <div class="name title-color">
+      {{user.name}}
+    </div>
+    <div class="email subtitle-color">
+      {{user.email}}
+    </div>
+  </div>
+</div>
+
 <mat-divider class="divider-color"></mat-divider>
 <table class="actions">
   <tr class="action title-color" routerLink="app">

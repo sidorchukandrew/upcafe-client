@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-staff-account-menu',
@@ -9,10 +11,11 @@ import { Router } from '@angular/router';
 })
 export class StaffAccountMenuComponent implements OnInit {
 
-
+  protected user$: Observable<User>;
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
+    this.user$ = this.authenticationService.authenticatedUser$;
   }
 
   signOut() {

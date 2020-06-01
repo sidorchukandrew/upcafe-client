@@ -1,3 +1,25 @@
+.background-top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom-left-radius: 0px;
+  height: 300px;
+  width: 300px;
+  border-bottom-right-radius: 112%;
+  z-index: -1;
+}
+
+.background-bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-bottom-left-radius: 0px;
+  height: 200px;
+  width: 250px;
+  border-top-left-radius: 112%;
+  z-index: -1;
+}
+
 #title {
   padding-top: 35px;
 }

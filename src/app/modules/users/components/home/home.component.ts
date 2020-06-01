@@ -1,66 +1,34 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { User } from 'src/app/models/User';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { getIndexOfSpace } from 'src/app/utils/StringUtils';
 
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"],
 })
-export class HomeComponent implements OnInit {
-  verse: string;
-  imgUrl: string;
-  passage: string;
-  todayNumber: number;
-  userSelectedDate: number;
+export class HomeComponent implements OnInit, OnDestroy {
 
-  constructor() {
+  private subscriptions: Subscription;
+  protected user: User;
+
+  constructor(private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
-
+    this.subscriptions = new Subscription();
+    this.subscriptions.add(this.authenticationService.authenticatedUser$.subscribe(
+      user => this.user = user
+    ));
   }
 
-  daysIntoYear(date): number {
-    return (
-      (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
-        Date.UTC(date.getFullYear(), 0, 0)) /
-      24 /
-      60 /
-      60 /
-      1000
-    );
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
-  incrementDay(): void {
-    this.userSelectedDate++;
-  }
-
-  decrementDay(): void {
-    this.userSelectedDate--;
-  }
-
-  fetchVerseByDate(date): void {
-    fetch(
-      "https://developers.youversionapi.com/1.0/verse_of_the_day/" +
-        date +
-        "?version_id=206",
-      {
-        headers: {
-          "X-YouVersion-Developer-Token": "lhGSP91Ig3J_1kLTC6FEm5I6HtE",
-          "Accept-Language": "en",
-          Accept: "application/json",
-        },
-      }
-    )
-      .then((result) => result.json())
-      .then((json) => {
-        this.verse = json.verse.text;
-        this.imgUrl = json.image.url;
-        this.passage = json.verse.human_reference;
-      });
-  }
-
-  resetDay() {
-    this.userSelectedDate = this.todayNumber;
-    this.fetchVerseByDate(this.userSelectedDate);
+  protected getFirstName(name: string): string {
+    return name.substring(0, getIndexOfSpace(this.user.name));
   }
 }
