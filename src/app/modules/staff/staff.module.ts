@@ -42,6 +42,7 @@ import { StatusTrackerModule } from '../status-tracker/status-tracker.module';
 import { FeedbackModule } from '../feedback/feedback.module';
 import { StaffAccountMenuComponent } from './components/staff-account-menu/staff-account-menu.component';
 import { CatalogViewComponent } from './components/catalog-view/catalog-view.component';
+import { CatalogItemDialogComponent } from './components/catalog-item-dialog/catalog-item-dialog.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { CatalogViewComponent } from './components/catalog-view/catalog-view.com
     ModifierListInventoryComponent,
     StaffAccountMenuComponent,
     CatalogViewComponent,
+    CatalogItemDialogComponent,
   ],
   imports: [
     CommonModule,

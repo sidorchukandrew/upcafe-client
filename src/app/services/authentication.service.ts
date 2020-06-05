@@ -50,13 +50,12 @@ export class AuthenticationService {
   }
 
   private loadMockData(): void {
-    localStorage.setItem("ACCESS_TOKEN", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkwMDE1MzU0LCJleHAiOjE1OTA4NzkzNTR9.70PGQFv7w9mofKMIprsOBLM6pigza_qV6Kf8TWOwzU0");
+    localStorage.setItem("ACCESS_TOKEN", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNTkxMzg0MDUyLCJleHAiOjE1OTIyNDgwNTJ9.NUSs95b5n5JeGY111Fn3R7bdxnMC6Q4_S0EX77R6rv8");
     localStorage.setItem("name", "Andrew Sidorchuk");
     localStorage.setItem("email", "sidorchukandrew@gmail.com");
-    localStorage.setItem("roles", "ROLE_CUSTOMER,ROLE_STAFF");
-    localStorage.setItem("id", "1");
-    // localStorage.setItem("SIGNED_IN_AS", "ROLE_STAFF");
-    localStorage.setItem("imageUrl", "https://lh3.googleusercontent.com/a-/AOh14GhIz8ImV-cH4k5bKa2DDVJD-QPW238HRL6xL9ey");
+    localStorage.setItem("roles", "ROLE_CUSTOMER,ROLE_STAFF,ROLE_ADMIN");
+    localStorage.setItem("id", "8");
+    localStorage.setItem("imageUrl", "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=787298571760394&height=250&width=250&ext=1593976052&hash=AeTeq72lOn1WGJjU");
 
 
     this.accessToken = localStorage.getItem("ACCESS_TOKEN");

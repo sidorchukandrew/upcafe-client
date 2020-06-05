@@ -53,6 +53,10 @@ export class SignInComponent implements OnInit, OnDestroy {
     window.location.href = environment.backendUrl + "/oauth2/authorization/google?redirect_uri=http://localhost:4200";
   }
 
+  public signInWithFacebook(): void {
+    window.location.href = environment.backendUrl + "/oauth2/authorization/facebook?redirect_uri=http://localhost:4200";
+  }
+
   private showWrongProviderDialog(error: string) {
       this.dialogRef = this.matDialog.open(WrongProviderDialog, {
         data: {error: error}
