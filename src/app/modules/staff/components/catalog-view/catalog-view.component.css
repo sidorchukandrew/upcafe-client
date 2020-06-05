@@ -72,3 +72,22 @@
 .dark-theme {
   background-color: #2b2b2b;
 }
+
+.items {
+  margin-top: 20px;
+}
+
+.items .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 10px 30px;
+}
+
+.dark-theme-border {
+  border-top: 1px solid #353535;
+}
+
+.light-theme-border {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}

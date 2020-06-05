@@ -1,1 +1,18 @@
-<p>catalog-item-dialog works!</p>
+<div class="image">
+  <img [src]="item.image.url" *ngIf="item.image">
+  <ng-container *ngIf="!item.image">
+    There is no image available yet
+  </ng-container>
+</div>
+
+<div class="name title-size">{{item.name}}</div>
+<div class="description">{{item.description}}</div>
+<div class="extra-information">
+  <div class="price">
+    {{item.price | currency}}
+  </div>
+  <div class="stocked">
+    <ng-container *ngIf="item.inStock">In Stock</ng-container>
+    <ng-container *ngIf="!item.inStock">Out of Stock</ng-container>
+  </div>
+</div>

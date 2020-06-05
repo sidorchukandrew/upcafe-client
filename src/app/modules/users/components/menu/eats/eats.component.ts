@@ -87,7 +87,7 @@ export class EatsComponent implements OnInit, OnDestroy {
 
     item.modifierLists.length > 0 ? panelClass = "panel-with-modifiers" : panelClass = "panel-without-modifiers";
 
-    const bottomSheetRef = this.bottomSheet.open(ItemDetailsSheet, {
+    this.bottomSheet.open(ItemDetailsSheet, {
       data: {bottomSheet: this.bottomSheet,
               item: item
       },

@@ -23,3 +23,13 @@
     </div>
   </div>
 </div>
+
+
+<div class="items">
+  <div class="item" *ngFor="let item of catalog.itemsList" [ngClass]="{'dark-theme-border': darkThemeOn,
+          'light-theme-border': !darkThemeOn}" matRipple (click)="viewCatalogItem(item)">
+    <div class="title-color title">
+      {{item.name}}
+    </div>
+  </div>
+</div>

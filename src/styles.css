@@ -253,3 +253,14 @@ a {
   min-height: 50vh !important;
   padding: 0 !important;
 }
+
+
+.catalog-item-panel {
+  height: 80vh !important;
+  width: 80vw !important;
+
+  max-width: 600px;
+  max-height: 900px;
+
+  padding: 0 !important;
+}
