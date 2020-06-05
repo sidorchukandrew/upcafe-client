@@ -97,7 +97,7 @@ export class OrdersStore {
   }
 
   public sendUpdate(order: Order, status: string): any {
-    return this.http.post(environment.backendUrl + "/orders", order, {
+    return this.http.put(environment.backendUrl + "/orders", order, {
       params: { status: status },
     });
   }
