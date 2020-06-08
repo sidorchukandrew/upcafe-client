@@ -1,140 +1,67 @@
-.big-text {
-  font-size: 1.5em;
-}
-
 .label-font {
   font-family: 'Sen', sans-serif;
 }
 
-.padding-10 {
+.price-container {
+  text-align: center;
+}
+
+.price {
+  font-family: 'Roboto';
+}
+
+#dollar-sign {
+  display: inline-block;
+  font-size: 44px;
+}
+
+#dollars {
+  font-size: 53px;
+  display: inline-block;
+}
+
+#cents {
+  font-size: 44px;
+  display: inline-block;
+}
+
+#decimal-point {
+  display: inline-block;
+  font-size: 44px;
+}
+
+.items {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.item {
+  border-radius: 4px;
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  justify-content: space-between;
   padding: 10px;
 }
 
-#continue {
-  width: 94%;
-  height: 50px;
-  left: 50%;
-  margin-left: -47%;
+.left-side {}
+
+.right-side {
+  font-weight: 600;
 }
 
-.inline-block {
-  display: inline-block;
-}
-
-.quarter-width {
-  width: 25%;
-}
-
-.full-width {
+.bottom {
+  position: absolute;
   width: 100%;
+  bottom: 0;
+  text-align: center;
 }
 
-.right-align-text {
-  text-align: right;
-}
-
-.right-margin-20 {
-  margin-right: 20px;
-}
-
-.left-margin-20 {
-  margin-left: 20px;
-}
-
-.top-margin-15 {
-  margin-top: 15px;
-}
-
-.bottom-margin-20 {
-  margin-bottom: 20px;
-}
-
-.small-width {
-  width: 80px;
-}
-
-#tax {
-  margin-right: 20px;
-}
-
-#bottom-card {
-  position: fixed;
-  bottom: 0px;
-  margin-bottom: 53px;
-  left: 0;
-}
-
-.bold {
-  font-weight: 500;
-}
-
-.quantity-button {
-  width: 50px;
-}
-
-#quantity-selector {
-  align-content: right;
-}
-
-.italic {
-  font-style: italic;
-}
-
-.smaller-text {
-  font-size: .9em;
-}
-
-.order-item-panel {
-  /* background-color: white; */
-  margin: 5px 10px;
-  border-radius: 5px;
-  padding: 10px 15px 10px 15px;
-  box-shadow: 0 0 5px 1px rgba(0, 0, 0, .1);
-}
-
-.item-name {
-  display: inline-block;
-  font-weight: 500;
-  font-size: .85em;
-}
-
-.item-action {
-  font-size: .8em;
-}
-
-#total-item-price {
-  font-weight: 500;
-}
-
-.title {
-  font-weight: 500;
-  margin-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.available-times {
-  margin: 4px 10px 10px 10px;
-  padding-bottom: 10px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-}
-
-.time {
-  margin: 0px 4px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  display: inline-block;
-  font-size: .9em;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-}
-
-.selected {
-  background-color: #49c9f2;
-  color: white;
-}
-
-.period {
-  font-size: .75em;
+#pay {
+  position: relative;
+  bottom: 60px;
+  width: 90%;
+  max-width: 500px;
+  height: 50px;
 }

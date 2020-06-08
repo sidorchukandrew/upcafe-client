@@ -1,10 +1,10 @@
-<div
+<!-- <div
   id="header"
   class="center-text big-text label-font padding-10 white-background"
   *ngIf="state == 'STARTED'"
 >
   My Order
-</div>
+</div> -->
 
 <div [ngSwitch]="state" class="padding-20">
   <app-my-order *ngSwitchCase="'STARTED'"></app-my-order>

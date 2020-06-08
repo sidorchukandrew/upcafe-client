@@ -69,4 +69,22 @@ export class MyOrderComponent implements OnInit {
       });
     });
   }
+
+  protected getDollars(price: number): string {
+    var priceText: string = price.toString();
+    var indexOfDecimal = priceText.indexOf(".");
+
+    if(indexOfDecimal == -1) return priceText;
+
+    return priceText.substr(0, indexOfDecimal);
+  }
+
+  protected getCents(price: number): string {
+    var priceText: string = price.toString();
+    var indexOfDecimal = priceText.indexOf(".");
+
+    if(indexOfDecimal == -1) return "00";
+
+    return priceText.substr(indexOfDecimal + 1, priceText.length).padEnd(2, "0");
+  }
 }

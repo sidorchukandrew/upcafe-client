@@ -1,4 +1,4 @@
-<div class="pickup-time">
+<!-- <div class="pickup-time">
   <div class="title title-color">
     Pickup Time
     <span *ngIf="selectedTime">
@@ -23,8 +23,8 @@
       </span>
     </div>
   </div>
-</div>
-<div
+</div> -->
+<!-- <div
   *ngFor="let orderItem of currentOrder.orderItems"
   class="left-margin-20 right-margin-20 order-item-panel card-background"
 >
@@ -81,8 +81,35 @@
     </tr>
   </table>
 </div>
+-->
 
-<div
+<div class="price-container title-color">
+  <div class="price">
+    <div id="dollar-sign">$</div>
+    <div id="dollars">
+      {{getDollars(currentOrder.totalPrice)}}
+    </div>
+    <div id="decimal-point">.</div>
+    <div id="cents">
+      {{getCents(currentOrder.totalPrice)}}
+    </div>
+  </div>
+</div>
+
+<div class="items">
+
+  <div *ngFor="let item of currentOrder.orderItems" class="card-background item title-color" matRipple (click)="editItem(item)">
+    <div class="left-side">
+      {{item.name}}
+    </div>
+
+    <div class="right-side">
+      {{item.price | currency}}
+    </div>
+  </div>
+</div>
+
+<!-- <div
   id="bottom-card"
   class="full-width navbar-space-bottom white-background shadow card-background"
   *ngIf="currentOrder != null"
@@ -107,13 +134,11 @@
       </td>
     </tr>
   </table>
-  <button
-    mat-raised-button
-    id="continue"
-    class="top-margin-15 bottom-margin-20"
-    color="primary"
-    routerLink="payment"
-  >
+</div> -->
+
+<div class="bottom">
+
+  <button mat-raised-button id="pay" color="primary" routerLink="payment">
     Continue to Payment
   </button>
 </div>
