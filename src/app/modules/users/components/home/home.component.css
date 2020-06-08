@@ -47,3 +47,17 @@
   width: 65px;
   height: 65px;
 }
+
+.votd {
+  width: 95%;
+  border-radius: 4px;
+  scroll-snap-align: start;
+  margin: 0 2.5%;
+}
+
+.verses {
+  scroll-snap-type: y mandatory;
+  overflow-x: scroll;
+  white-space: nowrap;
+  overflow-y: hidden;
+}

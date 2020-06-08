@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { getIndexOfSpace } from 'src/app/utils/StringUtils';
+import { VerseService } from 'src/app/services/verse.service';
 
 @Component({
   selector: "app-home",
@@ -13,8 +14,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription;
   protected user: User;
+  protected verseImageUrl: string = "";
 
-  constructor(private authenticationService: AuthenticationService) {
+  protected verses: Array<string>;
+  constructor(private authenticationService: AuthenticationService, private verseService: VerseService) {
   }
 
   ngOnInit() {
@@ -22,6 +25,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.authenticationService.authenticatedUser$.subscribe(
       user => this.user = user
     ));
+
+    this.verseService.verses$.subscribe(verses => this.verses = verses);
   }
 
   ngOnDestroy() {

@@ -1,12 +1,18 @@
-<div class="background-top-left card-background"></div>
+<!-- <div class="background-top-left card-background"></div>
 <div class="background-bottom-right card-background"></div>
 
 <div class="header">
   <div class="greeting title-color">
     Hey, {{getFirstName(user.name)}}!
   </div>
-</div>
+</div> -->
 
+<div class="verses" >
+  <ng-container *ngFor="let verseUrl of verses">
+    <img [src]="verseUrl" class="votd shadow">
+  </ng-container>
+</div>
+<!--
 <div class="quick-actions">
   <div class="action card-background shadow" matRipple>
     <img class="icon" src="../../../../../assets/images/staff/colored/clock.png">
@@ -18,4 +24,4 @@
     <img class="icon">
     <div class="name title-color">Messages</div>
   </div>
-</div>
+</div> -->
