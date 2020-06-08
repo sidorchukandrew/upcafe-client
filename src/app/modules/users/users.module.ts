@@ -23,7 +23,6 @@ import {
   MatChipsModule
 } from "@angular/material";
 import { MenuComponent } from "./components/menu/menu.component";
-import { HomeComponent } from "./components/home/home.component";
 import { CartComponent } from "./components/cart/cart.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { EatsComponent, ItemDetailsSheet } from "./components/menu/eats/eats.component";
@@ -55,7 +54,6 @@ import { SuccessfulUpdateDialog } from './components/successful-update-dialog/su
     NavbarComponent,
     UserComponent,
     MenuComponent,
-    HomeComponent,
     CartComponent,
     ProfileComponent,
     EatsComponent,
