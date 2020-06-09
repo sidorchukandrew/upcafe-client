@@ -12,9 +12,11 @@ export class MenuService {
   private menuSubject: BehaviorSubject<Menu> = new BehaviorSubject<Menu>(null);
   public menu$: Observable<Menu> = this.menuSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.loadMenuFromApi();
+  }
 
   public loadMenuFromApi(): void {
-    this.http.get<Menu>(environment.backendUrl + "/menu").subscribe(menu => this.menuSubject.next(menu));
+    this.http.get<Menu>(environment.backendUrl + "/api/v1/menu").subscribe(menu => this.menuSubject.next(menu));
   }
 }

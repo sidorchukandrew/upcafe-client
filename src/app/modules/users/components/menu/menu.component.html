@@ -16,7 +16,7 @@
 
 <div class="scrolling-wrapper">
   <div class="category">
-    <button class="image-wrapper card-background" (click)="selectCategory('All')"
+    <button class="image-wrapper card-background" (click)="viewAllCategories()"
       [class.selected-category]="category == 'All'">
       <img src="../../../../../assets/images/menu icons/Food Menu Icons/fork.png" *ngIf="category != 'All'">
       <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/fork.png" *ngIf="category == 'All'">
@@ -61,3 +61,11 @@
     <span class="name title-color" [class.selected-text]="category == 'Sweets'">Sweets</span>
   </div>
 </div>
+
+<ng-container *ngIf="filteredMenu">
+
+  <div *ngFor="let category of filteredMenu.categories">
+    {{category.name}}
+  </div>
+
+</ng-container>
