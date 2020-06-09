@@ -62,10 +62,44 @@
   </div>
 </div>
 
+
+<div class="menu-label title-color">
+  <ng-container *ngIf="category != 'All'">{{category}}</ng-container> Menu
+</div>
 <ng-container *ngIf="filteredMenu">
 
-  <div *ngFor="let category of filteredMenu.categories">
-    {{category.name}}
+  <div *ngFor="let subcategory of filteredMenu.categories" class="subcategory">
+
+    <div class="category-title title-color">
+      {{ subcategory.name | uppercase }}
+    </div>
+    <div class="scrolling-wrapper-food">
+      <div *ngFor="let item of subcategory.items" style="display: inline;">
+        <ng-container *ngIf="item.image">
+          <a class="card full-background"  [ngStyle]="{
+              'background-image': 'url(' + item.image.url + ')'
+            }">
+            <div class="item-name">
+              {{ item.name }}
+            </div>
+            <div class="price">{{ item.price | currency }}</div>
+          </a>
+        </ng-container>
+
+        <ng-container *ngIf="!item.image">
+          <a class="card card-background default-item-background shadow" >
+            <div class="item-name">
+              {{ item.name }}
+            </div>
+            <div class="price">{{ item.price | currency }}</div>
+          </a>
+        </ng-container>
+      </div>
+      <div class="space"></div>
+    </div>
   </div>
 
 </ng-container>
+
+
+<div class="navbar-space-bottom"></div>

@@ -6,6 +6,7 @@
   display: flex;
   display: -webkit-box;
   justify-content: center;
+  margin-right: 10px;
 }
 
 .category {
@@ -105,4 +106,109 @@ java each and everything git hub computer angular   */
 ::-webkit-scrollbar {
   height: 0px;
   width: 0px;
+}
+
+.subcategory {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.item {
+  padding-left: 8px;
+  font-weight: 400;
+}
+
+.menu-label {
+  font-size: 23px;
+  font-weight: 600;
+  margin: 30px 0px 20px 30px;
+  font-family: 'Sen';
+}
+
+.scrolling-wrapper-food {
+  margin-left: 10px;
+  margin-right: 10px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 220px;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  width: 0px;
+}
+
+.card {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+  height: 200px;
+  width: 160px;
+  border-radius: 5px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.rounded {
+  border-radius: 5px;
+}
+
+.card-size {
+  max-width: 160px;
+  max-height: 200px;
+}
+
+.category-title {
+  margin-left: 10px;
+  font-family: 'Sen', sans-serif;
+  font-size: 1em;
+  font-style: bold;
+}
+
+.price {
+  position: absolute;
+  background-color: #49c9f2;
+  color: white;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 16px;
+  margin-top: 5px;
+}
+
+.item-name {
+  margin-left: 16px;
+  margin-top: 12px;
+}
+
+.space {
+  margin-top: 30px;
+}
+
+a {
+  color: #49c9f2;
+  cursor: pointer;
+}
+
+#space-for-nav {
+  width: 100%;
+  height: 100px;
+}
+
+.full-background {
+  background-size: 100%;
+  background-color: lightskyblue;
+}
+
+.default-item-background {
+  background-image: url('../../../../../assets/images/menu icons/restaurant.png');
+  background-repeat: no-repeat;
+  background-position: center;
 }
