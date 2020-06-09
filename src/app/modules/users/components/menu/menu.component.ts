@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ThemeService } from 'src/app/services/theme.service';
 import { Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { Menu } from 'src/app/models/Menu';
+import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,14 +16,23 @@ export class MenuComponent implements OnInit, OnDestroy {
   protected category: string = "All";
   private subscriptions: Subscription;
   protected searchBar: FormControl;
+  protected menu: Menu;
 
-  constructor(private themeService: ThemeService) { }
+  constructor(private themeService: ThemeService, private menuService: MenuService) { }
 
   ngOnInit() {
 
     this.searchBar = new FormControl();
     this.subscriptions = new Subscription();
     this.subscriptions.add(this.themeService.darkThemeOn$.subscribe(on => this.darkThemeOn = on));
+    this.subscriptions.add(this.menuService.menu$.subscribe(menu => {
+      if(menu == null) {
+        this.menuService.loadMenuFromApi();
+      } else {
+        this.menu = menu;
+      }
+    }));
+
   }
 
   ngOnDestroy() {

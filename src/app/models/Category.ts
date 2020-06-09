@@ -1,3 +1,6 @@
+import { MenuItem } from './MenuItem';
+
 export class Category {
-    name: String;
+    name: string;
+    items: Array<MenuItem>;
 }
