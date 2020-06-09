@@ -1,67 +1,63 @@
-<div class="background-top-left card-background"></div>
-<div class="background-bottom-right card-background"></div>
+<div class="center-wrapper">
+  <div class="search-bar-container">
 
-
-<div id="overlay">
-  <div class="label-font center-text big-text title-color" id="title">
-    Our Menu
+    <div id="search-bar-image" class="subtitle-color" [ngClass]="{'dark-theme': darkThemeOn,
+      'light-theme': !darkThemeOn}">
+      <mat-icon>search</mat-icon>
+    </div>
+    <input type="text" placeholder="Search" class="subtitle-color" id="search-bar" [ngClass]="{'dark-theme': darkThemeOn,
+          'light-theme': !darkThemeOn}" [formControl]="searchBar">
+    <div id="delete-search" [ngClass]="{'dark-theme': darkThemeOn,
+          'light-theme': !darkThemeOn}">
+      <mat-icon matRipple class="subtitle-color" *ngIf="searchBar.value" (click)="clearSearch()">clear</mat-icon>
+    </div>
   </div>
-  <div id="menu-container" class="center-text">
-    <a
-      class="menu-button center-text card-background shadow"
-      matRipple
-      matRippleColor="rgba(100, 100, 100, .1)"
-      routerLink="eats"
-    >
-      <div class="menu-content">
-        <img
-          src="../../../../../assets/images/menu icons/dinner.png"
-          class="image-width"
-        />
-        <div class="menu-button-title label-font title-color">Eats</div>
-      </div>
-    </a>
-    <a
-      class="menu-button center-text card-background shadow"
-      matRipple
-      matRippleColor="rgba(100, 100, 100, .1)"
-      routerLink="sweets"
-    >
-      <div class="menu-content">
-        <img
-          src="../../../../../assets/images/menu icons/ice-cream.png"
-          class="image-width"
-        />
-        <div class="menu-button-title label-font title-color">Sweets</div>
-      </div>
-    </a>
-    <a
-      class="menu-button center-text card-background shadow"
-      matRipple
-      matRippleColor="rgba(100, 100, 100, .1)"
-    >
-      <div class="menu-content">
-        <img
-          src="../../../../../assets/images/menu icons/candy.png"
-          class="image-width"
-          routerLink="snacks"
-        />
-        <div class="menu-button-title label-font title-color">Snacks</div>
-      </div>
-    </a>
-    <a
-      class="menu-button center-text card-background shadow"
-      matRipple
-      matRippleColor="rgba(100, 100, 100, .1)"
-    >
-      <div class="menu-content">
-        <img
-          src="../../../../../assets/images/menu icons/mug.png"
-          class="image-width"
-          routerLink="drinks"
-        />
-        <div class="menu-button-title label-font title-color">Drinks</div>
-      </div>
-    </a>
+</div>
+
+<div class="scrolling-wrapper">
+  <div class="category">
+    <button class="image-wrapper card-background" (click)="selectCategory('All')"
+      [class.selected-category]="category == 'All'">
+      <img src="../../../../../assets/images/menu icons/Food Menu Icons/fork.png" *ngIf="category != 'All'">
+      <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/fork.png" *ngIf="category == 'All'">
+    </button>
+    <span class="name title-color" [class.selected-text]="category == 'All'">All</span>
+  </div>
+
+  <div class="category">
+    <button class="image-wrapper card-background" (click)="selectCategory('Eats')"
+      [class.selected-category]="category == 'Eats'">
+      <img src="../../../../../assets/images/menu icons/Food Menu Icons/sandwich.png" *ngIf="category != 'Eats'">
+      <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/sandwich.png" *ngIf="category == 'Eats'">
+    </button>
+    <span class="name title-color" [class.selected-text]="category == 'Eats'">Eats</span>
+  </div>
+
+  <div class="category">
+    <button class="image-wrapper card-background" (click)="selectCategory('Drinks')"
+      [class.selected-category]="category == 'Drinks'">
+      <img src="../../../../../assets/images/menu icons/Food Menu Icons/coffee.png" *ngIf="category != 'Drinks'">
+      <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/coffee.png" *ngIf="category == 'Drinks'">
+    </button>
+    <span class="name title-color" [class.selected-text]="category == 'Drinks'">Drinks</span>
+  </div>
+
+  <div class="category">
+    <button class="image-wrapper card-background" (click)="selectCategory('Snacks')"
+      [class.selected-category]="category == 'Snacks'">
+      <img src="../../../../../assets/images/menu icons/Food Menu Icons/donut.png" *ngIf="category != 'Snacks'">
+      <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/donut.png" *ngIf="category == 'Snacks'">
+    </button>
+    <span class="name title-color" [class.selected-text]="category == 'Snacks'">Snacks</span>
+  </div>
+
+  <div class="category">
+    <button class="image-wrapper card-background" (click)="selectCategory('Sweets')"
+      [class.selected-category]="category == 'Sweets'">
+      <img src="../../../../../assets/images/menu icons/Food Menu Icons/icecream.png" *ngIf="category != 'Sweets'">
+      <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/icecream.png"
+        *ngIf="category == 'Sweets'">
+    </button>
+    <span class="name title-color" [class.selected-text]="category == 'Sweets'">Sweets</span>
   </div>
 </div>

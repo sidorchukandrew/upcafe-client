@@ -90,7 +90,7 @@ a {
 }
 
 .default-item-background {
-  background-image: url('../../../../../../assets/images/menu icons/restaurant.png');
+  /* background-image: url('../../../../../../assets/images/menu icons/restaurant.png'); */
   background-repeat: no-repeat;
   background-position: center;
 }

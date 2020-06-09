@@ -1,81 +1,108 @@
-.background-top-left {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-bottom-left-radius: 0px;
-  height: 300px;
-  width: 300px;
-  border-bottom-right-radius: 112%;
-  z-index: -1;
-}
-
-.background-bottom-right {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  border-bottom-left-radius: 0px;
-  height: 200px;
-  width: 250px;
-  border-top-left-radius: 112%;
-  z-index: -1;
-}
-
-#title {
-  padding-top: 35px;
-}
-
-.capital-letter {
-  font-size: 1.1rem;
-  display: inline;
-}
-
-#menu-container {
-  padding: 3%;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.menu-button {
-  max-width: 200px;
-  max-height: 200px;
-  width: 45%;
-
-  margin: 4px 5px 4px 5px;
-  padding: 40px;
-
-  display: inline-block;
-  border-radius: 7px;
-  /* box-shadow: 0 0 5px 1px rgba(0, 0, 0, .1); */
-}
-
-.menu-icon {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 40px;
-  height: 40px;
-  font-size: 40px;
-  margin: auto;
-}
-
-.menu-button-title {
-  font-size: .9em;
-}
-
-.image-width {
-  width: 60%;
-}
-
-.center-text {
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
   text-align: center;
+  display: flex;
+  display: -webkit-box;
+  justify-content: center;
 }
 
-.label-font {
-  font-family: 'Raleway', sans-serif;
+.category {
+  max-width: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 18px;
 }
 
-.big-text {
-  font-size: 1.5em;
+.category .name {
+  font-size: .9em;
+  font-family: 'Sen';
+}
+
+.image-wrapper {
+  border: none;
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  margin: 0px 0px 5px 0px;
+  outline: none;
+}
+
+.image-wrapper img {
+  width: 30px;
+}
+
+.selected-category {
+  background-color: black;
+}
+
+.selected-text {
+  /* font-weight: 600; */
+}
+
+
+#search-bar-image {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  align-items: center;
+  padding: 0 5px 0 10px;
+  display: flex;
+  /* my lobger asked me to do some coding while he was gone
+and I'm not too sure how I can contribute to this beep beep boop bop
+but I do loves him and hope he can forgive me for my lack of input
+so while I'm here I will say that I'm SO PROUD of how far you've come with this project
+I love you and I'm so excited to see the finished product! You're doing so so so so so good my lover
+now let me pretend to do something useful: beep beep bop boop beep
+java each and everything git hub computer angular   */
+}
+
+.search-bar-container {
+  height: 50px;
+  display: flex;
+  width: 85%;
+  max-width: 400px;
+  margin: 20px 0px;
+}
+
+#search-bar {
+  border: none;
+  font-family: 'Roboto';
+  font-size: 1em;
+  outline: none;
+  width: 100%;
+  padding-left: 3px;
+  border-radius: 0;
+  height: 100%;
+}
+
+#delete-search {
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+
+  padding: 0 4px;
+}
+
+#delete-search .mat-icon {
+  border-radius: 50px;
+}
+
+.light-theme {
+  background-color: white;
+}
+
+.dark-theme {
+  background-color: #2b2b2b;
+}
+
+::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
 }
