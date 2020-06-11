@@ -1,4 +1,4 @@
-<div class="header">
+<!-- <div class="header">
   <button mat-icon-button (click)="close()" id="close-button"><mat-icon>close</mat-icon></button>
   <div class="item-name">
       Customize
@@ -41,8 +41,20 @@
     </div>
     <app-mod-list-details id="mod-list-details" [modList]="selectedModifierList" (priceAdjusted)="addToOrderItemPrice($event)"
     (listChange)="modifierSelected($event)" #modListDetails [selectedModifiers]="selectedModifiers"></app-mod-list-details>
+</div> -->
+
+<div class="top">
+
+  <div class="header">
+    <button mat-icon-button class="title-color" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
 </div>
 
+<div class="bottom">
+
+</div>
 <div class="actions">
   <button mat-raised-button color="primary" id="add-to-order-button" (click)="addToOrder()" [disabled]="!item.inStock">
     <ng-container *ngIf="item.inStock">

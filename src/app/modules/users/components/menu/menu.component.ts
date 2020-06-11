@@ -7,6 +7,8 @@ import { MenuService } from 'src/app/services/menu.service';
 import { Category } from 'src/app/models/Category';
 import { MenuItem } from 'src/app/models/MenuItem';
 import { debounceTime, tap } from 'rxjs/operators';
+import { MatBottomSheet } from '@angular/material';
+import { ItemDetailsSheet } from './eats/eats.component';
 
 @Component({
   selector: 'app-menu',
@@ -22,7 +24,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   protected menu: Menu;
   protected filteredMenu: Menu;
 
-  constructor(private themeService: ThemeService, private menuService: MenuService) { }
+  constructor(private themeService: ThemeService, private menuService: MenuService, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
 
@@ -219,6 +221,38 @@ export class MenuComponent implements OnInit, OnDestroy {
   protected viewAllCategories() {
     this.category = "All";
     this.filteredMenu = this.menu;
+  }
+
+  protected getDollars(price: number): string {
+    var priceText: string = price.toString();
+    var indexOfDecimal = priceText.indexOf(".");
+
+    if (indexOfDecimal == -1) return priceText;
+
+    return priceText.substr(0, indexOfDecimal);
+  }
+
+  protected getCents(price: number): string {
+    var priceText: string = price.toString();
+    var indexOfDecimal = priceText.indexOf(".");
+
+    if (indexOfDecimal == -1) return "00";
+
+    return priceText.substr(indexOfDecimal + 1, priceText.length).padEnd(2, "0");
+  }
+
+  protected showItem(item: MenuItem) {
+    var panelClass: string;
+
+    item.modifierLists.length > 0 ? panelClass = "panel-with-modifiers" : panelClass = "panel-without-modifiers";
+
+    this.bottomSheet.open(ItemDetailsSheet, {
+      data: {
+        bottomSheet: this.bottomSheet,
+        item: item
+      },
+      panelClass: panelClass
+    });
   }
 
 }

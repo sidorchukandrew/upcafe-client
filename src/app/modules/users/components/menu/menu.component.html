@@ -1,4 +1,4 @@
-<div class="center-wrapper">
+<div class="header">
   <div class="search-bar-container">
 
     <div id="search-bar-image" class="subtitle-color" [ngClass]="{'dark-theme': darkThemeOn,
@@ -11,6 +11,10 @@
           'light-theme': !darkThemeOn}">
       <mat-icon matRipple class="subtitle-color" *ngIf="searchBar.value" (click)="clearSearch()">clear</mat-icon>
     </div>
+  </div>
+
+  <div class="hours">
+    <mat-icon>schedule</mat-icon>
   </div>
 </div>
 
@@ -71,30 +75,35 @@
   <div *ngFor="let subcategory of filteredMenu.categories" class="subcategory">
 
     <div class="category-title title-color">
-      {{ subcategory.name | uppercase }}
+      {{ subcategory.name }}
     </div>
     <div class="scrolling-wrapper-food">
-      <div *ngFor="let item of subcategory.items" style="display: inline;">
-        <ng-container *ngIf="item.image">
-          <a class="card full-background"  [ngStyle]="{
-              'background-image': 'url(' + item.image.url + ')'
-            }">
-            <div class="item-name">
+
+      <ng-container *ngFor="let item of subcategory.items">
+
+        <a class="item card card-background" (click)="showItem(item)">
+
+          <div class="image">
+            <img src="../../../../../assets/images/menu icons/restaurant.png">
+          </div>
+
+            <div class="item-name title-color">
               {{ item.name }}
             </div>
-            <div class="price">{{ item.price | currency }}</div>
+            <div class="price title-color">
+              <div class="dollar-sign">$</div>
+              <div class="dollars">
+                {{getDollars(item.price)}}
+              </div>
+              <div class="decimal-point">.</div>
+              <div class="cents">
+                {{getCents(item.price)}}
+              </div>
+            </div>
           </a>
         </ng-container>
 
-        <ng-container *ngIf="!item.image">
-          <a class="card card-background default-item-background shadow" >
-            <div class="item-name">
-              {{ item.name }}
-            </div>
-            <div class="price">{{ item.price | currency }}</div>
-          </a>
-        </ng-container>
-      </div>
+
       <div class="space"></div>
     </div>
   </div>

@@ -1,8 +1,7 @@
 .header {
-  background-color: #49c9f2;
-  color: white;
-  text-align: center;
+  text-align: left;
   position: relative;
+  margin: 10px 0px 0px 10px;
 }
 
 .header .item-name {
@@ -63,13 +62,6 @@
   text-align: center;
   margin-top: 5px;
   width: 100%;
-}
-
-#close-button {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .actions {
