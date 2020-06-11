@@ -1,1 +1,14 @@
-<p>users works!</p>
+<ng-container *ngIf="users">
+  <ng-container *ngFor="let user of users">
+    <div class="user" matRipple (click)="showUser(user)">
+      <div class="avatar"><img [src]="user.imageUrl"></div>
+
+      <div class="text">
+
+        <div class="name title-color"> {{ user.name }} </div>
+        <div class="email subtitle-color"> {{ user.email }} </div>
+      </div>
+    </div>
+    <mat-divider class="divider-color"></mat-divider>
+  </ng-container>
+</ng-container>

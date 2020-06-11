@@ -211,6 +211,14 @@ a {
   color: red;
 }
 
+.dark-sheet-background {
+  background-color: #1e1e1e;
+}
+
+.light-sheet-background {
+  background-color: #fdfdfd;
+}
+
 .light-theme .navbar-background {
   background-color: #1e1e1e;
 }
