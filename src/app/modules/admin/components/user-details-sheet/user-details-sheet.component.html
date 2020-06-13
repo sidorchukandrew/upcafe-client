@@ -1,6 +1,65 @@
-<div class="information title-color">
+<div [class.dark-theme]="darkThemeOn" [class.light-theme]="!darkThemeOn">
 
-  {{user.name}}
-  {{user.email}}
-  {{user.provider | titlecase}}
+  <div class="top-actions">
+    <button mat-icon-button class="subtitle-color" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <button mat-icon-button class="subtitle-color">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+  <div class="information">
+
+    <div class="avatar">
+      <img [src]="user.imageUrl">
+    </div>
+
+    <div class="name title-color">
+      {{ user.name | titlecase }}
+    </div>
+
+    <div class="email subtitle-color">
+      {{ user.email }}
+    </div>
+
+    <mat-divider class="divider-color"></mat-divider>
+
+    <div class="section-label title-color">
+      Member Info
+    </div>
+
+    <div class="section">
+      <div class="provider subtitle-color">
+        {{ user.provider | titlecase }} Account
+      </div>
+
+      <div class="membership subtitle-color">
+        {{ user.accountCreatedOn }}
+      </div>
+    </div>
+
+    <mat-divider class="divider-color"></mat-divider>
+
+    <div class="section-label title-color">
+      Roles
+    </div>
+
+
+    <div class="section" id="roles">
+
+      <div class="role" matRipple [ngClass]="{'has-role': isCustomer}" (click)="toggleCustomer()">
+        Customer
+      </div>
+
+      <div class="role has-role" matRipple  [ngClass]="{'has-role': isStaff}" (click)="toggleStaff()">
+        Staff
+      </div>
+
+      <div class="role" matRipple [ngClass]="{'has-role': isAdmin}" (click)="toggleAdmin()">
+        Admin
+      </div>
+    </div>
+
+  </div>
 </div>

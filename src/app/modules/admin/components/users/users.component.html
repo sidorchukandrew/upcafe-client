@@ -1,14 +1,19 @@
+
+<app-header title="Users" (searchQuery)="display($event)"></app-header>
+
 <ng-container *ngIf="users">
-  <ng-container *ngFor="let user of users">
-    <div class="user" matRipple (click)="showUser(user)">
-      <div class="avatar"><img [src]="user.imageUrl"></div>
+  <div class="users">
+  <ng-container *ngFor="let user of users" >
 
-      <div class="text">
+      <div class="user card-background" matRipple (click)="showUser(user)" [ngClass]="{'diffused-shadow': !darkThemeOn}">
+        <div class="avatar"><img [src]="user.imageUrl"></div>
 
-        <div class="name title-color"> {{ user.name }} </div>
-        <div class="email subtitle-color"> {{ user.email }} </div>
+        <div class="text">
+
+          <div class="name title-color"> {{ user.name }} </div>
+          <div class="email subtitle-color"> {{ user.email }} </div>
+        </div>
       </div>
-    </div>
-    <mat-divider class="divider-color"></mat-divider>
-  </ng-container>
+    </ng-container>
+  </div>
 </ng-container>

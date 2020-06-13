@@ -153,7 +153,7 @@ a {
 }
 
 .dark-theme .subtitle-color {
-  color: #7c7c7c;
+  color: #898989;
 }
 
 
@@ -204,7 +204,7 @@ a {
 }
 
 .light-theme .subtitle-color {
-  color: #7c7c7c;
+  color: #747474;
 }
 
 .light-theme .warn {
@@ -213,10 +213,14 @@ a {
 
 .dark-sheet-background {
   background-color: #1e1e1e;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .light-sheet-background {
   background-color: #fdfdfd;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .light-theme .navbar-background {

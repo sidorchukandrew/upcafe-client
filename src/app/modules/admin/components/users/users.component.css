@@ -1,7 +1,22 @@
+.diffused-shadow {
+  box-shadow: 0px 2px 5px rgba(183, 183, 183, 0.25);
+}
+
+.users {
+  margin: 0px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .user {
   padding: 4px 10px;
   border-radius: 4px;
   display: flex;
+  width: 100%;
+  max-width: 400px;
+  margin: 4px 0px;
 }
 
 .user .name {

@@ -22,6 +22,10 @@ export class AuthenticationService {
   public authenticatedUser$: Observable<User> = this.authenticatedUser.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {
+
+    this.loadMockData();
+    return;
+
     if (localStorage.getItem("ACCESS_TOKEN")) {
       // TODO: CHANGE HOW ROLES ARE LOADED IN. ANYONE CAN GO INTO LOCAL STORAGE
       //    AND CHANGE THEIR ROLES
@@ -50,7 +54,7 @@ export class AuthenticationService {
   }
 
   private loadMockData(): void {
-    localStorage.setItem("ACCESS_TOKEN", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNTkxMzg0MDUyLCJleHAiOjE1OTIyNDgwNTJ9.NUSs95b5n5JeGY111Fn3R7bdxnMC6Q4_S0EX77R6rv8");
+    localStorage.setItem("ACCESS_TOKEN", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNTkxODkxNTg2LCJleHAiOjE1OTI3NTU1ODZ9.QfPIuVFotZuquFa3hG-Ko_g-WaZdSDnGLXdWNUavR9k");
     localStorage.setItem("name", "Andrew Sidorchuk");
     localStorage.setItem("email", "sidorchukandrew@gmail.com");
     localStorage.setItem("roles", "ROLE_CUSTOMER,ROLE_STAFF,ROLE_ADMIN");

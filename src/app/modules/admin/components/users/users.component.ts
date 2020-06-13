@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 export class UsersComponent implements OnInit, OnDestroy {
 
   protected users: Array<UserAdminView>
-  private darkThemeOn: boolean = false;
+  protected darkThemeOn: boolean = false;
 
   private subscriptions: Subscription;
   constructor(private usersService: UsersService, private bottomSheet: MatBottomSheet, private themeService: ThemeService) { }
@@ -38,6 +38,10 @@ export class UsersComponent implements OnInit, OnDestroy {
       data: user,
       panelClass: panelClass
     });
+  }
+
+  protected display(query: string): void {
+    console.log(query);
   }
 
 }

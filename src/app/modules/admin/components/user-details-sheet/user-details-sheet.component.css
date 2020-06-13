@@ -1,0 +1,74 @@
+.top-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.avatar {
+  text-align: center;
+}
+
+.avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.email {
+  font-size: 1em;
+  text-align: center;
+}
+
+.section-label {
+  font-size: 1.3em;
+  font-family: 'Raleway';
+  padding: 20px 0px;
+}
+
+.dark-theme .title-color {
+  color: #e1e1e1;
+}
+
+.dark-theme .subtitle-color {
+  color: #898989;
+}
+
+
+.light-theme .title-color {
+  color: #1e1e1e;
+}
+
+.light-theme .subtitle-color {
+  color: #747474;
+}
+
+.mat-divider {
+  margin-top: 15px;
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+}
+
+#roles {
+  padding: 0px 10px;
+}
+
+.role {
+  padding: 8px 0px;
+  width: 85px;
+  text-align: center;
+  color: #007bff;
+  border-radius: 4px;
+  transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
+}
+
+.has-role {
+  background-color: #007bff;
+  color: white;
+}
