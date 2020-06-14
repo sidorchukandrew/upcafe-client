@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdminGuard } from 'src/app/guards/admin.guard';
 import { UsersComponent } from './components/users/users.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { CafeSettingsMenuComponent } from './components/cafe-settings-menu/cafe-settings-menu.component';
 
 
 const routes: Routes = [
@@ -14,11 +16,13 @@ const routes: Routes = [
         path: "",
         canActivateChild: [AdminGuard],
         children: [
-          {path: "", component: DashboardComponent}
+          {path: "", component: AdminComponent, children: [
+            {path: "cafe", component: CafeSettingsMenuComponent},
+          ]}
         ]
       },
       {
-        path: "users", component: UsersComponent
+        path: "cafe/users", component: UsersComponent
       }
     ]
   }

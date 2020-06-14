@@ -277,3 +277,7 @@ a {
 
   padding: 0 !important;
 }
+
+.diffused-shadow {
+  box-shadow: 0px 2px 5px rgba(183, 183, 183, 0.25);
+}
