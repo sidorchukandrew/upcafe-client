@@ -256,6 +256,7 @@ a {
   max-height: 90vh !important;
   min-height: 85vh !important;
   padding: 0 !important;
+  background-color: #f6f6f6;
 }
 
 .panel-without-modifiers {

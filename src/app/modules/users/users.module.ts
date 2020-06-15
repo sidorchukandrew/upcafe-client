@@ -25,7 +25,7 @@ import {
 import { MenuComponent } from "./components/menu/menu.component";
 import { CartComponent } from "./components/cart/cart.component";
 import { ProfileComponent } from "./components/profile/profile.component";
-import { EatsComponent, ItemDetailsSheet } from "./components/menu/eats/eats.component";
+import { EatsComponent } from "./components/menu/eats/eats.component";
 import {
   ItemDetailsComponent,
 } from "./components/menu/item-details/item-details.component";
@@ -47,6 +47,7 @@ import { EditOrderItemSheet } from './components/edit-order-item-sheet/edit-orde
 import { SingleSelectionGroupComponent } from './components/single-selection-group/single-selection-group.component';
 import { UserResponseDialog } from './components/menu/eats/user-response-dialog.component';
 import { SuccessfulUpdateDialog } from './components/successful-update-dialog/successful-update-dialog.component';
+import  { ItemDetailsSheet } from './components/item-details-sheet/item-details-sheet.component';
 
 @NgModule({
   declarations: [

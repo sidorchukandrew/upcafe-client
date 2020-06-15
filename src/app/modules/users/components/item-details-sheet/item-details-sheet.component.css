@@ -1,0 +1,88 @@
+.header {
+  text-align: left;
+  position: relative;
+  margin: 10px 0px 0px 10px;
+}
+
+.scrolling-wrapper {
+  margin-left: 10px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.actions {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+}
+
+#add-to-order-button {
+  width: 90vw;
+  max-width: 400px;
+  padding: 5px;
+}
+
+
+#order-item-price {
+  padding-left: 5px;
+  display: inline-block;
+}
+
+
+.top .image {
+  height: 200px;
+}
+
+
+.item-content {
+  position: absolute;
+  top: 240px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  box-shadow: 0px -2px 8px rgba(182, 182, 182, 0.25);
+}
+
+.main-information {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.name {
+  font-size: 20px;
+  font-family: 'Roboto';
+  width: 40%;
+}
+
+#dollar-sign {
+  font-size: 18px;
+  color: #49c9f2;
+}
+
+.price {
+  font-size: 30px;
+  text-align: right;
+  align-self: flex-end;
+}
+
+#no-modifiers {
+  position: absolute;
+  top: 50%;
+  font-size: 14px;
+  color: #747474;
+  width: 100%;
+  text-align: center;
+}
+
+.lists {
+  margin: 20px;
+}
+
+.modifier-list {
+
+}

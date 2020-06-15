@@ -8,7 +8,7 @@ import { Category } from 'src/app/models/Category';
 import { MenuItem } from 'src/app/models/MenuItem';
 import { debounceTime, tap } from 'rxjs/operators';
 import { MatBottomSheet } from '@angular/material';
-import { ItemDetailsSheet } from './eats/eats.component';
+import { ItemDetailsSheet } from '../item-details-sheet/item-details-sheet.component';
 
 @Component({
   selector: 'app-menu',
@@ -242,9 +242,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   protected showItem(item: MenuItem) {
-    var panelClass: string;
-
-    item.modifierLists.length > 0 ? panelClass = "panel-with-modifiers" : panelClass = "panel-without-modifiers";
+    var panelClass: string = "panel-with-modifiers";
 
     this.bottomSheet.open(ItemDetailsSheet, {
       data: {
