@@ -1,16 +1,5 @@
-<div class="modifier-wrapper" *ngFor="let modifier of modifierList.modifiers">
-  <div class="top-line">
-    <div class="bold small">
-      {{ modifier.name }}
-      <span *ngIf="!modifier.inStock" class="out">(Temporarily Out)</span>
-    </div>
+<ng-container *ngFor="let modifier of modifierList.modifiers">
 
     <app-multiple-selector [modifier]="modifier" [disabled]="!modifier.inStock"
     (selectionMade)="toggleSelection($event)" [on]="selectedModifier == modifier"></app-multiple-selector>
-  </div>
-  <div class="small bottom-space-5">
-    {{ modifier.price | currency}}
-  </div>
-
-  <mat-divider></mat-divider>
-</div>
+</ng-container>

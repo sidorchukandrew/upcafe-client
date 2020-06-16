@@ -1,20 +1,8 @@
-<ng-container *ngIf="disabled">
-  <div class="radio-button-ripple">
+<div class="modifier" (click)="selected()" [ngClass]="{'on': isOn}" *ngIf="modifier.inStock">
+  {{ modifier.name }}
+</div>
 
-    <div class="radio-button disabled">
-      <div class="inner-circle disabled-inner">
-
-      </div>
-    </div>
-  </div>
-</ng-container>
-
-<ng-container *ngIf="!disabled">
-  <div class="radio-button-ripple" matRipple>
-    <div class="radio-button" [class.selected-button]="isSelected" (click)="selected()">
-      <div class="inner-circle" [class.inner-selected]="isSelected">
-
-      </div>
-    </div>
-  </div>
-</ng-container>
+<div class="modifier" [ngClass]="{'on': isOn}" matBadge="Out"
+[matBadgeHidden]="modifier.inStock" madBadgeColor="warn" *ngIf="!modifier.inStock">
+  {{ modifier.name }}
+</div>

@@ -35,13 +35,17 @@
     No customizations available for this item
   </div>
 
-  <div class="selected-modifiers">
-
+  <div class="selected-modifiers scrolling-wrapper">
+    <ng-container *ngFor="let selectedModifer of selectedModifiers">
+      <div class="modifier" (click)="remove(selectedModifer)">
+        {{ selectedModifer.name }}
+      </div>
+    </ng-container>
   </div>
 
   <div *ngIf="item.modifierLists.length > 0" class="lists">
     <div *ngFor="let modifierList of item.modifierLists" class="modifier-list">
-      <app-modifier-list [modifierList]="modifierList"></app-modifier-list>
+      <app-modifier-list [modList]="modifierList" [selectedModifiers]="selectedModifiers" (priceAdjusted)="addToOrderItemPrice($event)"></app-modifier-list>
     </div>
   </div>
 

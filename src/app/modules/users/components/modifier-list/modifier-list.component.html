@@ -2,12 +2,19 @@
   {{modifierList.name}}
 </div>
 
-<div class="scrolling-wrapper">
+<div *ngIf="modifierList.selectionType != 'MULTIPLE'" class="scrolling-wrapper">
+  <app-single-selection-group [modifierList]="modifierList" (selectionMade)="selectionMade($event)"
+    [on]="modifierInListAlreadySelected(modifierList)">
+
+  </app-single-selection-group>
+
+</div>
+
+
+<div *ngIf="modifierList.selectionType == 'MULTIPLE'" class="scrolling-wrapper">
   <ng-container *ngFor="let modifier of modifierList.modifiers">
 
-    <div class="modifier">
-      {{modifier.name}}
-    </div>
-
+    <app-multiple-selector [modifier]="modifier" [on]="alreadySelected(modifier)"
+      (selectionMade)="selectionMade($event)" [disabled]="!modifier.inStock"></app-multiple-selector>
   </ng-container>
 </div>

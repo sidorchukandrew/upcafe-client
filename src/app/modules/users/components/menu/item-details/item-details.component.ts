@@ -9,6 +9,7 @@ import { UserResponseDialog } from '../eats/user-response-dialog.component';
 import { MenuService } from 'src/app/services/menu.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Modifier } from 'src/app/models/Modifier';
 
 @Component({
   selector: "app-item-details",
@@ -24,9 +25,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   public selectedModifiers: Array<OrderModifier>;
 
-  private bottomSheetRef: MatBottomSheet;
-
-  @ViewChild("modListDetails", { static: false }) modListDetails: ModListDetailsComponent;
+  // @ViewChild("modListDetails", { static: false }) modListDetails: ModListDetailsComponent;
 
   constructor(private orderService: OrderPlacingService, private menuService: MenuService,
     private successDialog: MatDialog, private route: ActivatedRoute) { }
@@ -42,6 +41,8 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
         this.orderItemPrice = this.item.price;
         this.selectedModifierList = this.item.modifierLists[0];
     }));
+
+    this.selectedModifiers = new Array<OrderModifier>();
   }
 
   ngOnDestroy() {
@@ -51,7 +52,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   public addToOrder() {
     var orderItem = this.orderService.newOrderItem(this.item, null, this.orderItemPrice);
-    orderItem.selectedModifiers = this.modListDetails.getSelectedModifiers();
+    // orderItem.selectedModifiers = this.modListDetails.getSelectedModifiers();
     this.orderService.addToOrder(orderItem);
     this.successDialog.open(UserResponseDialog);
   }
@@ -89,5 +90,9 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     if (indexOfDecimal == -1) return "00";
 
     return priceText.substr(indexOfDecimal + 1, priceText.length).padEnd(2, "0");
+  }
+
+  protected toggleModifier(modifier: OrderModifier): void {
+    this.selectedModifiers.push(modifier);
   }
 }

@@ -9,6 +9,7 @@
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
+  display: flex;
 }
 
 .actions {
@@ -90,4 +91,23 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+}
+
+.modifier {
+  width: 65px;
+  min-width: 65px;
+  height: 65px;
+  min-height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #F2F0EF;
+  border-radius: 5px;
+  margin: 0px 9px;
+
+  font-size: 12px;
+  white-space: break-spaces;
+  text-align: center;
+  line-height: 1.2;
 }

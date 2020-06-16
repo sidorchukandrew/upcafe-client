@@ -1,49 +1,32 @@
- .radio-button-ripple {
-   padding: 1px;
-   border-radius: 50px;
-   outline: none;
-   margin-right: 5px;
-   -webkit-tap-highlight-color: transparent;
- }
+.modifier {
+  width: 65px;
+  min-width: 65px;
+  height: 65px;
+  min-height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
- .radio-button {
-   transition: border-color ease 280ms;
-   border-width: 2px;
-   border-style: solid;
-   border-radius: 50%;
-   border-color: rgba(0, 0, 0, 0.54);
-   outline: none;
-   -webkit-tap-highlight-color: transparent;
- }
+  background-color: #F2F0EF;
+  border-radius: 5px;
+  margin: 0px 9px;
 
- .selected-button {
-   border-color: #49c9f2;
-   outline: none;
-   -webkit-tap-highlight-color: transparent;
- }
+  font-size: 12px;
+  white-space: break-spaces;
+  text-align: center;
+  line-height: 1.2;
+}
 
- .inner-circle {
-   width: 10px;
-   height: 10px;
-   transition: background-color ease-in-out 280ms;
-   border-radius: 50px;
-   margin: 2px;
-   outline: none;
-   -webkit-tap-highlight-color: transparent;
- }
+.on {
+  border: 2px solid #49c9f2;
+}
 
- .inner-selected {
-   background-color: #49c9f2;
-   outline: none;
-   -webkit-tap-highlight-color: transparent;
- }
-
-
- .disabled-inner {
-   background-color: rgb(219, 219, 219);
- }
-
- .disabled {
-   border-color: rgba(219, 219, 219);
-   background-color: rgb(219, 219, 219);
- }
+a {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
