@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
-import { Router } from "@angular/router";
-import { ModListDetailsComponent } from "../mod-list-details/mod-list-details.component";
-import { OrderPlacingService } from "src/app/services/order-placing.service";
-import { MatDialog } from "@angular/material/dialog";
-import { SelectedItemStore } from "src/app/stores/selected-item.store";
-import { Subscription, noop, Observable } from "rxjs";
-import { tap, map } from "rxjs/operators";
-import { HoursService } from "src/app/services/hours.service";
+import { Component, OnInit, ViewChild, OnDestroy, Inject } from "@angular/core";
 import { MenuItem } from 'src/app/models/MenuItem';
 import { ModifierList } from 'src/app/models/ModifierList';
+import { OrderModifier } from 'src/app/models/OrderModifier';
+import { MatBottomSheet, MAT_BOTTOM_SHEET_DATA, MatDialog } from '@angular/material';
+import { ModListDetailsComponent } from '../mod-list-details/mod-list-details.component';
+import { OrderPlacingService } from 'src/app/services/order-placing.service';
+import { UserResponseDialog } from '../eats/user-response-dialog.component';
+import { MenuService } from 'src/app/services/menu.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-item-details",
@@ -16,127 +16,78 @@ import { ModifierList } from 'src/app/models/ModifierList';
   styleUrls: ["./item-details.component.css"],
 })
 export class ItemDetailsComponent implements OnInit, OnDestroy {
-  @ViewChild(ModListDetailsComponent, { static: false })
-  private modListDetailsComponent: ModListDetailsComponent;
 
-  totalItemPrice: number;
-  priceDollars: number;
-  priceCents: any;
-  currentCents: number;
-  selectedModifierList: ModifierList;
-  subscriptions: Subscription;
-  item: MenuItem;
-  orderState$: Observable<string>;
-  timesAvailable: boolean = false;
+  public item: MenuItem;
+  public selectedModifierList: ModifierList;
+  orderItemPrice: number;
+  private subscriptions: Subscription;
 
-  constructor(
-    private itemStore: SelectedItemStore,
-    private orderService: OrderPlacingService,
-    public userResponseDialog: MatDialog,
-    private router: Router,
-    private hoursService: HoursService
-  ) {}
+  public selectedModifiers: Array<OrderModifier>;
+
+  private bottomSheetRef: MatBottomSheet;
+
+  @ViewChild("modListDetails", { static: false }) modListDetails: ModListDetailsComponent;
+
+  constructor(private orderService: OrderPlacingService, private menuService: MenuService,
+    private successDialog: MatDialog, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.orderState$ = this.orderService.state$;
+
     this.subscriptions = new Subscription();
-
     this.subscriptions.add(
-      this.itemStore.currentItem$
-        .pipe(
-          tap((item) => (item ? noop : this.router.navigate(["user/menu/"]))),
-          tap((item) => this.parsePrice(item.price)),
-          tap((item) => (this.item = item))
-        )
-        .subscribe()
-    );
+      this.route.params.subscribe(params => {
 
-    this.subscriptions.add(this.orderState$.subscribe());
+        this.item = this.menuService.getItemBeingViewed(params['id']);
 
-    this.hoursService
-      .getAvailablePickupTimes()
-      .pipe(map((available) => available["availableTimes"]))
-      .subscribe((times) => {
-        this.timesAvailable = times.length > 0;
-      });
-
-    this.totalItemPrice = this.item.price;
+        this.orderItemPrice = this.item.price;
+        this.selectedModifierList = this.item.modifierLists[0];
+    }));
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
 
-  addToPrice(price: number) {
-    this.totalItemPrice = this.totalItemPrice + price;
+
+  public addToOrder() {
+    var orderItem = this.orderService.newOrderItem(this.item, null, this.orderItemPrice);
+    orderItem.selectedModifiers = this.modListDetails.getSelectedModifiers();
+    this.orderService.addToOrder(orderItem);
+    this.successDialog.open(UserResponseDialog);
   }
 
-  parsePrice(price: number): void {
-    var index: number = price.toString().indexOf(".");
+  public addToOrderItemPrice(modifierCost: number) {
+    this.orderItemPrice = this.orderItemPrice + modifierCost;
+  }
 
-    if (index != -1) {
-      this.priceDollars = parseInt(price.toString().substr(0, index));
-      this.priceCents = parseInt(
-        price.toString().substr(index + 1, price.toString().length)
-      );
-    } else {
-      this.priceDollars = price;
-      this.priceCents = "00";
+  public modifierSelected(modifiers: Array<OrderModifier>): void {
+    this.selectedModifiers = modifiers;
+  }
+
+  public remove(modifierToRemove: OrderModifier): void {
+
+    const index = this.selectedModifiers.findIndex(orderModifier => orderModifier.id == modifierToRemove.id);
+    if (index > -1) {
+      this.selectedModifiers.splice(index, 1);
+      this.addToOrderItemPrice(-modifierToRemove.price);
     }
   }
 
-  public addToOrder(): void {
-    var selectedModifiers;
+  protected getDollars(price: number): string {
+    var priceText: string = price.toString();
+    var indexOfDecimal = priceText.indexOf(".");
 
-    if (this.modListDetailsComponent)
-      selectedModifiers = this.modListDetailsComponent.getSelectedModifiers();
+    if (indexOfDecimal == -1) return priceText;
 
-    var orderItem = this.orderService.newOrderItem(this.item, selectedModifiers, this.totalItemPrice);
-    this.orderService.addToOrder(orderItem);
+    return priceText.substr(0, indexOfDecimal);
+  }
 
-    // this.userResponseDialog.open(UserResponseDialog, {
-    //   hasBackdrop: true,
-    // });
+  protected getCents(price: number): string {
+    var priceText: string = price.toString();
+    var indexOfDecimal = priceText.indexOf(".");
+
+    if (indexOfDecimal == -1) return "00";
+
+    return priceText.substr(indexOfDecimal + 1, priceText.length).padEnd(2, "0");
   }
 }
-
-// @Component({
-//   selector: "user-response-dialog",
-//   templateUrl: "user-response-dialog.html",
-//   styleUrls: ["user-response-dialog.css"],
-// })
-// export class UserResponseDialog implements OnInit {
-//   constructor(
-//     public dialogRef: MatDialogRef<UserResponseDialog>,
-//     private router: Router
-//   ) {}
-
-//   ngOnInit() {
-//     window.navigator.vibrate(200);
-//     setTimeout(() => this.dialogRef.close(), 1000);
-//   }
-
-//   close(): void {
-//     this.dialogRef.close();
-//   }
-
-//   viewOrder(): void {
-//     this.router.navigate(["user/cart"]);
-//     this.close();
-//   }
-// }
-
-
-  // async counter(start: number, end: number, durationMs: number) {
-  //   var delayTime: number = durationMs / (end - start);
-
-  //   while (start < end) {
-  //     start = start + 1;
-  //     this.currentCents = start;
-  //     await this.delay(delayTime);
-  //   }
-  // }
-
-  // private delay(ms: number) {
-  //   return new Promise((resolve) => setTimeout(resolve, ms));
-  // }

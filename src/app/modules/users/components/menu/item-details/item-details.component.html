@@ -1,89 +1,67 @@
-<div *ngIf="item">
-  <div
-    id="full-page"
-    [ngStyle]="{ 'background-image': 'url(' + item.image.url + ')' }"
-    *ngIf="item"
-  ></div>
-  <div id="summary-card">
-    <a id="back-button" routerLink="../">
+
+<div class="top">
+
+  <div class="header">
+    <button mat-icon-button class="subtitle-color" routerLink="..">
       <mat-icon>arrow_back_ios</mat-icon>
-    </a>
-    <div id="title" *ngIf="item">
+    </button>
+  </div>
+
+  <div class="image">
+
+  </div>
+</div>
+
+<div class="item-content card-background diffused-shadow">
+
+  <div class="main-information">
+
+
+    <div class="name title-color">
       {{ item.name }}
     </div>
-    <table id="price" class="theme-color-text">
-      <tr>
-        <td id="dollars">${{ priceDollars }}.</td>
-        <td id="cents">
-          {{ priceCents }}
-        </td>
-      </tr>
-    </table>
+
+    <div class="price">
+      <span id="dollar-sign">$</span> {{ getDollars(item.price) }}.{{ getCents(item.price) }}
+    </div>
+
   </div>
 
-  <mat-accordion
-    id="options-card-2"
-    *ngIf="item.modifierLists && item.modifierLists.length > 0"
-  >
-    <mat-expansion-panel id="panel" [expanded]="true">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <div id="options-card-title">
-            Options
-          </div>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="scrolling-wrapper">
-        <div
-          class="modifier-list"
-          *ngFor="let modList of item.modifierLists"
-        >
-          <a
-            class="modifier-list-image"
-            (click)="selectedModifierList = modList"
-            [ngStyle]="{ 'background-image': 'url(' + modList.image.url + ')' }"
-            [class.selected]="selectedModifierList == modList"
-          >
-            <div class="name">{{ modList.name }}</div>
-          </a>
+  <div class="description subtitle-color">
+    {{ item.description }}
+  </div>
+
+  <div id="no-modifiers" *ngIf="item.modifierLists.length == 0" class="subtitle-color">
+    No customizations available for this item
+  </div>
+
+  <div class="selected-modifiers">
+
+  </div>
+
+  <div *ngIf="item.modifierLists.length > 0" class="lists">
+    <div *ngFor="let modifierList of item.modifierLists" class="modifier-list">
+      <app-modifier-list [modifierList]="modifierList"></app-modifier-list>
+    </div>
+  </div>
+
+  <div class="action-space"></div>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" id="add-to-order-button" (click)="addToOrder()"
+      [disabled]="!item.inStock">
+      <ng-container *ngIf="item.inStock">
+        <div style="display: inline-block">
+          Add to Order
         </div>
-      </div>
-
-      <app-mod-list-details [modList]="selectedModifierList" (selectionMade)="addToPrice($event)"></app-mod-list-details>
-    </mat-expansion-panel>
-  </mat-accordion>
-  <div
-    id="button-wrapper"
-    *ngIf="item.modifierLists && item.modifierLists.length == 0"
-    style="background-color: rgba(0, 0, 0, 0);"
-  >
-    <button
-      mat-raised-button
-      id="add-to-order"
-      color="primary"
-      (click)="addToOrder()"
-    >
-      Add to Order {{totalItemPrice | currency}}
+        <div id="order-item-price">
+          {{orderItemPrice | currency}}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!item.inStock">
+        Temporarily Out
+      </ng-container>
     </button>
   </div>
-  <div
-    id="button-wrapper"
-    *ngIf="item.modifierLists && item.modifierLists.length > 0"
-  >
-    <button
-      mat-raised-button
-      id="add-to-order"
-      color="primary"
-      (click)="addToOrder()"
-       [disabled]="(orderState$ | async) == 'PLACED' || !timesAvailable && false"
-      >
 
-      <span *ngIf="(orderState$ | async) != 'PLACED' && timesAvailable || true"
-        >Add to Order {{totalItemPrice | currency}}</span
-      >
-      <mat-icon *ngIf="(orderState$ | async) == 'PLACED' || !timesAvailable && false"
-        >lock</mat-icon
-      >
-    </button>
-  </div>
 </div>

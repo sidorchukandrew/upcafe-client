@@ -38,10 +38,7 @@ const routes: Routes = [
               { path: "menu/sweets", component: SweetsComponent },
             ],
           },
-          { path: "menu/eats/:id", component: ItemDetailsComponent },
-          { path: "menu/snacks/:id", component: ItemDetailsComponent },
-          { path: "menu/drinks/:id", component: ItemDetailsComponent },
-          { path: "menu/sweets/:id", component: ItemDetailsComponent },
+          { path: "menu/:id", component: ItemDetailsComponent },
           { path: "cart/payment", component: PaymentComponent },
           { path: "account/settings", component: SettingsComponent },
           {

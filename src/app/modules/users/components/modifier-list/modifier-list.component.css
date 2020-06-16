@@ -1,0 +1,41 @@
+.name {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: Roboto;
+}
+
+.scrolling-wrapper {
+  margin: 10px 0px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: flex;
+}
+
+.modifier {
+  width: 65px;
+  min-width: 65px;
+  height: 65px;
+  min-height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #F2F0EF;
+  border-radius: 5px;
+  margin: 0px 9px;
+
+  font-size: 12px;
+  white-space: break-spaces;
+  text-align: center;
+  line-height: 1.2;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 0px;
+}
+
+::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
+}

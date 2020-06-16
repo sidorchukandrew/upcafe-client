@@ -48,6 +48,7 @@ import { SingleSelectionGroupComponent } from './components/single-selection-gro
 import { UserResponseDialog } from './components/menu/eats/user-response-dialog.component';
 import { SuccessfulUpdateDialog } from './components/successful-update-dialog/successful-update-dialog.component';
 import  { ItemDetailsSheet } from './components/item-details-sheet/item-details-sheet.component';
+import { ModifierListComponent } from './components/modifier-list/modifier-list.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import  { ItemDetailsSheet } from './components/item-details-sheet/item-details-
     TrackOrderComponent,
     SettingsComponent,
     OrderSummaryComponent,
-    ItemDetailsSheet, MultipleSelectorComponent, EditOrderItemSheet, SingleSelectionGroupComponent, SuccessfulUpdateDialog
+    ItemDetailsSheet, MultipleSelectorComponent, EditOrderItemSheet, SingleSelectionGroupComponent, SuccessfulUpdateDialog,
+    ModifierListComponent
   ],
   imports: [
     CommonModule,

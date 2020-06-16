@@ -7,8 +7,7 @@ import { MenuService } from 'src/app/services/menu.service';
 import { Category } from 'src/app/models/Category';
 import { MenuItem } from 'src/app/models/MenuItem';
 import { debounceTime, tap } from 'rxjs/operators';
-import { MatBottomSheet } from '@angular/material';
-import { ItemDetailsSheet } from '../item-details-sheet/item-details-sheet.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -24,7 +23,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   protected menu: Menu;
   protected filteredMenu: Menu;
 
-  constructor(private themeService: ThemeService, private menuService: MenuService, private bottomSheet: MatBottomSheet) { }
+  constructor(private themeService: ThemeService, private menuService: MenuService, private router: Router) { }
 
   ngOnInit() {
 
@@ -242,15 +241,8 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   protected showItem(item: MenuItem) {
-    var panelClass: string = "panel-with-modifiers";
-
-    this.bottomSheet.open(ItemDetailsSheet, {
-      data: {
-        bottomSheet: this.bottomSheet,
-        item: item
-      },
-      panelClass: panelClass
-    });
+    this.menuService.setItemBeingViewed(item);
+    this.router.navigate(["user/menu/" + item.id]);
   }
 
 }

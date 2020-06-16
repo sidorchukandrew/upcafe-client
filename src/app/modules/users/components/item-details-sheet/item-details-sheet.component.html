@@ -16,15 +16,15 @@
   <div class="main-information">
 
 
-      <div class="name title-color">
-        {{ item.name }}
-      </div>
-
-      <div class="price">
-        <span id="dollar-sign">$</span> {{ getDollars(item.price) }}.{{ getCents(item.price) }}
-      </div>
-
+    <div class="name title-color">
+      {{ item.name }}
     </div>
+
+    <div class="price">
+      <span id="dollar-sign">$</span> {{ getDollars(item.price) }}.{{ getCents(item.price) }}
+    </div>
+
+  </div>
 
   <div class="description subtitle-color">
     {{ item.description }}
@@ -40,18 +40,11 @@
 
   <div *ngIf="item.modifierLists.length > 0" class="lists">
     <div *ngFor="let modifierList of item.modifierLists" class="modifier-list">
-      <div class="list-name">
-        {{modifierList.name}}
-
-        <div class="modifiers" *ngFor="let modifier of modifierList.modifiers">
-          <div class="modifier">{{ modifier.name }}</div>
-        </div>
-      </div>
+      <app-modifier-list [modifierList]="modifierList"></app-modifier-list>
     </div>
   </div>
-
-
 </div>
+
 <div class="actions">
   <button mat-raised-button color="primary" id="add-to-order-button" (click)="addToOrder()" [disabled]="!item.inStock">
     <ng-container *ngIf="item.inStock">
