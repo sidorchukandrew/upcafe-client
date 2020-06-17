@@ -20,13 +20,3 @@
 .on {
   border: 2px solid #49c9f2;
 }
-
-a {
-  cursor: pointer;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}

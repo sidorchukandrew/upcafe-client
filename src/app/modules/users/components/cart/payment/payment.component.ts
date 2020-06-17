@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { OrderPlacingService } from 'src/app/services/order-placing.service';
 import { Subscription, concat } from 'rxjs';
 import { Order } from 'src/app/models/Order';
@@ -10,7 +10,8 @@ declare var SqPaymentForm: any; //magic to allow us to access the SquarePaymentF
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css']
+  styleUrls: ['./payment.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PaymentComponent implements OnInit, OnDestroy {
 
