@@ -1,0 +1,71 @@
+<div class="top">
+
+  <div class="header">
+    <button mat-icon-button class="subtitle-color" routerLink="../../">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+  </div>
+
+  <div class="image">
+
+  </div>
+</div>
+
+<div class="item-content card-background diffused-shadow">
+
+  <div class="main-information">
+
+
+    <div class="name title-color">
+      {{ item.name }}
+    </div>
+
+    <div class="price">
+      <span id="dollar-sign">$</span> {{ getDollars(item.price) }}.{{ getCents(item.price) }}
+    </div>
+
+  </div>
+
+  <div class="description subtitle-color">
+    {{ item.description }}
+  </div>
+
+  <div id="no-modifiers" *ngIf="item.modifierLists.length == 0" class="subtitle-color">
+    No customizations available for this item
+  </div>
+
+  <div class="selected-modifiers scrolling-wrapper">
+    <ng-container *ngFor="let selectedModifer of selectedModifiers">
+      <div class="modifier" (click)="remove(selectedModifer)">
+        {{ selectedModifer.name }}
+      </div>
+    </ng-container>
+  </div>
+
+  <div *ngIf="item.modifierLists.length > 0" class="lists">
+    <div *ngFor="let modifierList of item.modifierLists" class="modifier-list">
+      <app-modifier-list [modList]="modifierList" [selectedModifiers]="selectedModifiers"
+        (priceAdjusted)="addToOrderItemPrice($event)"></app-modifier-list>
+    </div>
+  </div>
+
+  <div class="action-space"></div>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" id="add-to-order-button" (click)="updateOrderItem()"
+      [disabled]="!item.inStock">
+      <ng-container *ngIf="item.inStock">
+        <div style="display: inline-block">
+          Update
+        </div>
+        <div id="order-item-price">
+          {{orderItemPrice | currency}}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!item.inStock">
+        Temporarily Out
+      </ng-container>
+    </button>
+  </div>
+
+</div>

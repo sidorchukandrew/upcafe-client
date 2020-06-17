@@ -44,8 +44,18 @@ export class OrderPlacingService {
     orderItem.quantity = 1;
     orderItem.name = item.name;
     orderItem.selectedModifiers = selectedModifiers;
+    orderItem.tempId = Math.random() * 100;
+
+    if(item.image)
+      orderItem.imageUrl = item.image.url;
 
     return orderItem;
+  }
+
+  public removeOrderItem(tempId: number): void {
+    let indexOfItem: number = this.order.orderItems.findIndex(item => item.tempId = tempId);
+    if(indexOfItem != -1)
+      this.order.orderItems.splice(indexOfItem, 1);
   }
 
   private startOrderIfNotStartedYet(): void {

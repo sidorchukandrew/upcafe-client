@@ -5,7 +5,8 @@
 
 #mobile-navbar {
   width: 100%;
-  /* background-color: black; */
+  height: 50px;
+  display: flex;
 }
 
 #mobile-navbar .link {
@@ -23,6 +24,7 @@
   -ms-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  display: flex;
 }
 
 #mobile-navbar .link .icon {

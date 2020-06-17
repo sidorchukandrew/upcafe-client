@@ -22,11 +22,11 @@ export class ModifierListComponent implements OnInit {
 
   ngOnInit() {
     this.selectedModifiers = new Array<OrderModifier>();
+    console.log(this.modifierList);
     if (this.orderModifiers) this.selectedModifiers = this.orderModifiers;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("changes");
     if (changes.orderModifiers) this.orderModifiers = changes.orderModifiers.currentValue;
   }
 

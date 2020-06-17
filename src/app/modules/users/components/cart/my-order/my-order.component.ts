@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Order } from "src/app/models/Order";
 import { OrderPlacingService } from "src/app/services/order-placing.service";
 import { Router } from "@angular/router";
@@ -8,29 +8,36 @@ import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
 import { tap } from "rxjs/operators";
 import { PickupTime } from 'src/app/models/PickupTime';
 import { MatBottomSheet } from '@angular/material';
-import { EditOrderItemSheet } from '../../edit-order-item-sheet/edit-order-item-sheet.component';
 import { CatalogService } from 'src/app/services/catalog.service';
+import { ThemeService } from 'src/app/services/theme.service';
+import { Subscription } from 'rxjs';
+import { MenuService } from 'src/app/services/menu.service';
+import { EditItemService } from 'src/app/services/edit-item.service';
 
 @Component({
   selector: "app-my-order",
   templateUrl: "./my-order.component.html",
   styleUrls: ["./my-order.component.css"],
 })
-export class MyOrderComponent implements OnInit {
+export class MyOrderComponent implements OnInit, OnDestroy {
   currentOrder: Order;
   availableTimes: Array<PickupTime>;
   selectedTime: string;
+
+  private susbscriptions: Subscription;
+  protected darkThemeOn: boolean = false;
 
   constructor(
     private orderService: OrderPlacingService,
     private router: Router,
     private hoursService: HoursService,
-    public timeUtils: TimeUtilitiesService,
-    private bottomSheet: MatBottomSheet,
-    private catalogService: CatalogService
+    public timeUtils: TimeUtilitiesService, private themeService: ThemeService, private editService: EditItemService
   ) {}
 
   ngOnInit() {
+
+    this.susbscriptions = new Subscription();
+    this.susbscriptions.add(this.themeService.darkThemeOn$.subscribe(on => this.darkThemeOn = on));
 
     var pickupTimes$ = this.hoursService.getAvailablePickupTimes();
 
@@ -43,7 +50,11 @@ export class MyOrderComponent implements OnInit {
     if (this.currentOrder) this.selectedTime = this.currentOrder.pickupTime;
   }
 
-  public removeFromOrder(orderItem: OrderItem): void {
+  ngOnDestroy() {
+    this.susbscriptions.unsubscribe();
+  }
+
+  protected removeFromOrder(orderItem: OrderItem): void {
     this.orderService.remove(orderItem);
   }
 
@@ -52,22 +63,9 @@ export class MyOrderComponent implements OnInit {
     this.currentOrder.pickupTime = time;
   }
 
-  public editItem(orderItem: OrderItem) {
-
-    this.catalogService.getVariation(orderItem.variationId).subscribe(menuItem => {
-
-      var panelClass: string;
-
-      menuItem.modifierLists.length > 0 ? panelClass = "panel-with-modifiers" : panelClass = "panel-without-modifiers";
-
-      this.bottomSheet.open(EditOrderItemSheet, {
-        data: {
-          orderItem: orderItem,
-          menuItem: menuItem
-        },
-        panelClass: panelClass
-      });
-    });
+  protected editItem(orderItem: OrderItem) {
+    this.editService.setItemBeingEdited(orderItem);
+    this.router.navigate(["user/cart/edit/" + orderItem.variationId]);
   }
 
   protected getDollars(price: number): string {

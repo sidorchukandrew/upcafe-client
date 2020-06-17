@@ -49,6 +49,7 @@ import { UserResponseDialog } from './components/menu/eats/user-response-dialog.
 import { SuccessfulUpdateDialog } from './components/successful-update-dialog/successful-update-dialog.component';
 import  { ItemDetailsSheet } from './components/item-details-sheet/item-details-sheet.component';
 import { ModifierListComponent } from './components/modifier-list/modifier-list.component';
+import { EditOrderItemComponent } from './components/edit-order-item/edit-order-item.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { ModifierListComponent } from './components/modifier-list/modifier-list.
     SettingsComponent,
     OrderSummaryComponent,
     ItemDetailsSheet, MultipleSelectorComponent, EditOrderItemSheet, SingleSelectionGroupComponent, SuccessfulUpdateDialog,
-    ModifierListComponent
+    ModifierListComponent,
+    EditOrderItemComponent
   ],
   imports: [
     CommonModule,

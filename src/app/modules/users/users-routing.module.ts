@@ -15,6 +15,7 @@ import { AppFeedbackComponent } from "src/app/modules/feedback/app-feedback/app-
 import { BugReportComponent } from "src/app/modules/feedback/app-feedback/bug-report/bug-report.component";
 import { FeatureRequestComponent } from "src/app/modules/feedback/app-feedback/feature-request/feature-request.component";
 import { CustomerGuard } from 'src/app/guards/customer.guard';
+import { EditOrderItemComponent } from './components/edit-order-item/edit-order-item.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,7 @@ const routes: Routes = [
           { path: "menu/:id", component: ItemDetailsComponent },
           { path: "cart/payment", component: PaymentComponent },
           { path: "account/settings", component: SettingsComponent },
+          { path: "cart/edit/:id", component: EditOrderItemComponent },
           {
             path: "account/feedback", component: AppFeedbackComponent,
             children: [

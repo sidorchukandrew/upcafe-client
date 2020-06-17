@@ -7,6 +7,8 @@ export class OrderItem {
     price: number;
     quantity: number;
     name: string;
+    imageUrl: string;
+    tempId: number;
 
     constructor() {
         this.quantity = 1;

@@ -4,15 +4,14 @@
 
 .price-container {
   text-align: center;
-}
-
-.price {
-  font-family: 'Roboto';
+  margin-bottom: 70px;
+  font-family: 'Proza Libre';
 }
 
 #dollar-sign {
   display: inline-block;
-  font-size: 44px;
+  font-size: 20px;
+  transform: translateY(-8px);
 }
 
 #dollars {
@@ -31,24 +30,55 @@
 }
 
 .items {
+  margin: 0px 15px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
 .item {
+  padding: 4px 10px;
   border-radius: 4px;
-  width: 90%;
-  max-width: 500px;
   display: flex;
-  justify-content: space-between;
-  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: 4px 0px;
+  height: 80px;
+  font-family: Roboto;
 }
 
-.left-side {}
+.item .name {
+  font-size: 16px;
+  font-weight: 500;
+}
 
-.right-side {
-  font-weight: 600;
+.item .text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10px;
+  width: 100%;
+}
+
+.item .price {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.avatar {
+  display: inline-block;
+}
+
+.avatar img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.item .remove-item {
+  display: flex;
+  align-items: center;
 }
 
 .bottom {

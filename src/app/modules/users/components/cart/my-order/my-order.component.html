@@ -96,45 +96,29 @@
   </div>
 </div>
 
-<div class="items">
 
-  <div *ngFor="let item of currentOrder.orderItems" class="card-background item title-color" matRipple (click)="editItem(item)">
-    <div class="left-side">
-      {{item.name}}
-    </div>
+<ng-container *ngIf="currentOrder">
+  <div class="items">
+    <ng-container *ngFor="let item of currentOrder.orderItems">
 
-    <div class="right-side">
-      {{item.price | currency}}
-    </div>
+      <div class="item card-background" matRipple
+        [ngClass]="{'diffused-shadow': !darkThemeOn}">
+        <div class="avatar" (click)="editItem(item)"><img src="../../../../../../assets/images/menu icons/restaurant.png"></div>
+
+        <div class="text" (click)="editItem(item)">
+
+          <div class="name title-color"> {{ item.name }} </div>
+          <div class="price subtitle-color"> {{ item.price | currency }} </div>
+        </div>
+
+        <div class="remove-item">
+          <mat-icon class="subtitle-color" (click)="removeFromOrder(item)">close</mat-icon>
+        </div>
+      </div>
+    </ng-container>
   </div>
-</div>
+</ng-container>
 
-<!-- <div
-  id="bottom-card"
-  class="full-width navbar-space-bottom white-background shadow card-background"
-  *ngIf="currentOrder != null"
->
-  <table class="full-width top-margin-15">
-    <tr class="label-font">
-      <td class="small-width right-align-text">
-        <div id="tax" class="inline-block theme-color">Tax:</div>
-      </td>
-      <td >
-        <div class="number inline-block title-color">
-          {{ currentOrder.totalPrice * 0.08 | currency }}
-        </div>
-      </td>
-      <td class="right-align-text">
-        <div id="subtotal" class="inline-block theme-color">Subtotal:</div>
-      </td>
-      <td class="small-width right-align-text">
-        <div class="number inline-block right-margin-20 title-color">
-          {{ currentOrder.totalPrice | currency }}
-        </div>
-      </td>
-    </tr>
-  </table>
-</div> -->
 
 <div class="bottom">
 

@@ -27,15 +27,18 @@ export class MenuService {
   }
 
   public getItemBeingViewed(id: string): MenuItem {
+
     if(this.itemBeingViewed)
       return this.itemBeingViewed;
 
     this.menuSubject.value.categories.forEach(category => {
       category.items.forEach(item => {
-        if(item.id = id) return item;
+        if(item.id == id) {
+            this.itemBeingViewed = item;
+        }
       });
     });
 
-    return null;
+    return this.itemBeingViewed;
   }
 }
