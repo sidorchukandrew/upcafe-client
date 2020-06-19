@@ -9,11 +9,13 @@ import { HeaderWithSearchModule } from '../header-with-search/header-with-search
 import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { CafeSettingsMenuComponent } from './components/cafe-settings-menu/cafe-settings-menu.component';
+import { CatalogItemImageComponent } from './components/catalog-item-image/catalog-item-image.component';
+import { CatalogComponent } from './components/catalog/catalog.component';
 
 
 
 @NgModule({
-  declarations: [DashboardComponent, UsersComponent, UserDetailsSheet, AdminNavbarComponent, AdminComponent, CafeSettingsMenuComponent],
+  declarations: [DashboardComponent, UsersComponent, UserDetailsSheet, AdminNavbarComponent, AdminComponent, CafeSettingsMenuComponent, CatalogItemImageComponent, CatalogComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

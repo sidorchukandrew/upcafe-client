@@ -5,6 +5,7 @@ import { AdminGuard } from 'src/app/guards/admin.guard';
 import { UsersComponent } from './components/users/users.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { CafeSettingsMenuComponent } from './components/cafe-settings-menu/cafe-settings-menu.component';
+import { CatalogComponent } from './components/catalog/catalog.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,9 @@ const routes: Routes = [
       },
       {
         path: "cafe/users", component: UsersComponent
+      },
+      {
+        path: "cafe/catalog", component: CatalogComponent
       }
     ]
   }

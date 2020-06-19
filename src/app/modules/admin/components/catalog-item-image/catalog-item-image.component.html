@@ -1,0 +1,17 @@
+<div class="image-wrapper">
+
+  <div id="no-image-yet" *ngIf="!url">
+    There's no image for this item yet.
+  </div>
+
+  <ng-container *ngIf="url">
+    <input type="file" style="display: none" #selectImage (change)="previewImage($event.target.files[0])">
+    <img [src]="url" *ngIf="url" (click)="toggleShowEditImageButton()" [ngClass]= "{'blur': showEditImageButton}">
+    <div id="edit-image">
+      <button mat-raised-button *ngIf="showEditImageButton" color="primary"
+      (click)="selectImage.click()">Change Image</button>
+    </div>
+  </ng-container>
+
+
+</div>

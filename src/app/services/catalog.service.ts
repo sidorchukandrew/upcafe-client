@@ -34,4 +34,8 @@ export class CatalogService {
       "modifiers": Array.from(inventoryChange.modifiers)
     });
   }
+
+  public createImage(): void {
+
+  }
  }
