@@ -15,10 +15,11 @@ export class SegmentedControlComponent implements OnInit {
 
   ngOnInit() {
     this.selectedChoice = this.choices[0];
+    this.selectionEmitter.emit(this.selectedChoice);
   }
 
   protected select(choice: string): void {
-    console.log(choice);
     this.selectedChoice = choice;
+    this.selectionEmitter.emit(choice);
   }
 }

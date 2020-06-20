@@ -1,2 +1,2 @@
 <app-header title="Catalog"></app-header>
-<app-segmented-control [choices]="controls"></app-segmented-control>
+<app-segmented-control [choices]="controls" (selectionMade)="changeSearchFilter($event)"></app-segmented-control>

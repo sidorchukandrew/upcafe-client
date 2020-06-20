@@ -36,4 +36,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
+
+  protected changeSearchFilter(filter: string): void {
+    console.log(filter);
+  }
 }
