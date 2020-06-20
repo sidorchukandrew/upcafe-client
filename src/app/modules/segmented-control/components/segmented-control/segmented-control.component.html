@@ -1,0 +1,6 @@
+<div class="segmented-control" >
+  <ng-container *ngFor="let choice of choices">
+    <div class="choice title-color" (click)="select(choice)"
+    [ngClass]="{'card-background': selectedChoice == choice, 'selected': selectedChoice == choice}">{{choice}}</div>
+  </ng-container>
+</div>

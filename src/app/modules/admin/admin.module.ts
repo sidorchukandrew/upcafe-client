@@ -11,6 +11,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { CafeSettingsMenuComponent } from './components/cafe-settings-menu/cafe-settings-menu.component';
 import { CatalogItemImageComponent } from './components/catalog-item-image/catalog-item-image.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
+import { SegmentedControlModule } from '../segmented-control/segmented-control.module';
 
 
 
@@ -25,7 +26,8 @@ import { CatalogComponent } from './components/catalog/catalog.component';
     MatButtonModule,
     MatRippleModule,
     MatGridListModule,
-    HeaderWithSearchModule
+    HeaderWithSearchModule,
+    SegmentedControlModule
   ],
   entryComponents: [
     UserDetailsSheet

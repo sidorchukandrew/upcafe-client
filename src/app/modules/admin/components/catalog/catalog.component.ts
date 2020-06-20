@@ -18,6 +18,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   protected modifiers: Array<Modifier>;
   protected modifierLists: Array<ModifierList>;
   protected menuItems: Array<MenuItem>;
+  protected controls: Array<string> = ["Items", "Modifiers", "Lists"];
 
   private subscriptions: Subscription;
 

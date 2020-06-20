@@ -1,11 +1,2 @@
 <app-header title="Catalog"></app-header>
-
-<ng-container *ngIf="catalog">
-
-  <ng-container *ngFor="let item of catalog.itemsList">
-    <div class="catalog-item">
-      {{item.name}}
-    </div>
-    </ng-container>
-
-</ng-container>
+<app-segmented-control [choices]="controls"></app-segmented-control>
