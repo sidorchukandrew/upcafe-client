@@ -13,11 +13,14 @@ import { CatalogItemImageComponent } from './components/catalog-item-image/catal
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { SegmentedControlModule } from '../segmented-control/segmented-control.module';
 import { CatalogItemViewComponent } from './components/catalog-item-view/catalog-item-view.component';
+import { MenuItemSummaryComponent } from './components/menu-item-summary/menu-item-summary.component';
+import { ModifierSummaryComponent } from './components/modifier-summary/modifier-summary.component';
+import { ModifierListSummaryComponent } from './components/modifier-list-summary/modifier-list-summary.component';
 
 
 
 @NgModule({
-  declarations: [DashboardComponent, UsersComponent, UserDetailsSheet, AdminNavbarComponent, AdminComponent, CafeSettingsMenuComponent, CatalogItemImageComponent, CatalogComponent, CatalogItemViewComponent],
+  declarations: [DashboardComponent, UsersComponent, UserDetailsSheet, AdminNavbarComponent, AdminComponent, CafeSettingsMenuComponent, CatalogItemImageComponent, CatalogComponent, CatalogItemViewComponent, MenuItemSummaryComponent, ModifierSummaryComponent, ModifierListSummaryComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

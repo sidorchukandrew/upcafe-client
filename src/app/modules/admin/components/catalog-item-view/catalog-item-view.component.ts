@@ -15,21 +15,25 @@ export class CatalogItemViewComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription;
   protected catalogObject: CatalogObject;
 
+  protected type: string;
+
   constructor(private route: ActivatedRoute, private catalogService: CatalogService) { }
 
   ngOnInit() {
     this.subscriptions = new Subscription();
 
-    let id, type: string;
+    let id: string;
 
 
     let pathVariable$ = this.route.params.pipe(tap(params => id = params['id']), take(1));
-    let queryParams$ = this.route.queryParams.pipe(tap(params => type = params['type']));
+    let queryParams$ = this.route.queryParams.pipe(tap(params => this.type = params['type']));
 
     let getParams$ = pathVariable$.pipe(concat(queryParams$));
 
     this.subscriptions.add(getParams$.subscribe(
-      () => this.catalogObject = this.catalogService.getObjectByIdAndType(id, type)
+      () => {
+        this.catalogObject = this.catalogService.getObjectByIdAndType(id, this.type);
+      }
     ));
   }
 

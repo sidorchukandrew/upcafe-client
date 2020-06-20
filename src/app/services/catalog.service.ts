@@ -108,41 +108,4 @@ export class CatalogService {
       return objectToReturn;
     }
   }
-
-
-  public getObjectById(id: string): CatalogObject {
-
-    this.loadCatalogIfNotLoadedYet();
-
-    let menuItem: MenuItem = this.catalog.getValue().itemsList.find(item => item.id == id);
-
-    if (menuItem) {
-      let objectToReturn: MenuItem = {
-        description: menuItem.description,
-        id: menuItem.id,
-        image: menuItem.image,
-        inStock: menuItem.inStock,
-        name: menuItem.name,
-        price: menuItem.price,
-        modifierLists: menuItem.modifierLists
-      }
-
-      return objectToReturn;
-    }
-
-    let modifierList: ModifierList = this.catalog.getValue().modifierLists.find(modifierList => modifierList.id == id);
-
-    if (modifierList) {
-      let objectToReturn: ModifierList = {
-        id: modifierList.id,
-        image: modifierList.image,
-        modifiers: modifierList.modifiers,
-        name: modifierList.name,
-        selectionType: modifierList.selectionType
-      }
-
-      return objectToReturn;
-    }
-    return null;
-  }
 }
