@@ -1,2 +1,15 @@
 <app-header title="Catalog"></app-header>
-<app-segmented-control [choices]="controls" (selectionMade)="changeSearchFilter($event)"></app-segmented-control>
+
+<div class="segmented-control">
+  <app-segmented-control [choices]="controls" (selectionMade)="changeSearchFilter($event)"></app-segmented-control>
+</div>
+
+<ng-container *ngIf="displayedItems">
+  <ng-container *ngFor="let object of displayedItems">
+    <div class="object title-color" matRipple>
+      {{object.name}}
+    </div>
+
+    <mat-divider class="divider-color"></mat-divider>
+  </ng-container>
+</ng-container>
