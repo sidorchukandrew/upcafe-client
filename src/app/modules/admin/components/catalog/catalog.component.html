@@ -1,7 +1,7 @@
-<app-header title="Catalog"></app-header>
+<app-header title="Catalog" (searchQuery)="filterByQuery($event)"></app-header>
 
 <div class="segmented-control">
-  <app-segmented-control [choices]="controls" (selectionMade)="changeSearchFilter($event)"></app-segmented-control>
+  <app-segmented-control [choices]="controls" (selectionMade)="changeGroupFilter($event)" #selector></app-segmented-control>
 </div>
 
 <ng-container *ngIf="displayedItems">

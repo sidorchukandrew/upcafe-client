@@ -22,4 +22,8 @@ export class SegmentedControlComponent implements OnInit {
     this.selectedChoice = choice;
     this.selectionEmitter.emit(choice);
   }
+
+  public getSelectedChoice(): string {
+    return this.selectedChoice;
+  }
 }

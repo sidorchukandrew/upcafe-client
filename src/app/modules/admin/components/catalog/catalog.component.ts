@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CatalogService } from 'src/app/services/catalog.service';
 import { CatalogWhole } from 'src/app/models/CatalogWhole';
@@ -8,6 +8,7 @@ import { MenuItem } from 'src/app/models/MenuItem';
 import { Subscription } from 'rxjs';
 import { CatalogObject } from 'src/app/models/CatalogObject';
 import { ThemeService } from 'src/app/services/theme.service';
+import { SegmentedControlComponent } from 'src/app/modules/segmented-control/components/segmented-control/segmented-control.component';
 
 @Component({
   selector: 'app-catalog',
@@ -25,6 +26,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
   protected displayedItems: Array<CatalogObject>;
   private subscriptions: Subscription;
 
+  @ViewChild("selector", {static: false}) selector: SegmentedControlComponent;
+
   constructor(private catalogService: CatalogService, private themeService: ThemeService) { }
 
   ngOnInit() {
@@ -34,19 +37,15 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.catalogService.catalog$.subscribe(catalog => {
       this.catalog = catalog;
-      this.changeSearchFilter(this.controls[0]);
+      this.changeGroupFilter(this.controls[0]);
     }));
-
-
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
 
-  protected changeSearchFilter(filter: string): void {
-
-    console.log(filter);
+  protected changeGroupFilter(filter: string): void {
 
     if (this.catalog) {
 
@@ -63,7 +62,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
           });
         }
 
-        this.displayedItems = this.menuItems;
+        this.displayedItems = new Array();
+        this.menuItems.forEach(item => {this.displayedItems.push({name: item.name, id: item.id})});
 
       } else if (filter == "Modifiers") {
 
@@ -81,7 +81,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
           });
         }
 
-        this.displayedItems = this.modifiers;
+        this.displayedItems = new Array();
+        this.modifiers.forEach(modifier => { this.displayedItems.push({ name: modifier.name, id: modifier.id }) });
 
       } else if (filter == "Lists") {
 
@@ -93,9 +94,16 @@ export class CatalogComponent implements OnInit, OnDestroy {
               name: list.name, selectionType: list.selectionType});
           });
         }
-
-        this.displayedItems = this.modifierLists;
+        this.displayedItems = new Array();
+        this.modifierLists.forEach(list => { this.displayedItems.push({ name: list.name, id: list.id }) });
       }
+    }
+  }
+
+  protected filterByQuery(query: string) {
+    if(this.displayedItems) {
+      this.changeGroupFilter(this.selector.getSelectedChoice());
+      this.displayedItems = this.displayedItems.filter(item => item.name.toLowerCase().includes(query));
     }
   }
 }
