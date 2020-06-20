@@ -3,9 +3,9 @@
   <app-catalog-item-image [image]="catalogObject.image"></app-catalog-item-image>
 
   <ng-container *ngIf="type">
-      <app-menu-item-summary *ngIf="type == 'Menu Item'"></app-menu-item-summary>
-      <app-modifier-summary *ngIf="type == 'Modifier'"></app-modifier-summary>
-      <app-modifier-list-summary *ngIf="type == 'Modifier List'"></app-modifier-list-summary>
+      <app-menu-item-summary *ngIf="type == 'Menu Item'" [item]="catalogObject"></app-menu-item-summary>
+      <app-modifier-summary *ngIf="type == 'Modifier'" [modifier]="catalogObject"></app-modifier-summary>
+      <app-modifier-list-summary *ngIf="type == 'Modifier List'" [modifierList]="catalogObject"></app-modifier-list-summary>
   </ng-container>
 
 </ng-container>

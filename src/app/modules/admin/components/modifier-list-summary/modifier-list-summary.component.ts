@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ModifierList } from 'src/app/models/ModifierList';
 
 @Component({
   selector: 'app-modifier-list-summary',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modifier-list-summary.component.css']
 })
 export class ModifierListSummaryComponent implements OnInit {
+
+  @Input("modifierList") modifierList: ModifierList;
 
   constructor() { }
 
