@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CatalogService } from 'src/app/services/catalog.service';
 
 @Component({
   selector: 'app-catalog',
@@ -8,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CatalogComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private catalogService: CatalogService) { }
 
   ngOnInit() {
   }
@@ -18,10 +19,8 @@ export class CatalogComponent implements OnInit {
 
     uploadImage.append("file", image, image.name);
 
-    this.http.post("http://192.168.0.3:8080/catalog/create-image", uploadImage, {
-      reportProgress: true,
-      observe: "events",
-      params: { objectId: "NAIYGCK64UZ2CKCUTC77U6RG"}
-    }).subscribe(events => console.log(events));
+    const id: string = "NAIYGCK64UZ2CKCUTC77U6RG";
+
+    this.catalogService.createImage(uploadImage, id).subscribe();
   }
 }

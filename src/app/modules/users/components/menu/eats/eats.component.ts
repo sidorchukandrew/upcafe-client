@@ -31,46 +31,46 @@ export class EatsComponent implements OnInit, OnDestroy {
     this.subscriptions = new Subscription();
     this.catalog = { catalogSections: Array<CatalogByCategory>() };
 
-    var sandwiches$ = this.catalogService
-      .getCatalogBySection("sandwiches")
-      .pipe(
-        map((response) => response["items"]),
-        tap((section) => {
-          var catalogSection: CatalogByCategory = {
-            category: "Sandwiches",
-            menuItems: section,
-          };
-          this.catalog.catalogSections.push(catalogSection);
-        })
-      );
+    // var sandwiches$ = this.catalogService
+    //   .getCatalogBySection("sandwiches")
+    //   .pipe(
+    //     map((response) => response["items"]),
+    //     tap((section) => {
+    //       var catalogSection: CatalogByCategory = {
+    //         category: "Sandwiches",
+    //         menuItems: section,
+    //       };
+    //       this.catalog.catalogSections.push(catalogSection);
+    //     })
+    //   );
 
-    var soups$ = this.catalogService.getCatalogBySection("soups").pipe(
-      map((response) => response["items"]),
-      tap((section) => {
-        var catalogSection: CatalogByCategory = {
-          category: "Soups",
-          menuItems: section,
-        };
-        this.catalog.catalogSections.push(catalogSection);
-      })
-    );
+    // var soups$ = this.catalogService.getCatalogBySection("soups").pipe(
+    //   map((response) => response["items"]),
+    //   tap((section) => {
+    //     var catalogSection: CatalogByCategory = {
+    //       category: "Soups",
+    //       menuItems: section,
+    //     };
+    //     this.catalog.catalogSections.push(catalogSection);
+    //   })
+    // );
 
-    var pizzas$ = this.catalogService.getCatalogBySection("pizzas").pipe(
-      map((response) => response["items"]),
-      tap((section) => {
-        var catalogSection: CatalogByCategory = {
-          category: "Pizzas",
-          menuItems: section,
-        };
-        this.catalog.catalogSections.push(catalogSection);
-      })
-    );
+    // var pizzas$ = this.catalogService.getCatalogBySection("pizzas").pipe(
+    //   map((response) => response["items"]),
+    //   tap((section) => {
+    //     var catalogSection: CatalogByCategory = {
+    //       category: "Pizzas",
+    //       menuItems: section,
+    //     };
+    //     this.catalog.catalogSections.push(catalogSection);
+    //   })
+    // );
 
-    var loadCatalog$ = this.loadingService.showLoadingUntilComplete(
-      sandwiches$.pipe(concat(soups$, pizzas$))
-    );
+    // var loadCatalog$ = this.loadingService.showLoadingUntilComplete(
+    //   sandwiches$.pipe(concat(soups$, pizzas$))
+    // );
 
-    this.subscriptions.add(loadCatalog$.subscribe());
+    // this.subscriptions.add(loadCatalog$.subscribe());
   }
 
   ngOnDestroy() {

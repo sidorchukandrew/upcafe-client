@@ -11,31 +11,25 @@ import { MenuItem } from '../models/MenuItem';
 export class CatalogService {
   constructor(private http: HttpClient) {}
 
-  public getCatalogBySection(category: string): Observable<any> {
-    return this.http.get(environment.backendUrl + "/catalog", {
-      params: {
-        category: category,
-      },
-    });
-  }
-
   public getVariation(id: string): Observable<MenuItem> {
     return this.http.get<MenuItem>(environment.backendUrl + "/menu/items/" + id);
   }
 
   public getCatalog(): Observable<any> {
-    return this.http.get(environment.backendUrl + "/catalogs");
+    return this.http.get(environment.backendUrl + "/api/v1/catalog");
   }
 
   public updateInventory(inventoryChange: CatalogInventoryChange): Observable<any> {
 
-    return this.http.put(environment.backendUrl + "/catalog/inventory", {
+    return this.http.put(environment.backendUrl + "/api/v1/catalog/inventory", {
       "variations": Array.from(inventoryChange.items),
       "modifiers": Array.from(inventoryChange.modifiers)
     });
   }
 
-  public createImage(): void {
-
+  public createImage(file: FormData, objectId: string): Observable<any> {
+    return this.http.post(environment.backendUrl + "/catalog/images", file, {
+      params: { objectId: objectId }
+    });
   }
  }

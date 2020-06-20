@@ -26,13 +26,13 @@ export class SweetsComponent implements OnInit {
 
   }
 
-  private loadCatalogByCategory(category: string): void {
-    this.catalogService.getCatalogBySection(category).subscribe(data => {
-      var catalogSection: CatalogByCategory = data;
-      this.catalog.catalogSections.push(catalogSection);
-      console.log(this.catalog);
-    });
-  }
+  // private loadCatalogByCategory(category: string): void {
+  //   this.catalogService.getCatalogBySection(category).subscribe(data => {
+  //     var catalogSection: CatalogByCategory = data;
+  //     this.catalog.catalogSections.push(catalogSection);
+  //     console.log(this.catalog);
+  //   });
+  // }
 
   // loadItem(lineItem: CategoryItem, variationData: VariationData): void {
   //   // this.itemStore.setSelectedItem(lineItem, variationData);

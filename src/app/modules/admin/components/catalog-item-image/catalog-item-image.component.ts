@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { read } from 'fs';
 
 @Component({
   selector: 'app-catalog-item-image',
