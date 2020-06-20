@@ -1,1 +1,7 @@
-<p>catalog-item-view works!</p>
+
+<ng-container *ngIf="catalogObject">
+
+  <app-catalog-item-image [image]="catalogObject.image"></app-catalog-item-image>
+  {{catalogObject.name}}
+
+</ng-container>

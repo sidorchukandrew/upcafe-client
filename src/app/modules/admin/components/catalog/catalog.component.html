@@ -6,7 +6,7 @@
 
 <ng-container *ngIf="displayedItems">
   <ng-container *ngFor="let object of displayedItems">
-    <div class="object title-color" matRipple (click)="openItem(object)">
+    <div class="object title-color" matRipple [routerLink]="object.id" [queryParams]="{type: object.type}">
       {{object.name}}
     </div>
 

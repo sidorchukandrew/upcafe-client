@@ -4,7 +4,6 @@ import { Router } from "@angular/router";
 import { Location } from "@angular/common";
 import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
 import { OrdersStore } from "src/app/stores/orders.store";
-import { tap, concat } from "rxjs/operators";
 
 @Component({
   selector: "app-order-details",
@@ -21,7 +20,6 @@ export class OrderDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // console.log(this.detailsStore.orderBeingViewed);
     if (!!!this.detailsStore.orderBeingViewed) {
       this.router.navigate(["staff/orders/new"]);
     }

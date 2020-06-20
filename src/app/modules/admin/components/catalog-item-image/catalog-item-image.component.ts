@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+import { Image } from "src/app/models/Image";
 @Component({
   selector: 'app-catalog-item-image',
   templateUrl: './catalog-item-image.component.html',
@@ -7,14 +7,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CatalogItemImageComponent implements OnInit {
 
-  @Input("url") url: string | ArrayBuffer = null;
+  @Input("image") image: Image = null;
   @Output("imageSelected") imageEmitter: EventEmitter<File> = new EventEmitter<File>();
+
+  protected url: string | ArrayBuffer = null;
 
   protected showEditImageButton: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
+    if(this.image) this.url = this.image.url;
   }
 
   protected previewImage(file: File): void {

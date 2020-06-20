@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CatalogService } from './catalog.service';
+import { CatalogObject } from '../models/CatalogObject';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { MenuItem } from '../models/MenuItem';
+import { ModifierList } from '../models/ModifierList';
+import { Modifier } from '../models/Modifier';
 
 @Injectable({
   providedIn: 'root'
