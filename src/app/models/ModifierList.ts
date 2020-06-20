@@ -1,7 +1,8 @@
 import { Image } from './Image'
 import { Modifier } from './Modifier';
+import { CatalogObject } from './CatalogObject';
 
-export class ModifierList {
+export class ModifierList extends CatalogObject {
   id: string;
   name: string;
   selectionType: string;

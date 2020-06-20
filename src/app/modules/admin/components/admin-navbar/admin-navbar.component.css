@@ -1,8 +1,10 @@
-#staff-navbar {
+#admin-navbar {
   /* background-color: white; */
   width: 100%;
   bottom: 0px;
   position: absolute;
+  height: 50px;
+  display:flex;
 }
 
 
@@ -11,10 +13,10 @@
 } */
 
 .link {
-  color: #939cb8;
+  color: #f3f3f3;
   cursor: pointer;
   height: 100%;
-  display: inline-block;
+  display: flex;
   padding: 5px;
   width: 49%;
   text-align: center;

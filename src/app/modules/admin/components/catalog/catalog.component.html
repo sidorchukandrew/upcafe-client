@@ -1,1 +1,11 @@
-<app-catalog-item-image url="../../../../../assets/food.png" (imageSelected)="imageSelected($event)"></app-catalog-item-image>
+<app-header title="Catalog"></app-header>
+
+<ng-container *ngIf="catalog">
+
+  <ng-container *ngFor="let item of catalog.itemsList">
+    <div class="catalog-item">
+      {{item.name}}
+    </div>
+    </ng-container>
+
+</ng-container>
