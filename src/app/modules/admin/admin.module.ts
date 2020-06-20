@@ -12,11 +12,12 @@ import { CafeSettingsMenuComponent } from './components/cafe-settings-menu/cafe-
 import { CatalogItemImageComponent } from './components/catalog-item-image/catalog-item-image.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { SegmentedControlModule } from '../segmented-control/segmented-control.module';
+import { CatalogItemViewComponent } from './components/catalog-item-view/catalog-item-view.component';
 
 
 
 @NgModule({
-  declarations: [DashboardComponent, UsersComponent, UserDetailsSheet, AdminNavbarComponent, AdminComponent, CafeSettingsMenuComponent, CatalogItemImageComponent, CatalogComponent],
+  declarations: [DashboardComponent, UsersComponent, UserDetailsSheet, AdminNavbarComponent, AdminComponent, CafeSettingsMenuComponent, CatalogItemImageComponent, CatalogComponent, CatalogItemViewComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { CatalogObject } from 'src/app/models/CatalogObject';
 import { ThemeService } from 'src/app/services/theme.service';
 import { SegmentedControlComponent } from 'src/app/modules/segmented-control/components/segmented-control/segmented-control.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-catalog',
@@ -28,7 +29,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   @ViewChild("selector", {static: false}) selector: SegmentedControlComponent;
 
-  constructor(private catalogService: CatalogService, private themeService: ThemeService) { }
+  constructor(private catalogService: CatalogService, private themeService: ThemeService,
+     private router: Router) { }
 
   ngOnInit() {
 
@@ -103,7 +105,11 @@ export class CatalogComponent implements OnInit, OnDestroy {
   protected filterByQuery(query: string) {
     if(this.displayedItems) {
       this.changeGroupFilter(this.selector.getSelectedChoice());
-      this.displayedItems = this.displayedItems.filter(item => item.name.toLowerCase().includes(query));
+      this.displayedItems = this.displayedItems.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
     }
+  }
+
+  protected openItem(item: MenuItem | ModifierList | Modifier): void {
+    this.router.navigate(["/admin/cafe/catalog/" + item.id]);
   }
 }

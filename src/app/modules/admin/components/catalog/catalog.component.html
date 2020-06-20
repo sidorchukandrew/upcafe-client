@@ -6,7 +6,7 @@
 
 <ng-container *ngIf="displayedItems">
   <ng-container *ngFor="let object of displayedItems">
-    <div class="object title-color" matRipple>
+    <div class="object title-color" matRipple (click)="openItem(object)">
       {{object.name}}
     </div>
 

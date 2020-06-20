@@ -6,6 +6,7 @@ import { UsersComponent } from './components/users/users.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { CafeSettingsMenuComponent } from './components/cafe-settings-menu/cafe-settings-menu.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
+import { CatalogItemViewComponent } from './components/catalog-item-view/catalog-item-view.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,9 @@ const routes: Routes = [
       },
       {
         path: "cafe/catalog", component: CatalogComponent
+      },
+      {
+        path: "cafe/catalog/:id", component: CatalogItemViewComponent
       }
     ]
   }
