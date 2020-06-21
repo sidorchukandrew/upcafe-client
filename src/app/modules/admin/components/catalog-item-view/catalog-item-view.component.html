@@ -7,12 +7,17 @@
 
 <ng-container *ngIf="catalogObject">
 
-  <app-catalog-item-image [image]="catalogObject.image"></app-catalog-item-image>
+  <div class="image">
+    <app-catalog-item-image [image]="catalogObject.image"></app-catalog-item-image>
+  </div>
 
   <ng-container *ngIf="type">
+
+    <div class="summary">
       <app-menu-item-summary *ngIf="type == 'Menu Item'" [item]="catalogObject"></app-menu-item-summary>
       <app-modifier-summary *ngIf="type == 'Modifier'" [modifier]="catalogObject"></app-modifier-summary>
       <app-modifier-list-summary *ngIf="type == 'Modifier List'" [modifierList]="catalogObject"></app-modifier-list-summary>
+    </div>
   </ng-container>
 
 </ng-container>

@@ -16,4 +16,7 @@ export class MenuItemSummaryComponent implements OnInit {
     console.log(this.menuItem);
   }
 
+  public toggleInStock(item: MenuItem): void {
+    item.inStock = !item.inStock;
+  }
 }

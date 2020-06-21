@@ -4,7 +4,7 @@ import { ModifierList } from 'src/app/models/ModifierList';
 @Component({
   selector: 'app-modifier-list-summary',
   templateUrl: './modifier-list-summary.component.html',
-  styleUrls: ['./modifier-list-summary.component.css']
+  styleUrls: ['./modifier-list-summary.component.css', "../menu-item-summary/menu-item-summary.component.css"]
 })
 export class ModifierListSummaryComponent implements OnInit {
 

@@ -1,1 +1,29 @@
-<p>menu-item-summary works!</p>
+<div class="content">
+  <div class="name title-color">{{menuItem.name}}</div>
+  <div class="type subtitle-color">Menu Item</div>
+
+  <div id="no-description" class="row description subtitle-color" *ngIf="menuItem.description == null" else=#description>There's no description for this item yet.</div>
+  <div class="row description subtitle-color" #description>{{menuItem.description}}</div>
+
+  <div class="row stock subtitle-color">
+    Inventory:
+    <div class="button" [ngClass]="{'in': menuItem.inStock, 'out': !menuItem.inStock}" (click)="toggleInStock(menuItem)">
+      <ng-container *ngIf="menuItem.inStock">In</ng-container>
+      <ng-container *ngIf="!menuItem.inStock">Out</ng-container>
+    </div>
+  </div>
+
+  <div class="row subtitle-color">
+    Price:
+
+    <div class="price">
+      {{ menuItem.price | currency }}
+    </div>
+  </div>
+
+  <div class="row subtitle-color">
+    Modifier Lists:
+
+    <div id="no-modifier-lists" class="associated-modifier-lists" *ngIf="menuItem.modifierLists == null">None</div>
+  </div>
+</div>
