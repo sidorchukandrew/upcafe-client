@@ -1,11 +1,26 @@
 .image-wrapper {
   position: relative;
   text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+#no-image-yet {
+  width: 55%;
+  height: 55vw;
+  max-width: 400px;
+  max-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  margin: 0px 15px;
+  flex-direction: column;
 }
 
 img {
   max-width: 400px;
-  width: 90%;
+  width: 55%;
 }
 
 #edit-image {

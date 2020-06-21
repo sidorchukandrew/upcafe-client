@@ -65,6 +65,15 @@ a {
   color: #49c9f2;
 }
 
+.app-blue {
+  background-color: #007bf7;
+  color: white;
+}
+
+.app-blue-text {
+  color: #007bf7;
+}
+
 .navbar-space-bottom {
   height: 100px;
   min-height: 100px;
