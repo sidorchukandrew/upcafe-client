@@ -64,7 +64,8 @@ export class CatalogService {
           inStock: menuItem.inStock,
           name: menuItem.name,
           price: menuItem.price,
-          modifierLists: menuItem.modifierLists
+          modifierLists: menuItem.modifierLists,
+          type: CatalogObjectTypes.MENU_ITEM
         }
 
         return objectToReturn;
@@ -80,7 +81,8 @@ export class CatalogService {
           image: modifierList.image,
           modifiers: modifierList.modifiers,
           name: modifierList.name,
-          selectionType: modifierList.selectionType
+          selectionType: modifierList.selectionType,
+          type: CatalogObjectTypes.MODIFIER_LIST
         }
         return objectToReturn;
       }
@@ -100,7 +102,8 @@ export class CatalogService {
             modifierListId: modifier.modifierListId,
             name: modifier.name,
             onByDefault: modifier.onByDefault,
-            price: modifier.price
+            price: modifier.price,
+            type: CatalogObjectTypes.MODIFIER
           }
         }
       });

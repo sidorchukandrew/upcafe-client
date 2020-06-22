@@ -1,4 +1,20 @@
 <div class="content">
   <div class="name title-color">{{modifierList.name}}</div>
   <div class="type subtitle-color">Modifier List</div>
+
+  <div class="subtitle-color row">
+    Selection Type:
+    <div class="selection-type">
+    {{ modifierList.selectionType | titlecase }}
+    </div>
+  </div>
+
+  <div class="subtitle-color row">
+    Modifiers:
+    <div class="assigned-modifiers">
+      <ng-container *ngFor="let modifier of modifierList.modifiers">
+        {{modifier.name}}, &nbsp;
+      </ng-container>
+    </div>
+  </div>
 </div>

@@ -51,6 +51,9 @@
   font-weight: 600;
 } */
 
+.image img {
+  width: 135px;
+}
 
 #search-bar-image {
   border-top-left-radius: 4px;

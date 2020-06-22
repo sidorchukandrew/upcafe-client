@@ -18,6 +18,7 @@
 
 #no-description {
   justify-content: center;
+  text-align: center;
 }
 
 .row {
@@ -41,18 +42,15 @@
   border-radius: 4px;
   padding: 5px 0;
   transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
-  position: absolute;
-  left: 155px;
+  margin-left: 38px;
 }
 
 .row .price {
-  position: absolute;
-  left: 155px;
+  margin-left: 67px;
 }
 
 .associated-modifier-lists {
-  position: absolute;
-  left: 155px;
+  margin-left: 10px;
 }
 
 .in {

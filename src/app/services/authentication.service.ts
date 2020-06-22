@@ -54,7 +54,7 @@ export class AuthenticationService {
   }
 
   private loadMockData(): void {
-    localStorage.setItem("ACCESS_TOKEN", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNTkxODkxNTg2LCJleHAiOjE1OTI3NTU1ODZ9.QfPIuVFotZuquFa3hG-Ko_g-WaZdSDnGLXdWNUavR9k");
+    localStorage.setItem("ACCESS_TOKEN", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNTkyNzY0MDY3LCJleHAiOjE1OTM2MjgwNjd9.YaVl0EwoCs0AKha6a6Dzo9CcLyqtkT4Sp1I23Nn5ze4");
     localStorage.setItem("name", "Andrew Sidorchuk");
     localStorage.setItem("email", "sidorchukandrew@gmail.com");
     localStorage.setItem("roles", "ROLE_CUSTOMER,ROLE_STAFF,ROLE_ADMIN");
