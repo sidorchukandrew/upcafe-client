@@ -1,9 +1,9 @@
 
-<app-header title="Users" (searchQuery)="display($event)"></app-header>
+<app-header title="Users" (searchQuery)="filter($event)"></app-header>
 
-<ng-container *ngIf="users">
+<ng-container *ngIf="usersToDisplay">
   <div class="users">
-  <ng-container *ngFor="let user of users" >
+  <ng-container *ngFor="let user of usersToDisplay" >
 
       <div class="user card-background" matRipple (click)="showUser(user)" [ngClass]="{'diffused-shadow': !darkThemeOn}">
         <div class="avatar"><img [src]="user.imageUrl"></div>

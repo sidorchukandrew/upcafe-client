@@ -13,20 +13,30 @@ import { Subscription } from 'rxjs';
 })
 export class UsersComponent implements OnInit, OnDestroy {
 
-  public users: Array<UserAdminView>
+  private users: Array<UserAdminView>
   public darkThemeOn: boolean = false;
+
+  public usersToDisplay: Array<UserAdminView>;
 
   private subscriptions: Subscription;
   constructor(private usersService: UsersService, private bottomSheet: MatBottomSheet, private themeService: ThemeService) { }
 
   ngOnInit() {
-    this.usersService.getUsers().subscribe(users => this.users = users);
+    this.usersService.getUsers().subscribe(users =>{
+      this.users = users;
+      this.usersToDisplay = this.copyArray(users);
+      console.log(this.usersToDisplay);
+    });
     this.subscriptions = new Subscription();
     this.subscriptions.add(this.themeService.darkThemeOn$.subscribe(on => this.darkThemeOn = on));
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  private copyArray(users: Array<UserAdminView>): Array<UserAdminView> {
+    return Array.from(users);
   }
 
   public showUser(user: UserAdminView): void {
@@ -40,8 +50,11 @@ export class UsersComponent implements OnInit, OnDestroy {
     });
   }
 
-  public display(query: string): void {
-    console.log(query);
+  public filter(query: string) {
+    this.usersToDisplay = this.copyArray(this.users);
+    this.usersToDisplay = this.usersToDisplay.filter(user =>
+      user.name.toLowerCase().includes(query.toLowerCase())
+      || user.email.toLowerCase().includes(query.toLowerCase()));
   }
 
 }
