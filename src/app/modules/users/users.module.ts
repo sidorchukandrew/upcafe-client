@@ -1,8 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { UsersRoutingModule } from "./users-routing.module";
-import { NavbarComponent } from "./components/navbar/navbar.component";
 import { UserComponent } from "./user/user.component";
 
 import {
@@ -50,11 +48,10 @@ import { SuccessfulUpdateDialog } from './components/successful-update-dialog/su
 import  { ItemDetailsSheet } from './components/item-details-sheet/item-details-sheet.component';
 import { ModifierListComponent } from './components/modifier-list/modifier-list.component';
 import { EditOrderItemComponent } from './components/edit-order-item/edit-order-item.component';
+import { NavbarModule } from '../navbar/navbar.module';
 
 @NgModule({
   declarations: [
-    DashboardComponent,
-    NavbarComponent,
     UserComponent,
     MenuComponent,
     CartComponent,
@@ -96,7 +93,8 @@ import { EditOrderItemComponent } from './components/edit-order-item/edit-order-
     MatBottomSheetModule,
     ReactiveFormsModule,
     StatusTrackerModule,
-    FeedbackModule
+    FeedbackModule,
+    NavbarModule
   ],
   entryComponents: [UserResponseDialog, ItemDetailsSheet, EditOrderItemSheet, SuccessfulUpdateDialog],
   providers: [],

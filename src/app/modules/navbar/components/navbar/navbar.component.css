@@ -1,0 +1,21 @@
+.navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+}
+
+.link {
+  color: #e0e0e0;
+  cursor: pointer;
+  height: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  color: #49c9f2;
+}

@@ -1,0 +1,7 @@
+<div class="navbar navbar-background">
+  <a class="link" *ngFor="let link of links" [ngStyle]="{'width.%': 100 / links.length}" [routerLink]="link.route">
+      <mat-icon class="icon" routerLinkActive="active">
+        {{link.icon}}
+      </mat-icon>
+  </a>
+</div>

@@ -24,7 +24,6 @@ import {
   MatProgressSpinnerModule
 } from "@angular/material";
 import { SettingsComponent } from "./components/settings/settings.component";
-import { StaffNavbarComponent } from "./components/staff-navbar/staff-navbar.component";
 import { OrderDetailsComponent } from "./components/order-details/order-details.component";
 import { ActiveOrdersComponent } from "./components/active-orders/active-orders.component";
 import { ReadyOrdersComponent } from "./components/ready-orders/ready-orders.component";
@@ -43,6 +42,7 @@ import { FeedbackModule } from '../feedback/feedback.module';
 import { StaffAccountMenuComponent } from './components/staff-account-menu/staff-account-menu.component';
 import { CatalogViewComponent } from './components/catalog-view/catalog-view.component';
 import { CatalogItemDialog } from './components/catalog-item-dialog/catalog-item-dialog.component';
+import { NavbarModule } from '../navbar/navbar.module';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,6 @@ import { CatalogItemDialog } from './components/catalog-item-dialog/catalog-item
     StaffComponent,
     HoursComponent,
     SettingsComponent,
-    StaffNavbarComponent,
     OrderDetailsComponent,
     ActiveOrdersComponent,
     ReadyOrdersComponent,
@@ -88,7 +87,8 @@ import { CatalogItemDialog } from './components/catalog-item-dialog/catalog-item
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     StatusTrackerModule,
-    FeedbackModule
+    FeedbackModule,
+    NavbarModule
   ],
   entryComponents: [SelectTimeComponent, CatalogItemDialog],
 })
