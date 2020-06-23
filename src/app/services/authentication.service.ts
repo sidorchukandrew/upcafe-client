@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { User } from "../models/User";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { environment } from 'src/environments/environment';
 
 export const ROLE_CUSTOMER: string = "ROLE_CUSTOMER";
 export const ROLE_STAFF: string = "ROLE_STAFF";
@@ -118,7 +119,7 @@ export class AuthenticationService {
   }
 
   public getUserFromApi(): Observable<User> {
-    return this.http.get<User>("http://localhost:8080/users/me");
+    return this.http.get<User>(environment.backendUrl +"/users/me");
   }
 
   public signOut(): void {

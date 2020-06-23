@@ -1,7 +1,7 @@
 {
-  "name": "UpCafé",
+  "name": "UPCafé",
   "short_name": "UPCafé",
-  "theme_color": "#1976d2",
+  "theme_color": "#49c9f2",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",
