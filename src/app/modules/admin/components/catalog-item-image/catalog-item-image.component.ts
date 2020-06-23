@@ -37,7 +37,7 @@ export class CatalogItemImageComponent implements OnInit {
     reader.onload = () => {
       this.url = reader.result;
       this.showEditImageButton = false;
-      // this.imageEmitter.emit(file);
+      this.imageEmitter.emit(file);
     }
 
   }

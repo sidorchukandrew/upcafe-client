@@ -43,7 +43,7 @@ export class CatalogService {
   }
 
   public createImage(file: FormData, objectId: string): Observable<any> {
-    return this.http.post(environment.backendUrl + "/catalog/images", file, {
+    return this.http.post(environment.backendUrl + "/api/v1/catalog/images", file, {
       params: { objectId: objectId }
     });
   }

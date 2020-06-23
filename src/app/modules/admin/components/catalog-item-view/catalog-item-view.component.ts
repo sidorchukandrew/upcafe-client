@@ -4,6 +4,7 @@ import { CatalogObject } from 'src/app/models/CatalogObject';
 import { CatalogService } from 'src/app/services/catalog.service';
 import { ActivatedRoute } from '@angular/router';
 import { tap, concat, take } from 'rxjs/operators';
+import { CatalogEditService } from 'src/app/services/catalog-edit.service';
 
 @Component({
   selector: 'app-catalog-item-view',
@@ -17,13 +18,13 @@ export class CatalogItemViewComponent implements OnInit, OnDestroy {
 
   public type: string;
 
-  constructor(private route: ActivatedRoute, private catalogService: CatalogService) { }
+  constructor(private route: ActivatedRoute, private catalogService: CatalogService,
+    private editService: CatalogEditService) { }
 
   ngOnInit() {
     this.subscriptions = new Subscription();
 
     let id: string;
-
 
     let pathVariable$ = this.route.params.pipe(tap(params => id = params['id']), take(1));
     let queryParams$ = this.route.queryParams.pipe(tap(params => this.type = params['type']));
@@ -39,6 +40,10 @@ export class CatalogItemViewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  public imageChanged(image: File): void {
+    this.editService.imageSelected(image, this.catalogObject.id);
   }
 
 }

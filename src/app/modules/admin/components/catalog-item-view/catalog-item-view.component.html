@@ -8,7 +8,7 @@
 <ng-container *ngIf="catalogObject">
 
   <div class="image">
-    <app-catalog-item-image [image]="catalogObject.image"></app-catalog-item-image>
+    <app-catalog-item-image [image]="catalogObject.image" (imageSelected)="imageChanged($event)"></app-catalog-item-image>
   </div>
 
   <ng-container *ngIf="type">

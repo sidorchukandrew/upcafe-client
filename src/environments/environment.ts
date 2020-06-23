@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   backendUrl: "https://upcafe-api.azurewebsites.net",
+  // backendUrl: "http://localhost:8080"
 };
 
 /*
