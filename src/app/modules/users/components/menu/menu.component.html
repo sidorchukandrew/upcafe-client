@@ -74,8 +74,10 @@
 
   <div *ngFor="let subcategory of filteredMenu.categories" class="subcategory">
 
-    <div class="category-title title-color">
-      {{ subcategory.name }}
+    <ng-container *ngIf="subcategory.items">
+
+      <div class="category-title title-color">
+        {{ subcategory.name }}
     </div>
     <div class="scrolling-wrapper-food">
 
@@ -87,9 +89,9 @@
             <img src="../../../../../assets/food.png">
           </div>
 
-            <div class="item-name title-color">
-              {{ item.name }}
-            </div>
+          <div class="item-name title-color">
+            {{ item.name }}
+          </div>
             <div class="price title-color">
               <div class="dollar-sign">$</div>
               <div class="dollars">
@@ -104,8 +106,9 @@
         </ng-container>
 
 
-      <div class="space"></div>
-    </div>
+        <div class="space"></div>
+      </div>
+    </ng-container>
   </div>
 
 </ng-container>
