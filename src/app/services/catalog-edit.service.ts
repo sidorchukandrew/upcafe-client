@@ -13,7 +13,7 @@ export class CatalogEditService {
 
   constructor(private catalogService: CatalogService) { }
 
-  protected imageSelected(image: File): void {
+  public imageSelected(image: File): void {
     const uploadImage = new FormData();
 
     uploadImage.append("file", image, image.name);

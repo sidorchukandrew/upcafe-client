@@ -25,7 +25,7 @@ export class MyOrderComponent implements OnInit, OnDestroy {
   selectedTime: string;
 
   private susbscriptions: Subscription;
-  protected darkThemeOn: boolean = false;
+  public darkThemeOn: boolean = false;
 
   constructor(
     private orderService: OrderPlacingService,
@@ -54,7 +54,7 @@ export class MyOrderComponent implements OnInit, OnDestroy {
     this.susbscriptions.unsubscribe();
   }
 
-  protected removeFromOrder(orderItem: OrderItem): void {
+  public removeFromOrder(orderItem: OrderItem): void {
     this.orderService.remove(orderItem);
   }
 
@@ -63,12 +63,12 @@ export class MyOrderComponent implements OnInit, OnDestroy {
     this.currentOrder.pickupTime = time;
   }
 
-  protected editItem(orderItem: OrderItem) {
+  public editItem(orderItem: OrderItem) {
     this.editService.setItemBeingEdited(orderItem);
     this.router.navigate(["user/cart/edit/" + orderItem.variationId]);
   }
 
-  protected getDollars(price: number): string {
+  public getDollars(price: number): string {
     var priceText: string = price.toString();
     var indexOfDecimal = priceText.indexOf(".");
 
@@ -77,7 +77,7 @@ export class MyOrderComponent implements OnInit, OnDestroy {
     return priceText.substr(0, indexOfDecimal);
   }
 
-  protected getCents(price: number): string {
+  public getCents(price: number): string {
     var priceText: string = price.toString();
     var indexOfDecimal = priceText.indexOf(".");
 

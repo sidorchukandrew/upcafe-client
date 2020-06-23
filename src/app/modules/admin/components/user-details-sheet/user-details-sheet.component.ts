@@ -13,11 +13,11 @@ import { ROLE_ADMIN, ROLE_STAFF, ROLE_CUSTOMER } from 'src/app/services/authenti
 export class UserDetailsSheet implements OnInit, OnDestroy {
 
   private subscriptions: Subscription;
-  protected darkThemeOn: boolean = false;
+  public darkThemeOn: boolean = false;
 
-  protected isAdmin: boolean = false;
-  protected isCustomer: boolean = true;
-  protected isStaff: boolean = false;
+  public isAdmin: boolean = false;
+  public isCustomer: boolean = true;
+  public isStaff: boolean = false;
 
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public user: UserAdminView, private bottomSheet: MatBottomSheetRef,
             private themeService: ThemeService) { }
@@ -38,19 +38,19 @@ export class UserDetailsSheet implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  protected close(): void {
+  public close(): void {
     this.bottomSheet.dismiss();
   }
 
-  protected toggleAdmin(): void {
+  public toggleAdmin(): void {
     this.isAdmin = !this.isAdmin;
   }
 
-  protected toggleStaff(): void {
+  public toggleStaff(): void {
     this.isStaff = !this.isStaff;
   }
 
-  protected toggleCustomer(): void {
+  public toggleCustomer(): void {
     this.isCustomer = !this.isCustomer;
   }
 

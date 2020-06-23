@@ -11,7 +11,7 @@ import { User } from 'src/app/models/User';
 })
 export class StaffAccountMenuComponent implements OnInit {
 
-  protected user$: Observable<User>;
+  public user$: Observable<User>;
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {

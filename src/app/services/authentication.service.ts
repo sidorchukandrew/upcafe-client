@@ -23,8 +23,8 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient, private router: Router) {
 
-    this.loadMockData();
-    return;
+    // this.loadMockData();
+    // return;
 
     if (localStorage.getItem("ACCESS_TOKEN")) {
       // TODO: CHANGE HOW ROLES ARE LOADED IN. ANYONE CAN GO INTO LOCAL STORAGE

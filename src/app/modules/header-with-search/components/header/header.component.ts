@@ -15,8 +15,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Output("searchQuery") searchEmitter: EventEmitter<string> = new EventEmitter<string>();
 
   private subscriptions: Subscription;
-  protected darkThemeOn: boolean = false;
-  protected searchBar: FormControl;
+  public darkThemeOn: boolean = false;
+  public searchBar: FormControl;
 
   constructor(private themeService: ThemeService) { }
 
@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  protected clearSearch(): void {
+  public clearSearch(): void {
     this.searchBar.setValue("");
   }
 

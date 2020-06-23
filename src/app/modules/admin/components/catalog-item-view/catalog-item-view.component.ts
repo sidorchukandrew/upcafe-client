@@ -13,9 +13,9 @@ import { tap, concat, take } from 'rxjs/operators';
 export class CatalogItemViewComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription;
-  protected catalogObject: CatalogObject;
+  public catalogObject: CatalogObject;
 
-  protected type: string;
+  public type: string;
 
   constructor(private route: ActivatedRoute, private catalogService: CatalogService) { }
 

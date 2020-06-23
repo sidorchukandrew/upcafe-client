@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: "http://192.168.0.5:8080",
+  backendUrl: "https://upcafe-api.azurewebsites.net",
 };
 
 /*

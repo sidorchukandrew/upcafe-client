@@ -13,8 +13,8 @@ import { Subscription } from 'rxjs';
 })
 export class UsersComponent implements OnInit, OnDestroy {
 
-  protected users: Array<UserAdminView>
-  protected darkThemeOn: boolean = false;
+  public users: Array<UserAdminView>
+  public darkThemeOn: boolean = false;
 
   private subscriptions: Subscription;
   constructor(private usersService: UsersService, private bottomSheet: MatBottomSheet, private themeService: ThemeService) { }
@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  protected showUser(user: UserAdminView): void {
+  public showUser(user: UserAdminView): void {
     let panelClass: string = "";
 
     this.darkThemeOn ? panelClass = "dark-sheet-background" : panelClass = "light-sheet-background";
@@ -40,7 +40,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     });
   }
 
-  protected display(query: string): void {
+  public display(query: string): void {
     console.log(query);
   }
 

@@ -16,12 +16,12 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit, OnDestroy {
 
-  protected darkThemeOn: boolean = false;
-  protected category: string = "All";
+  public darkThemeOn: boolean = false;
+  public category: string = "All";
   private subscriptions: Subscription;
-  protected searchBar: FormControl;
-  protected menu: Menu;
-  protected filteredMenu: Menu;
+  public searchBar: FormControl;
+  public menu: Menu;
+  public filteredMenu: Menu;
 
   constructor(private themeService: ThemeService, private menuService: MenuService, private router: Router) { }
 
@@ -100,7 +100,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  protected selectCategory(category: string): void {
+  public selectCategory(category: string): void {
 
     this.category = category;
     this.filteredMenu = new Menu();
@@ -213,16 +213,16 @@ export class MenuComponent implements OnInit, OnDestroy {
     }
   }
 
-  protected clearSearch(): void {
+  public clearSearch(): void {
     this.searchBar.setValue("");
   }
 
-  protected viewAllCategories() {
+  public viewAllCategories() {
     this.category = "All";
     this.filteredMenu = this.menu;
   }
 
-  protected getDollars(price: number): string {
+  public getDollars(price: number): string {
     var priceText: string = price.toString();
     var indexOfDecimal = priceText.indexOf(".");
 
@@ -231,7 +231,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     return priceText.substr(0, indexOfDecimal);
   }
 
-  protected getCents(price: number): string {
+  public getCents(price: number): string {
     var priceText: string = price.toString();
     var indexOfDecimal = priceText.indexOf(".");
 
@@ -240,7 +240,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     return priceText.substr(indexOfDecimal + 1, priceText.length).padEnd(2, "0");
   }
 
-  protected showItem(item: MenuItem) {
+  public showItem(item: MenuItem) {
     this.menuService.setItemBeingViewed(item);
     this.router.navigate(["user/menu/" + item.id]);
   }

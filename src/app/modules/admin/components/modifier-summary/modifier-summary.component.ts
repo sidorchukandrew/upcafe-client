@@ -14,7 +14,7 @@ export class ModifierSummaryComponent implements OnInit {
 
   @Input("modifier") modifier: Modifier;
 
-  protected assignedModifierList: CatalogObject;
+  public assignedModifierList: CatalogObject;
 
   constructor(private catalogService: CatalogService) { }
 

@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class CafeSettingsMenuComponent implements OnInit, OnDestroy {
 
-  protected darkThemeOn: boolean = false;
+  public darkThemeOn: boolean = false;
   private susbcriptions: Subscription;
 
   constructor(private themeService: ThemeService) { }

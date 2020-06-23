@@ -10,9 +10,9 @@ export class CatalogItemImageComponent implements OnInit {
   @Input("image") image: Image = null;
   @Output("imageSelected") imageEmitter: EventEmitter<File> = new EventEmitter<File>();
 
-  protected url: string | ArrayBuffer = null;
+  public url: string | ArrayBuffer = null;
 
-  protected showEditImageButton: boolean = false;
+  public showEditImageButton: boolean = false;
 
   constructor() { }
 
@@ -20,7 +20,7 @@ export class CatalogItemImageComponent implements OnInit {
     if(this.image) this.url = this.image.url;
   }
 
-  protected previewImage(file: File): void {
+  public previewImage(file: File): void {
 
     if(file == null) return;
 
@@ -42,7 +42,7 @@ export class CatalogItemImageComponent implements OnInit {
 
   }
 
-  protected toggleShowEditImageButton(): void {
+  public toggleShowEditImageButton(): void {
     this.showEditImageButton = !this.showEditImageButton;
   }
 

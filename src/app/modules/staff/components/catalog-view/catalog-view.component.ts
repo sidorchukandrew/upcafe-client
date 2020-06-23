@@ -16,10 +16,10 @@ import { CatalogItemDialog } from '../catalog-item-dialog/catalog-item-dialog.co
 })
 export class CatalogViewComponent implements OnInit, OnDestroy {
 
-  protected darkThemeOn: boolean = false;
-  protected searchBar: FormControl;
+  public darkThemeOn: boolean = false;
+  public searchBar: FormControl;
 
-  protected catalog: CatalogWhole;
+  public catalog: CatalogWhole;
 
   private subscriptions: Subscription;
 
@@ -66,11 +66,11 @@ export class CatalogViewComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  protected clearSearch(): void {
+  public clearSearch(): void {
     this.searchBar.reset();
   }
 
-  protected viewCatalogItem(item: MenuItem): void {
+  public viewCatalogItem(item: MenuItem): void {
     this.matDialog.open(CatalogItemDialog, {
       data: item,
       panelClass: "catalog-item-panel"

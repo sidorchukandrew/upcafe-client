@@ -47,17 +47,17 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   }
 
 
-  protected addToOrder(): void {
+  public addToOrder(): void {
     var orderItem = this.orderService.newOrderItem(this.item, this.selectedModifiers, this.orderItemPrice);
     this.orderService.addToOrder(orderItem);
     this.successDialog.open(UserResponseDialog);
   }
 
-  protected addToOrderItemPrice(modifierCost: number): void {
+  public addToOrderItemPrice(modifierCost: number): void {
     this.orderItemPrice = this.orderItemPrice + modifierCost;
   }
 
-  protected remove(modifierToRemove: OrderModifier): void {
+  public remove(modifierToRemove: OrderModifier): void {
 
     const index = this.selectedModifiers.findIndex(orderModifier => orderModifier.id == modifierToRemove.id);
     if (index > -1) {
@@ -66,7 +66,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  protected getDollars(price: number): string {
+  public getDollars(price: number): string {
     var priceText: string = price.toString();
     var indexOfDecimal = priceText.indexOf(".");
 
@@ -75,7 +75,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     return priceText.substr(0, indexOfDecimal);
   }
 
-  protected getCents(price: number): string {
+  public getCents(price: number): string {
     var priceText: string = price.toString();
     var indexOfDecimal = priceText.indexOf(".");
 

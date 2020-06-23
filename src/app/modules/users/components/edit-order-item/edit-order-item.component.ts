@@ -58,7 +58,7 @@ export class EditOrderItemComponent implements OnInit, OnDestroy {
   }
 
 
-  protected updateOrderItem(): void {
+  public updateOrderItem(): void {
 
     this.orderService.remove(this.previosulyCreatedOrderItem);
 
@@ -67,11 +67,11 @@ export class EditOrderItemComponent implements OnInit, OnDestroy {
     this.successDialog.open(UserResponseDialog);
   }
 
-  protected addToOrderItemPrice(modifierCost: number): void {
+  public addToOrderItemPrice(modifierCost: number): void {
     this.orderItemPrice = this.orderItemPrice + modifierCost;
   }
 
-  protected remove(modifierToRemove: OrderModifier): void {
+  public remove(modifierToRemove: OrderModifier): void {
 
     const index = this.selectedModifiers.findIndex(orderModifier => orderModifier.id == modifierToRemove.id);
     if (index > -1) {
@@ -80,7 +80,7 @@ export class EditOrderItemComponent implements OnInit, OnDestroy {
     }
   }
 
-  protected getDollars(price: number): string {
+  public getDollars(price: number): string {
     var priceText: string = price.toString();
     var indexOfDecimal = priceText.indexOf(".");
 
@@ -89,7 +89,7 @@ export class EditOrderItemComponent implements OnInit, OnDestroy {
     return priceText.substr(0, indexOfDecimal);
   }
 
-  protected getCents(price: number): string {
+  public getCents(price: number): string {
     var priceText: string = price.toString();
     var indexOfDecimal = priceText.indexOf(".");
 

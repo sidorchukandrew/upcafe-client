@@ -19,13 +19,13 @@ import { CatalogObjectTypes } from 'src/app/models/CatalogObjectTypes';
 })
 export class CatalogComponent implements OnInit, OnDestroy {
 
-  protected catalog: CatalogWhole;
-  protected modifiers: Array<Modifier>;
-  protected modifierLists: Array<ModifierList>;
-  protected menuItems: Array<MenuItem>;
-  protected controls: Array<string> = ["Items", "Modifiers", "Lists"];
+  public catalog: CatalogWhole;
+  public modifiers: Array<Modifier>;
+  public modifierLists: Array<ModifierList>;
+  public menuItems: Array<MenuItem>;
+  public controls: Array<string> = ["Items", "Modifiers", "Lists"];
 
-  protected displayedItems: Array<CatalogObject>;
+  public displayedItems: Array<CatalogObject>;
   private subscriptions: Subscription;
 
   @ViewChild("selector", { static: false }) selector: SegmentedControlComponent;
@@ -48,7 +48,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  protected changeGroupFilter(filter: string): void {
+  public changeGroupFilter(filter: string): void {
 
     if (this.catalog) {
 
@@ -109,7 +109,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
     }
   }
 
-  protected filterByQuery(query: string) {
+  public filterByQuery(query: string) {
     if (this.displayedItems) {
       this.changeGroupFilter(this.selector.getSelectedChoice());
       this.displayedItems = this.displayedItems.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));

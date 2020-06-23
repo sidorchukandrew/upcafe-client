@@ -63,7 +63,7 @@ export class ItemDetailsSheet {
     }
   }
 
-  protected getDollars(price: number): string {
+  public getDollars(price: number): string {
     var priceText: string = price.toString();
     var indexOfDecimal = priceText.indexOf(".");
 
@@ -72,7 +72,7 @@ export class ItemDetailsSheet {
     return priceText.substr(0, indexOfDecimal);
   }
 
-  protected getCents(price: number): string {
+  public getCents(price: number): string {
     var priceText: string = price.toString();
     var indexOfDecimal = priceText.indexOf(".");
 
