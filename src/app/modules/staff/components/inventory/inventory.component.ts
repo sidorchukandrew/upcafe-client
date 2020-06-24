@@ -23,7 +23,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
   changedStock: CatalogInventoryChange;
   searchBar: FormControl;
   filteredCatalog: CatalogWhole;
-  selectedCatalogItemSearch: string = "items";
+  selectedCatalogItemSearch: string = "Items";
   saving: boolean = false;
 
   constructor(private catalogService: CatalogService, private themeService: ThemeService) { }
@@ -73,26 +73,6 @@ export class InventoryComponent implements OnInit, OnDestroy {
     this.subscriptions = new Subscription();
 
     this.subscriptions.add(this.themeService.darkThemeOn$.subscribe(on => this.darkThemeOn = on));
-
-    this.searchBar.valueChanges
-      .pipe(
-        debounceTime(300),
-        tap(query => {
-
-          if(this.selectedCatalogItemSearch == 'items') {
-            this.filteredCatalog.itemsList = this.catalog.itemsList.filter(item => {
-              return item.name.toLowerCase().includes(query.toLowerCase())
-            });
-          }
-
-          else if (this.selectedCatalogItemSearch == 'modifiers') {
-            this.filteredCatalog.modifierLists = this.catalog.modifierLists.filter(modifierList => {
-              return modifierList.name.toLowerCase().includes(query.toLowerCase())
-            });
-          }
-        })
-      )
-      .subscribe();
   }
 
   ngOnDestroy() {
@@ -133,5 +113,19 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
   public clearSearch(): void {
     this.searchBar.setValue("");
+  }
+
+  public filter(query: string): void {
+    if(this.selectedCatalogItemSearch == "Items") {
+      this.filteredCatalog.itemsList = this.catalog.itemsList.filter(item => {
+        return item.name.toLowerCase().includes(query.toLowerCase())
+      });
+    }
+
+    else if(this.selectedCatalogItemSearch == "Modifiers") {
+      this.filteredCatalog.modifierLists = this.catalog.modifierLists.filter(modifierList => {
+        return modifierList.name.toLowerCase().includes(query.toLowerCase())
+      });
+    }
   }
 }

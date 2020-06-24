@@ -43,6 +43,8 @@ import { StaffAccountMenuComponent } from './components/staff-account-menu/staff
 import { CatalogViewComponent } from './components/catalog-view/catalog-view.component';
 import { CatalogItemDialog } from './components/catalog-item-dialog/catalog-item-dialog.component';
 import { NavbarModule } from '../navbar/navbar.module';
+import { HeaderWithSearchModule } from '../header-with-search/header-with-search.module';
+import { SegmentedControlModule } from '../segmented-control/segmented-control.module';
 
 @NgModule({
   declarations: [
@@ -88,7 +90,9 @@ import { NavbarModule } from '../navbar/navbar.module';
     MatProgressSpinnerModule,
     StatusTrackerModule,
     FeedbackModule,
-    NavbarModule
+    NavbarModule,
+    HeaderWithSearchModule,
+    SegmentedControlModule
   ],
   entryComponents: [SelectTimeComponent, CatalogItemDialog],
 })
