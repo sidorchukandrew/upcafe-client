@@ -36,7 +36,7 @@ export class SignInOptionsComponent implements OnInit, OnDestroy {
 
     if (this.isCustomer && !this.isStaff && !this.isAdmin) {
       this.authenticationService.signInWithRole(ROLE_CUSTOMER);
-      this.router.navigateByUrl("user");
+      this.router.navigateByUrl("user/menu");
     }
   }
 

@@ -7,12 +7,13 @@ import { HoursService } from "src/app/services/hours.service";
 import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
 import { tap } from "rxjs/operators";
 import { PickupTime } from 'src/app/models/PickupTime';
-import { MatBottomSheet } from '@angular/material';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material';
 import { CatalogService } from 'src/app/services/catalog.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { Subscription } from 'rxjs';
 import { MenuService } from 'src/app/services/menu.service';
 import { EditItemService } from 'src/app/services/edit-item.service';
+import { PickupTimeSelectorSheet } from '../../pickup-time-selector-sheet/pickup-time-selector-sheet.component';
 
 @Component({
   selector: "app-my-order",
@@ -21,17 +22,20 @@ import { EditItemService } from 'src/app/services/edit-item.service';
 })
 export class MyOrderComponent implements OnInit, OnDestroy {
   currentOrder: Order;
-  availableTimes: Array<PickupTime>;
-  selectedTime: string;
+  public selectedTime: string;
 
+  private availableTimes: Array<PickupTime>;
   private susbscriptions: Subscription;
   public darkThemeOn: boolean = false;
 
   constructor(
     private orderService: OrderPlacingService,
     private router: Router,
-    private hoursService: HoursService,
-    public timeUtils: TimeUtilitiesService, private themeService: ThemeService, private editService: EditItemService
+    private bottomSheet: MatBottomSheet,
+    public timeUtils: TimeUtilitiesService,
+    private themeService: ThemeService,
+    private editService: EditItemService,
+    private hoursService: HoursService
   ) {}
 
   ngOnInit() {
@@ -39,13 +43,9 @@ export class MyOrderComponent implements OnInit, OnDestroy {
     this.susbscriptions = new Subscription();
     this.susbscriptions.add(this.themeService.darkThemeOn$.subscribe(on => this.darkThemeOn = on));
 
-    var pickupTimes$ = this.hoursService.getAvailablePickupTimes();
-
-    pickupTimes$.pipe(
-      tap(times => this.availableTimes = times)
-    ).subscribe();
-
     this.currentOrder = this.orderService.order;
+
+    this.hoursService.getAvailablePickupTimes().subscribe(times => this.availableTimes = times);
 
     if (this.currentOrder) this.selectedTime = this.currentOrder.pickupTime;
   }
@@ -58,7 +58,7 @@ export class MyOrderComponent implements OnInit, OnDestroy {
     this.orderService.remove(orderItem);
   }
 
-  timeSelected(time: string) {
+  private timeSelected(time: string) {
     this.selectedTime = time;
     this.currentOrder.pickupTime = time;
   }
@@ -84,5 +84,17 @@ export class MyOrderComponent implements OnInit, OnDestroy {
     if(indexOfDecimal == -1) return "00";
 
     return priceText.substr(indexOfDecimal + 1, priceText.length).padEnd(2, "0");
+  }
+
+  public openTimeSelector(): void {
+    let bottomSheetRef: MatBottomSheetRef = this.bottomSheet.open(PickupTimeSelectorSheet, {
+      panelClass: "rounded-panel",
+      data: {availableTimes: this.availableTimes, selectedTime: this.selectedTime}
+    });
+
+    bottomSheetRef.afterDismissed().subscribe(selectedTime => {
+      if(selectedTime)
+        this.timeSelected(selectedTime);
+    });
   }
 }

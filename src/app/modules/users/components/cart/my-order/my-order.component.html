@@ -1,88 +1,3 @@
-<!-- <div class="pickup-time">
-  <div class="title title-color">
-    Pickup Time
-    <span *ngIf="selectedTime">
-      : {{ timeUtils.convertTime(selectedTime) }}
-      <span class="period">
-        {{ timeUtils.appendPeriod(selectedTime) }}
-      </span>
-    </span>
-  </div>
-  <div class="available-times">
-    <div
-      class="time button-border subtitle-color pill-color"
-      [class.selected]="selectedTime == pickupTime.time"
-      *ngFor="let pickupTime of availableTimes"
-      (click)="timeSelected(pickupTime.time)"
-      matRipple
-      matRippleColor="rgba(100, 100, 100, .1)"
-    >
-      {{ timeUtils.convertTime(pickupTime.time) }}
-      <span class="period">
-        {{ timeUtils.appendPeriod(pickupTime.time) }}
-      </span>
-    </div>
-  </div>
-</div> -->
-<!-- <div
-  *ngFor="let orderItem of currentOrder.orderItems"
-  class="left-margin-20 right-margin-20 order-item-panel card-background"
->
-  <table class="full-width">
-    <tr>
-      <td style="width: 50%;">
-        <div id="item-name" class="item-name title-color" style="margin-right: 10px;">
-          {{ orderItem.name }}
-        </div>
-      </td>
-      <td id="quantity-selector" class="right-align-text title-color">
-        <div id="total-item-price">
-          {{ orderItem.quantity * orderItem.price | currency }}
-        </div>
-      </td>
-    </tr>
-  </table>
-  <table class="full-width">
-    <tr *ngIf="orderItem.selectedModifiers" style="color: grey;">
-      <td>
-        <div
-          *ngFor="let modifier of orderItem.selectedModifiers"
-          class="smaller-text subtitle-color"
-        >
-          {{ modifier.name }}
-
-          <span *ngIf="modifier.price != 0">
-            ({{ modifier.price | currency }})
-          </span>
-        </div>
-      </td>
-    </tr>
-  </table>
-  <table class="full-width">
-    <tr>
-      <td>
-        <button
-          mat-button
-          class="item-action"
-          color="primary"
-          (click)="editItem(orderItem)"
-        >
-          EDIT
-        </button>
-        <button
-          mat-button
-          class="item-action"
-          color="primary"
-          (click)="removeFromOrder(orderItem)"
-        >
-          REMOVE
-        </button>
-      </td>
-    </tr>
-  </table>
-</div>
--->
-
 <div class="price-container title-color">
   <div class="price">
     <div id="dollar-sign">$</div>
@@ -95,15 +10,23 @@
     </div>
   </div>
 </div>
-
+<div id="select-time">
+  <button mat-button class="title-color" (click)="openTimeSelector()" *ngIf="selectedTime">
+    {{ timeUtils.convertTime(selectedTime) }} {{ timeUtils.appendPeriod(selectedTime) }}
+    <mat-icon>keyboard_arrow_down</mat-icon>
+  </button>
+  <button mat-button class="title-color" (click)="openTimeSelector()" *ngIf="!selectedTime">
+    Select Time <mat-icon>keyboard_arrow_down</mat-icon>
+  </button>
+</div>
 
 <ng-container *ngIf="currentOrder">
   <div class="items">
     <ng-container *ngFor="let item of currentOrder.orderItems">
 
-      <div class="item card-background" matRipple
-        [ngClass]="{'diffused-shadow': !darkThemeOn}">
-        <div class="avatar" (click)="editItem(item)"><img src="../../../../../../assets/images/menu icons/restaurant.png"></div>
+      <div class="item card-background" matRipple [ngClass]="{'diffused-shadow': !darkThemeOn}">
+        <div class="avatar" (click)="editItem(item)"><img
+            src="../../../../../../assets/images/menu icons/restaurant.png"></div>
 
         <div class="text" (click)="editItem(item)">
 
@@ -122,7 +45,11 @@
 
 <div class="bottom">
 
-  <button mat-raised-button id="pay" color="primary" routerLink="payment">
+  <button mat-raised-button class="bottom-button" color="primary" routerLink="payment" *ngIf="selectedTime">
     Continue to Payment
+  </button>
+
+  <button mat-raised-button class="bottom-button" color="primary" (click)="openTimeSelector()" *ngIf="!selectedTime">
+    Select a Pickup Time
   </button>
 </div>

@@ -1,0 +1,51 @@
+.available-times {
+  max-height: 140px;
+  margin: 10px;
+  overflow-y: scroll;
+}
+
+.time-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin: 14px 0px;
+}
+
+.time {
+  font-size: 20px;
+  margin-right: 4px;
+}
+
+.period {
+  font-size: 13px;
+}
+
+.divider-length {
+  width: 140px;
+  margin: auto;
+}
+
+.active {
+  font-weight: 600;
+  font-size: 1.4em;
+  transition: .15s;
+}
+
+#close {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+}
+
+#continue {
+  position: fixed;
+  bottom: 5px;
+  left: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#continue button {
+  width: 120px;
+}

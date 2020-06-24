@@ -50,6 +50,7 @@ import { ModifierListComponent } from './components/modifier-list/modifier-list.
 import { EditOrderItemComponent } from './components/edit-order-item/edit-order-item.component';
 import { NavbarModule } from '../navbar/navbar.module';
 import { HeaderWithSearchModule } from '../header-with-search/header-with-search.module';
+import { PickupTimeSelectorSheet } from './components/pickup-time-selector-sheet/pickup-time-selector-sheet.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { HeaderWithSearchModule } from '../header-with-search/header-with-search
     OrderSummaryComponent,
     ItemDetailsSheet, MultipleSelectorComponent, EditOrderItemSheet, SingleSelectionGroupComponent, SuccessfulUpdateDialog,
     ModifierListComponent,
-    EditOrderItemComponent
+    EditOrderItemComponent,
+    PickupTimeSelectorSheet
   ],
   imports: [
     CommonModule,
@@ -98,7 +100,7 @@ import { HeaderWithSearchModule } from '../header-with-search/header-with-search
     NavbarModule,
     HeaderWithSearchModule
   ],
-  entryComponents: [UserResponseDialog, ItemDetailsSheet, EditOrderItemSheet, SuccessfulUpdateDialog],
+  entryComponents: [UserResponseDialog, ItemDetailsSheet, EditOrderItemSheet, SuccessfulUpdateDialog, PickupTimeSelectorSheet],
   providers: [],
 })
 export class UsersModule {}

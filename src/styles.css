@@ -206,3 +206,10 @@ a {
 .diffused-shadow {
   box-shadow: 0px 2px 5px rgba(183, 183, 183, 0.25);
 }
+
+.rounded-panel {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  min-height: 212px !important;
+  height: 212px !important;
+}

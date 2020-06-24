@@ -4,29 +4,42 @@
 
 .price-container {
   text-align: center;
-  margin-bottom: 70px;
+  height: 53px;
   font-family: 'Proza Libre';
 }
 
 #dollar-sign {
   display: inline-block;
   font-size: 20px;
-  transform: translateY(-8px);
+  transform: translateY(-5px);
 }
 
 #dollars {
   font-size: 53px;
+  line-height: 53px;
   display: inline-block;
 }
 
 #cents {
   font-size: 44px;
+  line-height: 44px;
   display: inline-block;
 }
 
 #decimal-point {
   display: inline-block;
   font-size: 44px;
+  line-height: 44px;
+}
+
+#select-time {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+#select-time button {
+  font-size: 13px;
 }
 
 .items {
@@ -88,7 +101,7 @@
   text-align: center;
 }
 
-#pay {
+.bottom-button {
   position: relative;
   bottom: 60px;
   width: 90%;

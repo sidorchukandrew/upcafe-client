@@ -1,0 +1,25 @@
+<div id="close">
+  <mat-icon class="subtitle-color" (click)="close()">close</mat-icon>
+</div>
+
+<div *ngIf="availableTimes" class="available-times">
+  <ng-container *ngFor="let time of availableTimes">
+    <div class="time-wrapper" (click)="select(time.time)" [class.theme-color]="time.time == selectedTime">
+      <div class="time" >
+        <div [class.active]="time.time == selectedTime">
+          {{timeUtils.convertTime(time.time)}}
+        </div>
+      </div>
+      <div class="period" >
+        <div [class.active]="time.time == selectedTime">
+          {{timeUtils.appendPeriod(time.time)}}
+        </div>
+      </div>
+    </div>
+    <mat-divider class="divider-length"></mat-divider>
+  </ng-container>
+</div>
+
+<div id="continue">
+  <button mat-flat-button color="primary" (click)="continue()">Continue</button>
+</div>
