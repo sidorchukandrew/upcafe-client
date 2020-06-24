@@ -24,7 +24,7 @@ export class MyOrderComponent implements OnInit, OnDestroy {
   currentOrder: Order;
   public selectedTime: string;
 
-  private availableTimes: Array<PickupTime>;
+  public availableTimes: Array<PickupTime>;
   private susbscriptions: Subscription;
   public darkThemeOn: boolean = false;
 

@@ -15,7 +15,7 @@
     {{ timeUtils.convertTime(selectedTime) }} {{ timeUtils.appendPeriod(selectedTime) }}
     <mat-icon>keyboard_arrow_down</mat-icon>
   </button>
-  <button mat-button class="title-color" (click)="openTimeSelector()" *ngIf="!selectedTime">
+  <button mat-button class="title-color" (click)="openTimeSelector()" *ngIf="!selectedTime && availableTimes.length > 0">
     Select Time <mat-icon>keyboard_arrow_down</mat-icon>
   </button>
 </div>
@@ -49,7 +49,13 @@
     Continue to Payment
   </button>
 
-  <button mat-raised-button class="bottom-button" color="primary" (click)="openTimeSelector()" *ngIf="!selectedTime">
-    Select a Pickup Time
+  <button mat-raised-button class="bottom-button" color="primary" (click)="openTimeSelector()"
+  *ngIf="!selectedTime" [disabled]="availableTimes.length <= 0">
+    <ng-container *ngIf="availableTimes.length > 0">
+      Select a Pickup Time
+    </ng-container>
+    <ng-container *ngIf="availableTimes.length <= 0">
+      No Available Times Today
+    </ng-container>
   </button>
 </div>
