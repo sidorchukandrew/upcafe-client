@@ -49,6 +49,7 @@ import  { ItemDetailsSheet } from './components/item-details-sheet/item-details-
 import { ModifierListComponent } from './components/modifier-list/modifier-list.component';
 import { EditOrderItemComponent } from './components/edit-order-item/edit-order-item.component';
 import { NavbarModule } from '../navbar/navbar.module';
+import { HeaderWithSearchModule } from '../header-with-search/header-with-search.module';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { NavbarModule } from '../navbar/navbar.module';
     ReactiveFormsModule,
     StatusTrackerModule,
     FeedbackModule,
-    NavbarModule
+    NavbarModule,
+    HeaderWithSearchModule
   ],
   entryComponents: [UserResponseDialog, ItemDetailsSheet, EditOrderItemSheet, SuccessfulUpdateDialog],
   providers: [],

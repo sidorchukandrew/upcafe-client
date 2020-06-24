@@ -34,66 +34,6 @@ export class MenuComponent implements OnInit, OnDestroy {
       this.menu = menu;
       this.filteredMenu = menu;
     }));
-
-    this.subscriptions.add(this.searchBar.valueChanges.pipe(
-      debounceTime(300),
-      tap(change => console.log(change)))
-        .subscribe(query => {
-
-          var searchFilteredMenu: Menu = new Menu();
-          searchFilteredMenu.categories = new Array<Category>();
-
-          this.selectCategory(this.category);
-
-          this.filteredMenu.categories.forEach(subcategory => {
-            console.log("Searching in : ", subcategory);
-
-            subcategory.items.forEach(item => {
-
-              console.log("Checking with item : ", item);
-
-              if(item.name.toLowerCase().includes(query.toLowerCase())) {
-
-                console.log("Match found in the name!");
-
-                var indexOfThisSubCategory = searchFilteredMenu.categories.findIndex(s => s.name == subcategory.name);
-                console.log("Checking if this subcategory is already present in the search filtered menu: " + indexOfThisSubCategory);
-
-                if(indexOfThisSubCategory == -1) {
-                  var indexOfThisSubCategory = searchFilteredMenu.categories.push({items: new Array<MenuItem>(), name: subcategory.name}) - 1;
-                  console.log("Adding new category to search filtered menu : " + subcategory.name + " at position : " + indexOfThisSubCategory);
-                  console.log("Here's the search filtered menu : ", searchFilteredMenu);
-
-                  searchFilteredMenu.categories[indexOfThisSubCategory].items.push({
-                    description: item.description,
-                    id: item.id,
-                    image: item.image,
-                    inStock: item.inStock,
-                    modifierLists: item.modifierLists,
-                    name: item.name,
-                    price: item.price
-                  });
-                }
-
-                else {
-                  searchFilteredMenu.categories[indexOfThisSubCategory].items.push({
-                    description: item.description,
-                    id: item.id,
-                    image: item.image,
-                    inStock: item.inStock,
-                    modifierLists: item.modifierLists,
-                    name: item.name,
-                    price: item.price
-                  });
-                }
-
-                console.log("Adding item : ", item);
-              }
-            });
-          });
-
-          this.filteredMenu = searchFilteredMenu;
-        }));
   }
 
   ngOnDestroy() {
@@ -245,4 +185,59 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.router.navigate(["user/menu/" + item.id]);
   }
 
+  public filter(query: string): void {
+    var searchFilteredMenu: Menu = new Menu();
+    searchFilteredMenu.categories = new Array<Category>();
+
+    this.selectCategory(this.category);
+
+    this.filteredMenu.categories.forEach(subcategory => {
+      console.log("Searching in : ", subcategory);
+
+      subcategory.items.forEach(item => {
+
+        console.log("Checking with item : ", item);
+
+        if (item.name.toLowerCase().includes(query.toLowerCase())) {
+
+          console.log("Match found in the name!");
+
+          var indexOfThisSubCategory = searchFilteredMenu.categories.findIndex(s => s.name == subcategory.name);
+          console.log("Checking if this subcategory is already present in the search filtered menu: " + indexOfThisSubCategory);
+
+          if (indexOfThisSubCategory == -1) {
+            var indexOfThisSubCategory = searchFilteredMenu.categories.push({ items: new Array<MenuItem>(), name: subcategory.name }) - 1;
+            console.log("Adding new category to search filtered menu : " + subcategory.name + " at position : " + indexOfThisSubCategory);
+            console.log("Here's the search filtered menu : ", searchFilteredMenu);
+
+            searchFilteredMenu.categories[indexOfThisSubCategory].items.push({
+              description: item.description,
+              id: item.id,
+              image: item.image,
+              inStock: item.inStock,
+              modifierLists: item.modifierLists,
+              name: item.name,
+              price: item.price
+            });
+          }
+
+          else {
+            searchFilteredMenu.categories[indexOfThisSubCategory].items.push({
+              description: item.description,
+              id: item.id,
+              image: item.image,
+              inStock: item.inStock,
+              modifierLists: item.modifierLists,
+              name: item.name,
+              price: item.price
+            });
+          }
+
+          console.log("Adding item : ", item);
+        }
+      });
+    });
+
+    this.filteredMenu = searchFilteredMenu;
+  }
 }

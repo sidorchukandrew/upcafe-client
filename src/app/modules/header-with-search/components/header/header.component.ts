@@ -12,30 +12,14 @@ import { debounceTime, tap } from 'rxjs/operators';
 export class HeaderComponent implements OnInit, OnDestroy {
 
   @Input("title") title: string;
+  @Input("canGoBack") canGoBack: boolean;
   @Output("searchQuery") searchEmitter: EventEmitter<string> = new EventEmitter<string>();
 
   private subscriptions: Subscription;
   public darkThemeOn: boolean = false;
   public searchBar: FormControl;
 
-  constructor(private themeService: ThemeService) {
-    // window.onscroll = function () { scrollFunction() };
-
-    // function scrollFunction() {
-    //   if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-    //     document.getElementById("title").style.fontSize = "20px";
-    //     document.getElementById("title").style.display = "inline-block";
-    //     document.getElementById("back").style.display = "inline-block";
-    //     document.getElementById("header").style.backgroundColor = document.body.style.backgroundColor;
-    //   } else {
-    //     document.getElementById("title").style.fontSize = "32px";
-    //     document.getElementById("title").style.display = "block";
-    //     document.getElementById("back").style.display = "block";
-    //     document.getElementById("header").style.backgroundColor = "rgba(0, 0, 0, 0)";
-    //     document.getElementById("divider").style.visibility = "none";
-    //   }
-    // }
-   }
+  constructor(private themeService: ThemeService) { }
 
   ngOnInit() {
     this.searchBar = new FormControl();
