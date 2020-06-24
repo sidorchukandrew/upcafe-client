@@ -1,4 +1,4 @@
-<app-header title="Catalog" (searchQuery)="filterByQuery($event)"></app-header>
+<app-header title="Catalog" (searchQuery)="filterByQuery($event)" [canGoBack]="true"></app-header>
 
 <div class="segmented-control">
   <app-segmented-control [choices]="controls" (selectionMade)="changeGroupFilter($event)" #selector></app-segmented-control>

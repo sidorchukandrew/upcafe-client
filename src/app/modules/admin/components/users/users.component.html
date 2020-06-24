@@ -1,5 +1,5 @@
 
-<app-header title="Users" (searchQuery)="filter($event)"></app-header>
+<app-header title="Users" (searchQuery)="filter($event)" [canGoBack]="true"></app-header>
 
 <ng-container *ngIf="usersToDisplay">
   <div class="users">

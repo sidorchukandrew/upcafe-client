@@ -1,6 +1,6 @@
 
 
-<app-header title="Stock" (searchQuery)="filter($event)"></app-header>
+<app-header title="Stock" (searchQuery)="filter($event)" [canGoBack]="true"></app-header>
 <app-segmented-control [choices]="['Items', 'Modifiers']" (selectionMade)="changeSelectedCatalogItemSearch($event)"></app-segmented-control>
 
 

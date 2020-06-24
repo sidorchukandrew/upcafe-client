@@ -1,4 +1,4 @@
-<app-header title="Menu" (searchQuery)="filter($event)"></app-header>
+<app-header title="Menu" (searchQuery)="filter($event)" [canGoBack]="true"></app-header>
 
 <div class="items">
   <div class="item" *ngFor="let item of catalog.itemsList" [ngClass]="{'dark-theme-border': darkThemeOn,
