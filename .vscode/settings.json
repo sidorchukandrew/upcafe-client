@@ -1,5 +1,6 @@
 {
     "git.ignoreLimitWarning": true,
     "appService.defaultWebAppToDeploy": "/subscriptions/2873cd11-01ce-41f2-9a9a-123d9c121048/resourceGroups/UPCafe/providers/Microsoft.Web/sites/upcafe",
-    "appService.deploySubpath": "dist/upc-cafe-client"
+    "appService.deploySubpath": "dist/upc-cafe-client",
+    "appService.showBuildDuringDeployPrompt": false
 }

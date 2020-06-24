@@ -50,11 +50,11 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   public signInWithGoogle(): void {
-    window.location.href = environment.backendUrl + "/oauth2/authorization/google?redirect_uri=https://upcafe.azurewebsites.net";
+    window.location.href = environment.backendUrl + "/oauth2/authorization/google?redirect_uri=https://upcafe-app.azurewebsites.net";
   }
 
   public signInWithFacebook(): void {
-    window.location.href = environment.backendUrl + "/oauth2/authorization/facebook?redirect_uri=https://upcafe.azurewebsites.net";
+    window.location.href = environment.backendUrl + "/oauth2/authorization/facebook?redirect_uri=https://upcafe-app.azurewebsites.net";
   }
 
   private showWrongProviderDialog(error: string) {

@@ -77,4 +77,7 @@ export class CatalogViewComponent implements OnInit, OnDestroy {
     });
   }
 
+  public filter(query: string): void {
+
+  }
 }

@@ -1,13 +1,17 @@
- .header {
-   margin: 15px;
- }
+ #header {
+   padding: 15px;
+   /* position: fixed; */
+   width: 100%;
+   /* top:0; */
+  }
 
- .back {
-   color: #007bff;
-   margin-bottom: 10px;
- }
+  #back {
+    color: #007bff;
+    margin-bottom: 10px;
+  }
 
- .title {
+  #title {
+   transition: 0.2s;
    font-size: 32px;
    font-family: 'Roboto';
    margin-bottom: 13px;
@@ -69,3 +73,8 @@
  #delete-search .mat-icon {
    border-radius: 50px;
  }
+
+ /* .header-space {
+   width: 100%;
+   min-height: 179px;
+ } */

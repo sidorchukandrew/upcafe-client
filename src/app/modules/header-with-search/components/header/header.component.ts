@@ -18,7 +18,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public darkThemeOn: boolean = false;
   public searchBar: FormControl;
 
-  constructor(private themeService: ThemeService) { }
+  constructor(private themeService: ThemeService) {
+    // window.onscroll = function () { scrollFunction() };
+
+    // function scrollFunction() {
+    //   if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    //     document.getElementById("title").style.fontSize = "20px";
+    //     document.getElementById("title").style.display = "inline-block";
+    //     document.getElementById("back").style.display = "inline-block";
+    //     document.getElementById("header").style.backgroundColor = document.body.style.backgroundColor;
+    //   } else {
+    //     document.getElementById("title").style.fontSize = "32px";
+    //     document.getElementById("title").style.display = "block";
+    //     document.getElementById("back").style.display = "block";
+    //     document.getElementById("header").style.backgroundColor = "rgba(0, 0, 0, 0)";
+    //     document.getElementById("divider").style.visibility = "none";
+    //   }
+    // }
+   }
 
   ngOnInit() {
     this.searchBar = new FormControl();
@@ -39,5 +56,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public clearSearch(): void {
     this.searchBar.setValue("");
   }
-
 }
