@@ -26,6 +26,7 @@ import { HttpErrorInterceptor } from "./interceptors/HttpErrorInterceptor";
 import { SignInOptionsComponent } from './components/sign-in-options/sign-in-options.component';
 import { WrongProviderDialog } from './components/wrong-provider-dialog/wrong-provider-dialog.component';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
     ReactiveFormsModule,
     MatDialogModule,
     MatDividerModule,
+    LayoutModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
     }),

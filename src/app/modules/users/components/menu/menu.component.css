@@ -216,6 +216,7 @@
   font-family: 'Roboto';
   font-size: 18px;
   white-space: break-spaces;
+  max-width: 200px;
 }
 
 .space {

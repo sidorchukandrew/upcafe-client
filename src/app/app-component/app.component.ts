@@ -1,10 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from "@angular/core";
-import { AuthenticationService } from "../services/authentication.service";
 import { ThemeService } from "../services/theme.service";
 import { Subscription, Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 import { LoadingService } from "../services/loading.service";
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: "app-root",
@@ -23,7 +21,6 @@ export class AppComponent implements OnInit, OnDestroy {
   loading: boolean;
 
   constructor(
-    private authenticationService: AuthenticationService,
     private themeService: ThemeService,
     public loadingService: LoadingService
   ) {}

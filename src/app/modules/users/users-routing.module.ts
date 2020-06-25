@@ -16,6 +16,7 @@ import { BugReportComponent } from "src/app/modules/feedback/app-feedback/bug-re
 import { FeatureRequestComponent } from "src/app/modules/feedback/app-feedback/feature-request/feature-request.component";
 import { CustomerGuard } from 'src/app/guards/customer.guard';
 import { EditOrderItemComponent } from './components/edit-order-item/edit-order-item.component';
+import { SwitchToSmallerScreenComponent } from './components/switch-to-smaller-screen/switch-to-smaller-screen.component';
 
 const routes: Routes = [
   {
@@ -49,7 +50,8 @@ const routes: Routes = [
               { path: "bugs", component: BugReportComponent },
               { path: "features", component: FeatureRequestComponent }
             ]
-          }
+          },
+          { path: "switch", component: SwitchToSmallerScreenComponent }
         ]
       }
     ]

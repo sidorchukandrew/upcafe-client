@@ -51,6 +51,7 @@ import { EditOrderItemComponent } from './components/edit-order-item/edit-order-
 import { NavbarModule } from '../navbar/navbar.module';
 import { HeaderWithSearchModule } from '../header-with-search/header-with-search.module';
 import { PickupTimeSelectorSheet } from './components/pickup-time-selector-sheet/pickup-time-selector-sheet.component';
+import { SwitchToSmallerScreenComponent } from './components/switch-to-smaller-screen/switch-to-smaller-screen.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { PickupTimeSelectorSheet } from './components/pickup-time-selector-sheet
     ItemDetailsSheet, MultipleSelectorComponent, EditOrderItemSheet, SingleSelectionGroupComponent, SuccessfulUpdateDialog,
     ModifierListComponent,
     EditOrderItemComponent,
-    PickupTimeSelectorSheet
+    PickupTimeSelectorSheet,
+    SwitchToSmallerScreenComponent
   ],
   imports: [
     CommonModule,
