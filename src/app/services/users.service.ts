@@ -15,4 +15,8 @@ export class UsersService {
   public getUsers(): Observable<Array<UserAdminView>> {
     return this.http.get<Array<UserAdminView>>(environment.backendUrl + "/api/v1/users");
   }
+
+  public updateUser(user: UserAdminView): Observable<UserAdminView> {
+    return this.http.put<UserAdminView>(environment.backendUrl + "/api/v1/users", user);
+  }
 }

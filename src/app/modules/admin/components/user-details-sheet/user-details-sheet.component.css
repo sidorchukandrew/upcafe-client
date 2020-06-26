@@ -72,3 +72,16 @@
   background-color: #007bff;
   color: white;
 }
+
+#save-changes-space {
+  height: 50px;
+}
+
+#save-changes {
+  position: fixed;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+

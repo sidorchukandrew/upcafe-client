@@ -20,4 +20,5 @@ export class NavbarComponent implements OnInit {
 export class NavbarLink {
   route: string;
   icon: string;
+  text ?: string
 }

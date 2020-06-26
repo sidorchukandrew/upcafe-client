@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { UserDetailsSheet } from 'src/app/modules/admin/components/user-details-sheet/user-details-sheet.component';
 import { UserAdminView } from 'src/app/models/UserAdminView';
-import { MatBottomSheet } from '@angular/material';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material';
 import { ThemeService } from 'src/app/services/theme.service';
 import { Subscription } from 'rxjs';
 
@@ -44,9 +44,15 @@ export class UsersComponent implements OnInit, OnDestroy {
 
     this.darkThemeOn ? panelClass = "dark-sheet-background" : panelClass = "light-sheet-background";
 
-    this.bottomSheet.open(UserDetailsSheet, {
+    let bottomSheetRef: MatBottomSheetRef = this.bottomSheet.open(UserDetailsSheet, {
       data: user,
       panelClass: panelClass
+    });
+
+    bottomSheetRef.afterDismissed().subscribe(updatedUser => {
+      let indexOfUserToUpdate: number = this.users.findIndex(user => user.id == updatedUser.id);
+      this.users[indexOfUserToUpdate] = updatedUser;
+      this.usersToDisplay = this.copyArray(this.users);
     });
   }
 

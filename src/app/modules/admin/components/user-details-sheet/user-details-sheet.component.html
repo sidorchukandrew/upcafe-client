@@ -63,3 +63,13 @@
 
   </div>
 </div>
+
+<div id="save-changes-space" *ngIf="changesMade"></div>
+<div id="save-changes" *ngIf="changesMade">
+  <button mat-raised-button color="primary" (click)="saveChanges()">
+    <span *ngIf="!saving">
+      Save Changes
+    </span>
+    <mat-spinner *ngIf="saving" diameter="30" style="margin: auto;" color="accent"></mat-spinner>
+  </button>
+</div>

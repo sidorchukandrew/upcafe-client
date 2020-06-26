@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { UsersComponent } from './components/users/users.component';
-import { MatDividerModule, MatBottomSheetModule, MatIconModule, MatButtonModule, MatRippleModule, MatGridListModule } from '@angular/material';
+import { MatDividerModule, MatBottomSheetModule, MatIconModule, MatButtonModule, MatRippleModule,
+  MatGridListModule,
+  MatProgressSpinnerModule} from '@angular/material';
 import { UserDetailsSheet } from './components/user-details-sheet/user-details-sheet.component';
 import { HeaderWithSearchModule } from '../header-with-search/header-with-search.module';
 import { AdminComponent } from './components/admin/admin.component';
@@ -16,6 +18,7 @@ import { MenuItemSummaryComponent } from './components/menu-item-summary/menu-it
 import { ModifierSummaryComponent } from './components/modifier-summary/modifier-summary.component';
 import { ModifierListSummaryComponent } from './components/modifier-list-summary/modifier-list-summary.component';
 import { NavbarModule } from '../navbar/navbar.module';
+import { SidenavModule } from '../sidenav/sidenav.module';
 
 
 
@@ -32,7 +35,9 @@ import { NavbarModule } from '../navbar/navbar.module';
     MatGridListModule,
     HeaderWithSearchModule,
     SegmentedControlModule,
-    NavbarModule
+    NavbarModule,
+    SidenavModule,
+    MatProgressSpinnerModule
   ],
   entryComponents: [
     UserDetailsSheet
