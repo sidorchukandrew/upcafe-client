@@ -1,0 +1,19 @@
+<div class="header card-background">
+  <button mat-icon-button id="back-to-menu" routerLink="..">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+  <span class="title-color title-size">
+    Settings
+  </span>
+  <mat-divider class="divider-color"></mat-divider>
+</div>
+
+
+<div class="action-group card-background">
+  <mat-divider class="divider-color"></mat-divider>
+  <div class="action">
+    <div class="name title-color">Dark theme</div>
+    <mat-slide-toggle color="primary" [checked]="darkThemeOn" (change)="toggleTheme()"></mat-slide-toggle>
+  </div>
+  <mat-divider class="divider-color"></mat-divider>
+</div>

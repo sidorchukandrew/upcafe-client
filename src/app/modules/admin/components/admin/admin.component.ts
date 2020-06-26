@@ -28,7 +28,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     let settingsLink: NavbarLink = {
       icon: "person",
-      route: "profile",
+      route: "account",
       text: "Profile"
     }
 

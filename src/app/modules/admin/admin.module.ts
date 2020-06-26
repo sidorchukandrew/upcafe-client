@@ -5,7 +5,8 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { UsersComponent } from './components/users/users.component';
 import { MatDividerModule, MatBottomSheetModule, MatIconModule, MatButtonModule, MatRippleModule,
   MatGridListModule,
-  MatProgressSpinnerModule} from '@angular/material';
+  MatProgressSpinnerModule,
+  MatSlideToggleModule} from '@angular/material';
 import { UserDetailsSheet } from './components/user-details-sheet/user-details-sheet.component';
 import { HeaderWithSearchModule } from '../header-with-search/header-with-search.module';
 import { AdminComponent } from './components/admin/admin.component';
@@ -19,11 +20,14 @@ import { ModifierSummaryComponent } from './components/modifier-summary/modifier
 import { ModifierListSummaryComponent } from './components/modifier-list-summary/modifier-list-summary.component';
 import { NavbarModule } from '../navbar/navbar.module';
 import { SidenavModule } from '../sidenav/sidenav.module';
+import { AdminAccountMenuComponent } from './components/admin-account-menu/admin-account-menu.component';
+import { FeedbackModule } from '../feedback/feedback.module';
+import { AppSettingsComponent } from './components/app-settings/app-settings.component';
 
 
 
 @NgModule({
-  declarations: [DashboardComponent, UsersComponent, UserDetailsSheet, AdminComponent, CafeSettingsMenuComponent, CatalogItemImageComponent, CatalogComponent, CatalogItemViewComponent, MenuItemSummaryComponent, ModifierSummaryComponent, ModifierListSummaryComponent],
+  declarations: [DashboardComponent, UsersComponent, UserDetailsSheet, AdminComponent, CafeSettingsMenuComponent, CatalogItemImageComponent, CatalogComponent, CatalogItemViewComponent, MenuItemSummaryComponent, ModifierSummaryComponent, ModifierListSummaryComponent, AdminAccountMenuComponent, AppSettingsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -37,7 +41,9 @@ import { SidenavModule } from '../sidenav/sidenav.module';
     SegmentedControlModule,
     NavbarModule,
     SidenavModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FeedbackModule,
+    MatSlideToggleModule
   ],
   entryComponents: [
     UserDetailsSheet
