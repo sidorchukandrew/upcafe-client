@@ -85,3 +85,10 @@
   text-align: center;
 }
 
+#save-changes button {
+  background-color: #007bff;
+  color: white;
+  padding: 0;
+  width: 100px;
+  height: 40px;
+}

@@ -1,10 +1,11 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material';
 import { UserAdminView } from 'src/app/models/UserAdminView';
-import { Subscription } from 'rxjs';
+import { Subscription, BehaviorSubject, Observable } from 'rxjs';
 import { ThemeService } from 'src/app/services/theme.service';
 import { ROLE_ADMIN, ROLE_STAFF, ROLE_CUSTOMER } from 'src/app/services/authentication.service';
 import { UsersService } from 'src/app/services/users.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-details-sheet',
@@ -26,7 +27,8 @@ export class UserDetailsSheet implements OnInit, OnDestroy {
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public user: UserAdminView,
               private bottomSheet: MatBottomSheetRef,
               private themeService: ThemeService,
-              private userService: UsersService) { }
+              private userService: UsersService,
+              private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.subscriptions = new Subscription();
@@ -51,17 +53,36 @@ export class UserDetailsSheet implements OnInit, OnDestroy {
 
   public toggleAdmin(): void {
     this.isAdmin = !this.isAdmin;
+
+    if(this.isAdmin) {
+      this.isStaff = true;
+      this.isCustomer = true;
+    }
+
     this.changesMade = true;
+    this.changeDetector.detectChanges();
   }
 
   public toggleStaff(): void {
     this.isStaff = !this.isStaff;
+
+    if(this.isStaff) {
+      this.isAdmin = false;
+      this.isCustomer = true;
+    } else {
+      this.isAdmin = false;
+    }
+
     this.changesMade = true;
+    this.changeDetector.detectChanges();
   }
 
-  public toggleCustomer(): void {
-    this.isCustomer = !this.isCustomer;
+  public onlyCustomer(): void {
+    this.isStaff = false;
+    this.isAdmin = false;
+
     this.changesMade = true;
+    this.changeDetector.detectChanges();
   }
 
   public saveChanges(): void {
@@ -88,11 +109,17 @@ export class UserDetailsSheet implements OnInit, OnDestroy {
       roles: roles
     }
 
-    this.userService.updateUser(updatedUser).subscribe(user => {
-      this.changesMade = false;
-      this.saving = false;
-      this.user = user;
-    });
+    this.userService.updateUser(updatedUser)
+    .pipe(
+      tap(() => {
+       this.changesMade = false;
+       this.saving = false;
+       this.changeDetector.detectChanges();
+      })
+    ).subscribe(
+      user => this.user = user,
+      error => console.log(error)
+    );
   }
 
 }

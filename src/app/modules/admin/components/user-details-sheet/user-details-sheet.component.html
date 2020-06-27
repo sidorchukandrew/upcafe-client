@@ -48,11 +48,11 @@
 
     <div class="section" id="roles">
 
-      <div class="role" matRipple [ngClass]="{'has-role': isCustomer}" (click)="toggleCustomer()">
+      <div class="role" matRipple [ngClass]="{'has-role': isCustomer}" (click)="onlyCustomer()">
         Customer
       </div>
 
-      <div class="role has-role" matRipple  [ngClass]="{'has-role': isStaff}" (click)="toggleStaff()">
+      <div class="role has-role" matRipple [ngClass]="{'has-role': isStaff}" (click)="toggleStaff()">
         Staff
       </div>
 
@@ -64,9 +64,10 @@
   </div>
 </div>
 
-<div id="save-changes-space" *ngIf="changesMade"></div>
+
+<div id="save-changes-space"></div>
 <div id="save-changes" *ngIf="changesMade">
-  <button mat-raised-button color="primary" (click)="saveChanges()">
+  <button mat-button (click)="saveChanges()">
     <span *ngIf="!saving">
       Save Changes
     </span>
