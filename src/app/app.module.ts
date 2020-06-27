@@ -27,10 +27,11 @@ import { SignInOptionsComponent } from './components/sign-in-options/sign-in-opt
 import { WrongProviderDialog } from './components/wrong-provider-dialog/wrong-provider-dialog.component';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
 import { LayoutModule } from '@angular/cdk/layout';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 
 @NgModule({
-  declarations: [AppComponent, SignInComponent, LoadingComponent, SignInOptionsComponent, WrongProviderDialog],
+  declarations: [AppComponent, SignInComponent, LoadingComponent, SignInOptionsComponent, WrongProviderDialog, PrivacyPolicyComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

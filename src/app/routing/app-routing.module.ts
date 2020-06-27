@@ -2,10 +2,12 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { SignInComponent } from "../components/sign-in/sign-in.component";
 import { SignInOptionsComponent } from "../components/sign-in-options/sign-in-options.component";
+import { PrivacyPolicyComponent } from '../components/privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   { path: "", component: SignInComponent },
   { path: "roles", component: SignInOptionsComponent },
+  { path: "privacy-policy", component: PrivacyPolicyComponent },
   {
     path: "user",
     loadChildren: () =>
