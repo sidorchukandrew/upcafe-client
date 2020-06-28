@@ -1,7 +1,7 @@
 <div class="header">
   <div class="user-summary" *ngIf=" user$ | async as user">
 
-    <img [src]="user.imageUrl" class="avatar">
+    <img [src]="user.imageUrl" class="avatar card-background">
 
     <div class="name title-color">
       {{user.name}}
