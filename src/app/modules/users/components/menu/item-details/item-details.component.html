@@ -54,17 +54,7 @@
   <div class="actions">
     <button mat-raised-button color="primary" id="add-to-order-button" (click)="addToOrder()"
       [disabled]="!item.inStock">
-      <ng-container *ngIf="item.inStock">
-        <div style="display: inline-block">
-          Add to Order
-        </div>
-        <div id="order-item-price">
-          {{orderItemPrice | currency}}
-        </div>
-      </ng-container>
-      <ng-container *ngIf="!item.inStock">
-        Temporarily Out
-      </ng-container>
+      {{ buttonMessage }}
     </button>
   </div>
 

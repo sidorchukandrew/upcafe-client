@@ -8,6 +8,7 @@ import { UserResponseDialog } from '../eats/user-response-dialog.component';
 import { MenuService } from 'src/app/services/menu.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: "app-item-details",
@@ -22,9 +23,11 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription;
 
   public selectedModifiers: Array<OrderModifier>;
+  public pickupAvailable: boolean = false;
+  public buttonMessage: string = "Add to Order";
 
   constructor(private orderService: OrderPlacingService, private menuService: MenuService,
-    private successDialog: MatDialog, private route: ActivatedRoute) { }
+    private successDialog: MatDialog, private route: ActivatedRoute, private currencyPipe: CurrencyPipe) { }
 
   ngOnInit() {
 
@@ -35,6 +38,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
         this.item = this.menuService.getItemBeingViewed(params['id']);
 
         this.orderItemPrice = this.item.price;
+        this.buttonMessage = this.buttonMessage + " " + this.currencyPipe.transform(this.orderItemPrice);
         this.selectedModifierList = this.item.modifierLists[0];
     }));
 

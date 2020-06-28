@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule, CurrencyPipe } from "@angular/common";
 import { UsersRoutingModule } from "./users-routing.module";
 import { UserComponent } from "./user/user.component";
 
@@ -103,6 +103,6 @@ import { SwitchToSmallerScreenComponent } from './components/switch-to-smaller-s
     HeaderWithSearchModule
   ],
   entryComponents: [UserResponseDialog, ItemDetailsSheet, EditOrderItemSheet, SuccessfulUpdateDialog, PickupTimeSelectorSheet],
-  providers: [],
+  providers: [CurrencyPipe],
 })
 export class UsersModule {}

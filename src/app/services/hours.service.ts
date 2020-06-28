@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Block } from "../models/Block";
 import { environment } from "src/environments/environment";
 import { PickupSettings } from "../models/PickupSettings";
-import { Observable, throwError } from "rxjs";
+import { Observable, throwError, BehaviorSubject } from "rxjs";
 import { shareReplay, retry, catchError } from "rxjs/operators";
 import { PickupTime } from '../models/PickupTime';
 
@@ -11,6 +11,10 @@ import { PickupTime } from '../models/PickupTime';
   providedIn: "root",
 })
 export class HoursService {
+
+  private availablePickupTimes: BehaviorSubject<Array<PickupTime>> = new BehaviorSubject(null);
+  private availablePickupTimes$: Observable<Array<PickupTime>> = this.availablePickupTimes.asObservable();
+
   constructor(private http: HttpClient) {}
 
   public postBlock(block: Block, weekOf: string): any {
@@ -55,11 +59,15 @@ export class HoursService {
   }
 
   public getAvailablePickupTimes(): Observable<Array<PickupTime>> {
-    return this.http
-      .get<Array<PickupTime>>(environment.backendUrl + "/cafe/hours", {
-        params: { search: "available"}
-      })
-      .pipe(shareReplay());
+    return this.availablePickupTimes$;
+  }
+
+  public loadAvailablePickupTimesFromApi(): void {
+    this.http.get<Array<PickupTime>>(environment.backendUrl + "/cafe/hours", {
+      params: { search: "available"}
+    }).subscribe(times => {
+      this.availablePickupTimes.next(times);
+    });
   }
 
   public getPickupSettings(): any {

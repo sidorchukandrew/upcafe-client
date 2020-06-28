@@ -30,7 +30,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.searchBar = new FormControl();
     this.subscriptions = new Subscription();
     this.subscriptions.add(this.themeService.darkThemeOn$.subscribe(on => this.darkThemeOn = on));
-    this.subscriptions.add(this.menuService.menu$.subscribe(menu => {
+    this.subscriptions.add(this.menuService.getMenu().subscribe(menu => {
       this.menu = menu;
       this.filteredMenu = menu;
     }));

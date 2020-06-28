@@ -4,6 +4,8 @@ import { NavbarLink } from '../../navbar/components/navbar/navbar.component';
 import { PlatformService } from 'src/app/services/platform.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { HoursService } from 'src/app/services/hours.service';
+import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
   selector: "app-user",
@@ -17,7 +19,10 @@ export class UserComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription;
 
-  constructor(private ordersService: OrderPlacingService, private platformService: PlatformService,
+  constructor(private ordersService: OrderPlacingService,
+    private platformService: PlatformService,
+    private hoursService: HoursService,
+    private menuService: MenuService,
     private router: Router) {}
 
   ngOnInit() {
@@ -47,9 +52,16 @@ export class UserComponent implements OnInit, OnDestroy {
         this.router.navigate(["user/switch"]);
       }
     }));
+
+    this.loadCafe();
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  private loadCafe(): void {
+    this.hoursService.loadAvailablePickupTimesFromApi();
+    // this.menuService.loadMenuFromApi();
   }
 }
