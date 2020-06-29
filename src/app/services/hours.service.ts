@@ -63,11 +63,14 @@ export class HoursService {
   }
 
   public loadAvailablePickupTimesFromApi(): void {
-    this.http.get<Array<PickupTime>>(environment.backendUrl + "/cafe/hours", {
-      params: { search: "available"}
-    }).subscribe(times => {
-      this.availablePickupTimes.next(times);
-    });
+    if(this.availablePickupTimes.value == null) {
+      this.http.get<Array<PickupTime>>(environment.backendUrl + "/cafe/hours", {
+        params: { search: "available"}
+      })
+      .subscribe(times => {
+        this.availablePickupTimes.next(times);
+      });
+    }
   }
 
   public getPickupSettings(): any {

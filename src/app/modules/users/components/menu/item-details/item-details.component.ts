@@ -9,6 +9,7 @@ import { MenuService } from 'src/app/services/menu.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CurrencyPipe } from '@angular/common';
+import { HoursService } from 'src/app/services/hours.service';
 
 @Component({
   selector: "app-item-details",
@@ -25,9 +26,11 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   public selectedModifiers: Array<OrderModifier>;
   public pickupAvailable: boolean = false;
   public buttonMessage: string = "Add to Order";
+  public cafeClosed: boolean = false;
 
   constructor(private orderService: OrderPlacingService, private menuService: MenuService,
-    private successDialog: MatDialog, private route: ActivatedRoute, private currencyPipe: CurrencyPipe) { }
+    private successDialog: MatDialog, private route: ActivatedRoute, private currencyPipe: CurrencyPipe,
+    private hoursService: HoursService) { }
 
   ngOnInit() {
 
@@ -40,6 +43,20 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
         this.orderItemPrice = this.item.price;
         this.buttonMessage = this.buttonMessage + " " + this.currencyPipe.transform(this.orderItemPrice);
         this.selectedModifierList = this.item.modifierLists[0];
+        if(!this.item.inStock) {
+          this.buttonMessage = "Temporarily Out of Stock"
+        }
+    }));
+
+
+    this.subscriptions.add(this.hoursService.getAvailablePickupTimes().subscribe(times => {
+      if(times == null || times.length <= 0 ) {
+        this.buttonMessage = "Cafe is Closed";
+        this.cafeClosed = true;
+      }
+      else {
+        this.cafeClosed = false;
+      }
     }));
 
     this.selectedModifiers = new Array<OrderModifier>();

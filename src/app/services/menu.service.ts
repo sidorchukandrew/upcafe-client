@@ -17,7 +17,9 @@ export class MenuService {
   constructor(private http: HttpClient) { }
 
   public loadMenuFromApi(): void {
-    this.http.get<Menu>(environment.backendUrl + "/api/v1/menu").subscribe(menu => this.menuSubject.next(menu));
+    if(this.menuSubject.value == null) {
+      this.http.get<Menu>(environment.backendUrl + "/api/v1/menu").subscribe(menu => this.menuSubject.next(menu));
+    }
   }
 
   public getMenu(): Observable<Menu> {

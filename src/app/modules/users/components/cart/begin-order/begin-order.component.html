@@ -14,8 +14,9 @@
         color="primary"
         routerLink="../menu"
         class="check-button"
+        [disabled]="cafeClosed"
       >
-        Start Order
+        {{ buttonMessage }}
       </button>
     </div>
   </div>
