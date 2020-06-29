@@ -18,9 +18,7 @@
 }
 
 .order-views .selected {
-  /* background-color: #49c9f2; */
-  /* background-image: linear-gradient(141deg, #1877f2 40%, #49c9f2); */
-  background-image: linear-gradient(to right, #42aaff, #0095ff);
+  background-color: #007bf7;
   color: white;
 
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);

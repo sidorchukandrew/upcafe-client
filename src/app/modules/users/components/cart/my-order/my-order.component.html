@@ -10,15 +10,18 @@
     </div>
   </div>
 </div>
-<div id="select-time">
-  <button mat-button class="title-color" (click)="openTimeSelector()" *ngIf="selectedTime">
-    {{ timeUtils.convertTime(selectedTime) }} {{ timeUtils.appendPeriod(selectedTime) }}
-    <mat-icon>keyboard_arrow_down</mat-icon>
-  </button>
-  <button mat-button class="title-color" (click)="openTimeSelector()" *ngIf="!selectedTime && availableTimes.length > 0">
-    Select Time <mat-icon>keyboard_arrow_down</mat-icon>
-  </button>
-</div>
+
+<ng-container *ngIf="availableTimes">
+  <div id="select-time">
+    <button mat-button class="title-color" (click)="openTimeSelector()" *ngIf="selectedTime">
+      {{ timeUtils.convertTime(selectedTime) }} {{ timeUtils.appendPeriod(selectedTime) }}
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <button mat-button class="title-color" (click)="openTimeSelector()" *ngIf="!selectedTime && availableTimes.length > 0">
+      Select Time <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+  </div>
+</ng-container>
 
 <ng-container *ngIf="currentOrder">
   <div class="items">
@@ -50,7 +53,7 @@
   </button>
 
   <button mat-raised-button class="bottom-button" color="primary" (click)="openTimeSelector()"
-  *ngIf="!selectedTime" [disabled]="availableTimes.length <= 0">
+  *ngIf="!selectedTime" [disabled]="availableTimes == null || availableTimes.length <= 0">
     <ng-container *ngIf="availableTimes.length > 0">
       Select a Pickup Time
     </ng-container>
