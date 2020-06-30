@@ -28,7 +28,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   constructor(private orderService: OrderPlacingService, private badgeService: CartBadgeService, private themeService: ThemeService) {
     this.processingPayment = false;
-    this.success = true;
+    this.success = false;
   }
 
   ngOnInit() {
