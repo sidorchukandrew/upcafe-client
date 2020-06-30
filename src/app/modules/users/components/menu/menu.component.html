@@ -1,6 +1,8 @@
 <app-header title="Our Menu" [canGoBack]=false (searchQuery)="filter($event)"></app-header>
 
-<app-category-selector (categorySelected)="selectCategory($event)"></app-category-selector>
+<ng-container *ngIf="menu">
+  <app-category-selector (categorySelected)="selectCategory($event)"></app-category-selector>
+</ng-container>
 
 
 <div class="menu-label title-color">

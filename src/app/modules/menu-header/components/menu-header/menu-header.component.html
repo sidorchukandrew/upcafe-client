@@ -1,1 +1,6 @@
-<p>menu-header works!</p>
+<div [ngClass]="{'light-theme': !darkThemeOn, 'dark-theme': darkThemeOn}">
+
+  <header class="card-background title-color bottom-border" >
+    {{ title }}
+  </header>
+</div>

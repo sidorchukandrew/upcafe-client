@@ -46,6 +46,7 @@ import { NavbarModule } from '../navbar/navbar.module';
 import { HeaderWithSearchModule } from '../header-with-search/header-with-search.module';
 import { SegmentedControlModule } from '../segmented-control/segmented-control.module';
 import { SwitchToSmallerScreenComponent } from './components/switch-to-smaller-screen/switch-to-smaller-screen.component';
+import { MenuHeaderModule } from '../menu-header/menu-header.module';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { SwitchToSmallerScreenComponent } from './components/switch-to-smaller-s
     FeedbackModule,
     NavbarModule,
     HeaderWithSearchModule,
-    SegmentedControlModule
+    SegmentedControlModule,
+    MenuHeaderModule
   ],
   entryComponents: [SelectTimeComponent, CatalogItemDialog],
 })

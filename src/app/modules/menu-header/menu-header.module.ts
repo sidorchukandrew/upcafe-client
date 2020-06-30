@@ -8,6 +8,9 @@ import { MenuHeaderComponent } from './components/menu-header/menu-header.compon
   declarations: [MenuHeaderComponent],
   imports: [
     CommonModule
+  ],
+  exports: [
+    MenuHeaderComponent
   ]
 })
 export class MenuHeaderModule { }

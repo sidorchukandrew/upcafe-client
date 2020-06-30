@@ -1,0 +1,25 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 47px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  font-size: 17px;
+}
+
+.dark-theme .bottom-border {
+  border-bottom: 1px solid #353535;
+}
+
+.light-theme .bottom-border {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
