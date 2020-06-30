@@ -4,6 +4,7 @@ import { Subscription, concat } from 'rxjs';
 import { Order } from 'src/app/models/Order';
 import { tap, concatMap } from 'rxjs/operators';
 import { CartBadgeService } from 'src/app/services/cart-badge.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 declare var SqPaymentForm: any; //magic to allow us to access the SquarePaymentForm lib
 
@@ -17,17 +18,17 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   paymentForm; //this is our payment form object
   totalPrice: number;
-  // orderConfirmation: OrderConfirmation;
   order: Order;
   subscriptions: Subscription;
   processingPayment: boolean;
   success: boolean;
+  darkThemeOn: boolean = false;
 
   public errorMessage: string = null;
 
-  constructor(private orderService: OrderPlacingService, private badgeService: CartBadgeService) {
+  constructor(private orderService: OrderPlacingService, private badgeService: CartBadgeService, private themeService: ThemeService) {
     this.processingPayment = false;
-    this.success = false;
+    this.success = true;
   }
 
   ngOnInit() {
@@ -36,68 +37,78 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
     var applicationId = "sandbox-sq0idb-S7VRotepCHWB8XgYxKZIsQ";
     var locationId = "P80ND85DPV3BR";
-    this.paymentForm = new SqPaymentForm({
-      // Initialize the payment form elements
 
-      //TODO: Replace with your sandbox application ID
-      applicationId: applicationId,
-      locationId: locationId,
-      inputClass: 'sq-input',
-      autoBuild: false,
+    this.subscriptions.add(this.themeService.darkThemeOn$.subscribe(on => {
 
-      // Customize the CSS for SqPaymentForm iframe elements
-      inputStyles: [{
-        fontSize: '16px',
-        lineHeight: '24px',
-        padding: '16px',
-        placeholderColor: '#a0a0a0',
-        backgroundColor: 'transparent',
-      }],
-      // Initialize the credit card placeholders
-      cardNumber: {
-        elementId: 'sq-card-number',
-        placeholder: 'Card Number'
-      },
-      cvv: {
-        elementId: 'sq-cvv',
-        placeholder: 'CVV'
-      },
-      expirationDate: {
-        elementId: 'sq-expiration-date',
-        placeholder: 'MM/YY'
-      },
-      postalCode: {
-        elementId: 'sq-postal-code',
-        placeholder: 'Postal'
-      },
-      // SqPaymentForm callback functions
-      callbacks: {
-        /*
-        * callback function: cardNonceResponseReceived
-        * Triggered when: SqPaymentForm completes a card nonce request
-        */
-        cardNonceResponseReceived: function (errors, nonce, cardData) {
+      this.darkThemeOn = on;
+      let textColor: string = "";
 
-          console.log(cardData);
-          if (errors) {
-            // Log errors from nonce generation to the browser developer console.
-            console.error('Encountered errors:');
-            errors.forEach(function (error) {
-              console.error('  ' + error.message);
+      this.darkThemeOn ? textColor = "#e1e1e1" : textColor = "#1e1e1e";
 
-              (<HTMLHeadingElement>document.getElementById('error-message')).textContent =
-                (<HTMLHeadingElement>document.getElementById('error-message')).textContent + " ," + error.message;
-            });
+      this.paymentForm = new SqPaymentForm({
+        // Initialize the payment form elements
+
+        //TODO: Replace with your sandbox application ID
+        applicationId: applicationId,
+        locationId: locationId,
+        inputClass: 'sq-input',
+        autoBuild: false,
+
+        // Customize the CSS for SqPaymentForm iframe elements
+        inputStyles: [{
+          fontSize: '16px',
+          lineHeight: '24px',
+          padding: '16px',
+          placeholderColor: '#a0a0a0',
+          backgroundColor: 'transparent',
+          color: textColor
+        }],
+        // Initialize the credit card placeholders
+        cardNumber: {
+          elementId: 'sq-card-number',
+          placeholder: 'Card Number'
+        },
+        cvv: {
+          elementId: 'sq-cvv',
+          placeholder: 'CVV'
+        },
+        expirationDate: {
+          elementId: 'sq-expiration-date',
+          placeholder: 'MM/YY'
+        },
+        postalCode: {
+          elementId: 'sq-postal-code',
+          placeholder: 'Postal'
+        },
+        // SqPaymentForm callback functions
+        callbacks: {
+          /*
+          * callback function: cardNonceResponseReceived
+          * Triggered when: SqPaymentForm completes a card nonce request
+          */
+          cardNonceResponseReceived: function (errors, nonce, cardData) {
+
+            console.log(cardData);
+            if (errors) {
+              // Log errors from nonce generation to the browser developer console.
+              console.error('Encountered errors:');
+              errors.forEach(function (error) {
+                console.error('  ' + error.message);
+
+                (<HTMLHeadingElement>document.getElementById('error-message')).textContent =
+                  (<HTMLHeadingElement>document.getElementById('error-message')).textContent + " ," + error.message;
+              });
 
 
-            return;
+              return;
+            }
+
+            (<HTMLInputElement>document.getElementById('card-nonce')).value = nonce;
+            (<HTMLInputElement>document.getElementById('card-nonce')).select();
           }
-
-          (<HTMLInputElement>document.getElementById('card-nonce')).value = nonce;
-          (<HTMLInputElement>document.getElementById('card-nonce')).select();
         }
-      }
-    });
+      });
+    }));
 
     this.paymentForm.build();
   }

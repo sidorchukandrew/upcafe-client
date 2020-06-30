@@ -1,10 +1,10 @@
 <div id="payment-details-view" *ngIf="!success">
-  <button mat-icon-button id="back-button" class="theme-color" routerLink="..">
-    <mat-icon class="double-size">navigate_before</mat-icon>
+  <button mat-icon-button id="back-button" class="app-blue-text" routerLink="..">
+    <mat-icon class="double-size">arrow_back_ios</mat-icon>
   </button>
   <div id="summary" class="center-text subtitle-color">
     <div id="total-label">Your total is</div>
-    <div class="theme-color" id="total" *ngIf="order">
+    <div class="app-blue-text" id="total" *ngIf="order">
       {{ order.totalPrice | currency }}
     </div>
   </div>
@@ -31,14 +31,14 @@
   </div>
 
   <div id="form-container">
-    <div id="sq-card-number"></div>
-    <div class="third" id="sq-expiration-date"></div>
-    <div class="third" id="sq-cvv"></div>
-    <div class="third" id="sq-postal-code"></div>
+    <div class="card-background button-border title-color" id="sq-card-number"></div>
+    <div class="third card-background button-border title-color" id="sq-expiration-date"></div>
+    <div class="third card-background button-border title-color" id="sq-cvv"></div>
+    <div class="third card-background button-border title-color" id="sq-postal-code"></div>
     <button
       mat-raised-button
       id="sq-creditcard"
-      class="button-credit-card theme-color"
+      class="button-credit-card app-blue"
       (click)="requestCardNonce($event)"
       *ngIf="order != null"
     >
