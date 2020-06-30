@@ -11,6 +11,7 @@ export class SettingsComponent implements OnInit {
 
   private subscriptions: Subscription;
   public darkThemeOn$: Observable<boolean>;
+  public darkThemeOn: boolean = false;
   public colorPack: string;
 
   constructor(private themeService: ThemeService) { }
@@ -20,6 +21,7 @@ export class SettingsComponent implements OnInit {
 
     this.darkThemeOn$.subscribe(on => {
       (on) ? this.colorPack = 'colored' : this.colorPack = 'blue'
+      this.darkThemeOn = on;
     });
   }
 

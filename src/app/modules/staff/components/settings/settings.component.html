@@ -4,78 +4,48 @@
 
   <mat-grid-list cols="2" gutterSize="16px" class="actions">
     <a>
-      <mat-grid-tile
-      colspan="1"
-      class="settings-button card-background diffused-shadow"
-      matRipple
-      routerLink="hours"
-      >
-      <div class="content title-color">
-        <img
-        [src]="
+      <mat-grid-tile colspan="1" class="settings-button card-background" [class.diffused-shadow]="!darkThemeOn"
+        matRipple routerLink="hours">
+        <div class="content title-color">
+          <img [src]="
         '../../../../../assets/images/staff/' + colorPack + '/clock.png'
-        "
-        class="icon"
-        />
-        Hours
-      </div>
-    </mat-grid-tile>
-  </a>
-  <a>
-    <mat-grid-tile
-    colspan="1"
-    class="settings-button card-background diffused-shadow"
-    matRipple
-      routerLink="inventory"
-      >
-      <div class="content title-color">
-        <img
-        [src]="
-        '../../../../../assets/images/staff/' + colorPack + '/trolley.png'
-        "
-        class="icon"
-        />
-        Stock
-      </div>
-    </mat-grid-tile>
-  </a>
-  <a>
-    <mat-grid-tile
-    colspan="1"
-    class="settings-button card-background diffused-shadow"
-    matRipple
-    routerLink="catalog"
-    >
-    <div class="content title-color">
-      <img
-          [src]="
+        " class="icon" />
+          Hours
+        </div>
+      </mat-grid-tile>
+    </a>
+    <a>
+      <mat-grid-tile colspan="1" class="settings-button card-background" [class.diffused-shadow]="!darkThemeOn"
+        matRipple routerLink="inventory">
+        <div class="content title-color">
+          <img [src]="'../../../../../assets/images/staff/' + colorPack + '/trolley.png'" class="icon" />
+          Stock
+        </div>
+      </mat-grid-tile>
+    </a>
+    <a>
+      <mat-grid-tile colspan="1" class="settings-button card-background" [class.diffused-shadow]="!darkThemeOn"
+        matRipple routerLink="catalog">
+        <div class="content title-color">
+          <img [src]="
             '../../../../../assets/images/staff/' + colorPack + '/menu.png'
-            "
-          class="icon"
-          />
+            " class="icon" />
           Catalog
         </div>
       </mat-grid-tile>
     </a>
     <a>
-      <mat-grid-tile
-      colspan="1"
-      class="settings-button card-background diffused-shadow"
-      matRipple
-      routerLink="pickup"
-      >
-      <div class="content title-color">
-        <img
-        [src]="
+      <mat-grid-tile colspan="1" class="settings-button card-background" [class.diffused-shadow]="!darkThemeOn"
+        matRipple routerLink="pickup">
+        <div class="content title-color">
+          <img [src]="
         '../../../../../assets/images/staff/' + colorPack + '/truck.png'
-        "
-        class="icon"
-        />
-        Pickup Times
-      </div>
-    </mat-grid-tile>
-  </a>
-</mat-grid-list>
+        " class="icon" />
+          Pickup Times
+        </div>
+      </mat-grid-tile>
+    </a>
+  </mat-grid-list>
 </div>
 
 <div class="navbar-space"></div>

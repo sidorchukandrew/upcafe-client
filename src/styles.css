@@ -63,15 +63,18 @@ a {
 
 .theme-color {
   color: #49c9f2;
+  color: #57a4ff;
 }
 
 .app-blue {
   background-color: #007bf7;
   color: white;
+  background-color: #57a4ff;
 }
 
 .app-blue-text {
   color: #007bf7;
+  color: #57a4ff;
 }
 
 .navbar-space-bottom {
