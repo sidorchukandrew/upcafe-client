@@ -23,6 +23,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
   processingPayment: boolean;
   success: boolean;
 
+  public errorMessage: string = null;
+
   constructor(private orderService: OrderPlacingService, private badgeService: CartBadgeService) {
     this.processingPayment = false;
     this.success = false;
@@ -75,14 +77,19 @@ export class PaymentComponent implements OnInit, OnDestroy {
         * Triggered when: SqPaymentForm completes a card nonce request
         */
         cardNonceResponseReceived: function (errors, nonce, cardData) {
+
           console.log(cardData);
           if (errors) {
             // Log errors from nonce generation to the browser developer console.
             console.error('Encountered errors:');
             errors.forEach(function (error) {
               console.error('  ' + error.message);
+
+              (<HTMLHeadingElement>document.getElementById('error-message')).textContent =
+                (<HTMLHeadingElement>document.getElementById('error-message')).textContent + " ," + error.message;
             });
-            alert('Encountered errors, check browser developer console for more details');
+
+
             return;
           }
 

@@ -1,52 +1,6 @@
 <app-header title="Our Menu" [canGoBack]=false (searchQuery)="filter($event)"></app-header>
 
-<div class="scrolling-wrapper">
-  <div class="category">
-    <button class="image-wrapper card-background" (click)="viewAllCategories()"
-      [class.selected-category]="category == 'All'">
-      <img src="../../../../../assets/images/menu icons/Food Menu Icons/fork.png" *ngIf="category != 'All'">
-      <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/fork.png" *ngIf="category == 'All'">
-    </button>
-    <span class="name title-color" [class.selected-text]="category == 'All'">All</span>
-  </div>
-
-  <div class="category">
-    <button class="image-wrapper card-background" (click)="selectCategory('Eats')"
-      [class.selected-category]="category == 'Eats'">
-      <img src="../../../../../assets/images/menu icons/Food Menu Icons/sandwich.png" *ngIf="category != 'Eats'">
-      <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/sandwich.png" *ngIf="category == 'Eats'">
-    </button>
-    <span class="name title-color" [class.selected-text]="category == 'Eats'">Eats</span>
-  </div>
-
-  <div class="category">
-    <button class="image-wrapper card-background" (click)="selectCategory('Drinks')"
-      [class.selected-category]="category == 'Drinks'">
-      <img src="../../../../../assets/images/menu icons/Food Menu Icons/coffee.png" *ngIf="category != 'Drinks'">
-      <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/coffee.png" *ngIf="category == 'Drinks'">
-    </button>
-    <span class="name title-color" [class.selected-text]="category == 'Drinks'">Drinks</span>
-  </div>
-
-  <div class="category">
-    <button class="image-wrapper card-background" (click)="selectCategory('Snacks')"
-      [class.selected-category]="category == 'Snacks'">
-      <img src="../../../../../assets/images/menu icons/Food Menu Icons/donut.png" *ngIf="category != 'Snacks'">
-      <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/donut.png" *ngIf="category == 'Snacks'">
-    </button>
-    <span class="name title-color" [class.selected-text]="category == 'Snacks'">Snacks</span>
-  </div>
-
-  <div class="category">
-    <button class="image-wrapper card-background" (click)="selectCategory('Sweets')"
-      [class.selected-category]="category == 'Sweets'">
-      <img src="../../../../../assets/images/menu icons/Food Menu Icons/icecream.png" *ngIf="category != 'Sweets'">
-      <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/icecream.png"
-        *ngIf="category == 'Sweets'">
-    </button>
-    <span class="name title-color" [class.selected-text]="category == 'Sweets'">Sweets</span>
-  </div>
-</div>
+<app-category-selector (categorySelected)="selectCategory($event)"></app-category-selector>
 
 
 <div class="menu-label title-color">

@@ -10,6 +10,11 @@
   left: 10px;
 }
 
+#errors {
+  background-color: #ff3d71;
+  color: white;
+}
+
 /* Customize the "Pay with Credit Card" button */
 .button-credit-card {
   width: 100%;

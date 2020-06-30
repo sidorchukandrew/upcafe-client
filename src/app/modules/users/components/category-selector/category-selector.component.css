@@ -1,0 +1,33 @@
+.category {
+  max-width: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 18px;
+}
+
+.category .name {
+  font-size: .9em;
+  font-family: 'Sen';
+}
+
+.image-wrapper {
+  border: none;
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  margin: 0px 0px 5px 0px;
+  outline: none;
+}
+
+.image-wrapper img {
+  width: 30px;
+}
+
+.light-theme .selected-category {
+  background-color: black;
+}
+
+.dark-theme .selected-category {
+  background-color: #e1e1e1;
+}

@@ -52,6 +52,7 @@ import { NavbarModule } from '../navbar/navbar.module';
 import { HeaderWithSearchModule } from '../header-with-search/header-with-search.module';
 import { PickupTimeSelectorSheet } from './components/pickup-time-selector-sheet/pickup-time-selector-sheet.component';
 import { SwitchToSmallerScreenComponent } from './components/switch-to-smaller-screen/switch-to-smaller-screen.component';
+import { CategorySelectorComponent } from './components/category-selector/category-selector.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { SwitchToSmallerScreenComponent } from './components/switch-to-smaller-s
     ModifierListComponent,
     EditOrderItemComponent,
     PickupTimeSelectorSheet,
-    SwitchToSmallerScreenComponent
+    SwitchToSmallerScreenComponent,
+    CategorySelectorComponent
   ],
   imports: [
     CommonModule,

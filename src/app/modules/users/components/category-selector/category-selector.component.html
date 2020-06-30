@@ -1,0 +1,84 @@
+<div class="scrolling-wrapper" [ngClass]= "{'dark-theme': darkThemeOn, 'light-theme': !darkThemeOn}">
+  <div class="category">
+    <button class="image-wrapper card-background" [class.diffused-shadow]="!darkThemeOn" (click)="selectCategory('All')"
+      [class.selected-category]="category == 'All'">
+      <ng-container *ngIf="!darkThemeOn">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/fork.png" *ngIf="category != 'All'">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/fork.png" *ngIf="category == 'All'">
+      </ng-container>
+      <ng-container *ngIf="darkThemeOn">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/fork.png" *ngIf="category != 'All'">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/fork.png" *ngIf="category == 'All'">
+      </ng-container>
+    </button>
+    <span class="name title-color" [class.selected-text]="category == 'All'">All</span>
+  </div>
+
+  <div class="category">
+    <button class="image-wrapper card-background" [class.diffused-shadow]="!darkThemeOn"
+      (click)="selectCategory('Eats')" [class.selected-category]="category == 'Eats'">
+      <ng-container *ngIf="darkThemeOn">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/sandwich.png"
+          *ngIf="category != 'Eats'">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/sandwich.png" *ngIf="category == 'Eats'">
+      </ng-container>
+      <ng-container *ngIf="!darkThemeOn">
+
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/sandwich.png" *ngIf="category != 'Eats'">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/sandwich.png"
+          *ngIf="category == 'Eats'">
+      </ng-container>
+    </button>
+    <span class="name title-color" [class.selected-text]="category == 'Eats'">Eats</span>
+  </div>
+
+  <div class="category">
+    <button class="image-wrapper card-background" [class.diffused-shadow]="!darkThemeOn"
+      (click)="selectCategory('Drinks')" [class.selected-category]="category == 'Drinks'">
+      <ng-container *ngIf="darkThemeOn">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/coffee.png"
+          *ngIf="category != 'Drinks'">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/coffee.png" *ngIf="category == 'Drinks'">
+      </ng-container>
+      <ng-container *ngIf="!darkThemeOn">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/coffee.png" *ngIf="category != 'Drinks'">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/coffee.png"
+          *ngIf="category == 'Drinks'">
+      </ng-container>
+    </button>
+    <span class="name title-color" [class.selected-text]="category == 'Drinks'">Drinks</span>
+  </div>
+
+  <div class="category">
+    <button class="image-wrapper card-background" [class.diffused-shadow]="!darkThemeOn"
+      (click)="selectCategory('Snacks')" [class.selected-category]="category == 'Snacks'">
+      <ng-container *ngIf="darkThemeOn">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/donut.png" *ngIf="category != 'Snacks'">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/donut.png" *ngIf="category == 'Snacks'">
+      </ng-container>
+      <ng-container *ngIf="!darkThemeOn">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/donut.png" *ngIf="category != 'Snacks'">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/donut.png" *ngIf="category == 'Snacks'">
+      </ng-container>
+    </button>
+    <span class="name title-color" [class.selected-text]="category == 'Snacks'">Snacks</span>
+  </div>
+
+  <div class="category">
+    <button class="image-wrapper card-background" [class.diffused-shadow]="!darkThemeOn"
+      (click)="selectCategory('Sweets')" [class.selected-category]="category == 'Sweets'">
+
+      <ng-container *ngIf="darkThemeOn">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/icecream.png" *ngIf="category != 'Sweets'">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/icecream.png" *ngIf="category == 'Sweets'">
+      </ng-container>
+
+      <ng-container *ngIf="!darkThemeOn">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/icecream.png" *ngIf="category != 'Sweets'">
+        <img src="../../../../../assets/images/menu icons/Food Menu Icons/white/icecream.png"
+          *ngIf="category == 'Sweets'">
+      </ng-container>
+    </button>
+    <span class="name title-color" [class.selected-text]="category == 'Sweets'">Sweets</span>
+  </div>
+</div>

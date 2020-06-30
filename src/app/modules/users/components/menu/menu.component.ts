@@ -153,10 +153,6 @@ export class MenuComponent implements OnInit, OnDestroy {
     }
   }
 
-  public clearSearch(): void {
-    this.searchBar.setValue("");
-  }
-
   public viewAllCategories() {
     this.category = "All";
     this.filteredMenu = this.menu;
