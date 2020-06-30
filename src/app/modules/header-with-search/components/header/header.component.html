@@ -1,6 +1,6 @@
 <div id="header">
   <div id="back" *ngIf="canGoBack">
-    <mat-icon routerLink=".." matRipple>arrow_back_ios</mat-icon>
+    <mat-icon routerLink=".." matRipple class="app-blue-text">arrow_back_ios</mat-icon>
   </div>
 
   <div id="title" class="title-color">
@@ -8,7 +8,7 @@
   </div>
 
   <div class="center-wrapper">
-    <div class="search-bar-container" [ngClass]="{'diffused-shadow': !darkThemeOn}">
+    <div class="search-bar-container">
 
       <div id="search-bar-image" class="subtitle-color" [ngClass]="{'dark-theme': darkThemeOn,
           'light-theme': !darkThemeOn}">

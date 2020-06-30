@@ -61,22 +61,6 @@ a {
   background-color: white;
 }
 
-.theme-color {
-  color: #49c9f2;
-  color: #57a4ff;
-}
-
-.app-blue {
-  background-color: #007bf7;
-  color: white;
-  background-color: #57a4ff;
-}
-
-.app-blue-text {
-  color: #007bf7;
-  color: #57a4ff;
-}
-
 .navbar-space-bottom {
   height: 100px;
   min-height: 100px;
@@ -206,8 +190,12 @@ a {
   padding: 0 !important;
 }
 
-.diffused-shadow {
+.light-theme .diffused-shadow {
   box-shadow: 0px 2px 5px rgba(183, 183, 183, 0.25);
+}
+
+.dark-theme .diffused-shadow {
+  box-shadow: none;
 }
 
 .rounded-panel {
@@ -215,4 +203,20 @@ a {
   border-top-right-radius: 10px;
   min-height: 212px !important;
   height: 212px !important;
+}
+
+.theme-color {
+  color: #49c9f2;
+  color: #57a4ff;
+}
+
+.app-blue {
+  background-color: #007bf7;
+  color: white;
+  background-color: #57a4ff;
+}
+
+.app-blue-text {
+  color: #007bf7;
+  color: #57a4ff;
 }

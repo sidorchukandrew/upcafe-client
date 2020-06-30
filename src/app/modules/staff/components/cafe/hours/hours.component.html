@@ -1,12 +1,4 @@
-<div class="header card-background">
-  <button mat-icon-button id="back-to-menu" routerLink="..">
-    <mat-icon>arrow_back_ios</mat-icon>
-  </button>
-  <span class="title-color title-size">
-    Hours of Operation
-  </span>
-  <mat-divider class="divider-color"></mat-divider>
-</div>
+<app-page-header canGoBack=true title="Hours of Operation"></app-page-header>
 <div class="date-range title-color">
   <div class="arrow subtitle-color" matRipple (click)="previousWeek()">
     <mat-icon>keyboard_arrow_left</mat-icon>
@@ -37,13 +29,13 @@
   </div>
 </div>
 
-<div class="day-card diffused-shadow">
+<div class="day-card card-background diffused-shadow">
   <div class="topline">
     <span class="name title-color">Monday</span>
     <button
       mat-icon-button
       color="primary"
-      class="add"
+      class="add app-blue-text"
       (click)="selectHours('Monday', cafeHours.mondayBlocks)"
     >
       <mat-icon>add</mat-icon>
@@ -52,7 +44,7 @@
 
 
   <div
-    class="block time-card-background"
+    class="block app-blue"
     *ngFor="let block of cafeHours.mondayBlocks"
     matRipple
   >
@@ -71,13 +63,13 @@
   </div>
 </div>
 
-<div class="day-card diffused-shadow">
+<div class="day-card card-background diffused-shadow">
   <div class="topline">
     <span class="name title-color">Tuesday</span>
     <button
       mat-icon-button
       color="primary"
-      class="add"
+      class="add app-blue-text"
       (click)="selectHours('Tuesday', cafeHours.tuesdayBlocks)"
     >
       <mat-icon>add</mat-icon>
@@ -86,7 +78,7 @@
 
 
   <div
-    class="block time-card-background"
+    class="block app-blue"
     *ngFor="let block of cafeHours.tuesdayBlocks"
     matRipple
   >
@@ -105,13 +97,13 @@
   </div>
 </div>
 
-<div class="day-card diffused-shadow">
+<div class="day-card card-background diffused-shadow">
   <div class="topline">
     <span class="name title-color">Wednesday</span>
     <button
       mat-icon-button
       color="primary"
-      class="add"
+      class="add app-blue-text"
       (click)="selectHours('Wednesday', cafeHours.wednesdayBlocks)"
     >
       <mat-icon>add</mat-icon>
@@ -120,7 +112,7 @@
 
 
   <div
-    class="block time-card-background"
+    class="block app-blue"
     *ngFor="let block of cafeHours.wednesdayBlocks"
     matRipple
   >
@@ -139,13 +131,13 @@
   </div>
 </div>
 
-<div class="day-card diffused-shadow">
+<div class="day-card card-background diffused-shadow">
   <div class="topline">
     <span class="name title-color">Thursday</span>
     <button
       mat-icon-button
       color="primary"
-      class="add"
+      class="add app-blue-text"
       (click)="selectHours('Thursday', cafeHours.thursdayBlocks)"
     >
       <mat-icon>add</mat-icon>
@@ -154,7 +146,7 @@
 
 
   <div
-    class="block time-card-background"
+    class="block app-blue"
     *ngFor="let block of cafeHours.thursdayBlocks"
     matRipple
   >
@@ -173,13 +165,13 @@
   </div>
 </div>
 
-<div class="day-card diffused-shadow">
+<div class="day-card card-background diffused-shadow">
   <div class="topline">
     <span class="name title-color">Friday</span>
     <button
       mat-icon-button
       color="primary"
-      class="add"
+      class="add app-blue-text"
       (click)="selectHours('Friday', cafeHours.fridayBlocks)"
     >
       <mat-icon>add</mat-icon>
@@ -188,7 +180,7 @@
 
 
   <div
-    class="block time-card-background"
+    class="block app-blue"
     *ngFor="let block of cafeHours.fridayBlocks"
     matRipple
   >
@@ -207,13 +199,13 @@
   </div>
 </div>
 
-<div class="day-card diffused-shadow">
+<div class="day-card card-background diffused-shadow">
   <div class="topline">
     <span class="name title-color">Saturday</span>
     <button
       mat-icon-button
       color="primary"
-      class="add"
+      class="add app-blue-text"
       (click)="selectHours('Saturday', cafeHours.saturdayBlocks)"
     >
       <mat-icon>add</mat-icon>
@@ -222,7 +214,7 @@
 
 
   <div
-    class="block time-card-background"
+    class="block app-blue"
     *ngFor="let block of cafeHours.saturdayBlocks"
     matRipple
   >
@@ -241,13 +233,13 @@
   </div>
 </div>
 
-<div class="day-card diffused-shadow">
+<div class="day-card card-background diffused-shadow">
   <div class="topline">
     <span class="name title-color">Sunday</span>
     <button
       mat-icon-button
       color="primary"
-      class="add"
+      class="add app-blue-text"
       (click)="selectHours('Sunday', cafeHours.sundayBlocks)"
     >
       <mat-icon>add</mat-icon>
@@ -256,7 +248,7 @@
 
 
   <div
-    class="block time-card-background"
+    class="block app-blue"
     *ngFor="let block of cafeHours.sundayBlocks"
     matRipple
   >

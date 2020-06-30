@@ -7,6 +7,7 @@ import { FeedbackSubmissionDialog } from './app-feedback/feedback-submission-dia
 import { MatDialogModule, MatIconModule, MatDividerModule, MatButtonModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { PageHeaderModule } from '../page-header/page-header.module';
 
 
 
@@ -24,7 +25,8 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatDividerModule,
     RouterModule,
-    MatButtonModule
+    MatButtonModule,
+    PageHeaderModule
   ],
   entryComponents: [
     FeedbackSubmissionDialog

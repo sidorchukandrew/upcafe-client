@@ -1,10 +1,11 @@
-<div class="segmented-control" >
-  <ng-container *ngFor="let choice of choices">
-    <div class="choice title-color" (click)="select(choice)"
-    [ngClass]="{'card-background': selectedChoice == choice, 'selected': selectedChoice == choice}">
 
-      {{choice}}
-
+  <div [ngClass]="{'light-theme': !darkThemeOn, 'dark-theme' : darkThemeOn}">
+    <div class="segmented-control bar-color">
+      <ng-container *ngFor="let choice of choices">
+        <div class="choice title-color" (click)="select(choice)"
+          [ngClass]="{'app-blue': selectedChoice == choice, 'selected': selectedChoice == choice, 'shadow': selectedChoice == choice && !darkThemeOn}">
+          {{choice}}
+        </div>
+      </ng-container>
     </div>
-  </ng-container>
-</div>
+  </div>

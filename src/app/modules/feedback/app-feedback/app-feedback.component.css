@@ -2,12 +2,6 @@
   padding: 20px 20px 20px 20px;
 }
 
-#back-to-menu {
-  padding-left: 10px;
-  color: #49c9f2;
-}
-
-
 nav ul {
   list-style-type: none;
   margin: 0px 0px 30px 0px;
@@ -17,7 +11,6 @@ nav ul {
 
 nav ul li {
   display: inline-block;
-  /* width: 50%; */
   text-align: center;
   padding: 0px 20px;
 }
@@ -31,6 +24,6 @@ nav ul li .link {
 }
 
 .active {
-  background-color: #49c9f2;
   color: white;
+  background-color: #57a4ff;
 }
