@@ -3,7 +3,6 @@ import { OrderItem } from "../models/OrderItem";
 import { Order } from "../models/Order";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
-import { Customer } from "../models/Customer";
 import { environment } from "src/environments/environment";
 import { tap } from "rxjs/operators";
 import { CartBadgeService } from "./cart-badge.service";
@@ -11,6 +10,7 @@ import { MenuItem } from '../models/MenuItem';
 import { OrderModifier } from '../models/OrderModifier';
 import { User } from '../models/User';
 import { AuthenticationService } from './authentication.service';
+import { OrderState } from '../models/OrderStates';
 
 @Injectable({
   providedIn: "root",
@@ -18,10 +18,10 @@ import { AuthenticationService } from './authentication.service';
 export class OrderPlacingService {
   public order: Order;
 
-  private stateSubject: BehaviorSubject<string> = new BehaviorSubject<string>("NEW");
+  private stateSubject: BehaviorSubject<OrderState> = new BehaviorSubject(OrderState.NEW);
   private statusSubject: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
 
-  public state$: Observable<string> = this.stateSubject.asObservable();
+  public state$: Observable<OrderState> = this.stateSubject.asObservable();
   public status$: Observable<string> = this.statusSubject.asObservable();
   private customer$: Observable<User> = this.authenticationService.authenticatedUser$;
   private customer: User;
@@ -66,7 +66,7 @@ export class OrderPlacingService {
       this.order.orderItems = new Array<OrderItem>();
       this.order.totalPrice = 0;
 
-      this.stateSubject.next("STARTED");
+      this.stateSubject.next(OrderState.STARTED);
     }
   }
 
@@ -96,7 +96,7 @@ export class OrderPlacingService {
         price: price,
       })
       .pipe(
-        tap(() => this.stateSubject.next("PLACED")),
+        tap(() => this.stateSubject.next(OrderState.ORDER_PLACED)),
         tap(() => this.clearOrders())
       );
   }
@@ -157,7 +157,7 @@ export class OrderPlacingService {
     if (order) {
       this.statusSubject.next(order["status"]);
     } else {
-      this.stateSubject.next("NEW");
+      this.stateSubject.next(OrderState.NEW);
 
       this.statusSubject.next("");
     }
@@ -165,18 +165,18 @@ export class OrderPlacingService {
 
   private parseStateOfApp(order: Order): Order {
     if (order) {
-      this.stateSubject.next("PLACED");
+      this.stateSubject.next(OrderState.ORDER_PLACED);
     } else {
       this.order
-        ? this.stateSubject.next("STARTED")
-        : this.stateSubject.next("NEW");
+        ? this.stateSubject.next(OrderState.STARTED)
+        : this.stateSubject.next(OrderState.NEW);
     }
 
     return order;
   }
 
   public emptyCart(): void {
-    this.stateSubject.next("NEW");
+    this.stateSubject.next(OrderState.NEW);
     this.order = null;
   }
 }

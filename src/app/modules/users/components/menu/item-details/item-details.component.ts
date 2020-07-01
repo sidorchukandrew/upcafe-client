@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CurrencyPipe } from '@angular/common';
 import { HoursService } from 'src/app/services/hours.service';
+import { OrderState } from 'src/app/models/OrderStates';
 
 @Component({
   selector: "app-item-details",
@@ -27,6 +28,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   public pickupAvailable: boolean = false;
   public buttonMessage: string = "Add to Order";
   public cafeClosed: boolean = false;
+  public orderPlacedAlready: boolean = false;
 
   constructor(private orderService: OrderPlacingService, private menuService: MenuService,
     private successDialog: MatDialog, private route: ActivatedRoute, private currencyPipe: CurrencyPipe,
@@ -59,6 +61,17 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
       }
     }));
 
+
+    this.subscriptions.add(this.orderService.state$.subscribe(state => {
+      console.log(state);
+      if(state == OrderState.ORDER_PLACED) {
+        this.orderPlacedAlready = true;
+        this.buttonMessage = "Order Already Placed";
+      }
+      else {
+        this.orderPlacedAlready = false;
+      }
+    }));
     this.selectedModifiers = new Array<OrderModifier>();
   }
 

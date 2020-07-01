@@ -1,5 +1,5 @@
 <div [ngSwitch]="state" class="padding-20">
-  <app-my-order *ngSwitchCase="'STARTED'"></app-my-order>
-  <app-track-order *ngSwitchCase="'PLACED'"></app-track-order>
-  <app-begin-order *ngSwitchCase="'NEW'"></app-begin-order>
+  <app-my-order *ngSwitchCase="STARTED"></app-my-order>
+  <app-track-order *ngSwitchCase="PLACED"></app-track-order>
+  <app-begin-order *ngSwitchCase="NEW"></app-begin-order>
 </div>

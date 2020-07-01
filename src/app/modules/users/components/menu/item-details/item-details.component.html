@@ -22,7 +22,7 @@
     </div>
 
     <div class="price">
-      <span id="dollar-sign">$</span> {{ getDollars(item.price) }}.{{ getCents(item.price) }}
+      <span id="dollar-sign" class="app-blue-text">$</span> {{ getDollars(item.price) }}.{{ getCents(item.price) }}
     </div>
 
   </div>
@@ -53,7 +53,7 @@
 
   <div class="actions">
     <button mat-raised-button color="primary" id="add-to-order-button" (click)="addToOrder()"
-      [disabled]="!item.inStock || cafeClosed">
+      [disabled]="!item.inStock || cafeClosed || orderPlacedAlready">
       {{ buttonMessage }}
     </button>
   </div>
