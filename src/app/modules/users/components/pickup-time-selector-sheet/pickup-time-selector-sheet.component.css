@@ -39,13 +39,15 @@
 
 #continue {
   position: fixed;
-  bottom: 5px;
   left: 0px;
+  bottom: 0px;
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
 #continue button {
-  width: 120px;
+  border-radius: 0;
+  width: 100%;
+  height: 40px;
 }

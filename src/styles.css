@@ -201,8 +201,8 @@ a {
 .rounded-panel {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  min-height: 212px !important;
-  height: 212px !important;
+  min-height: 220px !important;
+  height: 220px !important;
 }
 
 .theme-color {

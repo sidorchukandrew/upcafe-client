@@ -10,9 +10,12 @@
   </div>
 
   <div id="errors">
-    <h1 id="error-message">
+    <div id="error" class="diffused-shadow" matRipple>
+      <div id="message">
 
-    </h1>
+      </div>
+      <mat-icon color="accent" (click)="closeErrors()">close</mat-icon>
+    </div>
   </div>
   <div class="center-text" style="position: relative; margin-bottom: 30px;">
     <mat-icon

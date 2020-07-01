@@ -93,11 +93,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
             if (errors) {
               // Log errors from nonce generation to the browser developer console.
               console.error('Encountered errors:');
-              errors.forEach(function (error) {
+              errors.forEach(error => {
                 console.error('  ' + error.message);
 
-                (<HTMLHeadingElement>document.getElementById('error-message')).textContent =
-                  (<HTMLHeadingElement>document.getElementById('error-message')).textContent + " ," + error.message;
+                (<HTMLHeadingElement>document.getElementById('message')).textContent = error.message;
+                (<HTMLHeadingElement>document.getElementById('error')).style.visibility = "visible";
               });
 
 
@@ -134,6 +134,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
         tap(() => this.badgeService.orderPaid())
       ).subscribe();
 
+  }
+
+  public closeErrors(): void {
+    (<HTMLHeadingElement>document.getElementById('message')).textContent = "";
+    (<HTMLHeadingElement>document.getElementById('error')).style.visibility = "hidden";
   }
 
   ngOnDestroy() {
