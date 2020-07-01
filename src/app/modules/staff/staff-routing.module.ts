@@ -55,7 +55,7 @@ const routes: Routes = [
           { path: "account/app", component: AppSettingsComponent },
           { path: "cafe/inventory", component: InventoryComponent },
           {
-            path: "feedback",
+            path: "account/feedback",
             component: AppFeedbackComponent,
             children: [
               { path: "bugs", component: BugReportComponent },

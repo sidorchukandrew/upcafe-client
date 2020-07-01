@@ -43,7 +43,7 @@ const routes: Routes = [
         path: "cafe/catalog/:id", component: CatalogItemViewComponent
       },
       {
-        path: "feedback",
+        path: "account/feedback",
         component: AppFeedbackComponent,
         children: [
           { path: "bugs", component: BugReportComponent },

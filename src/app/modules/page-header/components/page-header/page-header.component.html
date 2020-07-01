@@ -1,7 +1,8 @@
 <div [ngClass]="{'light-theme': !darkThemeOn, 'dark-theme': darkThemeOn}">
   <header id="header" class="bottom-border card-background">
     <div id="back" class="app-blue-text" *ngIf="canGoBack">
-      <mat-icon routerLink=".." matRipple>arrow_back_ios</mat-icon>
+      <mat-icon *ngIf="backUrl" [routerLink]="backUrl" matRipple>arrow_back_ios</mat-icon>
+      <mat-icon *ngIf="backUrl == null" routerLink=".." matRipple>arrow_back_ios</mat-icon>
     </div>
 
     <div id="title" class="title-color">

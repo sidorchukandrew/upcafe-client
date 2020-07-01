@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { OrderFeedService } from "src/app/services/order-feed.service";
 import { OrdersStore } from "src/app/stores/orders.store";
-import { Observable, Subscription } from "rxjs";
-import { Order } from "src/app/models/Order";
+import { Subscription } from "rxjs";
 import { NavbarLink } from 'src/app/modules/navbar/components/navbar/navbar.component';
 import { PlatformService } from 'src/app/services/platform.service';
 import { Router } from '@angular/router';
