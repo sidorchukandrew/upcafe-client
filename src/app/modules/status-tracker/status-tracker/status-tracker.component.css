@@ -20,14 +20,12 @@
 }
 
 .tracker .step .active {
-  background-color: #49c9f2;
   box-shadow: 0 0 2px 8px #49c9f230;
   margin: 0px 13px;
   border: none;
 }
 
 .tracker .step .complete {
-  background-color: #49c9f2;
   border: none;
 }
 
@@ -38,5 +36,5 @@
 }
 
 .tracker .passed-through {
-  border-top-color: #49c9f2;
+  border-top-color: #57a4ff;
 }

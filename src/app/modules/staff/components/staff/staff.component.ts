@@ -48,6 +48,5 @@ export class StaffComponent implements OnInit {
     this.links = [ordersLink, cafeLink, profileLink];
 
     this.ordersStore.loadOrdersFromAPI(new Date().toDateString());
-    this.router.navigate(["staff/orders"]);
   }
 }

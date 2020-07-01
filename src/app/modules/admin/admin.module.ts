@@ -23,6 +23,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
 import { AdminAccountMenuComponent } from './components/admin-account-menu/admin-account-menu.component';
 import { FeedbackModule } from '../feedback/feedback.module';
 import { AppSettingsComponent } from './components/app-settings/app-settings.component';
+import { PageHeaderModule } from '../page-header/page-header.module';
 
 
 
@@ -43,7 +44,8 @@ import { AppSettingsComponent } from './components/app-settings/app-settings.com
     SidenavModule,
     MatProgressSpinnerModule,
     FeedbackModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    PageHeaderModule
   ],
   entryComponents: [
     UserDetailsSheet

@@ -1,7 +1,7 @@
 .time {
-  color: #49c9f2;
   font-size: 6em;
   font-family: 'Sen';
+  text-align: center;
 }
 
 .padding-20 {
@@ -12,10 +12,12 @@
 .pickup-text {
   font-size: 1.1em;
   font-family: 'Sen';
+  text-align: center;
 }
 
 .section {
   margin: 20px 0px;
+  text-align: center;
 }
 
 .status-text {}

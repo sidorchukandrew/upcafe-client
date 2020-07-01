@@ -1,46 +1,31 @@
 <div class="tracker">
   <div class="step">
-    <div
-      class="icon button-border"
-      [class.active]="status == 'ORDER PLACED'"
-      [class.complete]="
-        status == 'ACTIVE' || status == 'READY' || status == 'COMPLETE'
-      "
-    ></div>
+    <div class="icon button-border" [class.active]="status == 'ORDER PLACED'"
+      [class.app-blue]=" status == 'ACTIVE' || status == 'READY' || status == 'COMPLETE' || status == 'ORDER PLACED'"
+      [class.complete]=" status == 'ACTIVE' || status == 'READY' || status == 'COMPLETE' || status == 'ORDER PLACED'">
+    </div>
   </div>
 
-  <mat-divider
-    class="divider-color line"
-    [class.passed-through]="
+  <mat-divider class="divider-color line" [class.passed-through]="
       status == 'ACTIVE' || status == 'READY' || status == 'COMPLETE'
-    "
-  ></mat-divider>
+    "></mat-divider>
 
   <div class="step">
-    <div
-      class="icon button-border"
-      [class.active]="status == 'ACTIVE'"
-      [class.complete]="status == 'READY' || status == 'COMPLETE'"
-    ></div>
+    <div class="icon button-border" [class.active]="status == 'ACTIVE'"
+      [class.app-blue]="status == 'READY' || status == 'COMPLETE' || status == 'ACTIVE'"
+      [class.complete]="status == 'READY' || status == 'COMPLETE' || status == 'ACTIVE'"></div>
   </div>
 
-  <mat-divider
-    class="divider-color line"
-    [class.passed-through]="status == 'READY' || status == 'COMPLETE'"
-  ></mat-divider>
+  <mat-divider class="divider-color line" [class.passed-through]="status == 'READY' || status == 'COMPLETE'">
+  </mat-divider>
 
   <div class="step">
-    <div
-      class="icon button-border"
-      [class.active]="status == 'READY'"
-      [class.complete]="status == 'COMPLETE'"
-    ></div>
+    <div class="icon button-border" [class.active]="status == 'READY'"
+      [class.app-blue]="status == 'COMPLETE' || status == 'READY'"
+      [class.complete]="status == 'COMPLETE' || status == 'READY'"></div>
   </div>
 
-  <mat-divider
-    class="divider-color line"
-    [class.passed-through]="status == 'COMPLETE'"
-  ></mat-divider>
+  <mat-divider class="divider-color line" [class.passed-through]="status == 'COMPLETE'"></mat-divider>
 
   <div class="step">
     <div class="icon button-border" [class.active]="status == 'COMPLETE'"></div>

@@ -53,6 +53,7 @@ import { HeaderWithSearchModule } from '../header-with-search/header-with-search
 import { PickupTimeSelectorSheet } from './components/pickup-time-selector-sheet/pickup-time-selector-sheet.component';
 import { SwitchToSmallerScreenComponent } from './components/switch-to-smaller-screen/switch-to-smaller-screen.component';
 import { CategorySelectorComponent } from './components/category-selector/category-selector.component';
+import { PageHeaderModule } from '../page-header/page-header.module';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { CategorySelectorComponent } from './components/category-selector/catego
     StatusTrackerModule,
     FeedbackModule,
     NavbarModule,
-    HeaderWithSearchModule
+    HeaderWithSearchModule,
+    PageHeaderModule
   ],
   entryComponents: [UserResponseDialog, ItemDetailsSheet, EditOrderItemSheet, SuccessfulUpdateDialog, PickupTimeSelectorSheet],
   providers: [CurrencyPipe],

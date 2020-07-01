@@ -26,7 +26,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   public errorMessage: string = null;
 
-  constructor(private orderService: OrderPlacingService, private badgeService: CartBadgeService, private themeService: ThemeService) {
+  constructor(private orderService: OrderPlacingService, private badgeService: CartBadgeService,
+    private themeService: ThemeService) {
     this.processingPayment = false;
     this.success = false;
   }
