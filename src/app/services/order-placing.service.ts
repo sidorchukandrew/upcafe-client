@@ -89,6 +89,10 @@ export class OrderPlacingService {
   }
 
   public postPayment(nonce: string, orderId: string, price: number): any {
+    console.log("Posting the payment");
+    console.log("Nonce : ", nonce);
+    console.log("Order id : ", orderId);
+    console.log("Price : ", price);
     return this.http
       .post(environment.backendUrl + "/orders/pay", {
         nonce: nonce,

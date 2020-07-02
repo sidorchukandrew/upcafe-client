@@ -105,7 +105,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
             }
 
             (<HTMLInputElement>document.getElementById('card-nonce')).value = nonce;
-            (<HTMLInputElement>document.getElementById('card-nonce')).select();
+            (<HTMLButtonElement>document.getElementById('post-order')).click();
           }
         }
       });
@@ -124,6 +124,10 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   nonceReceived(nonce): void {
+
+    (<HTMLHeadingElement>document.getElementById('message')).textContent = "";
+    (<HTMLHeadingElement>document.getElementById('error')).style.visibility = "hidden";
+
     this.processingPayment = true;
 
     this.orderService.postOrder()

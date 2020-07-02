@@ -18,18 +18,9 @@
     </div>
   </div>
   <div class="center-text" style="position: relative; margin-bottom: 30px;">
-    <mat-icon
-      id="secure-logo"
-      style="height: 40px; width: 40px; font-size: 40px; color: lightgrey;"
-      *ngIf="processingPayment"
-      >https</mat-icon
-    >
-    <mat-spinner
-      color="primary"
-      style="margin: auto;"
-      strokeWidth="3"
-      *ngIf="processingPayment"
-    >
+    <mat-icon id="secure-logo" style="height: 40px; width: 40px; font-size: 40px; color: lightgrey;"
+      *ngIf="processingPayment">https</mat-icon>
+    <mat-spinner color="primary" style="margin: auto;" strokeWidth="3" *ngIf="processingPayment">
     </mat-spinner>
   </div>
 
@@ -38,55 +29,32 @@
     <div class="third card-background button-border title-color" id="sq-expiration-date"></div>
     <div class="third card-background button-border title-color" id="sq-cvv"></div>
     <div class="third card-background button-border title-color" id="sq-postal-code"></div>
-    <button
-      mat-raised-button
-      id="sq-creditcard"
-      class="button-credit-card app-blue"
-      (click)="requestCardNonce($event)"
-      *ngIf="order != null"
-    >
+    <button mat-raised-button id="sq-creditcard" class="button-credit-card app-blue" (click)="requestCardNonce($event)"
+      *ngIf="order != null">
       Pay {{ order.totalPrice | currency }}
     </button>
 
-    <input
-      type="text"
-      id="card-nonce"
-      name="nonce"
-      (select)="nonceReceived($event.srcElement.value)"
-      style="visibility: hidden;"
-    />
+    <input type="text" id="card-nonce" name="nonce" (select)="nonceReceived($event.srcElement.value)"
+      style="visibility: hidden;" #nonce />
+    <button type="submit" id="post-order" (click)="nonceReceived(nonce.value)" style="visibility: hidden;">
+    </button>
   </div>
 </div>
 <div id="successful-payment full-width" *ngIf="success">
   <div class="center center-text full-width">
-    <div
-      class="bigger-text full-width title-color"
-      style="padding-bottom: 20px;"
-    >
+    <div class="bigger-text full-width title-color" style="padding-bottom: 20px;">
       Thanks for your payment!
     </div>
-    <mat-icon
-      style="height: 60px; width: 60px; font-size: 60px; margin-bottom: 40px;"
-      color="primary"
-    >
-      done </mat-icon
-    ><br />
-    <button
-      mat-flat-button
-      style="padding-top: 40px; padding-bottom: 40px; margin: 10px;"
-      color="primary"
-    >
+    <mat-icon style="height: 60px; width: 60px; font-size: 60px; margin-bottom: 40px;" color="primary">
+      done </mat-icon><br />
+    <button mat-flat-button style="padding-top: 40px; padding-bottom: 40px; margin: 10px;" color="primary">
       <div class="menu-content">
         <div class="menu-button-title label-font">Email me my receipt</div>
       </div>
     </button>
 
-    <button
-      mat-stroked-button
-      style="padding-top: 40px; padding-bottom: 40px; margin: 10px;"
-      routerLink=".."
-      class="title-color button-border"
-    >
+    <button mat-stroked-button style="padding-top: 40px; padding-bottom: 40px; margin: 10px;" routerLink=".."
+      class="title-color button-border">
       <div class="menu-content">
         <div class="menu-button-title label-font">I don't need a receipt</div>
       </div>
