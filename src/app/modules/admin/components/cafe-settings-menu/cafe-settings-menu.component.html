@@ -1,26 +1,32 @@
-<div class="actions-wrapper">
+<app-menu-header title="Cafe Settings"></app-menu-header>
 
+<div class="actions-wrapper">
   <mat-grid-list cols="2" class="actions" gutterSize="13px">
     <mat-grid-tile colspan="1" matRipple class="action card-background" routerLink="users"
     [ngClass]="{'diffused-shadow': !darkThemeOn}">
-
-    <div class="name title-color">
-      Users
+    <div class="content">
+      <img src="../../../../../assets/images/admin/person.png">
+      <div class="name title-color">
+        Users
+      </div>
     </div>
   </mat-grid-tile>
   <mat-grid-tile colspan="1" matRipple class="action card-background" [ngClass]="{'diffused-shadow': !darkThemeOn}" routerLink="catalog">
 
+  <div class="content">
+    <img src="../../../../../assets/images/admin/menu.png">
     <div class="name title-color">
       Catalog
     </div>
+  </div>
   </mat-grid-tile>
 
-  <mat-grid-tile colspan="1" matRipple class="action card-background " [ngClass]="{'diffused-shadow': !darkThemeOn}">
+  <!-- <mat-grid-tile colspan="1" matRipple class="action card-background " [ngClass]="{'diffused-shadow': !darkThemeOn}">
 
   </mat-grid-tile>
   <mat-grid-tile colspan="1" matRipple class="action card-background" [ngClass]="{'diffused-shadow': !darkThemeOn}">
 
-  </mat-grid-tile>
+  </mat-grid-tile> -->
 </mat-grid-list>
 
 </div>

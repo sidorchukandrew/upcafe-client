@@ -24,6 +24,7 @@ import { AdminAccountMenuComponent } from './components/admin-account-menu/admin
 import { FeedbackModule } from '../feedback/feedback.module';
 import { AppSettingsComponent } from './components/app-settings/app-settings.component';
 import { PageHeaderModule } from '../page-header/page-header.module';
+import { MenuHeaderModule } from '../menu-header/menu-header.module';
 
 
 
@@ -45,7 +46,8 @@ import { PageHeaderModule } from '../page-header/page-header.module';
     MatProgressSpinnerModule,
     FeedbackModule,
     MatSlideToggleModule,
-    PageHeaderModule
+    PageHeaderModule,
+    MenuHeaderModule
   ],
   entryComponents: [
     UserDetailsSheet
