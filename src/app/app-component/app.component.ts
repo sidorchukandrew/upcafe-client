@@ -26,8 +26,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-
-
     this.subscriptions = new Subscription();
 
     this.darkThemeOn$ = this.themeService.darkThemeOn$;

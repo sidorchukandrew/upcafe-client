@@ -16,6 +16,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   private dialogRef: MatDialogRef<WrongProviderDialog>;
 
   private oldBackground: string = document.body.style.backgroundColor;
+  public pwaInstalled: boolean = false;
 
   constructor(
     private matDialog: MatDialog,
@@ -27,6 +28,8 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
+    this.pwaInstalled = window.matchMedia('(display-mode: standalone)').matches;
 
      this.activeRoute.queryParamMap.subscribe((paramMap) => {
        if (paramMap.has("error")) {
