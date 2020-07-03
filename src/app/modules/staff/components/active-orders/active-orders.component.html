@@ -52,12 +52,15 @@
             </tr>
           </table>
           <div class="button-wrapper">
-            <button mat-button color="primary" class="complete-order button-border" [routerLink]="'../' + order.id"
+            <button mat-button color="primary" class="button-border" [routerLink]="'../' + order.id"
               (click)="detailsStore.loadOrderDetailsView(order)">
               Details
             </button>
-            <button mat-stroked-button color="primary" class="complete-order button-border" (click)="ready(order)">
-              Ready For Pickup
+            <button mat-stroked-button color="primary" id="ready-for-pickup" class="button-border" (click)="ready(order)">
+              <span *ngIf="!saving">
+                Ready For Pickup
+              </span>
+              <mat-spinner *ngIf="saving" diameter="30" style="margin: auto;"></mat-spinner>
             </button>
           </div>
         </div>

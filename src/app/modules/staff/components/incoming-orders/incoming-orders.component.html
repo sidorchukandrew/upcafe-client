@@ -54,8 +54,11 @@
             </tr>
           </table>
           <div class="button-wrapper">
-            <button mat-stroked-button color="primary" class="start-order button-border" (click)="startOrder(order)">
-              Start
+            <button mat-stroked-button color="primary" id="start-order" class="start-order button-border" (click)="startOrder(order)">
+              <span *ngIf="!saving">
+                Start
+              </span>
+              <mat-spinner *ngIf="saving" diameter="30" style="margin: auto;" ></mat-spinner>
             </button>
           </div>
         </div>

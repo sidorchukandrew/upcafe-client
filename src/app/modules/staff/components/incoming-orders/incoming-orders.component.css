@@ -57,10 +57,11 @@
   width: 99%;
 }
 
-.start-order {
+.button-wrapper button {
   margin-top: 10px;
   width: 80%;
   max-width: 350px;
+  height: 38px;
 }
 
 .button-wrapper {

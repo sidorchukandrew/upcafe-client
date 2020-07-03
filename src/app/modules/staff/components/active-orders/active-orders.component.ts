@@ -15,6 +15,7 @@ import { Router } from "@angular/router";
 export class ActiveOrdersComponent implements OnInit {
   orders$: Observable<Order[]>;
 
+  public saving: boolean = false;
   constructor(
     private ordersStore: OrdersStore,
     public utils: TimeUtilitiesService,
@@ -27,7 +28,8 @@ export class ActiveOrdersComponent implements OnInit {
   }
 
   ready(order: Order) {
-    this.ordersStore.sendUpdate(order, "READY").subscribe();
+    this.saving = true;
+    this.ordersStore.sendUpdate(order, "READY").subscribe(() => this.saving = false);
   }
 
   swipeLeft() {

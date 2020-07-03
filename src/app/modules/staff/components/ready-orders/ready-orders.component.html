@@ -53,8 +53,11 @@
             </tr>
           </table>
           <div class="button-wrapper">
-            <button mat-stroked-button color="primary" class="complete-order button-border" (click)="complete(order)">
-              Picked Up
+            <button mat-stroked-button color="primary" class="button-border" (click)="complete(order)">
+              <span *ngIf="!saving">
+                Picked Up
+              </span>
+              <mat-spinner *ngIf="saving" diameter="30" style="margin: auto;"></mat-spinner>
             </button>
           </div>
         </div>
@@ -62,11 +65,11 @@
     </mat-grid-list>
   </ng-container>
 
-    <ng-template #noOrders>
-      <div class="subtitle-color no-orders">
-        No orders ready for pickup
-      </div>
-    </ng-template>
+  <ng-template #noOrders>
+    <div class="subtitle-color no-orders">
+      No orders ready for pickup
+    </div>
+  </ng-template>
 </ng-container>
 
 <div class="navbar-space-bottom-position"></div>

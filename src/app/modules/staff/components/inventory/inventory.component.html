@@ -1,9 +1,5 @@
-
-
 <app-header title="Stock" (searchQuery)="filter($event)" [canGoBack]="true"></app-header>
 <app-segmented-control [choices]="['Items', 'Modifiers']" (selectionMade)="changeSelectedCatalogItemSearch($event)"></app-segmented-control>
-
-
 
 <app-modifier-list-inventory *ngIf="selectedCatalogItemSearch == 'Modifiers' && filteredCatalog"
   [modifierListCatalog]="filteredCatalog.modifierLists" (stockChanged)="addToChangedModifierStock($event)">

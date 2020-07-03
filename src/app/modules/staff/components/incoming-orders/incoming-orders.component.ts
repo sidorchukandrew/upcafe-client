@@ -14,6 +14,9 @@ import { Router } from "@angular/router";
 export class IncomingOrdersComponent implements OnInit {
   orders$: Observable<Order[]>;
   message: string = "Initial";
+
+  public saving: boolean = false;
+
   constructor(
     private ordersStore: OrdersStore,
     public utils: TimeUtilitiesService,
@@ -26,7 +29,8 @@ export class IncomingOrdersComponent implements OnInit {
   }
 
   startOrder(order: Order) {
-    this.ordersStore.sendUpdate(order, "ACTIVE").subscribe();
+    this.saving = true;
+    this.ordersStore.sendUpdate(order, "ACTIVE").subscribe(() => this.saving = false);
   }
 
   details(id: string) {

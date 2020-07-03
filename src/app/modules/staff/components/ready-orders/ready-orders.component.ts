@@ -13,6 +13,7 @@ import { OrdersDetailsStore } from 'src/app/stores/order-details.store';
 })
 export class ReadyOrdersComponent implements OnInit {
   orders$: Observable<Order[]>;
+  public saving: boolean = false;
 
   constructor(
     private ordersStore: OrdersStore,
@@ -26,8 +27,8 @@ export class ReadyOrdersComponent implements OnInit {
   }
 
   complete(order: Order) {
-    console.log("clicked!");
-    this.ordersStore.sendUpdate(order, "COMPLETE").subscribe();
+    this.saving = true;
+    this.ordersStore.sendUpdate(order, "COMPLETE").subscribe(() => this.saving = false);
   }
 
   details(id: string) {
