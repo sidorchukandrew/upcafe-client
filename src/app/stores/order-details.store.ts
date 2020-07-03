@@ -19,7 +19,6 @@ export class OrdersDetailsStore {
   setOrderBeingViewed(id: string) {
     this.orderBeingViewed$ = this.ordersStore.orders$;
     this.orderBeingViewed$.subscribe((orders) => {
-      console.log("Changes!");
       this.orderBeingViewed = orders.find((order) => id == order.id);
     });
   }

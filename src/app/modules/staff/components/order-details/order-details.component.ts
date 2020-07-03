@@ -16,7 +16,7 @@ export class OrderDetailsComponent implements OnInit {
     private router: Router,
     private location: Location,
     public utils: TimeUtilitiesService,
-    private ordersStore: OrdersStore
+    private ordersStore: OrdersStore,
   ) {}
 
   ngOnInit() {
