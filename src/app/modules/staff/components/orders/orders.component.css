@@ -1,3 +1,23 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+@supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
 .order-views {
   margin: 10px 15px 20px 15px;
   text-align: center;
@@ -20,4 +40,8 @@
   background-color: #57a4ff;
   color: white;
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.space {
+  height: 140px;
 }

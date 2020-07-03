@@ -1,49 +1,32 @@
-<h2 style="margin-left: 10px;" class="title-color">
-  Today's Orders
-  <button mat-icon-button [matMenuTriggerFor]="moreViews">
-    <mat-icon class="title-color">more_horiz</mat-icon>
-  </button>
-  <mat-menu #moreViews="matMenu">
-    <button
-      mat-menu-item
-      routerLink="/staff/orders/completed"
-      (click)="selectOrderView('Completed')"
-    >
-      <mat-icon *ngIf="selectedOrdersView == 'Completed'" class="app-blue-text" color="primary"
-        >fiber_manual_record</mat-icon
-      >
-      Completed
+<div class="header body-background">
+  <h2 style="margin-left: 10px;" class="title-color">
+    Today's Orders
+    <button mat-icon-button [matMenuTriggerFor]="moreViews">
+      <mat-icon class="title-color">more_horiz</mat-icon>
     </button>
-  </mat-menu>
-</h2>
-<div class="order-views">
-  <button
-    matRipple
-    (click)="selectOrderView('Up Next')"
-    routerLink="/staff/orders/new"
-    routerLinkActive="selected"
-    class="subtitle-color"
-  >
-    Up Next
-  </button>
-  <button
-    routerLinkActive="selected"
-    matRipple
-    (click)="selectOrderView('In Progress')"
-    routerLink="/staff/orders/active"
-    class="subtitle-color"
-  >
-    In Progress
-  </button>
-  <button
-    routerLinkActive="selected"
-    matRipple
-    (click)="selectOrderView('Ready For Pickup')"
-    routerLink="/staff/orders/ready"
-    class="subtitle-color"
-  >
-    Ready
-  </button>
+    <mat-menu #moreViews="matMenu">
+      <button mat-menu-item routerLink="/staff/orders/completed" (click)="selectOrderView('Completed')">
+        <mat-icon *ngIf="selectedOrdersView == 'Completed'" class="app-blue-text" color="primary">fiber_manual_record
+        </mat-icon>
+        Completed
+      </button>
+    </mat-menu>
+  </h2>
+  <div class="order-views">
+    <button matRipple (click)="selectOrderView('Up Next')" routerLink="/staff/orders/new" routerLinkActive="selected"
+      class="subtitle-color">
+      Up Next
+    </button>
+    <button routerLinkActive="selected" matRipple (click)="selectOrderView('In Progress')"
+      routerLink="/staff/orders/active" class="subtitle-color">
+      In Progress
+    </button>
+    <button routerLinkActive="selected" matRipple (click)="selectOrderView('Ready For Pickup')"
+      routerLink="/staff/orders/ready" class="subtitle-color">
+      Ready
+    </button>
+  </div>
 </div>
 
+<div class="space"></div>
 <router-outlet></router-outlet>
