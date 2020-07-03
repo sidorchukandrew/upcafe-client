@@ -27,8 +27,8 @@ export class ReadyOrdersComponent implements OnInit {
   }
 
   complete(order: Order) {
-    this.saving = true;
-    this.ordersStore.sendUpdate(order, "COMPLETE").subscribe(() => this.saving = false);
+    order.saving = true;
+    this.ordersStore.sendUpdate(order, "COMPLETE").subscribe(() => order.saving = false);
   }
 
   details(id: string) {

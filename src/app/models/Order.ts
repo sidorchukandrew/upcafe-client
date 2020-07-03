@@ -11,4 +11,5 @@ export class Order {
     completedAt: string;
     customer: User;
     status: string;
+    saving ?: boolean = false
 }

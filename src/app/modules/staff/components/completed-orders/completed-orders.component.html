@@ -8,6 +8,9 @@
           <div class="top-line title-color">
             <span class="pickup-time">
               {{ utils.convertTime(order.pickupTime) }}
+              <span class="period">
+                {{ utils.appendPeriod(order.pickupTime) }}
+              </span>
             </span>
             <span class="customer-name">
               {{ order.customer.name }}
@@ -34,11 +37,11 @@
             </tr>
             <tr>
               <td class="label">
-                Ordered At
+                Picked Up At
               </td>
               <td class="value">
-                {{ utils.convertTime(utils.extractTime(order.placedAt)) }}
-                {{ utils.appendPeriod(utils.extractTime(order.placedAt)) }}
+                {{ utils.convertTime(utils.extractTime(order.completedAt)) }}
+                {{ utils.appendPeriod(utils.extractTime(order.completedAt)) }}
               </td>
             </tr>
             <tr>

@@ -28,8 +28,8 @@ export class ActiveOrdersComponent implements OnInit {
   }
 
   ready(order: Order) {
-    this.saving = true;
-    this.ordersStore.sendUpdate(order, "READY").subscribe(() => this.saving = false);
+    order.saving = true;
+    this.ordersStore.sendUpdate(order, "READY").subscribe(() => order.saving = false);
   }
 
   swipeLeft() {

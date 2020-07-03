@@ -8,6 +8,9 @@
           <div class="top-line">
             <span class="pickup-time title-color">
               {{ utils.convertTime(order.pickupTime) }}
+              <span class="period">
+                {{ utils.appendPeriod(order.pickupTime) }}
+              </span>
             </span>
             <span class="customer-name title-color">
               {{ order.customer.name }}
@@ -54,10 +57,10 @@
           </table>
           <div class="button-wrapper">
             <button mat-stroked-button color="primary" class="button-border" (click)="complete(order)">
-              <span *ngIf="!saving">
+              <span *ngIf="!order.saving">
                 Picked Up
               </span>
-              <mat-spinner *ngIf="saving" diameter="30" style="margin: auto;"></mat-spinner>
+              <mat-spinner *ngIf="order.saving" diameter="30" style="margin: auto;"></mat-spinner>
             </button>
           </div>
         </div>

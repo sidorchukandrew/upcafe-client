@@ -15,7 +15,6 @@ export class IncomingOrdersComponent implements OnInit {
   orders$: Observable<Order[]>;
   message: string = "Initial";
 
-  public saving: boolean = false;
 
   constructor(
     private ordersStore: OrdersStore,
@@ -29,8 +28,8 @@ export class IncomingOrdersComponent implements OnInit {
   }
 
   startOrder(order: Order) {
-    this.saving = true;
-    this.ordersStore.sendUpdate(order, "ACTIVE").subscribe(() => this.saving = false);
+    order.saving = true;
+    this.ordersStore.sendUpdate(order, "ACTIVE").subscribe(() => order.saving = false);
   }
 
   details(id: string) {
