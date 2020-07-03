@@ -30,10 +30,6 @@ export class ActiveOrdersComponent implements OnInit {
     this.ordersStore.sendUpdate(order, "READY").subscribe();
   }
 
-  details(event, text) {
-    console.log("details", text);
-  }
-
   swipeLeft() {
     this.router.navigate(["staff/orders/ready"]);
   }

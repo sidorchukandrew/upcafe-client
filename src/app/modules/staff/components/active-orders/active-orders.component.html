@@ -16,9 +16,7 @@
                 <mat-icon class="title-color">more_vert</mat-icon>
               </button>
               <mat-menu #moreActions="matMenu">
-                <button mat-menu-item [routerLink]="'../' + order.id" (click)="
-            details(order.id); detailsStore.loadOrderDetailsView(order)
-            ">
+                <button mat-menu-item [routerLink]="'../' + order.id" (click)="detailsStore.loadOrderDetailsView(order)">
                   Details
                 </button>
               </mat-menu>
