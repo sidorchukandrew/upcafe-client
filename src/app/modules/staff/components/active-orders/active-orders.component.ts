@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-active-orders",
   templateUrl: "./active-orders.component.html",
-  styleUrls: ["./active-orders.component.css"],
+  styleUrls: ["./active-orders.component.css", "../incoming-orders/incoming-orders.component.css"],
 })
 export class ActiveOrdersComponent implements OnInit {
   orders$: Observable<Order[]>;

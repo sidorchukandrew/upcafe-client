@@ -4,11 +4,12 @@ import { Order } from "src/app/models/Order";
 import { OrdersStore } from "src/app/stores/orders.store";
 import { TimeUtilitiesService } from "src/app/services/time-utilities.service";
 import { Router } from "@angular/router";
+import { OrdersDetailsStore } from 'src/app/stores/order-details.store';
 
 @Component({
   selector: "app-ready-orders",
   templateUrl: "./ready-orders.component.html",
-  styleUrls: ["./ready-orders.component.css"],
+  styleUrls: ["./ready-orders.component.css", "../incoming-orders/incoming-orders.component.css"],
 })
 export class ReadyOrdersComponent implements OnInit {
   orders$: Observable<Order[]>;
@@ -16,6 +17,7 @@ export class ReadyOrdersComponent implements OnInit {
   constructor(
     private ordersStore: OrdersStore,
     public utils: TimeUtilitiesService,
+    public detailsStore: OrdersDetailsStore,
     private router: Router
   ) {}
 
@@ -26,6 +28,10 @@ export class ReadyOrdersComponent implements OnInit {
   complete(order: Order) {
     console.log("clicked!");
     this.ordersStore.sendUpdate(order, "COMPLETE").subscribe();
+  }
+
+  details(id: string) {
+    this.detailsStore.setOrderBeingViewed(id);
   }
 
   swipeLeft() {

@@ -1,68 +1,71 @@
-<mat-grid-list cols="1" gutterSize="15px" rowHeight="170px" class="wrapper">
-  <mat-grid-tile
-    colspan="1"
-    class="card card-background"
-    *ngFor="let order of orders$ | async"
-  >
-    <div class="content">
-      <div class="top-line title-color">
-        <span class="pickup-time">
-          {{ utils.convertTime(order.pickupTime) }}
-        </span>
-        <span class="customer-name">
-          {{ order.customer.firstName }} {{ order.customer.lastName }}
-        </span>
-        <span class="more-actions">
-          <button mat-icon-button [matMenuTriggerFor]="moreActions">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #moreActions="matMenu">
-            <button mat-menu-item>
+<ng-container *ngIf="orders$ | async as orders">
+
+  <ng-container *ngIf="orders.length > 0 else noOrders">
+
+    <mat-grid-list cols="1" gutterSize="15px" rowHeight="170px" class="wrapper">
+      <mat-grid-tile colspan="1" class="card card-background" *ngFor="let order of orders">
+        <div class="content">
+          <div class="top-line title-color">
+            <span class="pickup-time">
+              {{ utils.convertTime(order.pickupTime) }}
+            </span>
+            <span class="customer-name">
+              {{ order.customer.name }}
+            </span>
+            <span class="more-actions">
+              <button mat-icon-button [matMenuTriggerFor]="moreActions">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #moreActions="matMenu">
+                <button mat-menu-item>
+                  Details
+                </button>
+              </mat-menu>
+            </span>
+          </div>
+          <table class="order-data subtitle-color">
+            <tr>
+              <td class="label">
+                Price
+              </td>
+              <td class="value">
+                {{ order.totalPrice | currency }}
+              </td>
+            </tr>
+            <tr>
+              <td class="label">
+                Ordered At
+              </td>
+              <td class="value">
+                {{ utils.convertTime(utils.extractTime(order.placedAt)) }}
+                {{ utils.appendPeriod(utils.extractTime(order.placedAt)) }}
+              </td>
+            </tr>
+            <tr>
+              <td class="label">Items ({{ order.orderItems.length }})</td>
+              <td class="value">
+                <div class="items">
+                  {{ order.orderItems[0].name }}
+                </div>
+              </td>
+            </tr>
+          </table>
+          <div class="button-wrapper">
+            <button mat-button color="primary" class="complete-order button-border" [routerLink]="'../' + order.id"
+              (click)="detailsStore.loadOrderDetailsView(order)">
               Details
             </button>
-          </mat-menu>
-        </span>
-      </div>
-      <table class="order-data subtitle-color">
-        <tr>
-          <td class="label">
-            Price
-          </td>
-          <td class="value">
-            {{ order.totalPrice | currency }}
-          </td>
-        </tr>
-        <tr>
-          <td class="label">
-            Ordered At
-          </td>
-          <td class="value">
-            {{ utils.convertTime(utils.extractTime(order.placedAt)) }}
-            {{ utils.appendPeriod(utils.extractTime(order.placedAt)) }}
-          </td>
-        </tr>
-        <tr>
-          <td class="label">Items ({{ order.orderItems.length }})</td>
-          <td class="value">
-            <div class="items">
-              {{ order.orderItems[0].name }}
-            </div>
-          </td>
-        </tr>
-      </table>
-      <div class="button-wrapper">
-        <button
-          mat-button
-          color="primary"
-          class="complete-order button-border"
-          [routerLink]="'../' + order.id"
-          (click)="detailsStore.loadOrderDetailsView(order)"
-        >
-          Details
-        </button>
-      </div>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </ng-container>
+
+  <ng-template #noOrders>
+    <div class="subtitle-color no-orders">
+      No completed orders for the day
     </div>
-  </mat-grid-tile>
-</mat-grid-list>
+  </ng-template>
+</ng-container>
 
 <div class="navbar-space-bottom-position"></div>
