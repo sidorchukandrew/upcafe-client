@@ -224,3 +224,7 @@ a {
   color: #007bf7;
   color: #57a4ff;
 }
+
+.pwa-installation .mat-dialog-container {
+  padding: 14px;
+}

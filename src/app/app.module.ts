@@ -4,7 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./routing/app-routing.module";
-import { AppComponent } from "./app-component/app.component";
+import { AppComponent } from "./components/app-component/app.component";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
@@ -28,10 +28,12 @@ import { WrongProviderDialog } from './components/wrong-provider-dialog/wrong-pr
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
 import { LayoutModule } from '@angular/cdk/layout';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { PwaDialog } from './components/pwa-dialog/pwa-dialog.component';
 
 
 @NgModule({
-  declarations: [AppComponent, SignInComponent, LoadingComponent, SignInOptionsComponent, WrongProviderDialog, PrivacyPolicyComponent],
+  declarations: [AppComponent, SignInComponent, LoadingComponent, SignInOptionsComponent, WrongProviderDialog, PrivacyPolicyComponent,
+  PwaDialog],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -64,7 +66,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
     }
   ],
   entryComponents: [
-    WrongProviderDialog
+    WrongProviderDialog, PwaDialog
   ],
   bootstrap: [AppComponent],
 })

@@ -44,10 +44,10 @@
 
 <div class="center-wrapper">
 
-  <button mat-button id="add-pwa" *ngIf="!pwaInstalled">
+  <button mat-flat-button id="add-pwa" *ngIf="!pwaInstalled" (click)="showPwaInstallation()">
     <span>
-      Install this as an app
+      Learn how to install this app
     </span>
-    <mat-icon>add_circle_outline</mat-icon>
+    <mat-icon>help_outline</mat-icon>
   </button>
 </div>

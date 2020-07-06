@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from "@angular/core";
-import { ThemeService } from "../services/theme.service";
+import { ThemeService } from "../../services/theme.service";
 import { Subscription, Observable } from "rxjs";
 import { tap } from "rxjs/operators";
-import { LoadingService } from "../services/loading.service";
+import { LoadingService } from "../../services/loading.service";
 
 @Component({
   selector: "app-root",

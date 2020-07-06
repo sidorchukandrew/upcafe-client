@@ -1,0 +1,34 @@
+img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.steps {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: flex;
+  scroll-snap-type: mandatory;
+  scroll-snap-points-x: repeat(300px);
+  scroll-snap-type: x mandatory;
+}
+
+.step {
+  text-align: center;
+  scroll-snap-align: center;
+  width: 100%;
+  min-width: 100%;
+  margin: 0px 4px;
+}
+
+
+.text {
+  margin-top: 10px;
+}
+
+#done {
+  margin: auto;
+  margin-top: 10px;
+  width: 80%;
+  max-width: 200px;
+}

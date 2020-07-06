@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from "@angular/core";
 import { AuthenticationService } from "../../services/authentication.service";
 import { MatDialog, MatDialogRef } from "@angular/material";
 import { Router, ActivatedRoute } from '@angular/router';
@@ -6,14 +6,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from "../../../environments/environment";
 import { tap } from 'rxjs/operators';
 import { WrongProviderDialog } from '../wrong-provider-dialog/wrong-provider-dialog.component';
+import { PwaDialog } from '../pwa-dialog/pwa-dialog.component';
 
 @Component({
   selector: "app-sign-in",
   templateUrl: "./sign-in.component.html",
-  styleUrls: ["./sign-in.component.css"],
+  styleUrls: ["./sign-in.component.css"]
 })
 export class SignInComponent implements OnInit, OnDestroy {
   private dialogRef: MatDialogRef<WrongProviderDialog>;
+  private pwaDialogRef: MatDialogRef<PwaDialog>;
 
   private oldBackground: string = document.body.style.backgroundColor;
   public pwaInstalled: boolean = false;
@@ -64,5 +66,12 @@ export class SignInComponent implements OnInit, OnDestroy {
       this.dialogRef = this.matDialog.open(WrongProviderDialog, {
         data: {error: error}
       });
+  }
+
+  public showPwaInstallation(): void {
+    this.pwaDialogRef = this.matDialog.open(PwaDialog, {
+      panelClass: "pwa-installation",
+      width: "95%"
+    });
   }
 }
