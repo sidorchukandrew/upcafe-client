@@ -64,14 +64,16 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   private showWrongProviderDialog(error: string) {
       this.dialogRef = this.matDialog.open(WrongProviderDialog, {
-        data: {error: error}
+        data: {error: error},
+        autoFocus: false
       });
   }
 
   public showPwaInstallation(): void {
     this.pwaDialogRef = this.matDialog.open(PwaDialog, {
       panelClass: "pwa-installation",
-      width: "95%"
+      width: "95%",
+      autoFocus: false
     });
   }
 }

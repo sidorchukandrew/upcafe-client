@@ -26,6 +26,22 @@ img {
   margin-top: 10px;
 }
 
+.progress {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #e1e1e1;
+}
+
+.active {
+  background-color: #747474;
+}
+
 #done {
   margin: auto;
   margin-top: 10px;
