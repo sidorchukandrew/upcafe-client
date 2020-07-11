@@ -83,15 +83,6 @@ export class TimeUtilitiesService {
     return hour + ":" + time.slice(indexOfColon + 1, time.length);
   }
 
-  public extractTime(dateUTC: string): string {
-    var date = new Date(dateUTC);
-
-    if (date.getMinutes() < 10)
-      return date.getHours() + ":0" + date.getMinutes();
-
-    return date.getHours() + ":" + date.getMinutes();
-  }
-
   public appendPeriod(time: string): string {
     var indexOfColon = time.indexOf(":");
     var hour = parseInt(time.slice(0, indexOfColon));
@@ -131,28 +122,6 @@ export class TimeUtilitiesService {
         return "Friday";
       case 6:
         return "Saturday";
-    }
-  }
-
-
-
-  public toDayOfWeek(dayName: string): number {
-
-    switch (dayName) {
-      case "Monday":
-        return 0;
-      case "Tuesday":
-        return 1;
-      case "Wednesday":
-        return 2;
-      case "Thursday":
-        return 3;
-      case "Friday":
-        return 4;
-      case "Saturday":
-        return 5;
-      case "Sunday":
-        return 6;
     }
   }
 }
