@@ -61,7 +61,7 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   private loadCafe(): void {
-    this.hoursService.loadAvailablePickupTimesFromApi();
+    this.hoursService.loadAvailablePickupTimesFromApi().subscribe();
     this.menuService.loadMenuFromApi();
   }
 }

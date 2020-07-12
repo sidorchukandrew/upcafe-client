@@ -4,7 +4,7 @@ import { Block } from "../models/Block";
 import { environment } from "src/environments/environment";
 import { PickupSettings } from "../models/PickupSettings";
 import { Observable, throwError, BehaviorSubject } from "rxjs";
-import { shareReplay, retry, catchError } from "rxjs/operators";
+import { shareReplay, retry, catchError, tap } from "rxjs/operators";
 import { PickupTime } from '../models/PickupTime';
 
 @Injectable({
@@ -50,7 +50,7 @@ export class HoursService {
     });
   }
 
-  public getBlocksForDay(day: string): Observable<any> {
+  public getBlocksForDay(day: string): Observable<Block[]> {
     return this.http.get<Block[]>(environment.backendUrl + "/cafe/hours", {
       params: {
         day: day,
@@ -59,28 +59,30 @@ export class HoursService {
   }
 
   public getAvailablePickupTimes(): Observable<Array<PickupTime>> {
+    if(this.availablePickupTimes.value == null) {
+      this.loadAvailablePickupTimesFromApi();
+    }
+
     return this.availablePickupTimes$;
   }
 
-  public loadAvailablePickupTimesFromApi(): void {
-    if(this.availablePickupTimes.value == null) {
-      this.http.get<Array<PickupTime>>(environment.backendUrl + "/cafe/hours", {
+  public loadAvailablePickupTimesFromApi(): Observable<Array<PickupTime>> {
+     return this.http.get<Array<PickupTime>>(environment.backendUrl + "/cafe/hours", {
         params: { search: "available"}
       })
-      .subscribe(times => {
-        this.availablePickupTimes.next(times);
-      });
-    }
+      .pipe(
+        tap(times => this.availablePickupTimes.next(times))
+      );
   }
 
-  public getPickupSettings(): any {
+  public getPickupSettings(): Observable<PickupSettings> {
     return this.http.get<PickupSettings>(
       environment.backendUrl + "/cafe/settings/pickup"
     );
   }
 
-  public updatePickupSettings(settings: PickupSettings): any {
-    return this.http.put(
+  public updatePickupSettings(settings: PickupSettings): Observable<PickupSettings> {
+    return this.http.put<PickupSettings>(
       environment.backendUrl + "/cafe/settings/pickup",
       settings
     );
