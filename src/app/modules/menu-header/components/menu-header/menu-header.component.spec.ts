@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ThemeService } from 'src/app/services/theme.service';
 
-describe("MenuHeaderComponent", () => {
+xdescribe("MenuHeaderComponent", () => {
 
   let menuHeader: MenuHeaderComponent;
   let fixture: ComponentFixture<MenuHeaderComponent>;

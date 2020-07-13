@@ -1,7 +1,7 @@
 import { TimeUtilitiesService } from "./time-utilities.service";
 import { TestBed } from '@angular/core/testing';
 
-xdescribe('TimeUtilities', () => {
+describe('TimeUtilities', () => {
 
   let timeUtils: TimeUtilitiesService;
 
@@ -22,13 +22,6 @@ xdescribe('TimeUtilities', () => {
     expect(result).toBe("PM");
   });
 
-  it('should get the week\'s Sunday', () => {
-    pending();
-  });
-
-  it('should get the week\'s Monday', () => {
-    pending();
-  });
 
   it('should get the day of the week based on the number', () => {
 

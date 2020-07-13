@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from "@angular/core";
-import { AuthenticationService } from "../../services/authentication.service";
+import { AuthenticationService, ROLE_CUSTOMER, ROLE_STAFF, ROLE_ADMIN } from "../../services/authentication.service";
 import { MatDialog, MatDialogRef } from "@angular/material";
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -36,8 +36,7 @@ export class SignInComponent implements OnInit, OnDestroy {
      this.activeRoute.queryParamMap.subscribe((paramMap) => {
        if (paramMap.has("error")) {
          this.showWrongProviderDialog(paramMap.get("error"));
-       } else {
-         if (paramMap.has("token")) {
+       } else if (paramMap.has("token")) {
            this.authenticationService.setAccessToken(paramMap.get("token"));
            this.authenticationService
              .getUserFromApi()
@@ -45,8 +44,18 @@ export class SignInComponent implements OnInit, OnDestroy {
                tap((user) => this.authenticationService.setSignedInUser(user))
              )
              .subscribe(() => this.router.navigateByUrl("roles"));
-         }
-       }
+       } else if (this.authenticationService.getAccessToken() != null || this.authenticationService.getAccessToken() != "") {
+
+             if(this.authenticationService.getRoleSignedInWith() == ROLE_CUSTOMER) {
+               this.router.navigateByUrl("user/cafe");
+             } else if (this.authenticationService.getRoleSignedInWith() == ROLE_STAFF) {
+               this.router.navigateByUrl("staff/orders/new");
+             } else if (this.authenticationService.getRoleSignedInWith() == ROLE_ADMIN) {
+               this.router.navigateByUrl("admin/cafe");
+             } else {
+               this.router.navigateByUrl("roles")
+             }
+        }
      });
   }
 

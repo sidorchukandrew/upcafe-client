@@ -49,6 +49,17 @@ export class TimeUtilitiesService {
 
     return minutesA - minutesB;
   }
+
+  public extractTime(dateUTC: string): string {
+    var date = new Date(dateUTC);
+
+    if (date.getMinutes() < 10)
+      return date.getHours() + ":0" + date.getMinutes();
+
+    return date.getHours() + ":" + date.getMinutes();
+  }
+
+
   public increasingTimeBlocks(a: Block, b: Block): number {
     // None of them are ASAP, compare the hours
     var hourA: number;

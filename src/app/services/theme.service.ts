@@ -13,7 +13,6 @@ export class ThemeService {
   }
 
   switchTheme() {
-    console.log("Switching in local storage");
     localStorage.setItem("UPCAFE_DARK_THEME_ON", !this.themeSubject.value  + "");
     this.themeSubject.next(localStorage.getItem("UPCAFE_DARK_THEME_ON") == 'true')
   }

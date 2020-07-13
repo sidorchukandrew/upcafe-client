@@ -20,10 +20,6 @@ export class CatalogService {
 
   constructor(private http: HttpClient) { }
 
-  public getVariation(id: string): Observable<MenuItem> {
-    return this.http.get<MenuItem>(environment.backendUrl + "/menu/items/" + id);
-  }
-
   public loadCatalogIfNotLoadedYet(): void {
     if (this.catalog.getValue() == null) {
       this.getCatalog().subscribe(catalogResponse => this.catalog.next(catalogResponse['catalog']));
@@ -31,7 +27,7 @@ export class CatalogService {
   }
 
   public getCatalog(): Observable<any> {
-    return this.http.get(environment.backendUrl + "/api/v1/catalog").pipe();
+    return this.http.get(environment.backendUrl + "/api/v1/catalog");
   }
 
   public updateInventory(inventoryChange: CatalogInventoryChange): Observable<any> {
