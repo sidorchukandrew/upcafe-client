@@ -16,7 +16,7 @@ export class FeedbackService {
     return this.http.post<BugReport>(environment.backendUrl + "/api/v1/bugs", bug);
   }
 
-  public submitFeatureRequest(featureRequest: FeatureRequest): Observable<any> {
-    return this.http.post(environment.backendUrl + "/api/v1/features", featureRequest);
+  public submitFeatureRequest(featureRequest: FeatureRequest): Observable<FeatureRequest> {
+    return this.http.post<FeatureRequest>(environment.backendUrl + "/api/v1/features", featureRequest);
   }
 }

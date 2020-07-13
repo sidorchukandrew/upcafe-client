@@ -7,7 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Block } from '../models/Block';
 import { environment } from 'src/environments/environment';
 
-describe('HoursService', () => {
+xdescribe('HoursService', () => {
 
   let hoursService: HoursService;
   let httpTestingController: HttpTestingController;
