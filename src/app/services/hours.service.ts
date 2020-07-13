@@ -4,7 +4,7 @@ import { Block } from "../models/Block";
 import { environment } from "src/environments/environment";
 import { PickupSettings } from "../models/PickupSettings";
 import { Observable, throwError, BehaviorSubject } from "rxjs";
-import { shareReplay, retry, catchError, tap } from "rxjs/operators";
+import { catchError, tap } from "rxjs/operators";
 import { PickupTime } from '../models/PickupTime';
 
 @Injectable({
@@ -17,8 +17,8 @@ export class HoursService {
 
   constructor(private http: HttpClient) {}
 
-  public postBlock(block: Block, weekOf: string): any {
-    return this.http.post(environment.backendUrl + "/cafe/hours", block, {
+  public postBlock(block: Block, weekOf: string): Observable<Block> {
+    return this.http.post<Block>(environment.backendUrl + "/cafe/hours", block, {
       params: {weekOf: weekOf}
     });
   }

@@ -187,7 +187,7 @@ export class HoursComponent implements OnInit {
 
     this.timeService
       .deleteBlock(block.id)
-      .subscribe(result => {
+      .subscribe(() => {
         var index: number = dayBlocks.indexOf(block);
 
         if (index != -1) dayBlocks.splice(index, 1);
