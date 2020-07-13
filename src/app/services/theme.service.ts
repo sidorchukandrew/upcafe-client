@@ -17,4 +17,8 @@ export class ThemeService {
     localStorage.setItem("UPCAFE_DARK_THEME_ON", !this.themeSubject.value  + "");
     this.themeSubject.next(localStorage.getItem("UPCAFE_DARK_THEME_ON") == 'true')
   }
+
+  public getDarkThemeOn$(): Observable<boolean> {
+    return this.darkThemeOn$;
+  }
 }

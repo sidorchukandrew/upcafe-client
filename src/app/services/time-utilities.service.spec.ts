@@ -1,7 +1,7 @@
 import { TimeUtilitiesService } from "./time-utilities.service";
 import { TestBed } from '@angular/core/testing';
 
-describe('TimeUtilities', () => {
+xdescribe('TimeUtilities', () => {
 
   let timeUtils: TimeUtilitiesService;
 
