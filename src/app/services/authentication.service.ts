@@ -24,9 +24,6 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient, private router: Router) {
 
-    // this.loadMockData();
-    // return;
-
     if (localStorage.getItem("ACCESS_TOKEN")) {
       // TODO: CHANGE HOW ROLES ARE LOADED IN. ANYONE CAN GO INTO LOCAL STORAGE
       //    AND CHANGE THEIR ROLES
@@ -47,37 +44,6 @@ export class AuthenticationService {
         if(localStorage.getItem("SIGNED_IN_AS")) {
           this.signedInWithRole = localStorage.getItem("SIGNED_IN_AS");
         }
-      }
-    }
-    else {
-      this.loadMockData();
-    }
-  }
-
-  private loadMockData(): void {
-    localStorage.setItem("ACCESS_TOKEN", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNTkyNzY0MDY3LCJleHAiOjE1OTM2MjgwNjd9.YaVl0EwoCs0AKha6a6Dzo9CcLyqtkT4Sp1I23Nn5ze4");
-    localStorage.setItem("name", "Andrew Sidorchuk");
-    localStorage.setItem("email", "sidorchukandrew@gmail.com");
-    localStorage.setItem("roles", "ROLE_CUSTOMER,ROLE_STAFF,ROLE_ADMIN");
-    localStorage.setItem("id", "8");
-    localStorage.setItem("imageUrl", "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=787298571760394&height=250&width=250&ext=1593976052&hash=AeTeq72lOn1WGJjU");
-
-
-    this.accessToken = localStorage.getItem("ACCESS_TOKEN");
-    // Load the user into main memory
-    if (localStorage.getItem("name")) {
-      this.authenticatedUser.next({
-        name: localStorage.getItem("name"),
-        email: localStorage.getItem("email"),
-        id: parseInt(localStorage.getItem("id")),
-        roles: localStorage.getItem("roles").split(","),
-        imageUrl: localStorage.getItem("imageUrl"),
-      });
-
-      this.setRolesInMemory(this.authenticatedUser.getValue().roles);
-
-      if (localStorage.getItem("SIGNED_IN_AS")) {
-        this.signedInWithRole = localStorage.getItem("SIGNED_IN_AS");
       }
     }
   }

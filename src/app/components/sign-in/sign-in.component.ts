@@ -26,37 +26,34 @@ export class SignInComponent implements OnInit, OnDestroy {
     private authenticationService: AuthenticationService,
     private router: Router
   ) {
-        document.body.style.background = "#080808";
+    document.body.style.background = "#080808";
   }
 
   ngOnInit(): void {
 
     this.pwaInstalled = window.matchMedia('(display-mode: standalone)').matches;
 
-     this.activeRoute.queryParamMap.subscribe((paramMap) => {
-       if (paramMap.has("error")) {
-         this.showWrongProviderDialog(paramMap.get("error"));
-       } else if (paramMap.has("token")) {
-           this.authenticationService.setAccessToken(paramMap.get("token"));
-           this.authenticationService
-             .getUserFromApi()
-             .pipe(
-               tap((user) => this.authenticationService.setSignedInUser(user))
-             )
-             .subscribe(() => this.router.navigateByUrl("roles"));
-       } else if (this.authenticationService.getAccessToken() != null || this.authenticationService.getAccessToken() != "") {
-
-             if(this.authenticationService.getRoleSignedInWith() == ROLE_CUSTOMER) {
-               this.router.navigateByUrl("user/cafe");
-             } else if (this.authenticationService.getRoleSignedInWith() == ROLE_STAFF) {
-               this.router.navigateByUrl("staff/orders/new");
-             } else if (this.authenticationService.getRoleSignedInWith() == ROLE_ADMIN) {
-               this.router.navigateByUrl("admin/cafe");
-             } else {
-               this.router.navigateByUrl("roles")
-             }
+    this.activeRoute.queryParamMap.subscribe((paramMap) => {
+      if (paramMap.has("error")) {
+        this.showWrongProviderDialog(paramMap.get("error"));
+      } else if (paramMap.has("token")) {
+        this.authenticationService.setAccessToken(paramMap.get("token"));
+        this.authenticationService
+          .getUserFromApi()
+          .pipe(
+            tap((user) => this.authenticationService.setSignedInUser(user))
+          )
+          .subscribe(() => this.router.navigateByUrl("roles"));
+      } else if (this.authenticationService.getAccessToken() != null && this.authenticationService.getAccessToken() != "") {
+        if (this.authenticationService.getRoleSignedInWith() == ROLE_CUSTOMER) {
+          this.router.navigateByUrl("user/menu");
+        } else if (this.authenticationService.getRoleSignedInWith() == ROLE_STAFF) {
+          this.router.navigateByUrl("staff/orders/new");
+        } else if (this.authenticationService.getRoleSignedInWith() == ROLE_ADMIN) {
+          this.router.navigateByUrl("admin/cafe");
         }
-     });
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -72,10 +69,10 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   private showWrongProviderDialog(error: string) {
-      this.dialogRef = this.matDialog.open(WrongProviderDialog, {
-        data: {error: error},
-        autoFocus: false
-      });
+    this.dialogRef = this.matDialog.open(WrongProviderDialog, {
+      data: { error: error },
+      autoFocus: false
+    });
   }
 
   public showPwaInstallation(): void {
