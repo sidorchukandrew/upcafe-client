@@ -28,12 +28,16 @@
   justify-content: space-between;
 }
 
+.item {
+  margin: 5px 0px;
+}
+
 .modifiers {
   text-align: left;
-  margin: 0px 5px;
+  margin: 0px 10px;
 }
 
 .modifier {
   display: inline-block;
-  margin-right: 2px;
+  margin-right: 5px;
 }
