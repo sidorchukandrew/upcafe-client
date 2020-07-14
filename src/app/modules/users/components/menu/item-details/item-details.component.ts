@@ -89,6 +89,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   public addToOrderItemPrice(modifierCost: number): void {
     this.orderItemPrice = this.orderItemPrice + modifierCost;
+    this.buttonMessage = this.buttonMessage + " " + this.currencyPipe.transform(this.orderItemPrice);
   }
 
   public remove(modifierToRemove: OrderModifier): void {

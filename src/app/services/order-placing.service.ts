@@ -84,7 +84,6 @@ export class OrderPlacingService {
   }
 
   public clearOrders(): void {
-    console.log("clearing orders");
     this.order = null;
   }
 
@@ -162,7 +161,7 @@ export class OrderPlacingService {
       this.statusSubject.next(order["status"]);
     } else {
       this.stateSubject.next(OrderState.NEW);
-
+      this.order = null;
       this.statusSubject.next("");
     }
   }

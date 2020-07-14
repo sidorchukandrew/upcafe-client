@@ -27,3 +27,12 @@
   display: flex;
   justify-content: space-between;
 }
+
+.modifiers {
+  text-align: left;
+}
+
+.modifier {
+  display: inline-block;
+  margin-right: 2px;
+}
