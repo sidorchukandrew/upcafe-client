@@ -10,7 +10,7 @@ export class UserResponseDialog implements OnInit {
   constructor(public dialogRef: MatDialogRef<UserResponseDialog>, private router: Router) { }
   ngOnInit() {
     window.navigator.vibrate(200);
-    setTimeout(() => this.dialogRef.close(), 1000);
+    setTimeout(() => this.dialogRef.close(), 1500);
   }
 
   close(): void {

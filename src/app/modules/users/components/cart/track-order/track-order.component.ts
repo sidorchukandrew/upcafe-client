@@ -40,6 +40,7 @@ export class TrackOrderComponent implements OnInit, OnDestroy {
     var state$ = this.orderService.state$.subscribe((state) => {
       if (state == "NEW") {
         clearInterval(this.checkInterval$);
+        this.orderService.clearOrders();
         this.ngOnDestroy();
       }
     });
