@@ -21,6 +21,8 @@ header {
   position: absolute;
   height: 100%;
   left: 15px;
+  border: none;
+  background: transparent;
 }
 
 #title {

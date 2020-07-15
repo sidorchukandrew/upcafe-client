@@ -44,6 +44,16 @@ div {
   display: flex;
 }
 
+.scrolling-wrapper ::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
+}
+
+.scrolling-wrapper ::-webkit-scrollbar-thumb {
+  height: 0px;
+  width: 0px;
+}
+
 
 a {
   text-decoration: none;
