@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import { Order } from "src/app/models/Order";
 import { OrderPlacingService } from "src/app/services/order-placing.service";
 import { Router } from "@angular/router";
@@ -35,7 +35,8 @@ export class MyOrderComponent implements OnInit, OnDestroy {
     public timeUtils: TimeUtilitiesService,
     private themeService: ThemeService,
     private editService: EditItemService,
-    private hoursService: HoursService
+    private hoursService: HoursService,
+    private changeDetector: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -95,6 +96,7 @@ export class MyOrderComponent implements OnInit, OnDestroy {
     bottomSheetRef.afterDismissed().subscribe(selectedTime => {
       if(selectedTime)
         this.timeSelected(selectedTime);
+        this.changeDetector.detectChanges();
     });
   }
 }

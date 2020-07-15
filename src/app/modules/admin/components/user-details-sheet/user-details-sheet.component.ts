@@ -145,7 +145,7 @@ export class UserDetailsSheet implements OnInit, OnDestroy {
       this.deleting = true;
       this.userService.deleteUser(this.user).subscribe(deleteSuccessful => {
         this.user.id = -1;
-        setTimeout(() => this.bottomSheet.dismiss(), 2000);
+        this.bottomSheet.dismiss();
       });
     }
   }
