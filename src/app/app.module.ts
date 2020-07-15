@@ -30,7 +30,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { PwaDialog } from './components/pwa-dialog/pwa-dialog.component';
 
-
 @NgModule({
   declarations: [AppComponent, SignInComponent, LoadingComponent, SignInOptionsComponent, WrongProviderDialog, PrivacyPolicyComponent,
   PwaDialog],

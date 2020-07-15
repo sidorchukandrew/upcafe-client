@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef, MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { UserAdminView } from 'src/app/models/UserAdminView';
 import { Subscription, BehaviorSubject, Observable } from 'rxjs';
 import { ThemeService } from 'src/app/services/theme.service';
 import { ROLE_ADMIN, ROLE_STAFF, ROLE_CUSTOMER, AuthenticationService } from 'src/app/services/authentication.service';
 import { UsersService } from 'src/app/services/users.service';
 import { tap } from 'rxjs/operators';
+import { ConfirmDeleteOwnAccountDialog } from '../confirm-delete-own-account-dialog/confirm-delete-own-account-dialog.component';
 
 @Component({
   selector: 'app-user-details-sheet',
@@ -30,7 +31,8 @@ export class UserDetailsSheet implements OnInit, OnDestroy {
               private themeService: ThemeService,
               private userService: UsersService,
               private changeDetector: ChangeDetectorRef,
-              private authenticationService: AuthenticationService) { }
+              private authenticationService: AuthenticationService,
+              private matDialog: MatDialog) { }
 
   ngOnInit() {
     this.subscriptions = new Subscription();
@@ -128,8 +130,13 @@ export class UserDetailsSheet implements OnInit, OnDestroy {
 
   public delete(): void {
     if(this.isMe) {
-      //Show confirmation dialog and delete
+      const dialogRef: MatDialogRef<ConfirmDeleteOwnAccountDialog> = this.matDialog.open(ConfirmDeleteOwnAccountDialog, {
+        autoFocus: false, data: this.user
+      });
 
+      dialogRef.afterClosed().subscribe(deleteSuccessful => {
+        this.bottomSheet.dismiss();
+      });
     }
 
     else {

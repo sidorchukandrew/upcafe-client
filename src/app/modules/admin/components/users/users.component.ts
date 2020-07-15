@@ -46,7 +46,8 @@ export class UsersComponent implements OnInit, OnDestroy {
 
     let bottomSheetRef: MatBottomSheetRef = this.bottomSheet.open(UserDetailsSheet, {
       data: user,
-      panelClass: panelClass
+      panelClass: panelClass,
+      closeOnNavigation: true
     });
 
     bottomSheetRef.afterDismissed().subscribe(updatedUser => {

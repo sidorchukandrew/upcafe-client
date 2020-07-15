@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { UsersComponent } from './components/users/users.component';
-import { MatDividerModule, MatBottomSheetModule, MatIconModule, MatButtonModule, MatRippleModule,
+import {
+  MatDividerModule, MatBottomSheetModule, MatIconModule, MatButtonModule, MatRippleModule,
   MatGridListModule,
   MatProgressSpinnerModule,
   MatSlideToggleModule,
-  MatMenuModule} from '@angular/material';
+  MatMenuModule
+} from '@angular/material';
 import { UserDetailsSheet } from './components/user-details-sheet/user-details-sheet.component';
 import { HeaderWithSearchModule } from '../header-with-search/header-with-search.module';
 import { AdminComponent } from './components/admin/admin.component';
@@ -26,11 +28,15 @@ import { FeedbackModule } from '../feedback/feedback.module';
 import { AppSettingsComponent } from './components/app-settings/app-settings.component';
 import { PageHeaderModule } from '../page-header/page-header.module';
 import { MenuHeaderModule } from '../menu-header/menu-header.module';
+import { ConfirmDeleteOwnAccountDialog } from './components/confirm-delete-own-account-dialog/confirm-delete-own-account-dialog.component';
 
 
 
 @NgModule({
-  declarations: [DashboardComponent, UsersComponent, UserDetailsSheet, AdminComponent, CafeSettingsMenuComponent, CatalogItemImageComponent, CatalogComponent, CatalogItemViewComponent, MenuItemSummaryComponent, ModifierSummaryComponent, ModifierListSummaryComponent, AdminAccountMenuComponent, AppSettingsComponent],
+  declarations: [DashboardComponent, UsersComponent, UserDetailsSheet, AdminComponent, CafeSettingsMenuComponent,
+    CatalogItemImageComponent, CatalogComponent, CatalogItemViewComponent, MenuItemSummaryComponent,
+    ModifierSummaryComponent, ModifierListSummaryComponent, AdminAccountMenuComponent, AppSettingsComponent,
+    ConfirmDeleteOwnAccountDialog],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -52,7 +58,8 @@ import { MenuHeaderModule } from '../menu-header/menu-header.module';
     MatMenuModule
   ],
   entryComponents: [
-    UserDetailsSheet
+    UserDetailsSheet,
+    ConfirmDeleteOwnAccountDialog
   ]
 })
 export class AdminModule { }

@@ -51,6 +51,8 @@ export class SignInComponent implements OnInit, OnDestroy {
           this.router.navigateByUrl("staff/orders/new");
         } else if (this.authenticationService.getRoleSignedInWith() == ROLE_ADMIN) {
           this.router.navigateByUrl("admin/cafe");
+        } else {
+          this.router.navigateByUrl("roles")
         }
       }
     });

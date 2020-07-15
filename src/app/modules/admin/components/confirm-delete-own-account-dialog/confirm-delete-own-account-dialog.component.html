@@ -1,0 +1,28 @@
+<ng-container *ngIf="!saving">
+  <h3 mat-dialog-title>Are you sure you'd like to delete your own account?</h3>
+  <div mat-dialog-content>
+    <p>
+      This action is irreversible.
+    </p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="saving">
+  <h3 mat-dialog-title>This may take a moment.</h3>
+  <div mat-dialog-content>
+    <p>
+      You will be redirected back to the homepage soon.
+    </p>
+  </div>
+</ng-container>
+
+<div mat-dialog-actions id="actions">
+  <button mat-button (click)="delete()" *ngIf="!saving">
+      Yes, I'm sure
+  </button>
+  <button mat-raised-button color="primary" *ngIf="!saving" (click)="close()">Cancel</button>
+
+  <mat-spinner *ngIf="saving" diameter="35" ></mat-spinner>
+</div>
+
+
