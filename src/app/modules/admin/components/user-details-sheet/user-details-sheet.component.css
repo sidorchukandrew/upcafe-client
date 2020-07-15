@@ -92,3 +92,18 @@
   width: 100px;
   height: 40px;
 }
+
+#deleting-overlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  backdrop-filter: blur(6px);
+  flex-direction: column;
+}

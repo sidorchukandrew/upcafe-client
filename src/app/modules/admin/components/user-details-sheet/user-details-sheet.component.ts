@@ -26,6 +26,8 @@ export class UserDetailsSheet implements OnInit, OnDestroy {
   public saving: boolean = false;
   public isMe: boolean = false;
 
+  public deleting: boolean = false;
+
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public user: UserAdminView,
               private bottomSheet: MatBottomSheetRef,
               private themeService: ThemeService,
@@ -140,10 +142,10 @@ export class UserDetailsSheet implements OnInit, OnDestroy {
     }
 
     else {
-      //Delete
+      this.deleting = true;
       this.userService.deleteUser(this.user).subscribe(deleteSuccessful => {
         this.user.id = -1;
-        this.bottomSheet.dismiss();
+        setTimeout(() => this.bottomSheet.dismiss(), 2000);
       });
     }
   }

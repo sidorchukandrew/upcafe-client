@@ -1,5 +1,4 @@
 <div [class.dark-theme]="darkThemeOn" [class.light-theme]="!darkThemeOn">
-
   <div class="top-actions">
     <button mat-icon-button class="subtitle-color" (click)="close()">
       <mat-icon>close</mat-icon>
@@ -68,15 +67,24 @@
     </div>
 
   </div>
+
+
+  <div id="save-changes-space"></div>
+  <div id="save-changes" *ngIf="changesMade">
+    <button mat-button (click)="saveChanges()">
+      <span *ngIf="!saving">
+        Save Changes
+      </span>
+      <mat-spinner *ngIf="saving" diameter="30" style="margin: auto;" color="accent"></mat-spinner>
+    </button>
+  </div>
+
+  <div id="deleting-overlay" *ngIf="deleting">
+  <h2 class="title-color">
+    Deleting . . .
+  </h2>
+
+  <mat-spinner diameter="60"></mat-spinner>
 </div>
 
-
-<div id="save-changes-space"></div>
-<div id="save-changes" *ngIf="changesMade">
-  <button mat-button (click)="saveChanges()">
-    <span *ngIf="!saving">
-      Save Changes
-    </span>
-    <mat-spinner *ngIf="saving" diameter="30" style="margin: auto;" color="accent"></mat-spinner>
-  </button>
 </div>
