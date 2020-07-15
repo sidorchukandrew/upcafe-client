@@ -5,10 +5,16 @@
       <mat-icon>close</mat-icon>
     </button>
 
-    <button mat-icon-button class="subtitle-color">
+    <button mat-icon-button class="subtitle-color" [matMenuTriggerFor]="moreActions">
       <mat-icon>more_vert</mat-icon>
     </button>
   </div>
+
+  <mat-menu #moreActions="matMenu">
+    <button mat-menu-item (click)="delete()">
+      Delete Account
+    </button>
+  </mat-menu>
   <div class="information">
 
     <div class="avatar">

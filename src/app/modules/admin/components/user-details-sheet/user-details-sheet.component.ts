@@ -3,7 +3,7 @@ import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material';
 import { UserAdminView } from 'src/app/models/UserAdminView';
 import { Subscription, BehaviorSubject, Observable } from 'rxjs';
 import { ThemeService } from 'src/app/services/theme.service';
-import { ROLE_ADMIN, ROLE_STAFF, ROLE_CUSTOMER } from 'src/app/services/authentication.service';
+import { ROLE_ADMIN, ROLE_STAFF, ROLE_CUSTOMER, AuthenticationService } from 'src/app/services/authentication.service';
 import { UsersService } from 'src/app/services/users.service';
 import { tap } from 'rxjs/operators';
 
@@ -23,16 +23,21 @@ export class UserDetailsSheet implements OnInit, OnDestroy {
 
   public changesMade: boolean = false;
   public saving: boolean = false;
+  public isMe: boolean = false;
 
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public user: UserAdminView,
               private bottomSheet: MatBottomSheetRef,
               private themeService: ThemeService,
               private userService: UsersService,
-              private changeDetector: ChangeDetectorRef) { }
+              private changeDetector: ChangeDetectorRef,
+              private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.subscriptions = new Subscription();
     this.subscriptions.add(this.themeService.darkThemeOn$.subscribe(on => this.darkThemeOn = on));
+
+    this.subscriptions.add(this.authenticationService.authenticatedUser$.subscribe(user =>
+      this.isMe = this.user.email == user.email));
 
     this.user.roles.forEach(role => {
       if(role.authority == ROLE_ADMIN) this.isAdmin = true;
@@ -44,7 +49,6 @@ export class UserDetailsSheet implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
     this.bottomSheet.dismiss(this.user);
-    console.log("destroying");
   }
 
   public close(): void {
@@ -120,6 +124,21 @@ export class UserDetailsSheet implements OnInit, OnDestroy {
       user => this.user = user,
       error => console.log(error)
     );
+  }
+
+  public delete(): void {
+    if(this.isMe) {
+      //Show confirmation dialog and delete
+
+    }
+
+    else {
+      //Delete
+      this.userService.deleteUser(this.user).subscribe(deleteSuccessful => {
+        this.user.id = -1;
+        this.bottomSheet.dismiss();
+      });
+    }
   }
 
 }

@@ -50,9 +50,15 @@ export class UsersComponent implements OnInit, OnDestroy {
     });
 
     bottomSheetRef.afterDismissed().subscribe(updatedUser => {
-      let indexOfUserToUpdate: number = this.users.findIndex(user => user.id == updatedUser.id);
-      this.users[indexOfUserToUpdate] = updatedUser;
-      this.usersToDisplay = this.copyArray(this.users);
+      if(updatedUser.id >= 1) {
+        let indexOfUserToUpdate: number = this.users.findIndex(user => user.id == updatedUser.id);
+        this.users[indexOfUserToUpdate] = updatedUser;
+        this.usersToDisplay = this.copyArray(this.users);
+      } else {
+        let indexOfUserToDelete: number = this.users.findIndex(userInArray => user.email == userInArray.email);
+        this.users.splice(indexOfUserToDelete, 1);
+        this.usersToDisplay = this.copyArray(this.users);
+      }
     });
   }
 

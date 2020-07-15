@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from '../models/User';
 import { environment } from 'src/environments/environment';
 import { UserAdminView } from '../models/UserAdminView';
@@ -18,5 +18,10 @@ export class UsersService {
 
   public updateUser(user: UserAdminView): Observable<UserAdminView> {
     return this.http.put<UserAdminView>(environment.backendUrl + "/api/v1/users", user);
+  }
+
+  public deleteUser(user: UserAdminView): Observable<boolean> {
+    // return this.http.delete<boolean>("");
+    return of(true);
   }
 }

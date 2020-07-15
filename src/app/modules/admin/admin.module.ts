@@ -6,7 +6,8 @@ import { UsersComponent } from './components/users/users.component';
 import { MatDividerModule, MatBottomSheetModule, MatIconModule, MatButtonModule, MatRippleModule,
   MatGridListModule,
   MatProgressSpinnerModule,
-  MatSlideToggleModule} from '@angular/material';
+  MatSlideToggleModule,
+  MatMenuModule} from '@angular/material';
 import { UserDetailsSheet } from './components/user-details-sheet/user-details-sheet.component';
 import { HeaderWithSearchModule } from '../header-with-search/header-with-search.module';
 import { AdminComponent } from './components/admin/admin.component';
@@ -47,7 +48,8 @@ import { MenuHeaderModule } from '../menu-header/menu-header.module';
     FeedbackModule,
     MatSlideToggleModule,
     PageHeaderModule,
-    MenuHeaderModule
+    MenuHeaderModule,
+    MatMenuModule
   ],
   entryComponents: [
     UserDetailsSheet
