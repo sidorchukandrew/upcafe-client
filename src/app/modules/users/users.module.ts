@@ -55,6 +55,8 @@ import { SwitchToSmallerScreenComponent } from './components/switch-to-smaller-s
 import { CategorySelectorComponent } from './components/category-selector/category-selector.component';
 import { PageHeaderModule } from '../page-header/page-header.module';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ConfirmDeleteOwnAccountDialogModule } from '../confirm-delete-own-account-dialog/confirm-delete-own-account-dialog.module';
+import { ConfirmDeleteOwnAccountDialog } from '../confirm-delete-own-account-dialog/components/confirm-delete-own-account-dialog/confirm-delete-own-account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -106,9 +108,11 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     FeedbackModule,
     NavbarModule,
     HeaderWithSearchModule,
-    PageHeaderModule
+    PageHeaderModule,
+    ConfirmDeleteOwnAccountDialogModule
   ],
-  entryComponents: [UserResponseDialog, ItemDetailsSheet, EditOrderItemSheet, SuccessfulUpdateDialog, PickupTimeSelectorSheet],
+  entryComponents: [UserResponseDialog, ItemDetailsSheet, EditOrderItemSheet,
+    SuccessfulUpdateDialog, PickupTimeSelectorSheet, ConfirmDeleteOwnAccountDialog],
   providers: [CurrencyPipe],
 })
 export class UsersModule {}

@@ -6,7 +6,7 @@ import { ThemeService } from 'src/app/services/theme.service';
 import { ROLE_ADMIN, ROLE_STAFF, ROLE_CUSTOMER, AuthenticationService } from 'src/app/services/authentication.service';
 import { UsersService } from 'src/app/services/users.service';
 import { tap } from 'rxjs/operators';
-import { ConfirmDeleteOwnAccountDialog } from '../confirm-delete-own-account-dialog/confirm-delete-own-account-dialog.component';
+import { ConfirmDeleteOwnAccountDialog } from 'src/app/modules/confirm-delete-own-account-dialog/components/confirm-delete-own-account-dialog/confirm-delete-own-account-dialog.component';
 
 @Component({
   selector: 'app-user-details-sheet',

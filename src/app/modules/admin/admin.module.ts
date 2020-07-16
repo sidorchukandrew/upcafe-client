@@ -28,15 +28,14 @@ import { FeedbackModule } from '../feedback/feedback.module';
 import { AppSettingsComponent } from './components/app-settings/app-settings.component';
 import { PageHeaderModule } from '../page-header/page-header.module';
 import { MenuHeaderModule } from '../menu-header/menu-header.module';
-import { ConfirmDeleteOwnAccountDialog } from './components/confirm-delete-own-account-dialog/confirm-delete-own-account-dialog.component';
-
-
+import { ConfirmDeleteOwnAccountDialog } from '../confirm-delete-own-account-dialog/components/confirm-delete-own-account-dialog/confirm-delete-own-account-dialog.component';
+import { ConfirmDeleteOwnAccountDialogModule } from '../confirm-delete-own-account-dialog/confirm-delete-own-account-dialog.module';
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, UserDetailsSheet, AdminComponent, CafeSettingsMenuComponent,
     CatalogItemImageComponent, CatalogComponent, CatalogItemViewComponent, MenuItemSummaryComponent,
     ModifierSummaryComponent, ModifierListSummaryComponent, AdminAccountMenuComponent, AppSettingsComponent,
-    ConfirmDeleteOwnAccountDialog],
+    ],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -55,7 +54,8 @@ import { ConfirmDeleteOwnAccountDialog } from './components/confirm-delete-own-a
     MatSlideToggleModule,
     PageHeaderModule,
     MenuHeaderModule,
-    MatMenuModule
+    MatMenuModule,
+    ConfirmDeleteOwnAccountDialogModule
   ],
   entryComponents: [
     UserDetailsSheet,
