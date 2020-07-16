@@ -22,30 +22,9 @@ export class AuthenticationService {
 
   public authenticatedUser$: Observable<User> = this.authenticatedUser.asObservable();
 
-  constructor(private http: HttpClient, private router: Router) {
-
-    if (localStorage.getItem("ACCESS_TOKEN")) {
-      // TODO: CHANGE HOW ROLES ARE LOADED IN. ANYONE CAN GO INTO LOCAL STORAGE
-      //    AND CHANGE THEIR ROLES
-
-      this.accessToken = localStorage.getItem("ACCESS_TOKEN");
-      // Load the user into main memory
-      if (localStorage.getItem("name")) {
-        this.authenticatedUser.next({
-          name: localStorage.getItem("name"),
-          email: localStorage.getItem("email"),
-          id: parseInt(localStorage.getItem("id")),
-          roles: localStorage.getItem("roles").split(","),
-          imageUrl: localStorage.getItem("imageUrl"),
-        });
-
-        this.setRolesInMemory(this.authenticatedUser.getValue().roles);
-
-        if(localStorage.getItem("SIGNED_IN_AS")) {
-          this.signedInWithRole = localStorage.getItem("SIGNED_IN_AS");
-        }
-      }
-    }
+  constructor(private http: HttpClient) {
+    this.accessToken = localStorage.getItem("ACCESS_TOKEN");
+    this.signedInWithRole = localStorage.getItem("SIGNED_IN_AS");
   }
 
   private setRolesInMemory(roles: string[]): void {
@@ -64,12 +43,6 @@ export class AuthenticationService {
 
     this.clearRoles();
     this.clearUser();
-
-    localStorage.setItem("name", user.name);
-    localStorage.setItem("email", user.email);
-    localStorage.setItem("imageUrl", user.imageUrl);
-    localStorage.setItem("id", user.id.toString());
-    localStorage.setItem("roles", user.roles.toLocaleString());
 
     this.setRolesInMemory(user.roles);
     this.authenticatedUser.next(user);
@@ -99,17 +72,9 @@ export class AuthenticationService {
     this.hasRoleCustomer = false;
     this.hasRoleStaff = false;
     this.hasRoleAdmin = false;
-    this.signedInWithRole = null;
-    localStorage.removeItem("SIGNED_IN_AS");
   }
 
   private clearUser(): void {
-    localStorage.removeItem("name");
-    localStorage.removeItem("email");
-    localStorage.removeItem("imageUrl");
-    localStorage.removeItem("id");
-    localStorage.removeItem("roles");
-
     this.authenticatedUser.next(null);
   }
 

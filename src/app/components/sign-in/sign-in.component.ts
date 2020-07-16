@@ -45,15 +45,23 @@ export class SignInComponent implements OnInit, OnDestroy {
           )
           .subscribe(() => this.router.navigateByUrl("roles"));
       } else if (this.authenticationService.getAccessToken() != null && this.authenticationService.getAccessToken() != "") {
-        if (this.authenticationService.getRoleSignedInWith() == ROLE_CUSTOMER) {
-          this.router.navigateByUrl("user/menu");
-        } else if (this.authenticationService.getRoleSignedInWith() == ROLE_STAFF) {
-          this.router.navigateByUrl("staff/orders/new");
-        } else if (this.authenticationService.getRoleSignedInWith() == ROLE_ADMIN) {
-          this.router.navigateByUrl("admin/cafe");
-        } else {
-          this.router.navigateByUrl("roles")
-        }
+
+        /*   If an access token is in local storage, check the access token against the backend.
+        *    If the backend returns a user, continue signing the user in.
+        */
+        this.authenticationService.getUserFromApi().subscribe(user => {
+            this.authenticationService.setSignedInUser(user);
+
+            if (this.authenticationService.getRoleSignedInWith() == ROLE_CUSTOMER) {
+              this.router.navigateByUrl("user/menu");
+            } else if (this.authenticationService.getRoleSignedInWith() == ROLE_STAFF) {
+              this.router.navigateByUrl("staff/orders/new");
+            } else if (this.authenticationService.getRoleSignedInWith() == ROLE_ADMIN) {
+              this.router.navigateByUrl("admin/cafe");
+            } else {
+              this.router.navigateByUrl("roles")
+            }
+        });
       }
     });
   }
