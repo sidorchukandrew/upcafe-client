@@ -18,7 +18,6 @@ export class PwaDialog implements OnInit {
 
     this.isAndroid = this.platform.ANDROID;
     this.isIOS = this.platform.IOS;
-    this.isIOS = true;
   }
 
   public done(): void {

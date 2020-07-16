@@ -11,6 +11,7 @@ img {
   scroll-snap-type: mandatory;
   scroll-snap-points-x: repeat(300px);
   scroll-snap-type: x mandatory;
+  padding-bottom: 15px;
 }
 
 .step {
@@ -47,4 +48,22 @@ img {
   margin-top: 10px;
   width: 80%;
   max-width: 200px;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(80, 80, 80, 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #e6e6e6;
 }

@@ -1,7 +1,10 @@
-<h1 style="text-align: center">Installing on iOS</h1>
+<h1 style="text-align: center">Installing on
+  <ng-container *ngIf="isIOS">iOS</ng-container>
+  <ng-container *ngIf="isAndroid">Android</ng-container>
+</h1>
 <div class="steps">
   <ng-container *ngIf="isIOS">
-    <div class="step">
+    <div class="step" id="slide-1">
       <img src="../../../assets/images/ios_installation/step 1 cropped.jpg" class="shadow">
       <div class="text">
         1. Press the share button
@@ -12,12 +15,12 @@
 
       <img src="../../../assets/images/ios_installation/step 2 croppped.jpg" class="shadow">
 
-      <div class="text">
+      <div class="text" id="slide-2">
         2. Press "Add to Home Screen"
       </div>
     </div>
 
-    <div class="step">
+    <div class="step" id="slide-3">
       <img src="../../../assets/images/ios_installation/step 3 cropped.jpg" class="shadow">
       <div class="text">
         3. Press the "Add" button
@@ -25,20 +28,6 @@
     </div>
   </ng-container>
 </div>
-
-<!-- <div class="progress">
-  <div class="circle">
-
-  </div>
-
-  <div class="circle">
-
-  </div>
-
-  <div class="circle">
-
-  </div>
-</div> -->
 
 <div style="text-align: center">
   <button mat-flat-button id="done" color="primary" (click)="done()">Got it!</button>
