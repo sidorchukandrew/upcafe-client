@@ -137,7 +137,8 @@ export class UserDetailsSheet implements OnInit, OnDestroy {
       });
 
       dialogRef.afterClosed().subscribe(deleteSuccessful => {
-        this.bottomSheet.dismiss();
+        if(deleteSuccessful)
+          this.bottomSheet.dismiss();
       });
     }
 

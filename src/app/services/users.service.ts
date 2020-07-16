@@ -24,7 +24,7 @@ export class UsersService {
     return this.http.delete<boolean>(environment.backendUrl + "/api/v1/users/" + user.id);
   }
 
-  public deleteMe(user: UserAdminView | User): Observable<boolean> {
-    return of(true);
+  public deleteMe(): Observable<boolean> {
+    return this.http.delete<boolean>(environment.backendUrl + "/api/v1/users/1");
   }
 }

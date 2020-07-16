@@ -28,7 +28,7 @@ export class ConfirmDeleteOwnAccountDialog implements OnInit {
 
   public delete(): void {
     this.saving = true;
-    this.userService.deleteMe(this.me).subscribe(deleteSuccessful => {
+    this.userService.deleteMe().subscribe(deleteSuccessful => {
       if(deleteSuccessful) {
         this.authenticationService.signOut();
         this.dialogRef.close(true);

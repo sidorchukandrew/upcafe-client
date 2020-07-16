@@ -85,7 +85,7 @@ export class AuthenticationService {
   }
 
   public getUserFromApi(): Observable<User> {
-    return this.http.get<User>(environment.backendUrl +"/users/me");
+    return this.http.get<User>(environment.backendUrl +"/api/v1/users/me");
   }
 
   public signOut(): void {
