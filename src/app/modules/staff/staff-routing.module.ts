@@ -19,6 +19,7 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 import { StaffAccountMenuComponent } from './components/staff-account-menu/staff-account-menu.component';
 import { CatalogViewComponent } from './components/catalog-view/catalog-view.component';
 import { SwitchToSmallerScreenComponent } from './components/switch-to-smaller-screen/switch-to-smaller-screen.component';
+import { StaffProfileComponent } from './components/staff-profile/staff-profile.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,7 @@ const routes: Routes = [
           { path: "cafe/hours", component: HoursComponent },
           { path: "cafe/pickup", component: PickupTimesComponent },
           { path: "account/app", component: AppSettingsComponent },
+          { path: "account/profile", component: StaffProfileComponent },
           { path: "cafe/inventory", component: InventoryComponent },
           {
             path: "account/feedback",

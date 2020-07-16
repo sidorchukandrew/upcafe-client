@@ -26,6 +26,8 @@ export class SignInOptionsComponent implements OnInit, OnDestroy {
     this.subscriptions = new Subscription();
     this.subscriptions.add(this.authenticationService.authenticatedUser$
       .subscribe(authenticatedUser => {
+
+        if(authenticatedUser == null) this.router.navigateByUrl("");
         this.user = authenticatedUser;
         this.userShortName = this.user.name.substring(0, this.getIndexOfSpace(this.user.name));
       }));

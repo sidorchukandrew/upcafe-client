@@ -48,6 +48,9 @@ import { SegmentedControlModule } from '../segmented-control/segmented-control.m
 import { SwitchToSmallerScreenComponent } from './components/switch-to-smaller-screen/switch-to-smaller-screen.component';
 import { MenuHeaderModule } from '../menu-header/menu-header.module';
 import { PageHeaderModule } from '../page-header/page-header.module';
+import { StaffProfileComponent } from './components/staff-profile/staff-profile.component';
+import { ConfirmDeleteOwnAccountDialogModule } from '../confirm-delete-own-account-dialog/confirm-delete-own-account-dialog.module';
+import { ConfirmDeleteOwnAccountDialog } from '../confirm-delete-own-account-dialog/components/confirm-delete-own-account-dialog/confirm-delete-own-account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +75,7 @@ import { PageHeaderModule } from '../page-header/page-header.module';
     CatalogViewComponent,
     CatalogItemDialog,
     SwitchToSmallerScreenComponent,
+    StaffProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -98,8 +102,9 @@ import { PageHeaderModule } from '../page-header/page-header.module';
     HeaderWithSearchModule,
     SegmentedControlModule,
     MenuHeaderModule,
-    PageHeaderModule
+    PageHeaderModule,
+    ConfirmDeleteOwnAccountDialogModule
   ],
-  entryComponents: [SelectTimeComponent, CatalogItemDialog],
+  entryComponents: [SelectTimeComponent, CatalogItemDialog, ConfirmDeleteOwnAccountDialog],
 })
 export class StaffModule {}
