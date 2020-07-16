@@ -54,6 +54,7 @@ import { PickupTimeSelectorSheet } from './components/pickup-time-selector-sheet
 import { SwitchToSmallerScreenComponent } from './components/switch-to-smaller-screen/switch-to-smaller-screen.component';
 import { CategorySelectorComponent } from './components/category-selector/category-selector.component';
 import { PageHeaderModule } from '../page-header/page-header.module';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { PageHeaderModule } from '../page-header/page-header.module';
     EditOrderItemComponent,
     PickupTimeSelectorSheet,
     SwitchToSmallerScreenComponent,
-    CategorySelectorComponent
+    CategorySelectorComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,

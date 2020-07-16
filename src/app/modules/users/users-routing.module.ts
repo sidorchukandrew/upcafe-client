@@ -17,6 +17,7 @@ import { FeatureRequestComponent } from "src/app/modules/feedback/app-feedback/f
 import { CustomerGuard } from 'src/app/guards/customer.guard';
 import { EditOrderItemComponent } from './components/edit-order-item/edit-order-item.component';
 import { SwitchToSmallerScreenComponent } from './components/switch-to-smaller-screen/switch-to-smaller-screen.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,7 @@ const routes: Routes = [
           { path: "menu/:id", component: ItemDetailsComponent },
           { path: "cart/payment", component: PaymentComponent },
           { path: "account/settings", component: SettingsComponent },
+          { path: "account/profile", component: UserProfileComponent },
           { path: "cart/edit/:id", component: EditOrderItemComponent },
           {
             path: "account/feedback", component: AppFeedbackComponent,

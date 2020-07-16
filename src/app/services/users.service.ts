@@ -25,6 +25,6 @@ export class UsersService {
   }
 
   public deleteMe(): Observable<boolean> {
-    return this.http.delete<boolean>(environment.backendUrl + "/api/v1/users/1");
+    return this.http.delete<boolean>(environment.backendUrl + "/api/v1/users/me");
   }
 }

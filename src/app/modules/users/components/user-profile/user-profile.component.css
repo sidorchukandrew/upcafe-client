@@ -1,0 +1,14 @@
+.section {
+  margin: 10px 0px;
+}
+
+.action {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+#delete {
+  color: red;
+}
