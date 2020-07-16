@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { User } from "../models/User";
 import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
 import { environment } from 'src/environments/environment';
 
 export const ROLE_CUSTOMER: string = "ROLE_CUSTOMER";
@@ -65,6 +64,7 @@ export class AuthenticationService {
     this.clearUser();
     this.clearAccessToken();
     this.clearRoles();
+    localStorage.removeItem("SIGNED_IN_AS");
     this.authenticatedUser.next(null);
   }
 
