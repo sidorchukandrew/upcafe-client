@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Menu } from '../models/Menu';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { MenuItem } from '../models/MenuItem';
 
 @Injectable({

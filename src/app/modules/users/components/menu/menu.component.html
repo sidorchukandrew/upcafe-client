@@ -50,9 +50,9 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="menu == null && isLoadingMenu">
-  <mat-spinner></mat-spinner>
-</ng-container>
+<div *ngIf="menu == null && isLoadingMenu" id="loading-menu-spinner">
+  <mat-spinner diameter=70></mat-spinner>
+</div>
 
 
 <div class="navbar-space-bottom"></div>
