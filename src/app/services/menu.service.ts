@@ -13,13 +13,23 @@ export class MenuService {
   private menuSubject: BehaviorSubject<Menu> = new BehaviorSubject<Menu>(null);
   private itemBeingViewed: MenuItem;
   private menu$: Observable<Menu> = this.menuSubject.asObservable();
-
+  private loadingMenu: BehaviorSubject<boolean> = new BehaviorSubject(false);
   constructor(private http: HttpClient) { }
 
   public loadMenuFromApi(): void {
+    this.loadingMenu.next(true);
     if(this.menuSubject.value == null) {
-      this.http.get<Menu>(environment.backendUrl + "/api/v1/menu").subscribe(menu => this.menuSubject.next(menu));
+      this.http.get<Menu>(environment.backendUrl + "/api/v1/menu").subscribe(
+        (menu) => {
+          this.menuSubject.next(menu);
+          this.loadingMenu.next(false);
+        },
+        error => this.loadingMenu.next(false));
     }
+  }
+
+  public menuIsBeingLoaded(): Observable<boolean> {
+    return this.loadingMenu.asObservable();
   }
 
   public getMenu(): Observable<Menu> {

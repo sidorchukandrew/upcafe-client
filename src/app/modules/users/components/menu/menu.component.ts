@@ -22,6 +22,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   public searchBar: FormControl;
   public menu: Menu;
   public filteredMenu: Menu;
+  public isLoadingMenu: boolean = false;
 
   constructor(private themeService: ThemeService, private menuService: MenuService, private router: Router) { }
 
@@ -34,6 +35,8 @@ export class MenuComponent implements OnInit, OnDestroy {
       this.menu = menu;
       this.filteredMenu = menu;
     }));
+
+    this.subscriptions.add(this.menuService.menuIsBeingLoaded().subscribe(loading => this.isLoadingMenu = loading));
   }
 
   ngOnDestroy() {

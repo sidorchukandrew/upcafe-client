@@ -8,7 +8,7 @@
 <div class="menu-label title-color">
   <ng-container *ngIf="category != 'All'">{{category}}</ng-container> Menu
 </div>
-<ng-container *ngIf="filteredMenu">
+<ng-container *ngIf="filteredMenu && !isLoadingMenu">
 
   <div *ngFor="let subcategory of filteredMenu.categories" class="subcategory">
 
@@ -48,7 +48,10 @@
       </div>
     </ng-container>
   </div>
+</ng-container>
 
+<ng-container *ngIf="menu == null && isLoadingMenu">
+  <mat-spinner></mat-spinner>
 </ng-container>
 
 
