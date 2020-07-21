@@ -28,7 +28,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   public displayedItems: Array<CatalogObject>;
   private subscriptions: Subscription;
 
-  @ViewChild("selector", { static: false }) selector: SegmentedControlComponent;
+  @ViewChild("selector") selector: SegmentedControlComponent;
 
   constructor(private catalogService: CatalogService, private themeService: ThemeService,
     private router: Router, private catalogEditService: CatalogEditService) { }

@@ -21,7 +21,7 @@ export class EditOrderItemSheet {
   public orderItemPrice: number;
   public selectedModifiers: Array<OrderModifier>;
 
-  @ViewChild("modListDetails", {static: false}) modListDetails: ModListDetailsComponent;
+  @ViewChild("modListDetails") modListDetails: ModListDetailsComponent;
 
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private bottomSheet: MatBottomSheet,
               private successfulUpdateDialog: MatDialog) {

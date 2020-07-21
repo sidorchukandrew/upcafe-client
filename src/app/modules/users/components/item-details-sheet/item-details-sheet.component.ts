@@ -23,7 +23,7 @@ export class ItemDetailsSheet {
 
   private bottomSheetRef: MatBottomSheet;
 
-  @ViewChild("modListDetails", { static: false }) modListDetails: ModListDetailsComponent;
+  @ViewChild("modListDetails") modListDetails: ModListDetailsComponent;
 
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private orderService: OrderPlacingService,
     private successDialog: MatDialog) {
