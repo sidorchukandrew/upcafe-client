@@ -6,6 +6,17 @@
   z-index: 10;
 }
 
+#date-selected {
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  font-weight: 600;
+  padding: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  outline: none;
+}
+
 @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
   .header {
     position: fixed;

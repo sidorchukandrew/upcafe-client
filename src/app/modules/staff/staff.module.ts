@@ -21,7 +21,8 @@ import {
   MatSlideToggleModule,
   MatTooltipModule,
   MatCheckboxModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatNativeDateModule
 } from "@angular/material";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { OrderDetailsComponent } from "./components/order-details/order-details.component";
@@ -51,6 +52,7 @@ import { PageHeaderModule } from '../page-header/page-header.module';
 import { StaffProfileComponent } from './components/staff-profile/staff-profile.component';
 import { ConfirmDeleteOwnAccountDialogModule } from '../confirm-delete-own-account-dialog/confirm-delete-own-account-dialog.module';
 import { ConfirmDeleteOwnAccountDialog } from '../confirm-delete-own-account-dialog/components/confirm-delete-own-account-dialog/confirm-delete-own-account-dialog.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -103,7 +105,7 @@ import { ConfirmDeleteOwnAccountDialog } from '../confirm-delete-own-account-dia
     SegmentedControlModule,
     MenuHeaderModule,
     PageHeaderModule,
-    ConfirmDeleteOwnAccountDialogModule
+    ConfirmDeleteOwnAccountDialogModule, MatDatepickerModule, MatNativeDateModule
   ],
   entryComponents: [SelectTimeComponent, CatalogItemDialog, ConfirmDeleteOwnAccountDialog],
 })

@@ -238,3 +238,9 @@ a {
 .pwa-installation .mat-dialog-container {
   padding: 14px;
 }
+
+
+.highlight {
+  border-radius: 100%;
+  background-color: #007bf754;
+}

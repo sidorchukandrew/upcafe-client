@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
 import { OrdersStore } from 'src/app/stores/orders.store';
 import { Subscription } from 'rxjs';
+import { MatCalendarCellCssClasses } from '@angular/material';
 
 @Component({
   selector: "app-orders",
@@ -12,6 +13,14 @@ export class OrdersComponent implements OnInit, OnDestroy {
   selectedOrdersView: string;
   private subscriptions: Subscription;
   public loadingOrders: boolean = false;
+  dateClass = (d: Date): MatCalendarCellCssClasses => {
+    const date = d.getDate();
+
+    // Highlight the 1st and 20th day of each month.
+    return (date === 1 || date === 20) ? 'highlight' : '';
+  };
+
+  public selectedDate: string;
 
   constructor(private router: Router, private ordersStore: OrdersStore) {}
 

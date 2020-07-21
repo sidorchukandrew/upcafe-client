@@ -1,6 +1,11 @@
 <div class="header body-background">
   <h2 style="margin-left: 10px;" class="title-color">
-    Today's Orders
+    <button id="date-selected" class="title-color" mat-ripple (click)="picker.open()">
+      Today's Orders
+    </button>
+
+    <input [matDatepicker]="picker" style="visibility:hidden; width:0px;">
+    <mat-datepicker touchUi [dateClass]="dateClass" #picker></mat-datepicker>
     <button mat-icon-button [matMenuTriggerFor]="moreViews">
       <mat-icon class="title-color">more_horiz</mat-icon>
     </button>
