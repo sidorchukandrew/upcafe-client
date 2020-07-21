@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ThemeService } from 'src/app/services/theme.service';
 import { Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
@@ -6,7 +6,6 @@ import { Menu } from 'src/app/models/Menu';
 import { MenuService } from 'src/app/services/menu.service';
 import { Category } from 'src/app/models/Category';
 import { MenuItem } from 'src/app/models/MenuItem';
-import { debounceTime, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,7 +23,8 @@ export class MenuComponent implements OnInit, OnDestroy {
   public filteredMenu: Menu;
   public isLoadingMenu: boolean = false;
 
-  constructor(private themeService: ThemeService, private menuService: MenuService, private router: Router) { }
+  constructor(private themeService: ThemeService, private menuService: MenuService, private router: Router,
+    private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
 
@@ -34,9 +34,13 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.menuService.getMenu().subscribe(menu => {
       this.menu = menu;
       this.filteredMenu = menu;
+      this.changeDetector.detectChanges();
     }));
 
-    this.subscriptions.add(this.menuService.menuIsBeingLoaded().subscribe(loading => this.isLoadingMenu = loading));
+    this.subscriptions.add(this.menuService.menuIsBeingLoaded().subscribe(loading => {
+      this.isLoadingMenu = loading;
+    }));
+
   }
 
   ngOnDestroy() {
@@ -238,5 +242,9 @@ export class MenuComponent implements OnInit, OnDestroy {
     });
 
     this.filteredMenu = searchFilteredMenu;
+  }
+
+  public reloadMenu(): void {
+    this.menuService.loadMenuFromApi();
   }
 }

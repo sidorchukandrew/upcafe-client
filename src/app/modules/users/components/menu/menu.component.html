@@ -8,7 +8,7 @@
 <div class="menu-label title-color">
   <ng-container *ngIf="category != 'All'">{{category}}</ng-container> Menu
 </div>
-<ng-container *ngIf="filteredMenu && !isLoadingMenu">
+<ng-container *ngIf="menu && !isLoadingMenu">
 
   <div *ngFor="let subcategory of filteredMenu.categories" class="subcategory">
 
@@ -52,6 +52,11 @@
 
 <div *ngIf="menu == null && isLoadingMenu" id="loading-menu-spinner">
   <mat-spinner diameter=70></mat-spinner>
+</div>
+
+<div *ngIf="menu == null && !isLoadingMenu" class="subtitle-color" id="error-loading-menu">
+  Something went wrong :( <br>
+  <button mat-stroked-button style="margin-top: 10px;" (click)="reloadMenu()">Try Again</button>
 </div>
 
 
