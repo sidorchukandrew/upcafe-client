@@ -17,12 +17,15 @@ export class OrdersStore {
   private subject: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>([]);
 
   orders$: Observable<Order[]> = this.subject.asObservable();
+  private loadingOrders: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private http: HttpClient, private utils: TimeUtilitiesService) {
     this.initializeWebSocketConnection();
   }
 
   loadOrdersFromAPI(date: string): void {
+
+    this.loadingOrders.next(true);
     const loadOrders$ = this.http
       .get<Order[]>(environment.backendUrl + "/orders", {
         params: { date: date },
@@ -30,7 +33,8 @@ export class OrdersStore {
       .pipe(
         retry(3),
         tap(() => console.log("Loading in new set of orders from API")),
-        tap((orders) => this.subject.next(orders))
+        tap((orders) => this.subject.next(orders)),
+        tap(() => this.loadingOrders.next(false))
       );
 
     loadOrders$.subscribe();
@@ -67,6 +71,10 @@ export class OrdersStore {
     return this.orders$.pipe(
       map((orders) => orders.find((order) => order.id == id))
     );
+  }
+
+  public ordersAreLoading(): Observable<boolean> {
+    return this.loadingOrders.asObservable();
   }
 
   private initializeWebSocketConnection(): void {

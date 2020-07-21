@@ -29,4 +29,11 @@
 </div>
 
 <div class="space"></div>
-<router-outlet></router-outlet>
+
+<div *ngIf="loadingOrders" id="loading-orders-spinner">
+  <mat-spinner diameter=70></mat-spinner>
+</div>
+
+<div *ngIf="!loadingOrders">
+  <router-outlet></router-outlet>
+</div>
