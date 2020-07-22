@@ -5,7 +5,7 @@
   <div id="summary" class="center-text subtitle-color">
     <div id="total-label">Your total is</div>
     <div class="app-blue-text" id="total" *ngIf="order">
-      {{ (order.totalPrice * .08) | currency }}
+      {{ (order.totalPrice + (order.totalPrice * .08)) | currency }}
     </div>
   </div>
 
