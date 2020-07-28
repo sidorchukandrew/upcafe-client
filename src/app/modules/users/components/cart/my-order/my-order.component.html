@@ -28,8 +28,14 @@
     <ng-container *ngFor="let item of currentOrder.orderItems">
 
       <div class="item card-background" matRipple [ngClass]="{'diffused-shadow': !darkThemeOn}">
-        <div class="avatar" (click)="editItem(item)"><img
-            src="../../../../../../assets/images/menu icons/restaurant.png"></div>
+        <div class="avatar" (click)="editItem(item)">
+          <ng-container *ngIf="item.imageUrl == null">
+            <img src="../../../../../../assets/images/menu icons/restaurant.png">
+          </ng-container>
+          <ng-container *ngIf="item.imageUrl">
+            <img [src]="item.imageUrl">
+          </ng-container>
+        </div>
 
         <div class="text" (click)="editItem(item)">
 
