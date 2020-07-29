@@ -33,10 +33,15 @@
 }
 
 
-.top .image {
-  height: 200px;
+.top .image img {
+  height: 60vw;
+  width: 60vw;
 }
 
+.top .image {
+  text-align: center;
+  padding-bottom: 30px;
+}
 
 .item-content {
   background-color: white;
