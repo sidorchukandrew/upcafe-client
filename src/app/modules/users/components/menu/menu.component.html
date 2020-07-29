@@ -23,8 +23,8 @@
 
           <a class="item card card-background" (click)="showItem(item)">
 
-            <div class="image" *ngIf="item.image == null">
-              <img src="../../../../../assets/food.png">
+            <div class="default-image" *ngIf="item.image == null">
+              <img src="../../../../../assets/images/cup_only_grey.png">
             </div>
 
             <div class="image" *ngIf="item.image">

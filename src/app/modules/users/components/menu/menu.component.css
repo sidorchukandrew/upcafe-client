@@ -17,8 +17,13 @@
 }
 
 
-.image img {
+.card img {
   width: 135px;
+}
+
+.default-image {
+    text-align: center;
+    padding: 15px 0px;
 }
 
 .light-theme {
